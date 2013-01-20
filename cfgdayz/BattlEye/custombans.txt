@@ -1,0 +1,78 @@
+3140567e290b25d053248a5cf2a7bd2a -1 Attempted to use script to spawn ATV
+b01de0fe90cb0b5387917e3f7ec1c239 -1 Body cloning to dupe gear
+ca37d1654e04ab1b65d7e1640fc9877e -1 Attempted to use script to spawn UH-1H
+c8ea45c3069de54cc7877cbbdfcb9ad2 -1 BEC Caught for GameHack. Contact Ibattle.org for info
+4cd26fd81dad1efea300a9f6b989a392 -1 BEC Caught for GameHack. Contact Ibattle.org for info
+62d0fa5c138023e01794099a08ca89a7 -1 BEC Caught for GameHack. Contact Ibattle.org for info
+b1f8e4ef851ad57e4c032bcd0f34bdae -1 BEC Caught for GameHack. Contact Ibattle.org for info
+75032d76c2d8734fad9544431aa8a7ac -1 BEC Caught for GameHack. Contact Ibattle.org for info
+4c1278566ff487fab15fa3cfc6e9eac1 -1 BEC Caught for GameHack. Contact Ibattle.org for info
+4775e55221f432ba309ae109e95752da -1 BEC Caught for GameHack. Contact Ibattle.org for info
+62d0fa5c138023e01794099a08ca89a7 -1 BEC Caught for GameHack. Contact Ibattle.org for info
+0dbff80bdb601b218e6d21e2951074b7 -1 BEC Caught for GameHack. Contact Ibattle.org for info
+cd95b8e9db7702e7b0e585ab33ab07b9 -1 Attempted to use script to spawn ATV
+eeb847cb7aeeaf70950cc22ae043b7c2 -1 eeb8 Attempted to use script to spawn UH-1H
+2167ebcfa6d13656ee0e94ef913499b7 -1 eeb8 Attempted to use script to spawn UH-1H
+fdd1e7c8ebb26db08913d19dfe7a01b7 -1 eeb8 Attempted to use script to spawn UH-1H
+76d11f52f41cbfc18915508aea771928 -1 Attempted to use script to spawn Ammo Box
+3a2ebfa7fbca521625b58fa21d02d803 -1 Using and/or conspiring with user of CheatAutomation DayZ Hack
+edea3b018d324d6e6963039d483bcd4f -1 Using and/or conspiring with user of CheatAutomation DayZ Hack
+61590a2a66624a00438c300cd4f41aad -1 Using and/or conspiring with user of CheatAutomation DayZ Hack
+8af3890b4c5860b4837a0bd06b8215b6 -1 Attempted to use script to spawn Ammo Box
+c6f9b54c7f993a1301d375fae84bb1ba -1 Attempted to use script to spawn Ammo Box
+d7326a3c1ae4cadb22c4558d7b3e9d52 -1 Used "Kill All Players" Script
+5384a7c608bffbb0837f18d2841455ad -1 Attempted to use script to spawn Ammo Box
+23a8069ac4f77385c8eba797961074a5 -1 Used "Summon All Vehicles" Script
+a04927145be2a5aff3c6d11f2952a88b -1 Attempted to use script to spawn Ammo Box
+cd1986da84295bb983b64380fd1e0903 -1 Spawned in an IED
+1f1ffae13ede2c938024361056fe2306 -1 Teleporting players
+2d6fa10f1ef2670261bf5eab442e2dfe -1 W 4d9b2182 0x0f44d938
+9e6899740a2e78188581a60c7a615ab1 -1 Attempted to use script to spawn Ammo Box
+1746bf75156cdd95b490d81c0199b980 -1 Hacker. Teleporting/Mass Pipebombs/Medbox
+2693ff7f0ff585ef8b43d6da2a4f53e1 -1 Hacker. Teleporting/Mass Pipebombs/Medbox
+c1364bbad8cbb96e994c22d76a8fba52 -1 Hacker. Teleporting/Mass Pipebombs/Medbox
+40fb782a8982bf94ff63109f7abffd6d -1 Hacker. Teleporting
+013b6c0ab34e93237388e83382a9bbae -1 Hacker. Teleporting/Rapidfire repeat attempts to open dsInterface
+aa95b11a9d39388f1797a4bcca3b0714 -1 Hacker. Teleporting
+d3b9114005104369cdcacb2e1d9c0b5a -1 Combat logging.
+8d7c682e7364c6258587f872fc92fcad -1 Hacker. Teleporting/Item Spawning
+1e492b62c76602bb50e391deaab8e6be -1 Hacker. Teleporting
+be780688c309f2edb27bf68299692785 -1 Hacker. setdamage 1
+da9b75d9dbd0170eaa2626bfdea9dd59 -1 Hacker. Teleporting
+85df8c9232bb69af7e4cf059d468acb6 -1 Duper. Setup giant tent city (50+ tents & 25+ bear traps) within just a few minutes.
+412acd5761926aa659d8cc4afd035d6f -1 Duper. Setup giant tent city (50+ tents & 25+ bear traps) within just a few minutes.
+ae355ecdfa2ba236d7c14b099af05b34 -1 Hacker. Teleporting
+f59e87b0edfba1dadd66ddbf435fbdc9 -1 Hacker. 26 G_40mm_HE in 10 seconds and setdamage 1
+dcc44d7ab0f6f7d4376af7728a89abf1 -1 Hacker. Teleporting/setdamage 1
+4bc82429379be4a3bae7cc71c3d5244d -1 Hacker. setdamage 1
+c824577e3d1b5f574d1b66120722793b -1 Suspected Map Hack
+852e182ee0e1578bb5f205cef580a1cf -1 Suspected hacker
+d9b5d72494779251da1cd4bb8d1bd94a -1 Hacker
+d76a636436405cceb9a36539fe34df4c -1 Hacker. (setdamage 1)
+ca1c84ef70285aff63133bc226517bbd -1 Hacker. (teleporting)
+8dbaddb6c5bb4496eeceee8be4f67d6a -1 Hacker. (speed hack)
+f40bc5fcbd664ae67a4430611d204839 -1 Hacker. (teleporting)
+632e4516101350b15906e20feb54ab28 -1 Hacker. (setdamage 1)
+eea47a5a3b1d7aa00a14d235c321bed1 -1 Hacker. (Hello Aim-X)
+7c1618fbcde04f304100a72bd2efc0d7 -1 Hacker. (A)
+979e92df37f5e8a9f6a911a3cf01d868 -1 Sorry man, you fell for my bait/trap.  Map Hacks/ESP.
+69a1d20fa9f4aef0cfa322fb962f9b8d -1 Hacker/Exploiter
+5bf6347affa66538d5da59c2cbf3601c -1 Made too many pandas sad. Banned by panda police.
+6be6791c0178f8d67359ba259d65a4ff -1 Hacker. (GameHack)
+769b8a51be865960f2ea26e4f50b162c -1 Hacker. (Hacked in weapon/M14)
+341da7592e4fbabf0b7e28daa84e8563 -1 Hacker. (Hacked in weapon/M14)
+2805183ecb5cb75eb9475a56503fe8b4 -1 Hacker. (Hacked in weapon/M14)
+205ed617fee22f7f9afab488ce35af5a -1 Hacker. (Hacked in weapon/DMR)
+c610db194b4cf811c4b8c20f702d6fdc -1 Hacker. (Hacked in item/Pipebomb)
+12ecabd7a7243474413ffe2c77f08b5f -1 Hacker. (God Mode)
+71b372d7a23fa4322609de5fabb2be20 -1 Hacker. (Navigator)
+59f7246803552212976451ca05ec64ac -1 Duping Tank Traps/Cat Wire
+d2089d98c51be0646280738d39f640ce -1 Duping Tank Traps/Cat Wire
+3980fd454c058b3ddf2108625427d617 -1 Duping Tank Traps/Cat Wire
+a780f18b9053b9183f9b0005874fa61f -1 Hacker. Spawning M24/M9 SD. Suspected teleport.
+63991f18169a95b12f045326327a5c8f -1 Hacker. Spawning M24/M9 SD. Suspected teleport.
+58980af09136d93bcbc92ab28b195fb2 -1 Hacker. Teleporter. Spawned in gear.
+78c0b975db70c52d337b6b6fbba03e26 -1 Associating with confirmed hacker.
+e74225c27c447ddea93db90a843974a3 -1 Hacker. Attempted to change server time.
+86d2d17a3941d25771079134506acded -1 (MadRussianKomi) Hacker. Teleporting.
+ac2616e8e21f9e6f66a41b0dd2185970 -1 (RavenouS) Evaded previous ban.
