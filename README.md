@@ -1,25 +1,24 @@
-![DayZRedux Logo](http://forums.dayzredux.com/public/style_images/mystic/logo.png)
-
-DayZRedux
-=========
+![DayZRedux Logo](http://forums.dayzredux.com/public/style_images/mystic/logo.png)        
 A variant of DayZ Mod intended to be more brutal and unforgiving.
 
 
 Prerequisites
-=============
+-------------
 
  - Windows 7 or Windows Server 2008
- - A working ArmA 2 Combined Ops dedicated server with latest ARMA2:OA BETA patch installed.
- - Strawberry Perl
- - MySQL Community Server
+ - ArmA 2 Combined Operations Dedicated Server (Steam users must merge ArmA2 and ArmA2 OA Directories)
+ - Latest ArmA 2 Operation Arrowhead Beta Patch (http://www.arma2.com/beta-patch.php)
+ - Microsoft Visual C++ 2010 SP1 x86 Redistributable (http://www.microsoft.com/en-us/download/details.aspx?id=8328)
+ - Strawberry Perl (http://www.strawberryperl.com/
+ - MySQL Community Server (http://www.mysql.com/downloads/mysql/)
 
 Known Bugs
-==========
+----------
  - Ammo refills on logout/login.  This side-effect occurs as a result of an anti-dupe fix.  Ammo refill seems to be the lesser evil.
  - Sometimes a combat logger does not leave a body behind.  If you can replicate this reliably, please let me know the steps to do so.  Note that, regardless, the combat logger is always killed properly in the database.
 
 Credits
-=========
+-------
  - Bohemia Interactive Simulations :: for ArmA2 and the obvious contributions/support to Rocket and DayZ
  - Dean "Rocket" Hall :: for DayZ itself and being supportive of community froked variants of DayZ
  - ayan4m1 :: DayZRedux was based upon an early Bliss build and continues to use a Bliss hive library https://github.com/ayan4m1/DayZ-Private
@@ -29,18 +28,15 @@ Credits
  - AlexanderG :: Responsible for some of the 3DStudio MAX models we converted to ArmA2 models for some items (Changelog for details)
  - Stapo :: Inspiring the creation of a back-end construction system that was implemented to DayZRedux
 
+Installation Instructions
+-------------------------
+[Server] (http://forums.dayzredux.com/index.php?/topic/3187-dayzredux-server-pack-download-setup/)
 
-DayZ Redux SERVER Setup Instructions
-==========================================
-See: http://forums.dayzredux.com/index.php?/topic/3187-dayzredux-server-pack-download-setup/
 
-
-DayZ Redux CLIENT Setup Instructions
-==========================================
-See: http://forums.dayzredux.com/index.php?/topic/40-dayz-redux-installation-and-troubleshooting/
+[Client] (http://forums.dayzredux.com/index.php?/topic/40-dayz-redux-installation-and-troubleshooting/)
 
 License
-=========
+-------
 The terms of use/license below pertains to all code, artwork, and other assets that have
 been created/developed for DayZ Redux.  In short, all assets which are explicit to DayZ
 Redux itself and otherwise not withstanding a prior author/owner (e.g. Bohemia
@@ -63,6 +59,6 @@ way, but it does not invalidate such permission if you have separately received 
 relevant author(s).  Contact the repo maintaner (Venthos) if you are unsure who maintains authorship over a given DayZRedux asset.
 
 Repo Maintainer
-=========
-Venthos
-venthos@dayzredux.com
+---------------
+Venthos    
+Email: venthos@dayzredux.com
