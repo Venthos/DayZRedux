@@ -118,7 +118,7 @@ class RscDisplayMainMap {
 		
 		class DiaryList : RscIGUIListBox {
 			idc = 1001;
-			onLBSelChanged = " [ _this select 0 , _this select 1 , 'List' ] call compile preprocessFileLineNumbers 'ca\Warfare2\Scripts\Client\GUI\GUI_logEH.sqf';        private ['_dummy'];  _dummy = [_this, 'onLBSelChanged'] call compile preprocessfile '\z\addons\dayz_code\compile\server_interface.sqf';";
+			onLBSelChanged = " [ _this select 0 , _this select 1 , 'List' ] call compile preprocessFileLineNumbers 'ca\Warfare2\Scripts\Client\GUI\GUI_logEH.sqf'; ";
 			default = 1;
 			x = "0.010*SafeZoneW + SafeZoneX";
 			y = "SafeZoneY + 0.137";

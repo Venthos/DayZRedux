@@ -14,7 +14,7 @@ if (!_isDead) then {
 	sleep 5;
 	usecEpi = [_unit,player,"ItemEpinephrine"];
 	publicVariable "usecEpi";
-	_unit switchMove "AmovPpneMstpSnonWnonDnon_healed";
+	//_unit switchMove "AmovPpneMstpSnonWnonDnon_healed";
 };
 
 r_action = false;

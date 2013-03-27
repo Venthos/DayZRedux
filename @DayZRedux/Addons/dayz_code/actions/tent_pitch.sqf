@@ -42,9 +42,11 @@ if (_notInBuilding) then {
 	//wait a bit
 	player playActionNow "Medic";
 	sleep 1;
-	[player,"tentunpack",0,false] call dayz_zombieSpeak;
-	
-	_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
+
+	_dis=50;
+	_sfx = "tentunpack";
+	[player,_sfx,0,false,_dis] call dayz_zombieSpeak;  
+	[player,_dis,true,(getPosATL player)] spawn player_alertZombies;
 	
 	sleep 5;
 	//place tent (local)
@@ -60,12 +62,8 @@ if (_notInBuilding) then {
 
 	dayzPublishObj = [dayz_characterID,_tent,[_dir,_location],"Land_Cont2_RX"];
 	publicVariable "dayzPublishObj";
-	if (isServer) then {
-		dayzPublishObj call server_publishObj;
-	};
 	
 	cutText [localize "str_success_tent_pitch", "PLAIN DOWN"];
 } else {
 	cutText [localize "str_fail_tent_pitch", "PLAIN DOWN"];
 };
-

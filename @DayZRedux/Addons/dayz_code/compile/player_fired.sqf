@@ -12,17 +12,9 @@ _distance = round(_audible * 10 * _caliber * 1.15);
 
 dayz_disAudial = _distance;
 dayz_firedCooldown = time;
-
-// NOT NEEDED SINCE FIREDNEAR TRIPS ON SELF AS WELL
-// Color in the combat icon immediately since player_spawn2.sqf loops on a 2 second delay
-//dayz_combat = 1;
-// Queue up for combat
-//dayz_combatStart = true;
-
-// Watch the bullet to throw those in combat wherever it impacts
+// Color in the combat icon
+dayz_combat = 1;
 _id = _this spawn player_projectileNear;
-
-//nul=(name _unit) spawn player_combatLogged;
 
 if (_ammo isKindOf "Melee") exitWith {
 	_unit playActionNow "GestureSwing";
@@ -33,7 +25,7 @@ if (_ammo isKindOf "SmokeShell") then {
 	//Alert Zed's to smoke
 	_i = 0;
 	_projectile = nearestObject [_unit, _ammo];
-	_listTalk = (getPosATL _projectile) nearEntities ["zZambie_Base",50];
+	_listTalk = (getPosATL _projectile) nearEntities ["zZombie_Base",50];
 	{
 		_group = group _x;
 		if (isNull group _x) then {
@@ -49,7 +41,6 @@ if (_ammo isKindOf "SmokeShell") then {
 	} forEach _listTalk;
 } else {
 	_id = [_unit,_distance,true,(getPosATL player)] spawn player_alertZombies;
-	
 	//Check if need to place arrow
 	if (_ammo isKindOf "Bolt") then {
 		_id = _this spawn player_crossbowBolt;

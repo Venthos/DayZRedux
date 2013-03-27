@@ -7,219 +7,134 @@ class CfgVehicles {
 		canCarryBackPack = 1;
 	};
 
-	class Animal;	// External class reference
-	
-	class DZAnimal : Animal {
-		scope = private;
-		side = TWest;
-		accuracy = 0.25;	// accuracy needed to recognize type of this target
-		boneHead = "head";
-		bonePrimaryWeapon = "head";
-		triggerAnim = "";
-		picture = "";
-		icon = "\Ca\animals2\data\mapicon_animals_ca.paa";
-		mapSize = 10;
-		weaponSlots = 0;
-		fsmFormation = "";
+	class Citizen1;	// External class reference
+	class zZombie_Base : Citizen1 {
+		scope = public;
+		glassesEnabled = 0;
+		vehicleClass = "Zombie";
+		displayName = "Zombie";
 		fsmDanger = "";
-		agentTasks[] = {};
-		moves = "CfgMovesAnimal";
-		memoryPointHeadAxis = "head_axis";
-		woman = false;
-		faceType = "Default";
-		boneLEye = "l_eye";
-		boneREye = "r_eye";
-		boneLEyelidUp = "eye_upl";
-		boneREyelidUp = "eye_upr";
-		boneLEyelidDown = "eye_lwl";
-		boneREyelidDown = "eye_lwr";
-		boneLPupil = "l_pupila";
-		boneRPupil = "r_pupila";
-		memoryPointAim = "aimPoint";
-		memoryPointCameraTarget = "camera";
-		extCameraPosition[] = {0, 0.5, -2.5};
+		fsmFormation = "";
+		zombieLoot = "civilian";
+		moves = "CfgMovesZombie";
+		isMan = false;
+		weapons[] = {};
+		magazines[] = {};
+		sensitivity = 4;	// sensor sensitivity
+		sensitivityEar = 2;
+		identityTypes[] = {"zombie1", "zombie2"};
+		class TalkTopics {};
+		languages[] = {};
 		
-		class EventHandlers {};
-		
-		class Wounds {
-			tex[] = {};
-			mat[] = {};
+		class Eventhandlers {
+			init = "_this call zombie_initialize;";
+			local = "if(_this select 1) then {[(position (_this select 0)),(_this select 0),true] execFSM '\z\AddOns\dayz_code\system\zombie_agent.fsm'};";
 		};
 		
-		class VariablesScalar {};
-		
-		class VariablesString {};
-	};
-	
-	class Dog1 : DZAnimal {
-		scope = public;
-		model = "\ca\animals2\Dogs\Pastor\Pastor";
-		displayName = "Alsatian";
-		moves = "CfgMovesDogDZ";
-		gestures = "CfgGesturesDogDZ";
-	};
-	class Soldier_Crew_PMC;	// External class reference
-	
-	class B1_RX : Soldier_Crew_PMC {
-		displayName = $STR_CHAR_2;
-		side = TWest;
-		weapons[] = {"Throw", "Put"};
-		model = "\dayz\characters\man_bandit";
-		portrait = "\Ca\characters_E\data\portraits\ger_soldier_CA";
-		magazines[] = {};
-		backpack = "";
-		respawnWeapons[] = {"Throw", "Put"};
-		respawnMagazines[] = {};
-		weaponSlots = 1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072;
-		canHideBodies = true;
-	};
-
-	class TK_Special_Forces_TL_EP1;	// External class reference
-	
-	class B2_RX : TK_Special_Forces_TL_EP1 {
-		displayName = $STR_CHAR_2;
-		side = TWest;
-		weapons[] = {"Throw", "Put"};
-		model = "\ca\characters_E\GER\GER_rifleman";
-		portrait = "\Ca\characters_E\data\portraits\ger_soldier_CA";
-		magazines[] = {};
-		backpack = "";
-		respawnWeapons[] = {"Throw", "Put"};
-		respawnMagazines[] = {};
-		hiddenSelections[] = {"Camo"};
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\bandit_tex1_co.paa"};
-		weaponSlots = 1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072;
-		canHideBodies = true;
-	};
-	
-	class BAF_Soldier_Officer_W;	// External class reference
-
-	class R_RX : BAF_Soldier_Officer_W {
-		displayName = "Rocket";
-		side = TWest;
-		weapons[] = {"Throw", "Put"};
-		backpack = "";
-		magazines[] = {};
-		respawnWeapons[] = {"Throw", "Put"};
-		respawnMagazines[] = {};
-		weaponSlots = 1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072;
-		canHideBodies = true;
-	};
-	class BAF_Soldier_W;	// External class reference
-	
-	class S1_RX : BAF_Soldier_W {
-		displayName = "Soldier";
-		side = TWest;
-		weapons[] = {"Throw", "Put"};
-		backpack = "";
-		magazines[] = {};
-		respawnWeapons[] = {"Throw", "Put"};
-		respawnMagazines[] = {};
-		weaponSlots = 1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072;
-		canHideBodies = true;
-	};
-	class BAF_Soldier_SniperH_W;	// External class reference
-	
-	class G1_RX : BAF_Soldier_SniperH_W {
-		displayName = "Sniper";
-		side = TWest;
-		weapons[] = {"Throw", "Put"};
-		backpack = "";
-		magazines[] = {};
-		respawnWeapons[] = {"Throw", "Put"};
-		respawnMagazines[] = {};
-		weaponSlots = 1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072;
-		canHideBodies = true;
-	};
-	class BAF_Soldier_L_W;	// External class reference
-	
-	class C1_RX : BAF_Soldier_L_W {
-		displayName = "Survivor";
-		side = TWest;
-		weapons[] = {"Throw", "Put"};
-		backpack = "";
-		magazines[] = {};
-		respawnWeapons[] = {"Throw", "Put"};
-		respawnMagazines[] = {};
-		weaponSlots = 1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072;
-		canHideBodies = true;
-	};
-
-	class ReammoBox_EP1;	// External class reference
-	class Bag_Base_EP1 : ReammoBox_EP1 {
-		scope = private;
-		
-		class TransportMagazines {};
-		
-		class TransportWeapons {};
-		transportMaxMagazines = 0;
-		transportMaxWeapons = 0;
-		isbackpack = 1;
-		reversed = true;
-		vehicleClass = "Backpacks";
-		
-		class DestructionEffects {};
-
-		class eventHandlers {
-			init = "(_this select 0) execVM '\z\addons\dayz_code\init\object_takeBackpackAction.sqf';";
+		class HitPoints {
+			class HitHead {
+				armor = 0.3;
+				material = -1;
+				name = "head_hit";
+				passThrough = true;
+				memoryPoint = "pilot";
+			};
+			
+			class HitBody : HitHead {
+				armor = 2;
+				name = "body";
+				memoryPoint = "aimPoint";
+			};
+			
+			class HitSpine : HitHead {
+				armor = 2;
+				name = "Spine2";
+				memoryPoint = "aimPoint";
+			};
+			
+			class HitHands : HitHead {
+				armor = 0.5;
+				material = -1;
+				name = "hands";
+				passThrough = true;
+			};
+			
+			class HitLArm : HitHands {
+				name = "LeftArm";
+				memoryPoint = "lelbow";
+			};
+			
+			class HitRArm : HitHands {
+				name = "RightArm";
+				memoryPoint = "relbow";
+			};
+			
+			class HitLForeArm : HitHands {
+				name = "LeftForeArm";
+				memoryPoint = "lwrist";
+			};
+			
+			class HitRForeArm : HitHands {
+				name = "RightForeArm";
+				memoryPoint = "rwrist";
+			};
+			
+			class HitLHand : HitHands {
+				name = "LeftHand";
+				memoryPoint = "LeftHandMiddle1";
+			};
+			
+			class HitRHand : HitHands {
+				name = "RightHand";
+				memoryPoint = "RightHandMiddle1";
+			};
+			
+			class HitLegs : HitHands {
+				name = "legs";
+				memoryPoint = "pelvis";
+			};
+			
+			class HitLLeg : HitHands {
+				name = "LeftLeg";
+				memoryPoint = "lknee";
+			};
+			
+			class HitLLegUp : HitHands {
+				name = "LeftUpLeg";
+				memoryPoint = "lfemur";
+			};
+			
+			class HitRLeg : HitHands {
+				name = "RightLeg";
+				memoryPoint = "rknee";
+			};
+			
+			class HitRLegUp : HitHands {
+				name = "RightUpLeg";
+				memoryPoint = "rfemur";
+			};
 		};
 	};
-	
-	class DZ_Patrol_Pack_EP1 : Bag_Base_EP1 {
-		scope = public;
-		displayName = "Patrol Pack (coyote)";
-		picture = "\ca\weapons_e\data\icons\backpack_US_ASSAULT_COYOTE_CA.paa";
-		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
-		mapsize = 2;
-		model = "\ca\weapons_e\AmmoBoxes\backpack_us_assault_Coyote.p3d";
-		transportMaxWeapons = 1;
-		transportMaxMagazines = 8;
+	class AllVehicles;
+	class Air : AllVehicles 
+	{
+		class NewTurret;
+		class ViewPilot;
+		class AnimationSources;
+	};
+	class Helicopter : Air 
+	{
+		class HitPoints; 
+		class Turrets
+        {
+            class MainTurret: NewTurret
+            {
+                class Turrets;
+				class ViewOptics;
+            };
+        };
 	};
 	
-	class DZ_Assault_Pack_EP1 : Bag_Base_EP1 {
-		scope = public;
-		displayName = "Assault Pack (ACU)";
-		picture = "\ca\weapons_e\data\icons\backpack_US_ASSAULT_CA.paa";
-		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
-		mapSize = 2;
-		model = "\ca\weapons_e\AmmoBoxes\backpack_us_assault.p3d";
-		transportMaxWeapons = 2;
-		transportMaxMagazines = 12;
-	};
-	
-	class DZ_CivilBackpack_EP1 : Bag_Base_EP1 {
-		scope = public;
-		displayName = "Czech Backpack";
-		picture = "\ca\weapons_e\data\icons\backpack_ACR_CA.paa";
-		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
-		mapsize = 2;
-		model = "\ca\weapons_e\AmmoBoxes\backpack_acr.p3d";
-		transportMaxWeapons = 3;
-		transportMaxMagazines = 16;
-	};
-	
-	class DZ_ALICE_Pack_EP1 : Bag_Base_EP1 {
-		scope = public;
-		displayName = "ALICE Pack";
-		picture = "\ca\weapons_e\data\icons\backpack_TK_ALICE_CA.paa";
-		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
-		mapsize = 2;
-		model = "\ca\weapons_e\AmmoBoxes\backpack_tk_alice.p3d";
-		transportMaxWeapons = 4;
-		transportMaxMagazines = 20;
-	};
-	
-	class DZ_Backpack_EP1 : Bag_Base_EP1 {
-		scope = public;
-		displayName = "Backpack (coyote)";
-		picture = "\ca\weapons_e\data\icons\backpack_US_CA.paa";
-		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
-		mapsize = 2;
-		model = "\ca\weapons_e\AmmoBoxes\backpack_us.p3d";
-		transportMaxWeapons = 6;
-		transportMaxMagazines = 24;
-	};
-
 	// Vehicles
 	class LandVehicle;	// External class reference
 	class Car : LandVehicle {
@@ -3699,6 +3614,346 @@ class CfgVehicles {
 		};
 		*/
 	};
+
+	class Animal;
+	class Pastor;
+	class Fin;
+	class DZAnimal: Animal
+	{
+		scope = 0;
+		side = 1;
+		accuracy = 0.25;
+		boneHead = "head";
+		bonePrimaryWeapon = "head";
+		triggerAnim = "";
+		picture = "";
+		icon = "\Ca\animals2\data\mapicon_animals_ca.paa";
+		mapSize = 10;
+		weaponSlots = 0;
+		fsmFormation = "";
+		fsmDanger = "";
+		agentTasks[] = {};
+		moves = "CfgMovesAnimal";
+		memoryPointHeadAxis = "head_axis";
+		woman = 0;
+		faceType = "Default";
+		boneLEye = "l_eye";
+		boneREye = "r_eye";
+		boneLEyelidUp = "eye_upl";
+		boneREyelidUp = "eye_upr";
+		boneLEyelidDown = "eye_lwl";
+		boneREyelidDown = "eye_lwr";
+		boneLPupil = "l_pupila";
+		boneRPupil = "r_pupila";
+		memoryPointAim = "aimPoint";
+		memoryPointCameraTarget = "camera";
+		extCameraPosition[] = {0, 0.5, -2.5};
+		
+		class EventHandlers{};
+		class Wounds
+		{
+			tex[] = {};
+			mat[] = {};
+		};
+
+		class VariablesScalar {};
+
+		class VariablesString {};
+	};
+	class DZ_Pastor : Pastor {
+		scope = 2;
+		side = 1;
+		model = "\ca\animals2\Dogs\Pastor\Pastor";
+		displayName = "Alsatian";
+		moves = "CfgMovesDogDZ";
+		gestures = "CfgGesturesDogDZ";
+		fsmDanger = "";
+		fsmFormation = "";
+		agentTasks[] = {};
+		woman = 0;
+		class EventHandlers{};
+		class Wounds
+		{
+			tex[] = {};
+			mat[] = {};
+		};
+		class VariablesScalar {};
+		class VariablesString {};
+	};
+	
+	class DZ_Fin : Fin {
+		scope = 2;
+		model = "\ca\animals2\Dogs\Fin\Fin";
+		displayName = "Fin";
+		moves = "CfgMovesDogDZ";
+		gestures = "CfgGesturesDogDZ";
+		fsmDanger = "";
+		fsmFormation = "";
+	};
+
+	class Soldier_Crew_PMC;
+	class B1_RX : Soldier_Crew_PMC {
+		displayName = "$STR_CHAR_2";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		model = "\dayz\characters\man_bandit";
+		portrait = "\Ca\characters_E\data\portraits\ger_soldier_CA";
+		magazines[] = {};
+		backpack = "";
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+
+	class BAF_Soldier_Officer_W;
+	class R_RX: BAF_Soldier_Officer_W {
+		displayName = "Rocket";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class BAF_Soldier_W;
+	class S1_RX: BAF_Soldier_W {
+		displayName = "Soldier";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class RU_Soldier_Sniper;
+	class GS1_RX: RU_Soldier_Sniper {
+		displayName = "Survivor Sniper";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class GUE_Soldier_Sniper;
+	class GB1_RX: GUE_Soldier_Sniper {
+		displayName = "Bandit Sniper";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class USMC_LHD_Crew_Yellow;
+	class BR1_RX: USMC_LHD_Crew_Yellow {
+		displayName = "Bait Runner";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class FR_Light;
+	class CS1_RX: FR_Light {
+		displayName = "Survivor";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class INS_Soldier_GL;
+	class CB1_RX: INS_Soldier_GL {
+		displayName = "Bandit";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class MVD_Soldier;
+	class PS1_RX: MVD_Soldier {
+		displayName = "Police";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};
+	class INS_Lopotev;
+	class PB1_RX: INS_Lopotev {
+		displayName = "Criminal";
+		side = 1;
+		weapons[] = {"Throw","Put"};
+		backpack = "";
+		magazines[] = {};
+		respawnWeapons[] = {"Throw","Put"};
+		respawnMagazines[] = {};
+		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
+		canHideBodies = 1;
+	};		
+	class ReammoBox_EP1;	// External class reference
+	class Bag_Base_EP1 : ReammoBox_EP1 {
+		scope = private;
+		
+		class TransportMagazines {};
+		
+		class TransportWeapons {};
+		transportMaxMagazines = 0;
+		transportMaxWeapons = 0;
+		isbackpack = 1;
+		reversed = true;
+		vehicleClass = "Backpacks";
+		
+		class DestructionEffects {};
+
+		class eventHandlers {
+			init = "(_this select 0) execVM '\z\addons\dayz_code\init\object_takeBackpackAction.sqf';";
+		};
+	};
+	class Bag_Base_BAF;
+	
+	class DZ_Patrol_Pack_EP1: Bag_Base_EP1
+	{
+		scope = 2;
+		displayName = "Patrol Pack (coyote)";
+		picture = "\ca\weapons_e\data\icons\backpack_US_ASSAULT_COYOTE_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		mapsize = 2;
+		model = "\ca\weapons_e\AmmoBoxes\backpack_us_assault_Coyote.p3d";
+		transportMaxWeapons = 1;
+		transportMaxMagazines = 8;
+	};
+
+	class DZ_Assault_Pack_EP1: Bag_Base_EP1
+	{
+		scope = 2;
+		displayName = "Assault Pack (ACU)";
+		picture = "\ca\weapons_e\data\icons\backpack_US_ASSAULT_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		mapSize = 2;
+		model = "\ca\weapons_e\AmmoBoxes\backpack_us_assault.p3d";
+		transportMaxWeapons = 1;
+		transportMaxMagazines = 12;
+	};
+
+	class DZ_Czech_Vest_Puch: Bag_Base_EP1
+	{
+		displayname = "Czech Vest Pouch";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		mapsize = 2;
+		model = "\ca\weapons_e\AmmoBoxes\backpack_acr_small.p3d";
+		picture = "\ca\weapons_e\data\icons\backpack_ACR_small_CA.paa";
+		scope = 2;
+		transportmaxmagazines = 12;
+		transportmaxweapons = 0;
+	};
+
+	class DZ_ALICE_Pack_EP1: Bag_Base_EP1
+	{
+		scope = 2;
+		displayName = "ALICE Pack";
+		picture = "\ca\weapons_e\data\icons\backpack_TK_ALICE_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		mapsize = 2;
+		model = "\ca\weapons_e\AmmoBoxes\backpack_tk_alice.p3d";
+		transportMaxWeapons = 2;
+		transportMaxMagazines = 16;
+	};
+
+	class DZ_TK_Assault_Pack_EP1 : Bag_Base_BAF
+	{
+		scope = 2;
+		displayName = "Survival ACU";
+		mapSize = 2;
+		picture = "\ca\weapons_e\data\icons\backpack_CIVIL_ASSAULT_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		model = "\ca\weapons_e\AmmoBoxes\backpack_civil_assault.p3d";
+		transportMaxWeapons = 2;
+		transportMaxMagazines = 16;
+	};
+
+	class DZ_British_ACU : Bag_Base_BAF
+	{
+		scope = 2;
+		displayName = "British Assault Pack";
+		mapSize = 2;
+		model = "\ca\weapons_baf\Backpack_Small_BAF";\
+		picture = "\ca\weapons_baf\data\UI\backpack_BAF_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		transportMaxWeapons = 3;
+		transportMaxMagazines = 18;
+	};
+
+	class DZ_CivilBackpack_EP1: Bag_Base_EP1    
+	{
+		scope = 2;
+		displayName = "Czech Backpack";
+		picture = "\ca\weapons_e\data\icons\backpack_ACR_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		mapsize = 2;
+		model = "\ca\weapons_e\AmmoBoxes\backpack_acr.p3d";
+		transportMaxWeapons = 4;
+		transportMaxMagazines = 24;
+	};
+
+	class DZ_Backpack_EP1: Bag_Base_EP1
+	{
+		scope = 2;
+		displayName = "Backpack (coyote)";
+		picture = "\ca\weapons_e\data\icons\backpack_US_CA.paa";
+		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
+		mapsize = 2;
+		model = "\ca\weapons_e\AmmoBoxes\backpack_us.p3d";
+		transportMaxWeapons = 6;
+		transportMaxMagazines = 24;
+	};
+  
+	//An2_TK_EP1
+	class An2_Base_EP1;
+	class AN2_DZ: An2_Base_EP1
+	{
+		displayname = "AN2 Cargo Plane";
+		displaynameshort = "AN2_DZ";
+		scope = 2;
+		side = 2;
+		crew = "";
+		typicalCargo[] = {};
+		hiddenSelections[] = {};
+		class TransportMagazines{};
+		class TransportWeapons{};
+		weapons[] = {};
+		magazines[] = {};
+		gunnerHasFlares = false;
+		commanderCanSee = 2+16+32;
+		gunnerCanSee = 2+16+32;
+		driverCanSee = 2+16+32;
+		transportMaxWeapons = 10;
+		transportMaxMagazines = 80;
+		transportmaxbackpacks = 15;
+	};
 	
 	class House {
 		class DestructionEffects;	// External class reference
@@ -3763,32 +4018,36 @@ class CfgVehicles {
 		displayName = "Crashed C130J";
 		vehicleClass = "Wrecks";
 	};
-	
-	class HouseDZ : House {
-		class MarkerLights {
-			class RedBlinking {
+
+	class HouseDZ: House {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0.0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0.0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
 				blinking = "false";
 			};
 		};
-		
-		class Reflectors {
-			class MainLight {
-				color[] = {0, 0.0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+		class Reflectors
+		{
+			class MainLight
+			{
+				color[] = {0,0.0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
 				position = "";
 				direction = "";
 				hitpoint = "";
 				selection = "";
 				size = 0;
-				period[] = {0, 1};
+				period[] = {0,1};
 			};
 		};
 	};
+  
 	class Strategic;	// External class reference
 	class NonStrategic;	// External class reference
 
@@ -3801,20 +4060,22 @@ class CfgVehicles {
 	class Fort_Barracks_USMC; // External class reference
 	class Klen_Fort_Barracks_USMC : Fort_Barracks_USMC {};
 	
-	class Land_A_FuelStation_Feed : Strategic {
+	class Land_A_FuelStation_Feed: Strategic
+	{
 		model = "\ca\structures\House\A_FuelStation\A_FuelStation_Feed";
-		transportFuel = 0;
+		transportFuel = 0; //50000;
 		nameSound = "fuelstation";
 	};
-	
-	class Land_Ind_MalyKomin : House {
-		scope = protected;
+	class Land_Ind_MalyKomin: House
+	{
+		scope = 1;
 		armor = 100;
 		featureSize = 40;
 		model = "\Ca\buildings2\Ind_CementWorks\Ind_MalyKomin\Ind_MalyKomin";
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\ca\Buildings2\Ind_CementWorks\Ind_MalyKomin\Ind_MalyKomin_ruins";
 				position = "";
@@ -3823,60 +4084,64 @@ class CfgVehicles {
 				lifeTime = 1;
 			};
 		};
-		ladders[] = {{"start", "end"}};
-		
-		class MarkerLights {
-			class RedBlinking {
+		ladders[] = {{"start","end"}};
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_Rail_Semafor : House {
-		scope = protected;
+	class Land_Rail_Semafor: House
+	{
+		scope = 1;
 		model = "\CA\Structures\Rail\Rail_Misc\rail_Semafor";
 		destrType = "DestructTree";
-		
-		class MarkerLights {
-			class GreenStill {
+		class MarkerLights
+		{
+			class GreenStill
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_Rail_Zavora : House {
-		scope = protected;
+	class Land_Rail_Zavora: House
+	{
+		scope = 1;
 		model = "\CA\Structures\Rail\Rail_Misc\rail_Zavora";
 		destrType = "DestructTree";
-		
-		class MarkerLights {
-			class WhiteBlinking {
+		class MarkerLights
+		{
+			class WhiteBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_majak : House {
-		scope = protected;
+	class Land_majak: House
+	{
+		scope = 1;
 		model = "\ca\buildings\majak";
 		displayName = "Lighthouse";
-		animated = true;
-		ladders[] = {{"start", "end"}};
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		animated = 1;
+		ladders[] = {{"start","end"}};
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\ca\buildings\ruins\majak_ruins.p3d";
 				position = "";
@@ -3886,51 +4151,55 @@ class CfgVehicles {
 			};
 		};
 		armor = 1000;
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
-		
-		class Reflectors {
-			class MainLight {
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+		class Reflectors
+		{
+			class MainLight
+			{
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				position = "";
 				direction = "";
 				hitpoint = "";
 				selection = "";
 				size = 0;
 				brightness = 0;
-				period[] = {0, 1};
+				period[] = {0,1};
 			};
 		};
 	};
-	
-	class Land_majak2 : Land_majak {
+	class Land_majak2: Land_majak
+	{
 		model = "\ca\buildings\majak2";
-		
-		class Reflectors {
-			class MainLight {
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+		class Reflectors
+		{
+			class MainLight
+			{
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				position = "";
 				direction = "";
 				hitpoint = "";
 				selection = "";
 				size = 0;
 				brightness = 0;
-				period[] = {0, 1};
+				period[] = {0,1};
 			};
 		};
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\ca\buildings\ruins\majak_ruins.p3d";
 				position = "";
@@ -3940,38 +4209,40 @@ class CfgVehicles {
 			};
 		};
 	};
-	
-	class Land_Vysilac_FM : House {
-		scope = protected;
+	class Land_Vysilac_FM: House
+	{
+		scope = 1;
 		armor = 150;
 		destrType = "DestructBuilding";
-		ladders[] = {{"start", "end"}};
+		ladders[] = {{"start","end"}};
 		model = "\ca\buildings\Vysilac_FM";
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
-		
-		class Destruction {
-			animations[] = {{"ca\buildings\rtm\vysilac_fm.rtm", 0.5, 3}};
+		class Destruction
+		{
+			animations[] = {{"ca\buildings\rtm\vysilac_fm.rtm",0.5,3}};
 		};
 		displayName = "Radio 1";
 	};
-	
-	class Land_telek1 : House {
-		scope = protected;
+	class Land_telek1: House
+	{
+		scope = 1;
 		armor = 600;
 		destrType = "DestructBuilding";
 		model = "\ca\buildings\telek1";
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\ca\buildings\ruins\telek1_ruins.p3d";
 				position = "";
@@ -3980,27 +4251,29 @@ class CfgVehicles {
 				lifeTime = 1;
 			};
 		};
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 		displayName = "Telek 1";
-		ladders[] = {{"start1", "end1"}, {"start2", "end2"}, {"start3", "end3"}};
+		ladders[] = {{"start1","end1"},{"start2","end2"},{"start3","end3"}};
 	};
-	
-	class Land_komin : House {
-		ladders[] = {{"start", "end"}};
+	class Land_komin: House
+	{
+		ladders[] = {{"start","end"}};
 		model = "\ca\buildings\komin";
 		armor = 300;
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\ca\buildings\ruins\komin_ruins.p3d";
 				position = "";
@@ -4009,102 +4282,107 @@ class CfgVehicles {
 				lifeTime = 1;
 			};
 		};
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_Stoplight01 : House {
-		scope = protected;
+	class Land_Stoplight01: House
+	{
+		scope = 1;
 		model = "\ca\buildings\Misc\stoplight01";
 		armor = 50;
-		
-		class MarkerLights {
-			class YellowTopBlinking {
+		class MarkerLights
+		{
+			class YellowTopBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
-			
-			class YellowLowBlinking {
+			class YellowLowBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_Stoplight02 : Land_Stoplight01 {
+	class Land_Stoplight02: Land_Stoplight01
+	{
 		model = "\ca\buildings\Misc\stoplight02";
-		
-		class MarkerLights {
-			class YellowTopBlinking {
+		class MarkerLights
+		{
+			class YellowTopBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_NavigLight : House {
-		scope = protected;
+	class Land_NavigLight: House
+	{
+		scope = 1;
 		displayName = "";
 		model = "\ca\buildings\Misc\NavigLight";
 		armor = 50;
-		
-		class MarkerLights {
-			class WhiteStill {
+		class MarkerLights
+		{
+			class WhiteStill
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_runway_edgelight : House {
-		scope = protected;
+	class Land_runway_edgelight: House
+	{
+		scope = 1;
 		displayName = "";
 		model = "\ca\buildings\Misc\runway_edgelight";
 		armor = 20;
-		
-		class MarkerLights {
-			class RedStill {
+		class MarkerLights
+		{
+			class RedStill
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_VASICore : NonStrategic {
-		scope = protected;
-		animated = false;
-		reversed = false;
+	class Land_VASICore: NonStrategic
+	{
+		scope = 1;
+		animated = 0;
+		reversed = 0;
 		vehicleClass = "Objects";
 		icon = "";
 		model = "";
-		displayName = VASI;
-		accuracy = 0.2;	// accuracy needed to recognize type of this target
+		displayName = "VASI";
+		accuracy = 0.2;
 		typicalCargo[] = {};
 		destrType = "DestructBuilding";
-		irTarget = false;
+		irTarget = 0;
 		transportAmmo = 0;
 		transportRepair = 0;
 		transportFuel = 0;
@@ -4113,24 +4391,26 @@ class CfgVehicles {
 		mapSize = 6.4;
 		simulation = "house";
 	};
-	
-	class Land_HouseB_Tenement : House {
+	class Land_HouseB_Tenement: House
+	{
 		armor = 180;
 		model = "\Ca\Structures\House\HouseBT\HouseB_Tenement";
-		scope = protected;
+		scope = 1;
 		featureSize = 50;
-		
-		class HitPoints {
-			class Hit1 {
+		class HitPoints
+		{
+			class Hit1
+			{
 				armor = 0.15;
 				material = -1;
 				name = "dam 1";
 				visual = "damT1";
-				passThrough = false;
+				passThrough = 0;
 				convexComponent = "dam 1";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4138,45 +4418,49 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
 		};
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0.0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0.0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
 				blinking = "false";
 			};
 		};
-		
-		class AnimationSources {
-			class Lights_1 {
+		class AnimationSources
+		{
+			class Lights_1
+			{
 				source = "user";
 				animPeriod = 0.001;
 				initPhase = 0;
 			};
-			
-			class Lights_2 : Lights_1 {};
+			class Lights_2: Lights_1
+			{
+			};
 		};
 	};
-	
-	class Land_Mil_ControlTower : House {
-		scope = protected;
+	class Land_Mil_ControlTower: House
+	{
+		scope = 1;
 		armor = 400;
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\Ca\Structures\Mil\Mil_ControlTower_ruins.p3d";
 				position = "";
@@ -4185,18 +4469,20 @@ class CfgVehicles {
 				lifeTime = 1;
 			};
 		};
-		
-		class HitPoints {
-			class Hit1 {
+		class HitPoints
+		{
+			class Hit1
+			{
 				armor = 0.25;
 				material = -1;
 				name = "dam 1";
 				visual = "damT1";
-				passThrough = true;
+				passThrough = 1;
 				convexComponent = "dam 1";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4204,27 +4490,28 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
-			
-			class Hit2 {
+			class Hit2
+			{
 				armor = 0.25;
 				material = -1;
 				name = "dam 2";
 				visual = "damT2";
-				passThrough = true;
+				passThrough = 1;
 				convexComponent = "dam 2";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4232,27 +4519,28 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
-			
-			class Hit3 {
+			class Hit3
+			{
 				armor = 0.25;
 				material = -1;
 				name = "dam 3";
 				visual = "damT3";
-				passThrough = true;
+				passThrough = 1;
 				convexComponent = "dam 3";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4260,27 +4548,28 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
-			
-			class Hit4 {
+			class Hit4
+			{
 				armor = 0.25;
 				material = -1;
 				name = "dam 4";
 				visual = "damT4";
-				passThrough = true;
+				passThrough = 1;
 				convexComponent = "dam 4";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4288,27 +4577,28 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
-			
-			class Hit5 {
+			class Hit5
+			{
 				armor = 0.25;
 				material = -1;
 				name = "dam 5";
 				visual = "damT5";
-				passThrough = true;
+				passThrough = 1;
 				convexComponent = "dam 5";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4316,27 +4606,28 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
-			
-			class Hit6 {
+			class Hit6
+			{
 				armor = 0.25;
 				material = -1;
 				name = "dam 6";
 				visual = "damT6";
-				passThrough = true;
+				passThrough = 1;
 				convexComponent = "dam 6";
-				
-				class DestructionEffects {
-					class Dust {
+				class DestructionEffects
+				{
+					class Dust
+					{
 						simulation = "particles";
 						type = "HousePartDust";
 						position = "";
@@ -4344,72 +4635,74 @@ class CfgVehicles {
 						interval = 1;
 						lifeTime = 0.01;
 					};
-					
-					class Dust2 : Dust {
+					class Dust2: Dust
+					{
 						type = "HousePartDustLong";
 					};
-					
-					class Walls : Dust {
+					class Walls: Dust
+					{
 						type = "HousePartWall";
 					};
 				};
 			};
-			
-			class Hitglass {
+			class Hitglass
+			{
 				armor = 0.0005;
 				material = -1;
 				name = "dam glass";
 				visual = "damTglass";
-				passThrough = false;
+				passThrough = 0;
 				convexComponent = "dam glass";
 			};
-			
-			class Hittower {
+			class Hittower
+			{
 				armor = 0.0005;
 				material = -1;
 				name = "dam tower";
 				visual = "damTtower";
-				passThrough = false;
+				passThrough = 0;
 				convexComponent = "dam tower";
 			};
 		};
-		replaceDamagedHitpoints[] = {"Hit1", "Hit2", "Hit3", "Hit4", "Hit5", "Hit6"};
-		
-		class Damage {
+		replaceDamagedHitpoints[] = {"Hit1","Hit2","Hit3","Hit4","Hit5","Hit6"};
+		class Damage
+		{
 			tex[] = {};
-			mat[] = {"CA\Structures\Mil\Data\Mil_ControlTower_windows1.rvmat", "CA\Structures\Mil\Data\destruct_half_Mil_ControlTower_windows1.rvmat", "CA\Structures\Mil\Data\destruct_full_Mil_ControlTower_windows1.rvmat"};
+			mat[] = {"CA\Structures\Mil\Data\Mil_ControlTower_windows1.rvmat","CA\Structures\Mil\Data\destruct_half_Mil_ControlTower_windows1.rvmat","CA\Structures\Mil\Data\destruct_full_Mil_ControlTower_windows1.rvmat"};
 		};
 		model = "\CA\Structures\Mil\Mil_ControlTower";
-		ladders[] = {{"start1", "end1"}, {"start2", "end2"}};
-		
-		class AnimationSources {
-			class dvere_spodni_R {
+		ladders[] = {{"start1","end1"},{"start2","end2"}};
+		class AnimationSources
+		{
+			class dvere_spodni_R
+			{
 				animPeriod = 1;
 				initPhase = 0;
 				source = "user";
 			};
-			
-			class dvere_spodni_L {
+			class dvere_spodni_L
+			{
 				animPeriod = 1;
 				initPhase = 1;
 				source = "user";
 			};
-			
-			class dvere_vrchni {
+			class dvere_vrchni
+			{
 				animPeriod = 1;
 				initPhase = 1;
 				source = "user";
 			};
-			
-			class HitTower {
+			class HitTower
+			{
 				source = "Hit";
 				hitpoint = "HitTower";
 				raw = 1;
 			};
 		};
-		
-		class UserActions {
-			class OpenDoors1 {
+		class UserActions
+		{
+			class OpenDoors1
+			{
 				displayNameDefault = "<img image='\ca\ui\data\ui_action_open_ca.paa' size='4' />";
 				displayName = "Open door";
 				position = "Dvere_spodni_R_osa";
@@ -4418,15 +4711,15 @@ class CfgVehicles {
 				condition = "this animationPhase ""Dvere_spodni_R"" < 0.5";
 				statement = "this animate [""Dvere_spodni_R"", 1];this animate [""Dvere_spodni_L"", 1]";
 			};
-			
-			class CloseDoors1 : OpenDoors1 {
+			class CloseDoors1: OpenDoors1
+			{
 				displayNameDefault = "<img image='\ca\ui\data\ui_action_close_ca.paa' size='4' />";
 				displayName = "Close door";
 				condition = "this animationPhase ""Dvere_spodni_R"" >= 0.5";
 				statement = "this animate [""Dvere_spodni_R"", 0];this animate [""Dvere_spodni_L"", 0]";
 			};
-			
-			class OpenDoors3 {
+			class OpenDoors3
+			{
 				displayNameDefault = "<img image='\ca\ui\data\ui_action_open_ca.paa' size='4' />";
 				displayName = "Open door";
 				position = "Dvere_Vrchni_osa";
@@ -4435,8 +4728,8 @@ class CfgVehicles {
 				condition = "this animationPhase ""dvere_vrchni"" < 0.5";
 				statement = "this animate [""dvere_vrchni"", 1]";
 			};
-			
-			class CloseDoors3 : OpenDoors3 {
+			class CloseDoors3: OpenDoors3
+			{
 				displayNameDefault = "<img image='\ca\ui\data\ui_action_close_ca.paa' size='4' />";
 				displayName = "Close door";
 				condition = "this animationPhase ""dvere_vrchni"" >= 0.5";
@@ -4447,57 +4740,61 @@ class CfgVehicles {
 		actionEnd1 = "OpenDoors1";
 		actionBegin2 = "OpenDoors3";
 		actionEnd2 = "OpenDoors3";
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 		replaceDamaged = "Land_Mil_ControlTower_dam";
 	};
-	
-	class Land_NAV_Lighthouse : House {
-		scope = protected;
+	class Land_NAV_Lighthouse: House
+	{
+		scope = 1;
 		armor = 500;
 		featureSize = 15;
 		model = "\Ca\Structures\NAV\NAV_Lighthouse";
-		ladders[] = {{"start1", "end1"}};
-		
-		class MarkerLights {
-			class RedBlinking {
+		ladders[] = {{"start1","end1"}};
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
-		
-		class Reflectors {
-			class MainLight {
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+		class Reflectors
+		{
+			class MainLight
+			{
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				position = "";
 				direction = "";
 				hitpoint = "";
 				selection = "";
 				size = 0;
 				brightness = 0;
-				period[] = {0, 1};
+				period[] = {0,1};
 			};
 		};
-		
-		class Damage {
+		class Damage
+		{
 			tex[] = {};
-			mat[] = {"ca\structures\nav\data\nav_lighthouse_multi.rvmat", "ca\structures\nav\data\destruct_half_nav_lighthouse_multi.rvmat", "ca\structures\nav\data\destruct_full_nav_lighthouse_multi.rvmat", "ca\structures\nav\data\nav_lighthouse_windows.rvmat", "ca\structures\nav\data\destruct_half_lighthouse_windows.rvmat", "ca\structures\nav\data\destruct_full_lighthouse_windows.rvmat"};
+			mat[] = {"ca\structures\nav\data\nav_lighthouse_multi.rvmat","ca\structures\nav\data\destruct_half_nav_lighthouse_multi.rvmat","ca\structures\nav\data\destruct_full_nav_lighthouse_multi.rvmat","ca\structures\nav\data\nav_lighthouse_windows.rvmat","ca\structures\nav\data\destruct_half_lighthouse_windows.rvmat","ca\structures\nav\data\destruct_full_lighthouse_windows.rvmat"};
 		};
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\Ca\Structures\Nav\NAV_Lighthouse_ruins.p3d";
 				position = "";
@@ -4507,18 +4804,20 @@ class CfgVehicles {
 			};
 		};
 	};
-	
-	class Land_NAV_Lighthouse2 : Land_NAV_Lighthouse {
+	class Land_NAV_Lighthouse2: Land_NAV_Lighthouse
+	{
 		model = "\Ca\Structures\NAV\NAV_Lighthouse2";
-		
-		class Reflectors : Reflectors {
-			class MainLight : MainLight {
-				period[] = {0, 1};
+		class Reflectors: Reflectors
+		{
+			class MainLight: MainLight
+			{
+				period[] = {0,1};
 			};
 		};
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\Ca\Structures\Nav\NAV_Lighthouse_ruins.p3d";
 				position = "";
@@ -4528,47 +4827,50 @@ class CfgVehicles {
 			};
 		};
 	};
-	
-	class Land_A_Crane_02b : House {
-		scope = protected;
+	class Land_A_Crane_02b: House
+	{
+		scope = 1;
 		armor = 110;
 		featureSize = 30;
 		model = "\ca\buildings2\A_Crane_02\A_Crane_02b";
 		destrType = "DestructBuilding";
-		ladders[] = {{"start3", "end3"}, {"start4", "end4"}, {"start5", "end5"}, {"start6", "end6"}};
-		
-		class MarkerLights {
-			class RedBlinking {
+		ladders[] = {{"start3","end3"},{"start4","end4"},{"start5","end5"},{"start6","end6"}};
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
-		
-		class Destruction {
-			animations[] = {{"ca\buildings2\A_Crane_02\data\anim\crane.rtm", 0.5, 3}};
+		class Destruction
+		{
+			animations[] = {{"ca\buildings2\A_Crane_02\data\anim\crane.rtm",0.5,3}};
 		};
 	};
-	
-	class Land_Farm_WTower : House {
-		scope = protected;
+	class Land_Farm_WTower: House
+	{
+		scope = 1;
 		armor = 100;
 		model = "\CA\buildings2\Farm_WTower\Farm_WTower";
-		
-		class MarkerLights {
-			class RedBlinking {
+		class MarkerLights
+		{
+			class RedBlinking
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
-		
-		class DestructionEffects : DestructionEffects {
-			class Ruin1 {
+		class DestructionEffects: DestructionEffects
+		{
+			class Ruin1
+			{
 				simulation = "ruin";
 				type = "\Ca\buildings2\Farm_WTower\Farm_WTower_ruins";
 				position = "";
@@ -4578,38 +4880,107 @@ class CfgVehicles {
 			};
 		};
 	};
-	
-	class Land_A_TVTower_Mid : House {
-		scope = protected;
+	class Land_A_TVTower_Mid: House
+	{
+		scope = 1;
 		destrType = "DestructNo";
 		model = "\ca\Structures\A_TVTower\A_TVTower_Mid";
 		featureSize = 150;
-		
-		class MarkerLights {
-			class RedStill {
+		class MarkerLights
+		{
+			class RedStill
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
-	
-	class Land_A_TVTower_Top : House {
-		scope = protected;
+	class Land_A_TVTower_Top: House
+	{
+		scope = 1;
 		destrType = "DestructNo";
 		model = "\ca\Structures\A_TVTower\A_TVTower_Top";
 		featureSize = 150;
-		
-		class MarkerLights {
-			class RedLight {
+		class MarkerLights
+		{
+			class RedLight
+			{
 				name = "";
-				color[] = {0, 0, 0, 0};
-				ambient[] = {0, 0, 0, 0};
+				color[] = {0,0,0,0};
+				ambient[] = {0,0,0,0};
 				brightness = 0;
-				blinking = false;
+				blinking = 0;
 			};
 		};
 	};
+	class WeaponHolderBase;
+	class WoodenArrowF : WeaponHolderBase {
+		scope = public;
+		displayName = "WoodenArrowF";
+		model = "\dayz_weapons\models\bolt";
+		
+		class eventHandlers {
+			init = "[(_this select 0),'cfgMagazines','WoodenArrow'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
+		};
+	};	
+	class WeaponHolder_ItemCrowbar: WeaponHolderBase
+	{
+		scope=2;
+		displayName="Crowbar";
+		model="\dayz_equip\models\crowbar.p3d";
+		class eventHandlers
+		{
+			init="[(_this select 0),'cfgWeapons','ItemCrowbar'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
+		};
+	};
+	class WeaponHolder_ItemMachete: WeaponHolderBase
+	{
+		scope=2;
+		displayName="Machete";
+		model="\z\addons\dayz_communityassets\models\machete.p3d";
+		class eventHandlers
+		{
+			init="[(_this select 0),'cfgWeapons','ItemMachete'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
+		};
+	};
+};
+class CfgNonAIVehicles {
+	
+	access = 0;
+	class StreetLamp
+	{
+		scope = 0;
+		model = "";
+		destrType = "DestructTree";
+		simulation = "thing";
+	};
+	class Land_lampa_sidl: StreetLamp
+	{
+		scope = 1;
+		model = "\ca\buildings\Misc\lampa_sidl";
+	};
+	class Land_lampa_sidl_2: StreetLamp
+	{
+		scope = 1;
+		model = "\ca\buildings\Misc\lampa_sidl_2";
+	};
+	class Land_lampa_sidl_3: StreetLamp
+	{
+		scope = 1;
+		model = "\ca\buildings\Misc\lampa_sidl_3";
+	};
+	class Land_lampa_ind: StreetLamp
+	{
+		scope = 1;
+		model = "\ca\buildings\Misc\lampa_ind";
+	};
+	class Land_lampa_ind_zebr: StreetLamp
+	{
+		scope = 1;
+		model = "\ca\buildings\Misc\lampa_ind_zebr";
+	};
+
 };

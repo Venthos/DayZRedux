@@ -14,7 +14,6 @@ Prerequisites
 
 Known Bugs
 ----------
- - Ammo refills on logout/login.  This side-effect occurs as a result of an anti-dupe fix.  Ammo refill seems to be the lesser evil.
  - Sometimes a combat logger does not leave a body behind.  If you can replicate this reliably, please let me know the steps to do so.  Note that, regardless, the combat logger is always killed properly in the database.
 
 Credits
@@ -27,7 +26,7 @@ Credits
  - dut :: Responsible for some of the 3DStudio MAX models we converted to ArmA2 models for some items (Changelog for details)
  - AlexanderG :: Responsible for some of the 3DStudio MAX models we converted to ArmA2 models for some items (Changelog for details)
  - Stapo :: Inspiring the creation of a back-end construction system that was implemented to DayZRedux
-
+ - Rajkosto https://github.com/rajkosto/hive As of update 1.1.0 DayZ Redux has switched to using the official Hive extension.
 Installation Instructions
 -------------------------
 [Server] (http://forums.dayzredux.com/index.php?/topic/3187-dayzredux-server-pack-download-setup/)

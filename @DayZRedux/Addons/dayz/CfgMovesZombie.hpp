@@ -9,8 +9,7 @@ class CfgMovesZombie : CfgMovesBasic {
 			die = "AdthPknlMstpSnonWnonDnon_2";
 		};
 	};
-
-
+	
 	class States {
 		class TransAnimBase : Default {
 			visibleSize = 0.500125;
@@ -415,7 +414,6 @@ class CfgMovesZombie : CfgMovesBasic {
 		class ZombieFeed : CutSceneAnimationBase {
 			actions = "ZombieCrouchActions";
 		};
-
 		
 		class ZombieFeed1 : ZombieFeed {
 			file = "\dayz_anim\zmb\zmbKneel_feedA";
@@ -9312,7 +9310,7 @@ class CfgMovesZombie : CfgMovesBasic {
 			ConnectTo[] = {"DeadState", 1.0};
 			InterpolateTo[] = {};
 		};
-
+		
 		class CutSceneAnimationBaseSit : CutSceneAnimationBase {
 			boundingSphere = 4;
 			collisionShape = "ca\Anims\Characters\data\Geom\Sdr\geom_empty.p3d";

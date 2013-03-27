@@ -17,6 +17,7 @@ if (_unit == player) then {
 	_control = 	_display displayCtrl  1303;
 	_control ctrlShow false;
 };
+
 if (isServer) then {
 	_unit setVariable["medForceUpdate",true];
 };
