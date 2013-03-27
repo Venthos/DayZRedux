@@ -442,7 +442,7 @@ print "INFO: Cleaning up old tents\n";
 my $oldtents = $dbh->prepare(<<EndSQL
 DELETE FROM
   object_data USING object_data
-  INNER JOIN Character_Data on object_data.CharacterID = Character_Data.CharacterID and Character_Data.is_dead = 1
+  INNER JOIN Character_Data on object_data.CharacterID = Character_Data.CharacterID and Character_Data.Alive = 0
 WHERE
   (object_data.classname = 'Land_Cont_RX' OR object_data.classname = 'Land_Cont2_RX' OR object_data.classname = 'Land_Mag_RX')
   AND object_data.last_updated < now() - interval 7 day
@@ -455,7 +455,7 @@ print "INFO: Cleaning up old tents 2\n";
 my $oldtents2 = $dbh->prepare(<<EndSQL
 DELETE FROM
   object_data USING object_data
-  INNER JOIN Character_Data on object_data.CharacterID = Character_Data.CharacterID and Character_Data.is_dead = 0
+  INNER JOIN Character_Data on object_data.CharacterID = Character_Data.CharacterID and Character_Data.Alive = 1
 WHERE
   (object_data.classname = 'Land_Cont_RX' OR object_data.classname = 'Land_Cont2_RX' OR object_data.classname = 'Land_Mag_RX')
   AND object_data.last_updated < now() - interval 14 day
@@ -489,7 +489,7 @@ while (my $row = $boundaryclean->fetchrow_hashref()) {
 $boundaryclean->finish();
 
 print "INFO: Starting anti \"helicopter on building\" check for objects\n";
-my $antihelibuilding = $dbh->prepare("select object_data.ObjectID,object_data.Worldspace,object_spawns.Worldspace AS spawn,object_data.classname,object_data.ObjectUID from object_data LEFT JOIN object_spawns ON object_data.ObjectUID=object_spawns.id WHERE classname REGEXP '^(HH|BHawk|Lilbird)_RX\$'");
+my $antihelibuilding = $dbh->prepare("select object_data.ObjectID,object_data.Worldspace,object_spawns.Worldspace AS spawn,object_data.classname,object_data.ObjectUID from object_data LEFT JOIN object_spawns ON object_data.ObjectUID=object_spawns.ObjectUID WHERE classname REGEXP '^(HH|BHawk|Lilbird)_RX\$'");
 $antihelibuilding->execute() or die "Couldn't get list of heli object positions\n";
 while (my $row = $antihelibuilding->fetchrow_hashref()) {
 
@@ -520,12 +520,12 @@ my $available = $dbh->prepare(<<EndSQL
 SELECT
   object_spawns.ObjectUID,
   object_spawns.Worldspace,
-  object_spawns.type
+  object_spawns.classname
 FROM
   object_spawns
   LEFT JOIN object_data on object_spawns.ObjectUID = object_data.ObjectUID
 WHERE
-  object_spawns.type = ?
+  object_spawns.classname = ?
   AND object_data.ObjectUID IS NULL
 EndSQL
 ) or die "FATAL: SQL Error - " . DBI->errstr . "\n";
@@ -534,12 +534,12 @@ my $spawned = $dbh->prepare(<<EndSQL
 SELECT
   object_spawns.ObjectUID,
   object_spawns.Worldspace,
-  object_spawns.type
+  object_spawns.classname
 FROM
   object_spawns
   LEFT JOIN object_data on object_spawns.ObjectUID = object_data.ObjectUID
 WHERE
-  object_spawns.type = ?
+  object_spawns.classname = ?
   AND object_data.ObjectUID IS NOT NULL
 EndSQL
 ) or die "FATAL: SQL Error - " . DBI->errstr . "\n";
