@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `character_data` (
   `duration` int(11) NOT NULL DEFAULT '0',
   `currentState` varchar(100) NOT NULL DEFAULT '[]',
   `KillsH` int(11) NOT NULL DEFAULT '0',
-  `Model` varchar(50) NOT NULL DEFAULT '"Survivor2_DZ"',
+  `Model` varchar(50) NOT NULL DEFAULT '"S2_RX"',
   `KillsB` int(11) NOT NULL DEFAULT '0',
   `Humanity` int(11) NOT NULL DEFAULT '2500',
   `last_updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
