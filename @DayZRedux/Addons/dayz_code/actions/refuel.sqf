@@ -15,15 +15,17 @@ player removeMagazine "ItemJerrycan";
 player addMagazine "ItemJerrycanEmpty";
 
 player playActionNow "Medic";
-[player,"refuel",0,false] call dayz_zombieSpeak;
-
-_id = [player,20,true,(getPosATL player)] spawn player_alertZombies;
+_dis=20;
+_sfx = "refuel";
+[player,_sfx,0,false,_dis] call dayz_zombieSpeak;  
+[player,_dis,true,(getPosATL player)] spawn player_alertZombies;
 
 sleep 6;
 
 dayzSetFuel = [_vehicle,_newFuel];
-dayzSetFuel spawn local_sefFuel;
+dayzSetFuel spawn local_setFuel;
 publicVariable "dayzSetFuel";
+
 cutText [format[localize "str_player_05",_nameType,_canSize], "PLAIN DOWN"];
 sleep 1;
 

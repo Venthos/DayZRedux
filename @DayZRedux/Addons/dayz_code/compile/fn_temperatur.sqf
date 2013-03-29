@@ -19,16 +19,16 @@ Missing:
 */
 
 
-	private ["_looptime","_sun_factor","_building_factor","_vehicle_factor","_fire_factor","_water_factor","_rain_factor","_night_factor","_wind_factor","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_building"];
+	private ["_looptime","_sun_factor","_building_factor","_vehicle_factor","_fire_factor","_water_factor","_rain_factor","_night_factor","_wind_factor","_height_mod","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_building"];
 
 	_looptime 			= _this;
 	
 	//Factors are equal to win/loss of factor*basic value
 	//All Values can be seen as x of 100: 100 / x = minutes from min temperetaure to max temperature (without other effects)
-	_vehicle_factor		=	4; // 4
-	_moving_factor 		=  	7; // 7
+	_vehicle_factor		=	4;
+	_moving_factor 		=  	7;
 	_fire_factor		=	15;	//Should be always:  _rain_factor + _night_factor + _wind_factor OR higher !
-	_building_factor 	=  	7; // 7
+	_building_factor 	=  	7;
 	_sun_factor			= 	4;	//max sunfactor linear over the day. highest value in the middle of the day
 
 	if (dayz_temperatur > dayz_temperaturnormal) then {
@@ -36,7 +36,6 @@ Missing:
 		_moving_factor 		=  	1;
 		_building_factor 	=  	2;
 	};
-
 	
 	_water_factor		= 	-8;
 	_rain_factor		=	-6; // -3
@@ -130,19 +129,29 @@ Missing:
 	
 	//rain
 	if(_raining && !_isinvehicle && !_isinbuilding) then {
-		_difference = _difference + _rain_factor;
+		_difference = _difference + (rain * _rain_factor);
 	};
 	
 	//night
 	private ["_daytime"];
-	if((daytime < _sunrise || daytime < (24 - _sunrise)) && !_isinvehicle && !_isinbuilding) then {
+	if((daytime < _sunrise || daytime > (24 - _sunrise)) && !_isinvehicle) then {
 		_daytime 	= if(daytime < 12) then {daytime + 24} else {daytime};
-		_difference = _difference + (((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor);
+		if(_isinbuilding) then {
+			_difference = _difference + ((((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor)) / 2;
+		} else {
+			_difference = _difference + (((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor);
+		};
 	};
 	
 	//wind
 	if(((wind select 0) > 4 || (wind select 1) > 4) && !_isinvehicle && !_isinbuilding ) then {
 		_difference = _difference + _wind_factor;
+	};
+	
+	//height
+	if (!_isinvehicle && overcast >= 0.6) then {
+		_height_mod = ((getPosASL player select 2) / 100) / 2;
+		_difference = _difference - _height_mod;
 	};
 	
 	//Calculate Change Value			Basic Factor			Looptime Correction			Adjust Value to current used temperatur scala

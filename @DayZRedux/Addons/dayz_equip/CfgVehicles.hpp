@@ -633,17 +633,22 @@ class CfgVehicles {
 		class transportmagazines {
 			class _xx_30Rnd_762x39_AK47 {
 				magazine = "30Rnd_762x39_AK47";
-				count = 3;
+				count = 4;
 			};
 
 			class _xx_30Rnd_556x45_Stanag {
 				magazine = "30Rnd_556x45_Stanag";
-				count = 3;
+				count = 4;
 			};
 			
 			class _xx_30Rnd_545x39_AK {
 				magazine = "30Rnd_545x39_AK";
-				count = 3;
+				count = 4;
+			};
+			
+			class _xx_30Rnd_762x39_SA58 {
+				magazine = "30Rnd_762x39_SA58";
+				count = 4;
 			};
 		};
 	};

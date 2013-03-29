@@ -14,19 +14,20 @@ Prerequisites
 
 Known Bugs
 ----------
- - Ammo refills on logout/login.  This side-effect occurs as a result of an anti-dupe fix.  Ammo refill seems to be the lesser evil.
  - Sometimes a combat logger does not leave a body behind.  If you can replicate this reliably, please let me know the steps to do so.  Note that, regardless, the combat logger is always killed properly in the database.
 
 Credits
 -------
  - Bohemia Interactive Simulations :: for ArmA2 and the obvious contributions/support to Rocket and DayZ
  - Dean "Rocket" Hall :: for DayZ itself and being supportive of community froked variants of DayZ
- - ayan4m1 :: DayZRedux was based upon an early Bliss build and continues to use a Bliss hive library https://github.com/ayan4m1/DayZ-Private
+ - ayan4m1 :: DayZRedux was based upon an early Bliss build and continues to use a Bliss hive library https://github.com/ayan4m1/DayZ-Private 
+ - Support of this extension has dropped in redux, use the modified hive extension now. The hive extension contains code from the bliss hive for functions such as playersync, combat log, etc.
  - Bliss contributors :: by extension, some of the code was originally submit to the Bliss repo by others.  Refer to ayan4m1's repo for full change logs and authorship.
  - Alexander :: Responsible for contributing to various design decisions, creating all of the custom artwork, virtually all of the custom building/locations, and more.
  - dut :: Responsible for some of the 3DStudio MAX models we converted to ArmA2 models for some items (Changelog for details)
  - AlexanderG :: Responsible for some of the 3DStudio MAX models we converted to ArmA2 models for some items (Changelog for details)
  - Stapo :: Inspiring the creation of a back-end construction system that was implemented to DayZRedux
+ - Rajkosto https://github.com/rajkosto/hive As of update 1.1.0 DayZ Redux has switched to using the official Hive extension.
 
 Installation Instructions
 -------------------------

@@ -2275,7 +2275,6 @@ class CfgMovesBasic {
 			Crouch = "AmovPknlMrunSnonWnonDf";
 			PlayerCrouch = "AmovPknlMrunSnonWnonDf";
 			Up = "AmovPknlMrunSnonWnonDf";
-			Die = "ZombieWalkingDeath";
 		};
 		
 		class CivilRunActionsFL : CivilRunActions {
@@ -2324,6 +2323,7 @@ class CfgMovesBasic {
 			PlayerCrouch = "AmovPknlMwlkSnonWnonDf";
 			Crouch = "AmovPknlMwlkSnonWnonDf";
 			Up = "AmovPknlMwlkSnonWnonDf";
+			Die = "ZombieWalkingDeath";
 		};
 		
 		class CivilWlkActionsFL : CivilWlkActionsF {

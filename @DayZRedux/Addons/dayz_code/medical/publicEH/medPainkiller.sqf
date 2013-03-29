@@ -7,6 +7,7 @@ if (_unit == player) then {
 	r_player_inpain = false;
 	"dynamicBlur" ppEffectAdjust [0]; "dynamicBlur" ppEffectCommit 5;
 };
+
 if (isServer) then {
 	_unit setVariable["medForceUpdate",true];
 };

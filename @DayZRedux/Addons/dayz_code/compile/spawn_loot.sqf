@@ -46,7 +46,8 @@ switch (_iClass) do {
 			if (_type == "CrashSiteLoot") then {
 				_item addMagazineCargoGlobal [(_mags select 0),(round(random 1) + 2)];
 			} else {
-				_item addMagazineCargoGlobal [(_mags select 0),(round(random 1) + 1)];
+			if (_mags select 0 == "Quiver") then { _mags set [0, "WoodenArrow"] }; // Prevent spawning a Quiver
+			_item addMagazineCargoGlobal [(_mags select 0), (round(random 2))];
 			};
 		};
 	};
@@ -62,7 +63,9 @@ switch (_iClass) do {
 };
 
 //diag_log(format["Spawned: %1 (%2) - %3 ",_iItem,_iClass,_type]);
+_dateNow = (DateToNumber date);
+_item setVariable ["looted",_dateNow,true];
 
-if (count _iPos > 2) then {
+if ((count _iPos) > 2) then {
 	_item setPosATL _ipos;
 };

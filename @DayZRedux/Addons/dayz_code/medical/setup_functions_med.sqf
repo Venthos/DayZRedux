@@ -119,7 +119,7 @@ fnc_usec_self_removeActions = {
 };
 
 fnc_med_publicBlood = {
-	while {r_player_injured and r_player_blood > 0} do {
+	while {(r_player_injured or r_player_infected) and r_player_blood > 0} do {
 		player setVariable["USEC_BloodQty",r_player_blood,true];
 		player setVariable["medForceUpdate",true];
 		sleep 5;
@@ -155,7 +155,7 @@ fnc_usec_damageBleed = {
 	/***********************************************************
 	PROCESS DAMAGE TO A UNIT
 	- Function
-	- [_unit, _wound] call fnc_usec_damageBleed;
+	- [_unit, _wound, _injury] call fnc_usec_damageBleed;
 	************************************************************/
 		private["_unit","_wound","_injury","_modelPos","_point","_source"];
 		_unit = _this select 0;
@@ -229,15 +229,16 @@ fnc_usec_damageBleed = {
 };
 
 fnc_usec_recoverUncons = {
+	//same actions as in the EH, just timed differently
 	player setVariable ["NORRN_unconscious", false, true];
 	player setVariable ["unconsciousTime", 0, true];
 	player setVariable ["USEC_isCardiac",false,true];
 	player setVariable["medForceUpdate",true,true];
-	//sleep 1;
+	sleep 1;
 	usecEpi = [player,player];
 	publicVariable "usecEpi";
 	r_player_unconscious = false;
-	//sleep 1;
+	sleep 1;
 	r_player_cardiac = false;
 	r_player_handler1 = false;
 	player switchMove "AmovPpneMstpSnonWnonDnon_healed";

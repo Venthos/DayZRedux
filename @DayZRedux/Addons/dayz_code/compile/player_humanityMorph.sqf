@@ -4,6 +4,7 @@ _charID 	= _this select 1;
 _model 		= _this select 2;
 
 _old = player;
+player allowDamage false;
 
 player removeEventHandler ["FiredNear",eh_player_killed];
 player removeEventHandler ["HandleDamage",mydamage_eh1];
@@ -44,13 +45,15 @@ if (count _medical > 0) then {
 	//Add Wounds
 	{
 		player setVariable[_x,true,true];
-		[player,_x,_hit] spawn fnc_usec_damageBleed;
+		//["usecBleed",[player,_x,_hit]] call broadcastRpcCallAll;
 		usecBleed = [player,_x,0];
 		publicVariable "usecBleed";
 	} forEach (_medical select 8);
 	
 	//Add fractures
 	_fractures = (_medical select 9);
+//	player setVariable ["hit_legs",(_fractures select 0),true];
+//	player setVariable ["hit_hands",(_fractures select 1),true];
 	[player,"legs", (_fractures select 0)] call object_setHit;
 	[player,"hands", (_fractures select 1)] call object_setHit;
 } else {
@@ -61,6 +64,7 @@ if (count _medical > 0) then {
 	player setVariable ["USEC_inPain",false,true];	
 };
 
+
 //General Stats
 player setVariable["humanity",_humanity,true];
 player setVariable["zombieKills",_zombieKills,true];
@@ -70,20 +74,22 @@ player setVariable["banditKills",_banditKills,true];
 player setVariable["characterID",_charID,true];
 player setVariable["worldspace",_worldspace,true];
 player setVariable["isincombat",_isInCombat,true];
-
+/*
 dayzPlayerMorph = [_charID,player,_playerUID,[_zombieKills,_headShots,_humanKills,_banditKills],_humanity];
-publicVariable "dayzPlayerMorph";
 if (isServer) then {
 	dayzPlayerMorph call server_playerMorph;
 };
+*/
+//code for this on the server is missing
+//["dayzPlayerMorph",[_charID,player,_playerUID,[_zombieKills,_headShots,_humanKills,_banditKills],_humanity]] call callRpcProcedure;
 
 call dayz_resetSelfActions;
 
 eh_player_killed = player addeventhandler ["FiredNear",{_this call player_weaponFiredNear;} ];
+
 [player] call fnc_usec_damageHandle;
+player allowDamage true;
 
-
-// for what? cant remove, due scripts.txt detection
 player addWeapon "Loot";
 player addWeapon "Flare";
 

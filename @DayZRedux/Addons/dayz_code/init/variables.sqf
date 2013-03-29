@@ -7,12 +7,141 @@ BW1_RX =	"BW1_RX";
 S1_RX = 	"S2_RX";
 S2_RX = 	"S2_RX";
 SW2_RX = "SW2_RX";
-G1_RX = 	"G1_RX";
-C1_RX = 		"C1_RX";
-A1_RX = 	"A1_RX";
+GS1_RX = 	"GS1_RX";
+GB1_RX = 	"GB1_RX ";
+PS1_RX = 	"PS1_RX ";
+PB1_RX = 	"PB1_RX ";
+CS1_RX = 		"CS1_RX";
+CB1_RX = 		"CB1_RX";
+BR1_RX = 		"BR1_RX";
 R_RX = 	"R_RX";
+G1_RX = "GS1_RX";
+C1_RX = "CS1_RX";
+
+AllPlayers = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX"];
+AllPlayersVehicles = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX","AllVehicles"];
+
+//Cooking
+meatraw = [
+    "FoodSteakRaw",
+    "FoodmeatRaw",
+    "FoodbeefRaw",
+    "FoodmuttonRaw",
+    "FoodchickenRaw",
+    "FoodrabbitRaw",
+    "FoodbaconRaw"
+];
+meatcooked = [
+    "FoodSteakCooked",
+    "FoodmeatCooked",
+    "FoodbeefCooked",
+    "FoodmuttonCooked",
+    "FoodchickenCooked",
+    "FoodrabbitCooked",
+    "FoodbaconCooked"
+];
+//Eating
+no_output_food = ["FoodMRE", "FoodPistachio", "FoodNutmix"]+meatcooked+meatraw;
+food_with_output=[
+    "FoodCanBakedBeans",
+    "FoodCanSardines",
+    "FoodCanFrankBeans",
+    "FoodCanPasta",
+	"FoodCanGriff",
+	"FoodCanBadguy",
+	"FoodCanBoneboy",
+	"FoodCanCorn",
+	"FoodCanCurgon",
+	"FoodCanDemon",
+	"FoodCanFraggleos",
+	"FoodCanHerpy",
+	"FoodCanOrlok",
+	"FoodCanPowell",
+	"FoodCanTylers",
+	"FoodCanUnlabeled"
+];
+
+food_output = [
+    "TrashTinCan",
+    "TrashTinCan",
+    "TrashTinCan",
+    "TrashTinCan",
+	"FoodCanGriffEmpty",
+	"FoodCanBadguyEmpty",
+	"FoodCanBoneboyEmpty",
+	"FoodCanCornEmpty",
+	"FoodCanCurgonEmpty",
+	"FoodCanDemonEmpty",
+	"FoodCanFraggleosEmpty",
+	"FoodCanHerpyEmpty",
+	"FoodCanOrlokEmpty",
+	"FoodCanPowellEmpty",
+	"FoodCanTylersEmpty",
+	"FoodCanUnlabeledEmpty"
+];
+//Drinking
+no_output_drink = ["ItemWaterbottle", "ItemWaterbottleBoiled"];
+drink_with_output = [
+    "ItemSoda",  //just to define item for ItemSodaEmpty
+    "ItemSodaCoke",
+    "ItemSodaPepsi",
+    "ItemSodaMdew",
+    "ItemSodaMtngreen",
+    "ItemSodaR4z0r",
+    "ItemSodaClays",
+    "ItemSodaSmasht", 
+    "ItemSodaDrwaste", 
+    "ItemSodaLemonade", 
+    "ItemSodaLvg", 
+    "ItemSodaMzly", 
+    "ItemSodaRabbit"
+];
+drink_output = [
+    "ItemSodaEmpty", 
+    "ItemSodaCokeEmpty",
+    "ItemSodaPepsiEmpty",
+    "ItemSodaMdewEmpty",
+    "ItemSodaMtngreenEmpty",
+    "ItemSodaR4z0rEmpty",
+    "ItemSodaClaysEmpty",
+    "ItemSodaSmashtEmpty", 
+    "ItemSodaDrwasteEmpty", 
+    "ItemSodaLemonadeEmpty", 
+    "ItemSodaLvgEmpty", 
+    "ItemSodaMzlyEmpty", 
+    "ItemSodaRabbitEmpty"
+];
+boil_tin_cans = [
+    "TrashTinCan",
+	"FoodCanGriffEmpty",
+	"FoodCanBadguyEmpty",
+	"FoodCanBoneboyEmpty",
+	"FoodCanCornEmpty",
+	"FoodCanCurgonEmpty",
+	"FoodCanDemonEmpty",
+	"FoodCanFraggleosEmpty",
+	"FoodCanHerpyEmpty",
+	"FoodCanOrlokEmpty",
+	"FoodCanPowellEmpty",
+	"FoodCanTylersEmpty",
+	"FoodCanUnlabeledEmpty",
+    "ItemSodaEmpty", 
+    "ItemSodaCokeEmpty",
+    "ItemSodaPepsiEmpty",
+    "ItemSodaMdewEmpty",
+    "ItemSodaMtngreenEmpty",
+    "ItemSodaR4z0rEmpty",
+    "ItemSodaClaysEmpty",
+    "ItemSodaSmashtEmpty", 
+    "ItemSodaDrwasteEmpty", 
+    "ItemSodaLemonadeEmpty", 
+    "ItemSodaLvgEmpty", 
+    "ItemSodaMzlyEmpty", 
+    "ItemSodaRabbitEmpty"
+];
 
 dayz_combatLog = "";
+canRoll = true;
 dayz_combatStart = false;
 dayz_combatTimer = 0;
 dayz_chloroform = [];
@@ -38,9 +167,6 @@ SleepWater =			1440; //minutes (24 hours)
 SleepTemperatur	= 		90 / 100;	//Firs Value = Minutes untill Player reaches the coldest Point at night (without other effects! night factor expected to be -1)			//TeeChange
 
 //Server Variables
-dayZ_hivePipe1 = 		"\\.\pipe\dayz";	//The named pipe
-dayZ_hivePipeAuth = 	"\\.\pipe\dayzAuth";	//The named pipe
-hiveInUse	=			false;
 allowConnection = 		false;
 isSinglePlayer =		false;
 dayz_serverObjectMonitor = [];
@@ -58,6 +184,7 @@ Dayz_GUI_B = 0.26; // -0.26
 dayz_resetSelfActions = {
 	s_player_fire =			-1;
 	s_player_cook =			-1;
+	s_player_boil =			-1;
 	s_player_fireout =		-1;
 	s_player_butcher =		-1;
 	s_player_packtent = 	-1;
@@ -69,7 +196,6 @@ dayz_resetSelfActions = {
 	s_player_painkiller =	-1;
 	s_player_studybody = 	-1;
 	s_player_chloroform = -1;
-	s_player_flipveh = -1;
 	s_build_Sandbag1_DZ = 	-1;
 	s_build_Hedgehog_DZ =	-1;
 	s_build_Wire_cat1 =		-1;
@@ -78,6 +204,19 @@ dayz_resetSelfActions = {
 	s_player_igniteTent = -1;
 	s_player_igniteBox = -1;
 	s_player_retrievebox = -1;
+	s_player_flipveh = 		-1;
+	s_player_stats =		-1;
+	s_player_sleep =		-1;
+	s_player_movedog =		-1;
+	s_player_speeddog =		-1;
+	s_player_calldog = 		-1;
+	s_player_feeddog = 		-1;
+	s_player_waterdog = 	-1;
+	s_player_staydog = 		-1;
+	s_player_trackdog = 	-1;
+	s_player_barkdog = 		-1;
+	s_player_warndog = 		-1;
+	s_player_followdog = 	-1;
 };
 call dayz_resetSelfActions;
 
@@ -117,6 +256,22 @@ r_action_repair = 		false;
 r_action_targets = 		[];
 r_pitchWhine = 			false;
 r_isBandit =			false;
+
+//ammo routine
+r_player_actions2 = [];
+r_action2 = false;
+r_player_lastVehicle = objNull;
+r_player_lastSeat = [];
+r_player_removeActions2 = {
+	if (!isNull r_player_lastVehicle) then {
+		{
+			r_player_lastVehicle removeAction _x;
+		} forEach r_player_actions2;
+		r_player_actions2 = [];
+		r_action2 = false;
+	};
+};
+
 USEC_woundHit 	= [
 	"",
 	"body",
@@ -130,23 +285,24 @@ DAYZ_woundHit 	= [
 		"hands",
 		"legs",
 		"head_hit"
-	],[
-		0.45,
-		0.4,
-		0.1,
-		0.05
-	]
+	],
+	[ 0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,3]
 ];
 DAYZ_woundHit_ok = [
 	[
 		"body",
 		"hands",
 		"legs"
-	],[
-		0.5,
-		0.3,
-		0.2
-	]
+	],
+	[0,0,0,0,0,1,1,1,2,2]
+];
+DAYZ_woundHit_dog = [
+	[
+		"body",
+		"hands",
+		"legs"
+	],
+	[0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2]
 ];
 USEC_MinorWounds 	= [
 	"hands",
@@ -184,16 +340,18 @@ dayz_maxAnimals = 5;
 DAYZ_agentnumber = 0;
 dayz_animalDistance = 800;
 dayz_zSpawnDistance = 1000;
-dayz_maxLocalZombies = 25; // was 40
+dayz_maxLocalZombies = 40;
+dayz_maxGlobalZombies = 30;
+dayz_maxZeds = 500;
 dayz_spawnPos = getPosATL player;
 
-if(isDedicated) then {
-	dayz_disco = [];
-};
+//init global arrays for Loot Chances
+call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\loot_init.sqf";
 
 if(isServer) then {
 	dayz_players = [];
 	dead_bodyCleanup = [];
+	needUpdate_objects = [];
 };
 
 if(!isDedicated) then {
@@ -220,9 +378,9 @@ if(!isDedicated) then {
 	_cfgLocation = configFile >> "CfgTownGenerator";
 	_cfgLocation call _funcGetLocation;
 	
-	dayz_buildingMonitor = [];	//Buildings to check
-	dayz_bodyMonitor = [];
-	dayz_flyMonitor = [];		//used for monitor flies
+	//dayz_buildingMonitor = [];	//Buildings to check
+	//dayz_bodyMonitor = [];
+	//dayz_flyMonitor = [];		//used for monitor flies
 	
 	dayz_buildingMonitor = [];	//Buildings to check
 	dayz_bodyMonitor = [];
@@ -270,11 +428,15 @@ if(!isDedicated) then {
 	dayz_areaAffect =		2;
 	dayz_heartBeat = 		false;
 	dayzClickTime =			0;
-	dayz_spawnDelay =		150; // was 300
-	dayz_spawnWait =		-300;
+	dayz_spawnDelay =		120; // was 300
+	dayz_spawnWait =		-120;
 	dayz_lootDelay =		3; // was 300
 	dayz_lootWait =			-300;
 	dayz_spawnZombies =		0;
+	//used to count global zeds around players
+	dayz_CurrentZombies = 0;
+	//Used to limit overall zed counts
+	dayz_maxCurrentZeds = 0;
 	dayz_inVehicle =		false;
 	dayz_Magazines = 		[];
 	dayzGearSave = 			false;

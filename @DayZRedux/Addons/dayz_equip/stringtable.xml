@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project name="DayZ">
   <Package name="equipment">
 			<Key ID="STR_EQUIP_NAME_1">
@@ -643,6 +643,30 @@
       <German>Eine Dose Kondensmilch, geeignet als schnelle Mahlzeit mit hohem Kalorien-und Zuckergehalt. Dauert ca. 6 Monate bei sachgemäßer Lagerung.</German>
       <Russian>Банку сгущенного молока, пригодны в качестве быстрой еды с высоким калорий и сахара. Длится около 6 месяцев, если хранить правильно.</Russian>
     </Key>
+    <Key ID="STR_EQUIP_NAME_54">						
+      <Original>Uniform</Original>						
+      <English>Uniform</English>						
+      <German>Uniform</German>
+      <Russian>равномерный</Russian>
+    </Key>						
+    <Key ID="STR_EQUIP_DESC_54">						
+      <Original>MVD uniform for survivors or criminal clothing for bandits.</Original>						
+      <English>MVD uniform for survivors or criminal clothing for bandits.</English>						
+      <German>MVD Uniform für Überlebende oder strafrechtliche Kleidung für Banditen.</German>
+      <Russian>МВД единые для оставшихся в живых или уголовной одежды для бандитов.</Russian>
+    </Key>
+    <Key ID="STR_EQUIP_NAME_55">						
+      <Original>Baitrunner clothing</Original>						
+      <English>Baitrunner clothing</English>						
+      <German>Baitrunner Kleidung</German>
+      <Russian>Одежда приманки бегун</Russian>
+    </Key>						
+    <Key ID="STR_EQUIP_DESC_55">						
+      <Original>Prepare to become Swiss cheese.</Original>						
+      <English>Prepare to become Swiss cheese.</English>						
+      <German>Bereiten Sie Schweizer Käse werden.</German>
+      <Russian>Подготовка стать швейцарский сыр.</Russian>
+    </Key>
 	</Package>
 	<Package name="weaponHolders">
 			<Key ID="STR_WPN_HOLDR_1">	
@@ -750,12 +774,6 @@
         <English>Harvest Wood</English>
         <German>Holz sammeln</German>
         <Russian>Нарубить дров</Russian>
-      </Key>
-      <Key ID="STR_ACTIONS_BUILD">
-        <Original>Build %1</Original>
-        <English>Build %1</English>
-        <German>%1 bauen</German>
-        <Russian>Установить %1</Russian>
       </Key>
       <Key ID="STR_ACTIONS_HEATPACK">
         <Original>Use Heatpack</Original>

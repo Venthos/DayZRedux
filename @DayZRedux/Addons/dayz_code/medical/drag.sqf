@@ -24,9 +24,10 @@ sleep 2;
 
 //unconscious unit assumes dragging posture
 //public EH 
-norrnRaDrag = _dragee;
+//norrnRaDrag = _dragee;
+norrnRaDrag = [_dragee];
 publicVariable "norrnRaDrag";
-_dragee switchmove "ainjppnemstpsnonwrfldb_still";
+//_dragee switchmove "ainjppnemstpsnonwrfldb_still";
 _dragee attachto [_unit,[0.1, 1.01, 0]];
 sleep 0.02;
 

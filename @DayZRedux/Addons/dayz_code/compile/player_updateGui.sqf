@@ -1,4 +1,4 @@
-private["_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
+private["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
 disableSerialization;
 
 _foodVal = 		1 - (dayz_hunger / SleepFood);
@@ -22,10 +22,12 @@ _ctrlThirst = 	_display displayCtrl 1302;
 _ctrlTemp 	= 	_display displayCtrl 1306;					//TeeChange
 //_ctrlEar = 		_display displayCtrl 1304;
 //_ctrlEye = 		_display displayCtrl 1305;
+//_ctrlHumanity = _display displayCtrl 1207;
 _ctrlCombat = _display displayCtrl 1307;
 _ctrlFracture = 	_display displayCtrl 1203;
 _ctrlInfection = 	_display displayCtrl 1204;
 _ctrlPain = 	_display displayCtrl 1209;
+_ctrlDebug = _display displayCtrl 1210;
 
 _ctrlBloodBorder  = _display displayCtrl 1200;
 _ctrlFoodBorder   = _display displayCtrl 1201;
@@ -165,6 +167,22 @@ if (r_player_inpain) then {
 
 };
 
+//private["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord"];
+//Debug Warning
+
+_debug = getMarkerpos "respawn_west";
+_charPos = 		getPosATL (vehicle player);
+_nearDebug = ((_debug distance _charPos) < 1500);
+_nearSpawnPos = ((dayz_spawnPos distance _charPos) < 100);
+_xCoord = _charPos select 0;
+_yCoord = _charPos select 1;
+
+if (_xCoord > 14860 or _xCoord < 500 or _yCoord > 14860 or _yCoord < 500) then {
+	//cutText ["Warning you are within 500 meters of the debug, going out of bounds will kill you!", "PLAIN DOWN"];
+	_ctrlDebug ctrlShow true;
+} else {
+	_ctrlDebug ctrlShow false;
+};
 
 if (!canStand player) then {
 	if (!(ctrlShown _ctrlFracture)) then {

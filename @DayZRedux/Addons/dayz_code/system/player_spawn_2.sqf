@@ -171,12 +171,29 @@ while {true} do {
 			};
 		};
 	};
-	
-	//If has infection reduce blood
+
+	//If has infection reduce blood cough and add shake
 	if (r_player_infected) then {
-		if (r_player_blood > 6000) then {
-			r_player_blood = r_player_blood - 3;
+		if !(player getVariable["USEC_infected",false]) then { 
+			player setVariable["USEC_infected",true,true];  
 		};
+		
+		_rnd = ceil (random 8);
+		[player,"cough",_rnd,false,9] call dayz_zombieSpeak;
+		
+		if (_rnd < 3) then {
+			addCamShake [2, 1, 25];
+		};
+		if (r_player_blood > 3000) then {
+			r_player_blood = r_player_blood - 3;
+			player setVariable["USEC_BloodQty",r_player_blood];
+		};
+	};
+	
+	//Pain Shake Effects
+	if (r_player_inpain and !r_player_unconscious) then {
+		playSound "breath_1";
+		addCamShake [2, 1, 25];
 	};
 	
 	//Hunger Effect
@@ -212,14 +229,14 @@ while {true} do {
 		player setVariable ["messing",[dayz_hunger,dayz_thirst],true];
 	};
 
-/*	
 	//check if can disconnect
 	if (!dayz_canDisconnect) then {
 		if ((time - dayz_damageCounter) > 180) then {
 			if (!r_player_unconscious) then {
 				dayz_canDisconnect = true;
+				//["dayzDiscoRem",getPlayerUID player] call callRpcProcedure;
 				dayzDiscoRem = getPlayerUID player;
-				publicVariableServer "dayzDiscoRem";
+				publicVariable "dayzDiscoRem";
 				
 				//Ensure Control is hidden
 				_display = uiNamespace getVariable 'DAYZ_GUI_display';
@@ -228,7 +245,6 @@ while {true} do {
 			};
 		};
 	};
-*/
 
 	//Save Checker
 	if (dayz_unsaved) then {
@@ -254,28 +270,6 @@ while {true} do {
 	//Attach Trigger Current Object
 	//dayz_playerTrigger attachTo [_refObj,[0,0,0]];
 	//dayz_playerTrigger setTriggerArea [_size,_size,0,false];
-
-	/*
-	if (dayzDebug) then {
-		//Debug Info
-		_headShots = 	player getVariable["headShots",0];
-		_kills = 		player getVariable["zombieKills",0];
-		_killsH = 		player getVariable["humanKills",0];
-		_killsB = 		player getVariable["banditKills",0];
-		_humanity =		player getVariable["humanity",0];
-		_zombies =		count entities "zZambie_Base";
-		_zombiesA = 	{alive _x} count entities "zZambie_Base";
-		//_groups =		count allGroups;
-		//_dead =			count allDead;
-		//dayz_zombiesLocal =		{local _x} count entities "zZambie_Base";
-		//_loot = 		count allMissionObjects "WeaponHolder";
-		//_wrecks = 		count allMissionObjects "Wreck_Base";
-		//_lootL = 		{local _x} count allMissionObjects "WeaponHolder";
-		//_speed = (_vel distance [0,0,0]); 
-		
-		hintSilent format["DEBUG MONITOR: \n\nZombies Killed: %1\nHeadshots: %2\nMurders: %10\nBandits Killed: %12\nBlood: %4\nZombies (alive/total): %15/%8\nName: %14\nHumanity: %11",_kills,_headShots,_speed,r_player_blood,round(dayz_temperatur),r_player_infected,dayz_inside,_zombies,_lastSave,_killsH,round(_humanity),_killsB,_freeTarget,dayz_playerName,_zombiesA];
-	};
-	*/
 
 	// This is true if someone else set is into combat (projectile impact)
 	_remoteCombatStart = player getVariable["startcombattimer", 0];
@@ -326,8 +320,8 @@ while {true} do {
 	};
 
 	// Tmp Debug
-	//_zombiesA = 	{alive _x} count entities "zZambie_Base";
-	//hintSilent format["Zoms: %1",_zombiesA];
+	//_zombies = 	{alive _x} count entities "zZombie_Base";
+	//hintSilent format["Zoms: %1",_zombies];
 
 	// Loot Placement Helper (only enable for debug)
 	/*
@@ -347,7 +341,7 @@ while {true} do {
 	*/
 
 	// Nearest Object
-	//_nearestZam = nearestObject [player, "zZambie_Base"];
+	//_nearestZam = nearestObject [player, "zZombie_Base"];
 	//_zamDistance = player distance _nearestZam;
 	//_intersecting = {_x isKindOf "All"} count lineIntersectsWith [(eyePos player), (eyePos _nearestZam)] > 0;
 	//hintSilent format["INTERSECTION BETWEEN: %1\n\nCantSee: %2\nDistance: %3", typeOf(_nearestZam), str(_intersecting), _zamDistance];
@@ -357,7 +351,6 @@ while {true} do {
 	clearGroupIcons group player;
 	*/
 	"colorCorrections" ppEffectAdjust [1, 1, 0, [1, 1, 1, 0.0], [1, 1, 1, (r_player_blood/r_player_bloodTotal)],  [1, 1, 1, 0.0]];
-	//"colorCorrections" ppEffectAdjust [0.71, 1, 0, [0, 0, 0.03, 0.12],[-1.65, -5, 0.03, (r_player_blood/r_player_bloodTotal)],[0.2, -0.01, 0.11, 0.24]];
 	"colorCorrections" ppEffectCommit 0;
 	sleep 2;
 	
@@ -381,7 +374,6 @@ while {true} do {
 			};
 		};
 	};
-	
 	//Hatchet ammo fix	
 	//"MeleeHatchet" call dayz_meleeMagazineCheck;
 	

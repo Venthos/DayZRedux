@@ -11,9 +11,9 @@ _classname = 	getText (configFile >> "CfgMagazines" >> _item >> "ItemActions" >>
 _text = 		getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
 _consume = 	([] + getArray (_config >> "magazines")) select 0;
 
-_hastrapmag = _this in magazines player;
+_hastrapitem = _this in magazines player;
 
-if (!_hastrapmag) exitWith {cutText [format[(localize "str_player_31"),_text,"place"] , "PLAIN DOWN"]};
+if (!_hastrapitem) exitWith {cutText [format[(localize "str_player_31"),_text,"place"] , "PLAIN DOWN"]};
 
 player removeMagazine _item;
 _location = getPosATL player;

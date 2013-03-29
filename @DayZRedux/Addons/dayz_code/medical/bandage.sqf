@@ -44,8 +44,8 @@ if (_finished) then {
 		_id = [player,player] execVM "\z\addons\dayz_code\medical\publicEH\medBandaged.sqf";
 		dayz_sourceBleeding =	objNull;
 	} else {
-		dayzHumanity = [player,20];
-		_id = dayzHumanity spawn player_humanityChange;
+		//dayzHumanity = [player,20];
+		[player,20] call player_humanityChange;
 	};
 
 	{_unit setVariable[_x,false,true];} forEach USEC_woundHit;
