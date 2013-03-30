@@ -15,6 +15,7 @@ Changelog
 
 - [Fix] You may now eat in vehicles
 - [Fix] Duplication by "take" action to pick up objects
+- [Fix] Ammo refill on relog.
 
 - [New] SA58V-Acog
 - [New] SA58V-CCO
