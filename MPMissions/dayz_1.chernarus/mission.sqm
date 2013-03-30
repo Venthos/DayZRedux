@@ -21,12 +21,12 @@ class Mission
 	randomSeed=11171215;
 	class Intel
 	{
-		briefingName="DayZ ChernarusRedux";
+		briefingName="DayZ Chernarus Redux";
 		briefingDescription="DayZ Redux";
 		startWeather=0.067362607;
 		forecastWeather=0.52341133;
-		year=12; //2008
-		month=12; //10
+		year=2013; //2008
+		month=3; //10
 		day=17; // 11
 		hour=12;
 	};
@@ -1248,8 +1248,8 @@ class Intro
 	{
 		startWeather=0.25;
 		forecastWeather=0.25;
-		year=12; //2008
-		month=12; //10
+		year=2013; //2008
+		month=3; //10
 		day=17; // 11
 		hour=9;
 		minute=20;
@@ -1270,8 +1270,8 @@ class OutroWin
 	{
 		startWeather=0.25;
 		forecastWeather=0.25;
-		year=12; //2008
-		month=12; //10
+		year=2013; //2008
+		month=3; //10
 		day=17; // 11
 		hour=9;
 		minute=20;
@@ -1292,8 +1292,8 @@ class OutroLoose
 	{
 		startWeather=0.25;
 		forecastWeather=0.25;
-		year=12; //2008
-		month=12; //10
+		year=2013; //2008
+		month=3; //10
 		day=17; // 11
 		hour=9;
 		minute=20;

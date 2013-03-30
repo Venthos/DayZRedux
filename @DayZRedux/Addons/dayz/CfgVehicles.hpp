@@ -3,7 +3,7 @@
 class CfgVehicles {
 	class Citizen1;	// External class reference
 	
-	class zZambie_Base : Citizen1 {
+	class zZombie_Base : Citizen1 {
 		scope = public;
 		glassesEnabled = 0;
 		vehicleClass = "Zombie";
@@ -17,14 +17,14 @@ class CfgVehicles {
 		magazines[] = {};
 		sensitivity = 4;	// sensor sensitivity
 		sensitivityEar = 2;
-		identityTypes[] = {"zombie1", "zombie2", "zombie3"};
+		identityTypes[] = {"zombie1", "zombie2"};
 		
 		class TalkTopics {};
 		languages[] = {};
 		
 		class Eventhandlers {
-			//init = "_this call zombie_initialize;";
-			local = "if(_this select 1) then {[(position (_this select 0)),(_this select 0),true] execFSM '\z\AddOns\dayz_code\system\zombie_agent.fsm'};";
+			init = "_this call zombie_initialize;";
+			local = "diag_log ('Locality Event');if(_this select 1) then {[(position (_this select 0)),(_this select 0),true] execFSM '\z\AddOns\dayz_code\system\zombie_agent.fsm'};";
 		};
 		
 		class HitPoints {
@@ -112,7 +112,7 @@ class CfgVehicles {
 		};
 	};
 	
-	class z_policeman : zZambie_Base {
+	class z_policeman : zZombie_Base {
 		model = "\ca\characters2\civil\Policeman\Policeman";
 		zombieLoot = "policeman";
 		
@@ -122,10 +122,10 @@ class CfgVehicles {
 		};
 	};
 	
-	class z_suit1 : zZambie_Base {
+	class z_suit1 : zZombie_Base {
 		model = "\ca\characters2\civil\Functionary\Functionary";
 		hiddenSelections[] = {"Camo"};
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\functionary_co.paa"};
+		hiddenSelectionsTextures[] = {"\ca\characters2\civil\functionary\data\functionary_co.paa"};
 		zombieLoot = "generic";
 		
 		class Wounds {
@@ -136,10 +136,10 @@ class CfgVehicles {
 	
 	class z_suit2 : z_suit1 {
 		zombieLoot = "civilian";
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\functionary2_co.paa"};
+		hiddenSelectionsTextures[] = {"\ca\characters2\civil\functionary\data\functionary2_co.paa"};
 	};
 	
-	class z_worker1 : zZambie_Base {
+	class z_worker1 : zZombie_Base {
 		zombieLoot = "";
 		model = "\Ca\characters_E\Overall\Overall";
 		hiddenSelections[] = {"Camo"};
@@ -148,18 +148,18 @@ class CfgVehicles {
 			tex[] = {};
 			mat[] = {"Ca\characters_E\Overall\Data\Overall.rvmat", "Ca\characters_E\Overall\Data\W1_Overall.rvmat", "Ca\characters_E\Overall\Data\W2_Overall.rvmat"};
 		};
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\Overall_4_co.paa"};
+		hiddenSelectionsTextures[] = {"\Ca\characters_E\Overall\Data\Overall_4_co.paa"};
 	};
 	
 	class z_worker2 : z_worker1 {
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\Overall_3_co.paa"};
+		hiddenSelectionsTextures[] = {"\Ca\characters_E\Overall\Data\Overall_3_co.paa"};
 	};
 	
 	class z_worker3 : z_worker1 {
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\Overall_2_co.paa"};
+		hiddenSelectionsTextures[] = {"\Ca\characters_E\Overall\Data\Overall_2_co.paa"};
 	};
 	
-	class z_doctor : zZambie_Base {
+	class z_doctor : zZombie_Base {
 		model = "\ca\characters2\civil\Doctor\Doctor";
 		zombieLoot = "medical";
 		hiddenSelections[] = {"Camo"};
@@ -176,7 +176,7 @@ class CfgVehicles {
 		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\teacher_co.paa"};
 	};
 	
-	class z_hunter : zZambie_Base {
+	class z_hunter : zZombie_Base {
 		model = "\ca\characters2\civil\Woodlander\Woodlander";
 		zombieLoot = "hunter";
 		hiddenSelections[] = {"Camo"};
@@ -187,11 +187,11 @@ class CfgVehicles {
 		};
 	};
 	
-	class z_villager1 : zZambie_Base {
+	class z_villager1 : zZombie_Base {
 		zombieLoot = "civilian";
 		model = "\ca\characters2\civil\Villager\Villager";
 		hiddenSelections[] = {"Camo"};
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\villager_co.paa"};
+		hiddenSelectionsTextures[] = {"\ca\characters2\civil\villager\data\villager_co.paa"};
 		
 		class Wounds {
 			tex[] = {};
@@ -200,14 +200,14 @@ class CfgVehicles {
 	};
 	
 	class z_villager2 : z_villager1 {
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\villager_v2_co.paa"};
+		hiddenSelectionsTextures[] = {"\ca\characters2\civil\villager\data\villager_v2_co.paa"};
 	};
 	
 	class z_villager3 : z_villager1 {
-		hiddenSelectionsTextures[] = {"\dayz\textures\clothes\villager_v3_co.paa"};
+		hiddenSelectionsTextures[] = {"\ca\characters2\civil\villager\data\villager_v3_co.paa"};
 	};
 	
-	class z_priest : zZambie_Base {
+	class z_priest : zZombie_Base {
 		model = "\ca\characters2\civil\Priest\Priest";
 		
 		class Wounds {
@@ -215,24 +215,8 @@ class CfgVehicles {
 			mat[] = {"ca\characters2\civil\priest\data\priest.rvmat", "ca\characters2\civil\priest\data\W1_priest.rvmat", "ca\characters2\civil\priest\data\W2_priest.rvmat", "ca\characters\heads\male\defaulthead\data\hhl.rvmat", "ca\characters\heads\male\defaulthead\data\hhl_Wounds.rvmat", "ca\characters\heads\male\defaulthead\data\hhl_Wounds.rvmat"};
 		};
 	};
-
-	class FemaleZombie : zZambie_Base {
-		faceType = "WomanHead";
-	};
-
-	class z_farmwife3 : FemaleZombie {
-		model = "\ca\characters2\civil\Woman\Farmwife\Farmwife";
-		zombieLoot = "civilian";
-		hiddenSelections[] = {"Camo"};
-		hiddenSelectionsTextures[] = {"\ca\characters2\civil\woman\farmwife\data\farmwife3_co.paa"};
-		
-		class Wounds {
-			tex[] = {};
-			mat[] = {"Ca\characters2\Civil\Woman\Farmwife\Data\Farmwife.rvmat", "Ca\characters2\Civil\Woman\Farmwife\Data\w1_Farmwife.rvmat", "Ca\characters2\Civil\Woman\Farmwife\Data\w2_Farmwife.rvmat"};
-		};
-	};
 	
-	class z_soldier : zZambie_Base {
+	class z_soldier : zZombie_Base {
 		displayName = "Zombie Soldier";
 		model = "\ca\characters2\Blufor\Soldier_Light";
 		zombieLoot = "military";

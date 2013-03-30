@@ -28,13 +28,13 @@ endLoadingScreen;
 diag_log ("LOGIN ATTEMPT: " + str(_playerID) + " " + _playerName);
 
 //Wait for HIVE to be free
-waitUntil{!hiveInUse};
-hiveInUse = true;
+//waitUntil{!hiveInUse};
+//hiveInUse = true;
 //Send request
 _key = format["CHILD:101:%1:%2:%3:",_playerID,dayZ_instance,_playerName];
 _primary = [_key,true] call fnc_motherrequest;
 //Release HIVE
-hiveInUse = false;
+//hiveInUse = false;
 
 //Process request
 _isNew = 		count _primary < 4; //_result select 1;
@@ -61,13 +61,13 @@ if (!_isNew) then {
 	_randomSpot = true;
 	
 	//Wait for HIVE to be free
-	waitUntil{!hiveInUse};
-	hiveInUse = true;
+	//waitUntil{!hiveInUse};
+	//hiveInUse = true;
 	//Send request
 	_key = format["CHILD:203:%1:%2:%3:",_charID,[_wpns,_mags],[_bcpk,[],[]]];
 	_result = [_key,false] call fnc_motherrequest;
 	//Release HIVE
-	hiveInUse = false;
+	//hiveInUse = false;
 };
 diag_log ("LOGIN LOADED: " + str(_playerObj) + " Type: " + (typeOf _playerObj));
 

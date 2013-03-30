@@ -249,6 +249,18 @@ class CfgMagazines {
 		descriptionShort = $STR_EQUIP_DESC_46;
 	};
 	
+	class Skin_Uniform1_DZ : SkinBase {
+		scope = public;
+		displayName = $STR_EQUIP_NAME_54;
+		descriptionShort = $STR_EQUIP_DESC_54;
+	};
+	
+	class Skin_Bait1_DZ : SkinBase {
+		scope = public;
+		displayName = $STR_EQUIP_NAME_55;
+		descriptionShort = $STR_EQUIP_DESC_55;
+	};
+	
 	class ItemBandage : CA_Magazine {
 		scope = public;
 		count = 1;

@@ -18,13 +18,21 @@ private["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","
 	_inVehicle = (vehicle _unit != _unit);
 	_evType = "";
 	_recordable = false;
-
+	
 	// Color in the combat icon immediately since player_spawn2.sqf loops on a 2 second delay
-	dayz_combat = 1;
+	//dayz_combat = 1;
 	// Queue up for combat
 	dayz_combatStart = true;
 	diag_log("COMBAT: In combat from weaponFiredNear");
 
+	// Both the firer and those nearby (<=8m) go into "combat" to prevent ALT-F4
+	//diag_log ("DEBUG: AMMO TYPE: " +str(_ammo));
+	_firer setVariable["startcombattimer", 1, false];
+	if (_distance <= 8) then {
+		_unit setVariable["startcombattimer", 1, false];
+	};
+	
+	
 	if (_inVehicle) exitWith{};
 	if (_firer == player) exitWith{};
 	

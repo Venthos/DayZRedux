@@ -1,4 +1,4 @@
-private["_unit","_selection","_strH","_dam","_total"];
+private["_unit","_selection","_strH","_damage","_total"];
 _unit =			_this select 0;
 _selection =	_this select 1;
 _damage =		_this select 2;
@@ -9,15 +9,18 @@ if (_selection != "" and local _unit) then {
 	//player sidechat str _damage;
 	_unit setVariable [_strH,_damage,true];
 	if (_damage == 0) then {
-		dayzUpdateVehicle = [_unit,"repair"];
-	} else {
-		dayzUpdateVehicle = [_unit,"damage"];
-	};
-	if (isServer) then {
-		if (allowConnection) then {
-			dayzUpdateVehicle call server_updateObject;
+		if (isServer) then { 
+			[_unit,"repair"] call server_updateObject 
+		} else { 
+			dayzUpdateVehicle = [_unit,"repair"]; 
+			publicVariable "dayzUpdateVehicle"; 
 		};
 	} else {
-		publicVariable "dayzUpdateVehicle";
+		if (isServer) then { 
+			[_unit,"damage"] call server_updateObject 
+		} else { 
+			dayzUpdateVehicle = [_unit,"damage"]; 
+			publicVariable "dayzUpdateVehicle"; 
+		};
 	};
 };

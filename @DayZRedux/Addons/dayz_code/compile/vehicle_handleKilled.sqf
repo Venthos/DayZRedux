@@ -1,15 +1,7 @@
-private["_unit","_selection","_killer"];
+private["_unit","_hitPoints","_selection","_killer"];
 
 _unit = _this select 0;
 _killer = _this select 1;
-
-diag_log(format["handleKilled: %1 was killed", _unit]);
-
-// Prevent spazzing out vehicles from spamming server/MySQL
-//_waskilled = _unit getVariable ['waskilled', 0];
-//if (_waskilled) exitWith{};
-
-//_unit setVariable ['waskilled', 1, true];
 
 _hitPoints = _unit call vehicle_getHitpoints;
 {
@@ -17,20 +9,12 @@ _hitPoints = _unit call vehicle_getHitpoints;
 	_unit setVariable [_selection, 1, true];
 } forEach _hitPoints;
 
-dayzUpdateVehicle = [_unit, "damage"];
-
+//["dayzUpdateVehicle",[_unit, "damage"]] call callRpcProcedure;
 if (isServer) then {
-	if (allowConnection) then {
-		dayzUpdateVehicle call server_updateObject;
-	};
+	[_unit, "killed"] call server_updateObject;
 } else {
+	dayzUpdateVehicle = [_unit, "killed"];
 	publicVariable "dayzUpdateVehicle";
-};
-
-dayzDeleteObj = [_objectID,_objectUID];
-publicVariableServer "dayzDeleteObj";
-if (isServer) then {
-	dayzDeleteObj call local_deleteObj;
 };
 
 _unit removeAllEventHandlers "HandleDamage";

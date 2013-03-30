@@ -12,12 +12,16 @@ _objectsWell = 	[];
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 if (_onLadder) exitWith {cutText [(localize "str_player_21") , "PLAIN DOWN"]};
 
-_hasbottlemag = _this in magazines player;
+_hasbottleitem = _this in magazines player;
 
 _config = configFile >> "CfgMagazines" >> _item;
 _text = getText (_config >> "displayName");
 
-if (!_hasbottlemag) exitWith {cutText [format[(localize "str_player_31"),_text,"fill"] , "PLAIN DOWN"]};
+if (!_hasbottleitem) exitWith {cutText [format[(localize "str_player_31"),_text,"fill"] , "PLAIN DOWN"]};
+
+if (!dayz_isSwimming) then {
+	player playActionNow "PutDown";
+};
 
 if (!_canFill) then {
 	_objectsWell = 	nearestObjects [_playerPos, [], 4];
@@ -43,10 +47,6 @@ if (!_canFill) then {
 };
 
 if (_canFill) then {
-	if (!dayz_isSwimming) then {
-		player playActionNow "PutDown";
-	};
-
 	_qty = {_x == "ItemWaterbottleUnfilled"} count magazines player;
 
 	if ("ItemWaterbottleUnfilled" in magazines player) then {
@@ -54,8 +54,12 @@ if (_canFill) then {
 			player removeMagazine "ItemWaterbottleUnfilled";
 			player addMagazine "ItemWaterbottle";
 		};
-		[player,"fillwater",0,false] call dayz_zombieSpeak;
-		_id = [player,10,true,(getPosATL player)] spawn player_alertZombies;
+
+		_dis=10;
+		_sfx = "fillwater";
+		[player,_sfx,0,false,_dis] call dayz_zombieSpeak;  
+		[player,_dis,true,(getPosATL player)] spawn player_alertZombies;
+
 		cutText [format[(localize  "str_player_01"),_qty], "PLAIN DOWN"];
 	} else {
 		cutText [(localize "str_player_02") , "PLAIN DOWN"];

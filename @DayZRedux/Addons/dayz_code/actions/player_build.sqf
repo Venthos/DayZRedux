@@ -3,6 +3,7 @@ _location = player modeltoworld [0,1,0];
 _location set [2,0];
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		(surfaceIsWater _location) or dayz_isSwimming;
+_bypass = false;
 
 call gear_ui_init;
 
@@ -48,15 +49,21 @@ if (_restrictBuild) then {
 if (_restrictBuild && _inBuilding) exitWith {cutText [format["You cannot place %1 within a building", _text] , "PLAIN DOWN"]};
 
 //diag_log(format["BUILD: %1 RESTRICT: %2 INBUILD: %3 RESULT: %4", _item, _restrictBuild, _inBuilding, (!_restrictBuild || (_restrictBuild && !_inBuilding))]);
+if (!_hasbuilditem) exitWith {cutText [format[(localize "str_player_31"),_text,"build"] , "PLAIN DOWN"]};
+if (_text == "TrapBear") then { _bypass = true; };
 
-if (!_restrictBuild || (_restrictBuild && !_inBuilding)) then {
+if (!_restrictBuild || _bypass || (_restrictBuild && !_inBuilding)) then {
 	_dir = getDir player;
 	player removeMagazine _item;
 
 	player playActionNow "Medic";
 	sleep 1;
-	[player,"repair",0,false] call dayz_zombieSpeak;
-	_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
+  
+	_dis=50;
+	_sfx = "repair";
+	[player,_sfx,0,false,_dis] call dayz_zombieSpeak;  
+	[player,_dis,true,(getPosATL player)] spawn player_alertZombies;
+  
 	sleep 5;
 	
 	player allowDamage false;
@@ -67,11 +74,10 @@ if (!_restrictBuild || (_restrictBuild && !_inBuilding)) then {
 	cutText [format[localize "str_build_01",_text], "PLAIN DOWN"];
 
 	dayzPublishObj = [dayz_characterID,_object,[_dir,_location],_classname];
-	publicVariableServer "dayzPublishObj";
-	if (isServer) then {
-		dayzPublishObj call server_publishObj;
-	};
+	publicVariable "dayzPublishObj";
 
 	sleep 2;
 	player allowDamage true;
+} else {
+	cutText [format[localize "str_build_failed_01",_text], "PLAIN DOWN"];
 };

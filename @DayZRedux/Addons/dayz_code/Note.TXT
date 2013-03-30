@@ -1,0 +1,14 @@
+1. Some files are in here that are not used or are new to 1.7.6.1 and are not used.
+    I am too lazy to clean them up so they will remain until someone does so.
+
+2. This update requires that you use the HIVE extension instead of the bliss extension.
+    There are multiple reasons for this, the main one is that ammo refil is fixed.
+    
+3. This update requries that you host a dedicated server in order to play.
+     
+4. The UI has not been changed, it is still the Redux UI, there is no annoying disconnect symbol for pain (WTF were they thinking).
+
+5. Use of a clean DB is highley recommended, but there is a conversion script "DB_Migrate.sql" on the Redux git page.
+    https://github.com/Venthos/DayZRedux
+
+6. The debug warning comes up at 500M from the debug boundries

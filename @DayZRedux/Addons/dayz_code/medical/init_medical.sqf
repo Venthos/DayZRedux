@@ -52,6 +52,13 @@ while {true} do {
 		[] spawn fnc_med_publicBlood;
 	};
 
+	//Handle player infection
+	if ((r_player_infected) and (!r_player_handler)) then {
+		r_player_handler = true;
+		sleep 1;
+		[] spawn fnc_med_publicBlood;
+	};
+
 	//Add player actions
 	[] call fnc_usec_damageActions;
 	[] call fnc_usec_selfActions;

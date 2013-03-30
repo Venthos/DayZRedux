@@ -41,5 +41,5 @@ switch (_state) do {
 		dayzDebug = false;
 	};
 };
-*/
 dayzState = _state;
+*/

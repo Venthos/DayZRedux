@@ -114,8 +114,8 @@ link56[] = {49,50};
 link57[] = {50,49};
 link58[] = {51,52};
 link59[] = {52,29};
-globals[] = {25.000000,1,0,0,0,640,480,1,81,6316128,1,-247.811081,262.170166,1086.799561,197.442078,574,1001,1};
-window[] = {0,-1,-1,-1,-1,1291,732,2318,145,1,592};
+globals[] = {25.000000,1,0,0,0,640,480,1,81,6316128,1,-190.908371,174.873718,1294.537354,842.201965,486,601,1};
+window[] = {2,-1,-1,-1,-1,802,22,1394,22,3,503};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -131,8 +131,9 @@ class FSM
        "" \n
        "0 fadeSound 0;" \n
        "//player setPosATL [-2148,6655,0];" \n
-       "" \n
+       "progressLoadingScreen 0.1;" \n
        "_timeStart = time;" \n
+       "player enableSimulation false;" \n
        ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
@@ -188,7 +189,9 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"endLoadingScreen;" \n
        "diag_log (""PLOGIN: Initating"");" \n
        "" \n
-       "0 cutText [localize ""str_player_13"", ""BLACK FADED"",60];"/*%FSM</STATEINIT""">*/;
+       "dayz_loadScreenMsg = (localize ""str_player_13""); " \n
+       "progressLoadingScreen 0.2;" \n
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -200,7 +203,6 @@ class FSM
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
           condition=/*%FSM<CONDITION""">*/"!isnil ""bis_fnc_init"""/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/"dayz_forceSave = {" \n
-           "	//dayzCharSave = [player,dayz_Magazines,true];" \n
            "" \n
            "	createGearDialog [player, ""RscDisplayGear""];" \n
            "_dialog = 			findDisplay 106;" \n
@@ -259,7 +261,7 @@ class FSM
            "		//If position to be updated, make sure it is at ground level!" \n
            "		if ((count _playerPos > 0) and !_isTerminal) then {" \n
            "			_charPos set [2,0];" \n
-           "			_playerPos set[1,_charPos];					" \n
+           "			_playerPos set[1,_charPos];" \n
            "		};" \n
            "	};" \n
            "	if (_isInVehicle) then {" \n
@@ -278,15 +280,14 @@ class FSM
            "	_temp = round(player getVariable [""temperature"",100]);" \n
            "	_currentState = [_currentWpn,_currentAnim,_temp];" \n
            "	" \n
-           "	dayzCharDisco = [dayz_characterID,_playerPos,[weapons player,_magazineArray],[typeOf (unitbackpack player),getWeaponCargo (unitbackpack player),getMagazineCargo (unitbackpack player)],_medical,_currentState,_currentModel, alive player, name player];" \n
-           "	//diag_log str(dayzCharDisco);	" \n
-           "" \n
-           "	//publicVariableServer ""dayzCharSave"";" \n
-           "	publicVariableServer ""dayzCharDisco"";" \n
+           "	dayz_Magazines = _magazineArray;" \n
+           "	dayzPlayerSave = [player,dayz_Magazines,false];" \n
+           "	publicVariableServer ""dayzPlayerSave"";" \n
+           "			" \n
            "	if (isServer) then {" \n
-           "		//dayzCharSave call server_playerSync;" \n
-           "		dayzCharDisco call server_characterSync;" \n
+           "		dayzPlayerSave call server_playerSync;" \n
            "	};" \n
+           "						" \n
            "	dayz_lastSave = time;" \n
            "	dayz_Magazines = [];" \n
            "};"/*%FSM</ACTION""">*/;
@@ -322,7 +323,8 @@ class FSM
       name = "Collect";
       init = /*%FSM<STATEINIT""">*/"diag_log (""PLOGIN: Player Ready"");" \n
        "" \n
-       "0 cutText [""Getting Player ID"", ""BLACK FADED"",60];" \n
+       "dayz_loadScreenMsg = (localize ""str_player_13""); " \n
+       "progressLoadingScreen 0.3;" \n
        "" \n
        "_playerUID = getPlayerUID player;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -392,7 +394,7 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"endLoadingScreen;" \n
        "selectNoPlayer;" \n
        "_myTime = time;" \n
-       "0 cutText [localize ""str_player_14"", ""BLACK FADED"",15];"/*%FSM</STATEINIT""">*/;
+       "1 cutText [localize ""str_player_14"", ""PLAIN"",15];"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -413,19 +415,21 @@ class FSM
     class Request
     {
       name = "Request";
-      init = /*%FSM<STATEINIT""">*/"startLoadingScreen ["""",""DayZ_loadingScreen""];" \n
+      init = /*%FSM<STATEINIT""">*/"//startLoadingScreen ["""",""DayZ_loadingScreen""];" \n
        "" \n
        "diag_log (""PLOGIN: Requesting Authentication... ("" + _playerUID + "")"");" \n
-       "0 cutText [localize ""str_player_15"", ""BLACK FADED"",60];" \n
+       "dayz_loadScreenMsg = (localize ""str_player_15"");" \n
+       "progressLoadingScreen 0.5;" \n
        "" \n
        "_msg = [];" \n
        "" \n
+       "//[""dayzLogin"",[_playerUID,player]] call callRpcProcedure;" \n
+       "" \n
        "dayzLogin = [_playerUID,player];" \n
+       "publicVariable ""dayzLogin"";" \n
+       "" \n
        "dayzPlayerLogin = [];" \n
-       "publicVariableServer ""dayzLogin"";" \n
-       "if (isServer) then {" \n
-       "	dayzLogin call server_playerLogin;" \n
-       "};"/*%FSM</STATEINIT""">*/;
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -446,7 +450,8 @@ class FSM
     class Parse_Login
     {
       name = "Parse_Login";
-      init = /*%FSM<STATEINIT""">*/"_charID		= _msg select 0;" \n
+      init = /*%FSM<STATEINIT""">*/"progressLoadingScreen 0.6;" \n
+       "_charID		= _msg select 0;" \n
        "_inventory	= _msg select 1;" \n
        "_backpack	= _msg select 2;" \n
        "_survival 	= _msg select 3;" \n
@@ -464,7 +469,8 @@ class FSM
        "	diag_log (""PLAYER RESULT: "" + str(_isHiveOk));" \n
        "};" \n
        "" \n
-       "0 cutText [localize ""str_player_17"", ""BLACK FADED"",60];" \n
+       "dayz_loadScreenMsg = (localize ""str_player_17""); " \n
+       "progressLoadingScreen 0.7;" \n
        "diag_log (""PLOGIN: authenticated with : "" + str(_msg));" \n
        "" \n
        "//Not Equal Failure" \n
@@ -531,7 +537,7 @@ class FSM
        "selectNoPlayer;" \n
        "" \n
        "_myTime = time;" \n
-       "0 cutText [""This server is running an incorrect version of the server side application. You cannot play on this server. If you are the server admin please contact DayZ staff."", ""BLACK FADED"",5];"/*%FSM</STATEINIT""">*/;
+       "1 cutText [""This server is running an incorrect version of the server side application. You cannot play on this server. If you are the server admin please contact DayZ staff."", ""PLAIN"",5];"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -552,11 +558,12 @@ class FSM
     class Phase_One
     {
       name = "Phase_One";
-      init = /*%FSM<STATEINIT""">*/"//_model = ""BanditW1_DZ"";" \n
+      init = /*%FSM<STATEINIT""">*/"//_model = ""BW1_RX"";" \n
        "" \n
        "dayz_playerName = name player;" \n
        "_model call player_switchModel;" \n
        "" \n
+       "player allowDamage false;" \n
        "_lastAte = _survival select 1;" \n
        "_lastDrank = _survival select 2;" \n
        "" \n
@@ -601,6 +608,7 @@ class FSM
        "			};" \n
        "			_countr = 0;" \n
        "			{" \n
+       "				if (_x == ""Crossbow"") then { _x = ""Crossbow_DZ"" };" \n
        "				dayz_myBackpack addWeaponCargoGlobal [_x,(_backpackWpnQtys select _countr)];" \n
        "				_countr = _countr + 1;" \n
        "			} forEach _backpackWpnTypes;" \n
@@ -608,6 +616,7 @@ class FSM
        "			//Magazines" \n
        "			_countr = 0;" \n
        "			{" \n
+       "				if (_x == ""BoltSteel"") then { _x = ""WoodenArrow"" }; // Convert BoltSteel to WoodenArrow" \n
        "				dayz_myBackpack addMagazineCargoGlobal [_x,(_backpackMagQty select _countr)];" \n
        "				_countr = _countr + 1;" \n
        "			} forEach _backpackMagTypes;" \n
@@ -631,13 +640,13 @@ class FSM
        "};" \n
        "" \n
        "dayzPlayerLogin2 = [];" \n
+       "//[""dayzLogin2"",[_charID,player,_playerUID]] call callRpcProcedure;" \n
+       "" \n
        "dayzLogin2 = [_charID,player,_playerUID];" \n
        "publicVariable ""dayzLogin2"";" \n
-       "if (isServer) then {" \n
-       "	dayzLogin2 spawn server_playerSetup;" \n
-       "};" \n
        "" \n
-       "0 cutText [""Requesting Character data from server"", ""BLACK FADED"",60];" \n
+       "dayz_loadScreenMsg =  ""Requesting Character data from server"";" \n
+       "progressLoadingScreen 0.8;" \n
        "diag_log ""Attempting Phase two..."";"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
@@ -659,7 +668,7 @@ class FSM
     class Phase_Two
     {
       name = "Phase_Two";
-      init = /*%FSM<STATEINIT""">*/"0 cutText [""Character Data received from server"", ""BLACK FADED"",60];" \n
+      init = /*%FSM<STATEINIT""">*/"dayz_loadScreenMsg =  ""Character Data received from server""; " \n
        "diag_log ""Finished..."";" \n
        "" \n
        "_worldspace = 	dayzPlayerLogin2 select 0;" \n
@@ -667,8 +676,6 @@ class FSM
        "" \n
        "_setDir = 			_worldspace select 0;" \n
        "_setPos = 			_worldspace select 1;" \n
-       "" \n
-       "player allowDamage false;" \n
        "" \n
        "player setPosATL _setPos;" \n
        "player setDir _setDir;" \n
@@ -716,11 +723,11 @@ class FSM
        "	} forEach _wpns;" \n
        "	" \n
        "	if (_bcpk != """") then {" \n
-       "		player addBackpack _bcpk; " \n
-       "		dayz_myBackpack =	unitBackpack player;" \n
+       "	player addBackpack _bcpk; " \n
+       "	dayz_myBackpack =	unitBackpack player;" \n
        "" \n
-       "		if (_bcpkWpn != """") then {" \n
-       "			dayz_myBackpack addWeaponCargoGlobal [_bcpkWpn,1];" \n
+       "	if (_bcpkWpn != """") then {" \n
+       "		dayz_myBackpack addWeaponCargoGlobal [_bcpkWpn,1];" \n
        "		};" \n
        "	};" \n
        "};" \n
@@ -740,6 +747,7 @@ class FSM
        "dayz_lastMeal =			(_lastAte * 60);" \n
        "dayz_lastDrink =		(_lastDrank * 60);" \n
        "dayz_zombiesLocal = 	0;			//Used to record how many local zombies being tracked" \n
+       "dayz_skilllevel = _days;  //total alive dayz" \n
        "" \n
        "//load in medical details" \n
        "r_player_dead = 		player getVariable[""USEC_isDead"",false];" \n
@@ -811,12 +819,12 @@ class FSM
     class Position
     {
       name = "Position";
-      init = /*%FSM<STATEINIT""">*/"endLoadingScreen;" \n
-       "startLoadingScreen ["""",""DayZ_loadingScreen""];" \n
+      init = /*%FSM<STATEINIT""">*/"" \n
        "//Location" \n
        "_myLoc = getPosATL player;" \n
        "" \n
-       "0 cutText [""Setup Completed, please wait..."", ""BLACK FADED"",60];" \n
+       "dayz_loadScreenMsg = ""Setup Completed, please wait..."";" \n
+       "progressLoadingScreen 0.9;" \n
        "" \n
        "//GUI" \n
        "3 cutRsc [""playerStatusGUI"", ""PLAIN"",0];" \n
@@ -876,7 +884,7 @@ class FSM
        "" \n
        "dayz_clientPreload = true;" \n
        "3 fadeSound 1;" \n
-       "0 cutText ["""", ""BLACK IN"", 3];" \n
+       "1 cutText ["""", ""PLAIN""];" \n
        "0 fadeMusic 0.5;" \n
        "" \n
        "//Check mission objects" \n
@@ -905,7 +913,7 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"endLoadingScreen;" \n
        "selectNoPlayer;" \n
        "_myTime = time;" \n
-       "cutText [format[localize ""str_player_18"",dayz_versionNo,_version], ""BLACK""];"/*%FSM</STATEINIT""">*/;
+       "1 cutText [format[localize ""str_player_18"",dayz_versionNo,_version], ""PLAIN""];"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -932,6 +940,7 @@ class FSM
        "player disableConversation true;" \n
        "" \n
        "eh_player_killed = player addeventhandler [""FiredNear"",{_this call player_weaponFiredNear;} ];" \n
+       "//_eh_combat_projectilenear = player addEventHandler [""IncomingFire"",{_this call player_projectileNear;}];" \n
        "" \n
        "//Select Weapon" \n
        "// Desc: select default weapon & handle multiple muzzles" \n
@@ -953,11 +962,14 @@ class FSM
        "	};" \n
        "};" \n
        "" \n
-       "if (_currentWpn == ""MeleeCrowbar"") then {" \n
+       "if (player hasWeapon ""MeleeCrowbar"") then {" \n
        "	player addMagazine 'crowbar_swing';" \n
        "};" \n
-       "if (_currentWpn == ""MeleeHatchet"") then {" \n
+       "if (player hasWeapon ""MeleeHatchet"") then {" \n
        "	player addMagazine 'hatchet_swing';" \n
+       "};" \n
+       "if (player hasWeapon ""MeleeMachete"") then {" \n
+       "	player addMagazine 'machete_swing';" \n
        "};" \n
        "" \n
        "reload player;" \n
@@ -1014,16 +1026,18 @@ class FSM
     class Initialize
     {
       name = "Initialize";
-      init = /*%FSM<STATEINIT""">*/"//Medical" \n
+      init = /*%FSM<STATEINIT""">*/"#define ods(arg1) ""armaperflib"" callextension arg1" \n
+       "" \n
+       "//Medical" \n
        "dayz_medicalH = 	[] execVM ""\z\addons\dayz_code\medical\init_medical.sqf"";	//Medical Monitor Script (client only)" \n
        "[player] call fnc_usec_damageHandle;" \n
-       "" \n
-       "player allowDamage true;" \n
-       "" \n
        "if (r_player_unconscious) then {" \n
        "	r_player_timeout = player getVariable[""unconsciousTime"",0];" \n
        "	player playActionNow ""Die"";" \n
        "};" \n
+       "player allowDamage true;" \n
+       "player enableSimulation true;" \n
+       "0 cutText ["""", ""BLACK IN"",3];" \n
        "" \n
        "//Add core tools" \n
        "player addWeapon ""Loot"";" \n
@@ -1047,9 +1061,10 @@ class FSM
        "	private[""_distance""];" \n
        "	dayz_musicH = [] spawn player_music;" \n
        "	while {true} do {" \n
-       "		_array = 			player call world_surfaceNoise;" \n
+       "		_array = player call world_surfaceNoise;" \n
        "		dayz_surfaceNoise = _array select 1;" \n
        "		dayz_surfaceType = 	_array select 0;" \n
+       "" \n
        "		call player_checkStealth;" \n
        "		dayz_statusArray = [] call player_updateGui;" \n
        "		if (!isNull cursorTarget and !dayz_heartBeat) then {" \n
@@ -1066,9 +1081,10 @@ class FSM
        "dayz_slowCheck = 	[] spawn player_spawn_2;" \n
        "" \n
        "_world = toUpper(worldName); //toUpper(getText (configFile >> ""CfgWorlds"" >> (worldName) >> ""description""));" \n
-       "_nearestCity = ((nearestLocations [getPos player, [""NameCityCapital"",""NameCity"",""NameVillage"",""NameLocal""],1000]) select 0);" \n
+       "_nearestCity = nearestLocations [getPos player, [""NameCityCapital"",""NameCity"",""NameVillage"",""NameLocal""],1000];" \n
        "_town = ""Wilderness"";" \n
-       "if (!isNull _nearestCity) then {_town = text _nearestCity};" \n
+       "" \n
+       "if (count _nearestCity > 0) then {_town = text (_nearestCity select 0)};" \n
        "" \n
        "_strTime = call curTimeStr;" \n
        "_strDate = date;" \n
@@ -1098,6 +1114,27 @@ class FSM
        "	};" \n
        "};" \n
        "" \n
+       "dayz_spawnCheck = [] spawn {" \n
+       "	while {true} do {" \n
+       "		[""both""] call player_spawnCheck;" \n
+       "		sleep 8;" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "dayz_locationCheck = [] spawn {" \n
+       "	while {true} do {" \n
+       "		call stream_locationCheck;" \n
+       "		sleep 2;" \n
+       "	};" \n
+       "};" \n
+       "" \n
+       "dayz_Totalzedscheck = [] spawn {" \n
+       "	while {true} do {" \n
+       "		dayz_maxCurrentZeds = {alive _x} count entities ""zZombie_Base"";" \n
+       "		sleep 60;" \n
+       "	};" \n
+       "};" \n
+       "" \n
        "/*" \n
        "dayz_vehicleCamCheck = [] spawn {" \n
        "	while {true} do {" \n
@@ -1109,6 +1146,10 @@ class FSM
        "};" \n
        "*/" \n
        "" \n
+       "//Removed for now" \n
+       "[] execVM ""\z\addons\dayz_code\system\antihack.sqf"";" \n
+       "" \n
+       "// TODO: questionably" \n
        "{ _x call fnc_vehicleEventHandler; } forEach vehicles;" \n
        "" \n
        "private[""_fadeFire""];" \n
@@ -1117,7 +1158,8 @@ class FSM
        "	if (!_fadeFire) then {" \n
        "		nul = [_x,2,0,false,false] spawn BIS_Effects_Burn;" \n
        "	};" \n
-       "} forEach allMissionObjects ""SpawnableWreck"";"/*%FSM</STATEINIT""">*/;
+       "} forEach allMissionObjects ""SpawnableWreck"";" \n
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -1141,8 +1183,11 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"dayzGearSave = true;" \n
        "dayz_myPosition = getPosATL player;" \n
        "" \n
+       "//[""dayzLoginRecord"",[_playerUID,_charID,0]] call callRpcProcedure;" \n
+       "" \n
        "dayzLoginRecord = [_playerUID,_charID,0];" \n
-       "publicVariableServer ""dayzLoginRecord"";"/*%FSM</STATEINIT""">*/;
+       "publicVariable ""dayzLoginRecord"";" \n
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -1154,10 +1199,7 @@ class FSM
     {
       name = "Enable_Sim";
       init = /*%FSM<STATEINIT""">*/"_myAnim = getNumber(configFile >> ""CfgPatches"" >> ""dayz_anim"" >> ""isUpdated"");" \n
-       "" \n
-       "// Disallow damage until the player is fully logged in" \n
-       "//diag_log(""DIAG: login allowdamage false"");" \n
-       "player enableSimulation true;"/*%FSM</STATEINIT""">*/;
+       ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -1189,8 +1231,8 @@ class FSM
     {
       name = "Gender_Selection";
       init = /*%FSM<STATEINIT""">*/"dayz_selectGender = ""S2_RX"";" \n
+       "1 cutText ["""", ""BLACK"",0];" \n
        "endLoadingScreen;" \n
-       "0 cutText ["""", ""BLACK FADED"",60];" \n
        "createDialog ""RscDisplayGenderSelect"";"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
@@ -1236,7 +1278,7 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"endLoadingScreen;" \n
        "selectNoPlayer;" \n
        "_myTime = time;" \n
-       "0 cutText [""You have an outdated version of 'dayz_anim' please download the correct version"", ""BLACK FADED"",15];"/*%FSM</STATEINIT""">*/;
+       "1 cutText [""You have an outdated version of 'dayz_anim' please download the correct version"", ""PLAIN"",15];"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -1260,10 +1302,10 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"//stream in location" \n
        "call stream_locationCheck;" \n
        "" \n
-       "_zombies = (getPosATL player) nearEntities [""zZambie_Base"",30];" \n
+       "_zombies = (getPosATL player) nearEntities [""zZombie_Base"",30];" \n
        "{deleteVehicle _x} forEach _zombies;" \n
        "" \n
-       "endLoadingScreen;"/*%FSM</STATEINIT""">*/;
+       "//endLoadingScreen;"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {

@@ -1,12 +1,11 @@
 private ["_objects"];
+
 _objects = nearestObjects [getPosATL player, ["Car", "Helicopter", "Motorcycle", "Ship", "Land_Cont_RX", "Land_Cont2_RX", "Land_Mag_RX"], 10];
 {
-	if ((_x isKindOf "Land_Cont_RX") or (_x isKindOf "Land_Cont2_RX") or (_x isKindOf "Land_Mag_RX")) then {
-		dayzUpdateVehicle = [_x,"gear"];
-	} else {
-		dayzUpdateVehicle = [_x,"all"];
-	};
-	publicVariableServer "dayzUpdateVehicle";
+	//["dayzUpdateVehicle",[_x,"gear"]] call callRpcProcedure;
+	dayzUpdateVehicle = [_x,"gear"];
+	publicVariable "dayzUpdateVehicle";
+	
 } foreach _objects;
 
 private["_dialog","_magazineArray","_control","_item","_val","_max"];
@@ -23,6 +22,7 @@ for "_i" from 109 to 120 do
 	_val =		gearSlotAmmoCount _control;
 	_max = 		getNumber (configFile >> "CfgMagazines" >> _item >> "count");
 	if (_item != "") then {
+		if (_item == "BoltSteel") then { _item = "WoodenArrow" };
 		if (_val != _max) then {
 			_magazineArray set [count _magazineArray,[_item,_val]];
 		} else {
@@ -47,4 +47,4 @@ for "_i" from 122 to 129 do
 	};
 };
 dayz_unsaved = true;
-dayz_Magazines = _magazineArray;
+dayz_Magazines = _magazineArray;	
