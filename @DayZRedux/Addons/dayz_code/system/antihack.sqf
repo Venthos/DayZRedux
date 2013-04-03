@@ -12,6 +12,7 @@ _lastpos = getPosATL (vehicle player);
 _lastheight = (ATLtoASL _lastpos) select 2;
 _lasttime = time;
 
+waitUntil {!teleport_pause}; //Pause so people don't fall into the ocean... 
 while {alive player} do
 {
 	_curpos = getPosATL (vehicle player);

@@ -22,7 +22,7 @@ Missing:
 	private ["_looptime","_model","_sun_factor","_building_factor","_vehicle_factor","_fire_factor","_water_factor","_rain_factor","_night_factor","_wind_factor","_height_mod","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_building"];
 
 	_looptime 			= _this;
-		_model = typeOf player;
+	_model = typeOf player;
  	
 	//Factors are equal to win/loss of factor*basic value
 	//All Values can be seen as x of 100: 100 / x = minutes from min temperetaure to max temperature (without other effects)

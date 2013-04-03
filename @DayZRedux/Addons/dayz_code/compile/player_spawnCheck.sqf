@@ -9,7 +9,7 @@ _maxWildZombies = 3;
 _age = -1;
 
 _nearbyBuildings = [];
-_radius = 200; 
+_radius = 250; 
 _position = getPosATL player;
 
 if (_inVehicle) then {
@@ -109,6 +109,7 @@ diag_log ("dayz_maxCurrentZeds: " +str(dayz_maxCurrentZeds) + "/" +str(dayz_maxZ
 	
 _nearby = _position nearObjects ["building",_radius];
 _nearbyCount = count _nearby;
+	_tooManyZs = {alive _x} count (_position nearEntities ["zZombie_Base",300]) > dayz_maxLocalZombies;
 if (_nearbyCount < 1) exitwith 
 {
 	if ((dayz_spawnZombies < _maxWildZombies) and !_inVehicle)  then {
@@ -129,13 +130,13 @@ if (_nearbyCount < 1) exitwith
 		_dateNow = (DateToNumber date);
 		_age = (_dateNow - _looted) * 525948;
 		//diag_log ("SPAWN LOOT: " + _type + " Building is " + str(_age) + " old" );
-		if ((_age > 10) and (!_cleared)) then {
+		if ((_age > 9) and (!_cleared)) then {
 			_nearByObj = nearestObjects [(getPosATL _x), ["WeaponHolder","WeaponHolderBase"],((sizeOf _type)+5)];
 			{deleteVehicle _x} forEach _nearByObj;
 			_x setVariable ["cleared",true,true];
 			_x setVariable ["looted",_dateNow,true];
 		};
-		if ((_age > 10) and (_cleared)) then {
+		if ((_age > 9) and (_cleared)) then {
 			//Register
 			_x setVariable ["looted",_dateNow,true];
 			//cleanup
@@ -144,22 +145,27 @@ if (_nearbyCount < 1) exitwith
 		};
 	};
 	//Zeds
-	if ((time - dayz_spawnWait) > dayz_spawnDelay) then {
-		if (dayz_maxCurrentZeds < dayz_maxZeds) then {
-			if (dayz_CurrentZombies < dayz_maxGlobalZombies) then {
-				if (dayz_spawnZombies < dayz_maxLocalZombies) then {
-						//[_radius, _position, _inVehicle, _dateNow, _age, _locationstypes, _nearestCity, _maxZombies] call player_spawnzedCheck;
+			if ((time - dayz_spawnWait) > dayz_spawnDelay and _dis < 200) then {
+				if (dayz_spawnZombies < _maxZombies) then {
+					if (!_tooManyZs) then {
+						private["_zombied"];
 						_zombied = (_x getVariable ["zombieSpawn",-0.1]);
 						_dateNow = (DateToNumber date);
 						_age = (_dateNow - _zombied) * 525948;
-						if (_age > 3) then {
-							_x setVariable ["zombieSpawn",_dateNow,true];
-							[_x] call building_spawnZombies;
+						if (_age > 2) then {
+							_bPos = getPosATL _x;
+							_zombiesNum = {alive _x} count (_bPos nearEntities ["zZombie_Base",(((sizeOf _type) * 2) + 10)]);
+							if (_zombiesNum == 0) then {
+								//Randomize Zombies
+								_x setVariable ["zombieSpawn",_dateNow,true];
+								_handle = [_x] spawn building_spawnZombies;
+								waitUntil{scriptDone _handle};
+							};
 						};
+					};
 				} else {
 					dayz_spawnWait = time;
 				};
 			};
-		};
-	};
+
 } forEach _nearby;

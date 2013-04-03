@@ -150,6 +150,7 @@ dayz_myKiller = ['None', 'None', 'None'];
 dayzFire = [];
 canPickup = false;
 pickupInit = false;
+teleport_pause = false;
 //dayz_serverSpawnLoot = [];
 
 //Hunting Variables

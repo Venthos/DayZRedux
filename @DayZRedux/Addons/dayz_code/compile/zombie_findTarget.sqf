@@ -75,4 +75,4 @@ if (count _targetMen > 0) then {
 if (_manDis > _range) then {
 	_target = objNull;
 };
-_target
+_target;

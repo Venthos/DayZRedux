@@ -5,6 +5,7 @@ _model 		= _this select 2;
 
 _old = player;
 player allowDamage false;
+teleport_pause = true;
 
 player removeEventHandler ["FiredNear",eh_player_killed];
 player removeEventHandler ["HandleDamage",mydamage_eh1];
@@ -95,3 +96,4 @@ player addWeapon "Flare";
 
 sleep 0.1;
 deleteVehicle _old;
+teleport_pause = false;

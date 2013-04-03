@@ -72,8 +72,8 @@ class RscDisplayDSinterface : RscStandardDisplay {
 	onLoad = "closeDialog 0;";
 };
 //Delete editor (The button "host new session" button in the server browser cannot be disabled so let's F the host pop-up and editor)
-delete CfgEditorObjects;
-delete RscDisplayMissionEditor;
+//delete CfgEditorObjects;
+//delete RscDisplayMissionEditor;
 //delete RscDisplayHostSettings;
 class RscDisplayHostSettings : RscStandardDisplay {
 	class controlsBackground {
