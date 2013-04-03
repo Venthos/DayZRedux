@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `object_data` (
 
 CREATE TABLE `object_spawns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Classname` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
   `Worldspace` varchar(128) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `ObjectUID` bigint(20) NOT NULL DEFAULT '0',

@@ -9,7 +9,7 @@ _text = getText (configFile >> _type >> _classname >> "displayName");
 
 _holder setVariable["claimed",_playerID,true];
 
-if(_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
+if (_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
 
 player playActionNow "PutDown";
 if (_classname == "MeleeCrowbar") then {
@@ -70,4 +70,3 @@ if (_isOk) then {
 			player removeMagazine 'Machete_swing';
 	};
 };
-

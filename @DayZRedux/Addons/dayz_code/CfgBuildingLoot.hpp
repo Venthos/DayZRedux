@@ -104,9 +104,11 @@ class CfgBuildingLoot {
 			{"ItemMatchbox", "generic"},
 			{"", "generic"},
 			{"revolver_EP1", "weapon"},
-			{"CZ_VestPouch_EP1", "object"},
-			{"DZ_Patrol_Pack_EP1", "object"},
-			{"DZ_Assault_Pack_EP1", "object"},
+			{"DZ_Assault_Pack_EP1","object"}, // 12
+			{"DZ_Czech_Vest_Puch","object"}, // 12-0
+			{"DZ_ALICE_Pack_EP1","object"}, // 16
+			{"DZ_TK_Assault_Pack_EP1","object"}, // 16
+			{"DZ_British_ACU","object"}, // 18
 			{"WeaponHolder_ItemTent", "object"},
 			{"", "military"},
 			{"", "trash"},
@@ -126,9 +128,11 @@ class CfgBuildingLoot {
 			0.07,	//ItemMatchbox
 			2.0,	//generic			
 			0.04,	//revolver_EP1
-			0.04,	//CZ_VestPouch_EP1
-			0.02,	//DZ_Patrol_Pack_EP1
-			0.01,	//DZ_Assault_Pack_EP1
+			0.03, //12
+			0.03, // 12-0
+			0.02, //16
+			0.01, //16
+			0.01, //18
 			0.01,	//WeaponHolder_ItemTent
 			0.03,	//military
 			1.5,	//trash
@@ -220,7 +224,7 @@ class CfgBuildingLoot {
 			0.12,	//WeaponHolder_ItemHatchet
 			0.1,	//MR43
 			0.02,	//TrapBear
-			0.08	//Machete
+			0.12	//Machete
 		};
 	};
 	
@@ -243,9 +247,9 @@ class CfgBuildingLoot {
 			{"ItemMatchbox", "generic"},
 			{"", "generic"},
 			{"revolver_EP1", "weapon"},
-			{"CZ_VestPouch_EP1", "object"},
+			{"DZ_Assault_Pack_EP1","object"}, // 12
+			{"DZ_Czech_Vest_Puch","object"}, // 12-0
 			{"DZ_Patrol_Pack_EP1", "object"},
-			{"DZ_Assault_Pack_EP1", "object"},
 			{"WeaponHolder_ItemTent", "object"},
 			{"", "food"},
 			{"", "trash"},
@@ -264,9 +268,9 @@ class CfgBuildingLoot {
 			0.05,	//ItemMatchbox
 			0.6,	//generic
 			0.01,	//revolver_EP1
-			0.04,	//CZ_VestPouch_EP1
-			0.03,	//DZ_Patrol_Pack_EP1
-			0.02,	//DZ_Assault_Pack_EP1
+			0.03,	//DZ_Assault_Pack_EP1
+			0.02,	//DZ_Czech_Vest_Puch
+			0.04,	//DZ_Patrol_Pack_EP1
 			0.01,	//WeaponHolder_ItemTent
 			0.2,	//food
 			0.15,	//trash
@@ -623,6 +627,7 @@ class CfgBuildingLoot {
 			{"Remington870_lamp", "weapon"},
 			{"glock17_EP1", "weapon"},
 			{M16A4_ACG, "weapon"},
+			{Sa58V_CCO_EP1, "weapon"},
 			{Sa58V_RCO_EP1, "weapon"},
 			{"M4A1_HWS_GL_camo", "weapon"},
 			{M4A3_CCO_EP1, "weapon"},
@@ -634,7 +639,7 @@ class CfgBuildingLoot {
 			{"ItemGPS", "weapon"},
 			{"ItemMap", "military"},
 			{"Binocular_Vector", "military"},
-			{"DZ_CivilBackpack_EP1", "object"},
+			{"DZ_British_ACU","object"}, // 18
 			{"DZ_ALICE_Pack_EP1", "object"},
 			{"DZ_Backpack_EP1", "object"},
 			{"", "medical"},
@@ -660,6 +665,7 @@ class CfgBuildingLoot {
 				0.15,	//Remington870_lamp
 				0.25,	//glock17_EP1
 				0.01,	//M16A4_ACG
+				0.03,	//Sa58V_CCO_EP1
 				0.01,	//Sa58V_RCO_EP1
 				0.01,	//M4A1_HWS_GL_camo
 				0.01,	//M4A3_CCO_EP1
@@ -671,7 +677,7 @@ class CfgBuildingLoot {
 				0.02,	//ItemGPS
 				0.04,	//ItemMap
 				0.01,	//Binocular_Vector
-				0.04,	//DZ_CivilBackpack_EP1
+				0.03,	//DZ_British_ACU
 				0.03,	//DZ_ALICE_Pack_EP1
 				0.02,	//DZ_Backpack_EP1
 				0.3,	//medical

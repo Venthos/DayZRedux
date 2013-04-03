@@ -7,7 +7,7 @@ _remote = [];
 */
 _targets = [];
 _targetDis = [];
-_range = 300;
+_range = 200; //300
 _manDis = 0;
 _refobj = vehicle player;
 

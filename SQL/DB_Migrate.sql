@@ -132,7 +132,7 @@ RENAME TABLE rspawns TO object_spawns;
 
 ALTER TABLE object_spawns
 --  id int(11) NOT NULL AUTO_INCREMENT,
-CHANGE type Classname varchar(45) DEFAULT NULL,
+MODIFY type varchar(45) DEFAULT NULL,
 CHANGE pos Worldspace varchar(128) DEFAULT NULL,
 -- CHANGE description MapID varchar(255) NOT NULL DEFAULT '',
 CHANGE uid ObjectUID bigint(20) NOT NULL DEFAULT '0';

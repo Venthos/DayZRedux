@@ -13,10 +13,15 @@ Changelog
 - [Change] Debug warning if you are less than 500M away from debug, skull and crossbones icon.
 - [Change] Helicopter wrecks will spawn at random intervals, not immediately.
 
+------
+
 - [Fix] You may now eat in vehicles
 - [Fix] Duplication by "take" action to pick up objects
 - [Fix] Ammo refill on relog.
 
+------
+
+- [new] Simple benefits of clothing, I.e. insulation, waterproofing, wind resistance etc.
 - [New] SA58V-Acog
 - [New] SA58V-CCO
 - [New] SA58P
@@ -25,7 +30,11 @@ Changelog
 - [New] Hive extension instead of Bliss, mainly since bliss is no longer updated by its developer.
 - [New] Server admins may use the Hive extension to change time settings on their server, link multiple servers etc.
 
+------
+
 - [Removed] New and host server buttons.
+
+------
 
 Notable 1.7.6.1 changes implemented
 - [Vanilla] Added backpack variant

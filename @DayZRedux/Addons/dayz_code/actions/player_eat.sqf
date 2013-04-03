@@ -1,4 +1,4 @@
-private["_onLadder","_itemorignal","_hasfooditem","_rawfood","_cookedfood","_hasoutput","_config","_text","_regen","_dis","_sfx","_Cookedtime","_itemtodrop","_nearByPile","_item","_display"];
+private["_onLadder","_display","_itemorignal","_hasfooditem","_rawfood","_cookedfood","_hasoutput","_config","_text","_regen","_dis","_sfx","_Cookedtime","_itemtodrop","_nearByPile","_item","_display"];
 disableserialization;
 call gear_ui_init;
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
@@ -24,7 +24,11 @@ if ((r_player_infected) && (_rawfood)) exitWith {cutText ["You cannot eat raw me
 
 player removeMagazine _itemorignal;
 if (vehicle player != player) then {
-openmap false;
+	_display = findDisplay 140;
+	_display closeDisplay 0;
+	_display closeDisplay 1;
+	_display closeDisplay 2;
+//openmap false;
 vehicle player removeMagazine _itemorignal;
 };
 player playActionNow "PutDown";

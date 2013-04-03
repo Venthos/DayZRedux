@@ -64,6 +64,64 @@ class RscDisplayDebriefing: RscStandardDisplay
 		delete Mainback;
 	};
 };
+//disable admin panel, stop duping by shift + p
+class RscDisplayDSinterface : RscStandardDisplay {
+	idd = 155;
+	movingEnable = 0;
+  enableDisplay = 0;
+	onLoad = "closeDialog 0;";
+};
+//Delete editor (The button "host new session" button in the server browser cannot be disabled so let's F the host pop-up and editor)
+delete CfgEditorObjects;
+delete RscDisplayMissionEditor;
+//delete RscDisplayHostSettings;
+class RscDisplayHostSettings : RscStandardDisplay {
+	class controlsBackground {
+		delete MainbackFaded1;
+		delete MainbackFaded2;
+		delete Mainback;
+	};
+	
+	class controls {
+		delete Title;
+		delete TextName;
+		delete ValueName;
+		delete TextPassword;
+		delete ValuePassword;
+		delete TextMaxPlayers;
+		delete ValueMaxPlayers;
+		delete TextPrivate;
+		delete ValuePrivate;
+		delete TextPort;
+		delete ValuePort;
+		delete B_OK;
+		delete B_Cancel;
+		delete CA_SetHost_Title;
+		delete CA_TextName;
+		delete CA_ValueName;
+		delete CA_TextPort;
+		delete CA_ValuePort;
+		delete CA_TextMaxPlayers;	
+		delete CA_ValueMaxPlayers;
+		delete CA_TextPassword;
+		delete CA_ValuePassword;	
+		delete CA_TextPrivate;
+		delete CA_ValuePrivate;
+		delete ButtonContinue;
+		delete ButtonCancel;
+	};
+};
+// disable new button at bottom
+class RscDisplayMultiplayer : RscStandardDisplay {
+	class controlsbackground {
+		delete CA_New;
+};
+};
+class RscDisplayLive : RscStandardDisplay {
+	class controls {
+		delete CreateDed;
+  };
+};
 class RscDisplayMissionFail: RscStandardDisplay
 {
 	class controls

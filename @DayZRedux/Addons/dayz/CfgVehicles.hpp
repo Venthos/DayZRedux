@@ -17,7 +17,7 @@ class CfgVehicles {
 		magazines[] = {};
 		sensitivity = 4;	// sensor sensitivity
 		sensitivityEar = 2;
-		identityTypes[] = {"zombie1", "zombie2"};
+		identityTypes[] = {"zombie1", "zombie2", "zombie3"};
 		
 		class TalkTopics {};
 		languages[] = {};
@@ -215,7 +215,21 @@ class CfgVehicles {
 			mat[] = {"ca\characters2\civil\priest\data\priest.rvmat", "ca\characters2\civil\priest\data\W1_priest.rvmat", "ca\characters2\civil\priest\data\W2_priest.rvmat", "ca\characters\heads\male\defaulthead\data\hhl.rvmat", "ca\characters\heads\male\defaulthead\data\hhl_Wounds.rvmat", "ca\characters\heads\male\defaulthead\data\hhl_Wounds.rvmat"};
 		};
 	};
-	
+	class FemaleZombie : zZambie_Base {
+		faceType = "WomanHead";
+	};
+
+	class z_farmwife3 : FemaleZombie {
+		model = "\ca\characters2\civil\Woman\Farmwife\Farmwife";
+		zombieLoot = "civilian";
+		hiddenSelections[] = {"Camo"};
+		hiddenSelectionsTextures[] = {"\ca\characters2\civil\woman\farmwife\data\farmwife3_co.paa"};
+		
+		class Wounds {
+			tex[] = {};
+			mat[] = {"Ca\characters2\Civil\Woman\Farmwife\Data\Farmwife.rvmat", "Ca\characters2\Civil\Woman\Farmwife\Data\w1_Farmwife.rvmat", "Ca\characters2\Civil\Woman\Farmwife\Data\w2_Farmwife.rvmat"};
+		};
+	};
 	class z_soldier : zZombie_Base {
 		displayName = "Zombie Soldier";
 		model = "\ca\characters2\Blufor\Soldier_Light";
