@@ -8,7 +8,7 @@ class CfgVehicles {
 	};
 
 	class Citizen1;	// External class reference
-	class zZombie_Base : Citizen1 {
+	class zZambie_Base : Citizen1 {
 		scope = public;
 		glassesEnabled = 0;
 		vehicleClass = "Zombie";
@@ -22,7 +22,7 @@ class CfgVehicles {
 		magazines[] = {};
 		sensitivity = 4;	// sensor sensitivity
 		sensitivityEar = 2;
-		identityTypes[] = {"zombie1", "zombie2"};
+		identityTypes[] = {"zombie1", "zombie2","zombie3"};
 		class TalkTopics {};
 		languages[] = {};
 		
@@ -2512,7 +2512,7 @@ class CfgVehicles {
 		mapSize = 5;
 		transportSoldier = 5;
 		cargoAction[] = {"HMMWV_Cargo01", "BMP2_Cargo04"};
-		attendant = true;
+		attendant = false;
 		hasGunner = false;
 		
 		class Turrets {};
@@ -3013,7 +3013,7 @@ class CfgVehicles {
 		picture = "\Ca\wheeled2\data\UI\Picture_GAZ39371_med_CA.paa";
 		Icon = "\Ca\wheeled2\data\UI\Icon_GAZ39371_med_CA.paa";
 		mapSize = 6.5;
-		attendant = true;
+		attendant = false;
 		vehicleClass = "Support";
 		transportSoldier = 5;
 		unitInfoType = "UnitInfoCar";
@@ -3583,7 +3583,7 @@ class CfgVehicles {
 		accuracy = 1.5;	// accuracy needed to recognize type of this target
 		model = "\Ca\Air_E\UH60M\UH60M_MEV.p3d";
 		displayName = $STR_EP1_DN_UH60M_MEV;
-		attendant = true;
+		attendant = false;
 		memoryPointSupply = "pos Codriver dir";
 		transportSoldier = 7;
 		vehicleClass = "Support";

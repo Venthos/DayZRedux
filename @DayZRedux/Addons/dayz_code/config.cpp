@@ -219,7 +219,6 @@ class RscIGText; // External class reference
 #include "RscVehicleInspection.hpp"
 #include "CfgBuildingLoot.hpp"
 #include "CfgChernarusRedux.hpp"
-#include "RscDisplayDSinterface.hpp"
 #include "RscDisplayMultiplayerSetup.hpp"
 #include "RscDisplayMPInterrupt.hpp"
 #include "RscDisplayMainMap.hpp"

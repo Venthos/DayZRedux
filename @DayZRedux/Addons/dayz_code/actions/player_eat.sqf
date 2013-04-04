@@ -24,7 +24,11 @@ if ((r_player_infected) && (_rawfood)) exitWith {cutText ["You cannot eat raw me
 
 player removeMagazine _itemorignal;
 if (vehicle player != player) then {
-openmap false;
+	_display = findDisplay 140;
+	_display closeDisplay 0;
+	_display closeDisplay 1;
+	_display closeDisplay 2;
+//openmap false;
 vehicle player removeMagazine _itemorignal;
 };
 player playActionNow "PutDown";

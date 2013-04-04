@@ -148,6 +148,9 @@ dayz_chloroform = [];
 dayz_logDamage = [];
 dayz_myKiller = ['None', 'None', 'None'];
 dayzFire = [];
+canPickup = false;
+pickupInit = false;
+teleport_pause = false;
 //dayz_serverSpawnLoot = [];
 
 //Hunting Variables
@@ -339,7 +342,7 @@ dayz_dusk = 18;
 dayz_maxAnimals = 5;
 DAYZ_agentnumber = 0;
 dayz_animalDistance = 800;
-dayz_zSpawnDistance = 1000;
+dayz_zSpawnDistance = 1400;
 dayz_maxLocalZombies = 40;
 dayz_maxGlobalZombies = 30;
 dayz_maxZeds = 500;

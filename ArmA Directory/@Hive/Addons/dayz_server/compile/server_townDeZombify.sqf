@@ -11,7 +11,7 @@ _loot = nearestObjects [_position, ["WeaponHolder"], _size];
 } forEach _loot;
 
 //Clean Zeds
-_zeds = _position nearEntities ["zZombie_Base",_size];
+_zeds = _position nearEntities ["zZambie_Base",_size];
 _groups = [];
 {
 	if (!(isNull _group)) then {

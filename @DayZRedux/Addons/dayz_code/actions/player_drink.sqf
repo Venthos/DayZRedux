@@ -22,7 +22,11 @@ if ((r_player_infected) && (_itemorignal == "ItemWaterbottle")) exitWith {cutTex
 player removeMagazine _itemorignal;
 
 if (vehicle player != player) then {
-openmap false;
+	_display = findDisplay 140;
+	_display closeDisplay 0;
+	_display closeDisplay 1;
+	_display closeDisplay 2;
+//openmap false;
 if (["ItemWaterbottle",_itemorignal] call fnc_inString) then {
     _dis=15;
     [vehicle player,_sfx,0,false,_dis] call dayz_zombieSpeak;

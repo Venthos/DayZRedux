@@ -72,6 +72,12 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 //Secure Player for Transformation
 	player setPosATL dayz_spawnPos;
 
+	//diag_log("DIAG: switchmodel allowdamage false");
+	player allowDamage false;
+  
+  //Pause for anti-teleport so people don't fall into the ocean...
+  teleport_pause = true;
+  
 //BackUp Player Object
 	_oldUnit = player;
 	
@@ -191,3 +197,13 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	_playerObjName = format["player%1",_playerUID];
 	call compile format["%1 = player;",_playerObjName];
 	publicVariable _playerObjName;
+  
+	//diag_log("DIAG: switchmodel allowdamage true");
+	player allowDamage true;
+  
+  teleport_pause = false;
+
+	// Only enable when testing on test server!! UNCOMMENT THE CODE IN THE debug_teleport.sqf FIRST!
+	//player addAction ["Debug Teleport", "\z\addons\dayz_code\actions\debug_teleport.sqf"];
+
+	{player reveal _x} forEach (nearestObjects [getPosATL player, ["AllVehicles","WeaponHolder","Land_Cont_RX","Land_Cont2_RX","Land_Mag_RX","BuiltItems"], 75]);

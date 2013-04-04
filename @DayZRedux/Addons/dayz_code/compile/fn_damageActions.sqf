@@ -14,6 +14,7 @@ _isClose = ((player distance _menClose) < ((sizeOf typeOf _menClose) / 2));
 _bag = unitBackpack player;
 _classbag = typeOf _bag;
 
+/*
 if (_inVehicle) then {
 	r_player_lastVehicle = _vehicle;
 	_assignedRole = assignedVehicleRole player;
@@ -38,6 +39,7 @@ if (_inVehicle) then {
 	r_player_lastVehicle = objNull;
 	r_player_lastSeat = [];
 };
+*/
 
 if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unconscious and _isClose) then {
 	_unit = 		cursorTarget;

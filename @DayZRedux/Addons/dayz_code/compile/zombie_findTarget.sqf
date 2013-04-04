@@ -4,7 +4,7 @@ _target = objNull;
 _lead = leader _group;
 _targetMen = [];
 _targetDis = [];
-_range = 500;
+_range = 400; //500
 
 _assigned = _group getVariable ["targets",[]];
 {
@@ -18,7 +18,7 @@ _targets = _lead nearTargets _range;
 	_obj = _x select 4;
 	_dis = _obj distance _lead;
 //	if (_obj isKindOf "Man") then {
-		if (((_obj isKindOf "Man") or (_obj isKindOf "AllVehicles")) and !(_obj isKindOf "zZombie_Base") and !(_obj in _targetMen)) then {
+		if (((_obj isKindOf "Man") or (_obj isKindOf "AllVehicles")) and !(_obj isKindOf "zZambie_Base") and !(_obj in _targetMen)) then {
 			//process man targets
 			_targetMen set [count _targetMen,_obj];
 			_targetDis set [count _targetDis,_dis];
@@ -75,4 +75,4 @@ if (count _targetMen > 0) then {
 if (_manDis > _range) then {
 	_target = objNull;
 };
-_target
+_target;

@@ -16,7 +16,7 @@ my %db = (
   host => '127.0.0.1',
   port => '3306',
   user => 'redux',
-  pass => 'PASSWORD',
+  pass => 'testserver',
   name => 'redux'
 );
 
@@ -489,7 +489,7 @@ while (my $row = $boundaryclean->fetchrow_hashref()) {
 $boundaryclean->finish();
 
 print "INFO: Starting anti \"helicopter on building\" check for objects\n";
-my $antihelibuilding = $dbh->prepare("select object_data.ObjectID,object_data.Worldspace,object_spawns.Worldspace AS spawn,object_data.classname,object_data.ObjectUID from object_data LEFT JOIN object_spawns ON object_data.ObjectUID=object_spawns.ObjectUID WHERE classname REGEXP '^(HH|BHawk|Lilbird)_RX\$'");
+my $antihelibuilding = $dbh->prepare("select object_data.ObjectUID,object_data.Worldspace,object_spawns.Worldspace AS spawn,object_data.classname,object_data.ObjectUID from object_data LEFT JOIN object_spawns ON object_data.ObjectUID=object_spawns.ObjectUID WHERE classname REGEXP '^(HH|BHawk|Lilbird)_RX\$'");
 $antihelibuilding->execute() or die "Couldn't get list of heli object positions\n";
 while (my $row = $antihelibuilding->fetchrow_hashref()) {
 
@@ -520,12 +520,12 @@ my $available = $dbh->prepare(<<EndSQL
 SELECT
   object_spawns.ObjectUID,
   object_spawns.Worldspace,
-  object_spawns.classname
+  object_spawns.type
 FROM
   object_spawns
   LEFT JOIN object_data on object_spawns.ObjectUID = object_data.ObjectUID
 WHERE
-  object_spawns.classname = ?
+  object_spawns.type = ?
   AND object_data.ObjectUID IS NULL
 EndSQL
 ) or die "FATAL: SQL Error - " . DBI->errstr . "\n";
@@ -534,12 +534,12 @@ my $spawned = $dbh->prepare(<<EndSQL
 SELECT
   object_spawns.ObjectUID,
   object_spawns.Worldspace,
-  object_spawns.classname
+  object_spawns.type
 FROM
   object_spawns
   LEFT JOIN object_data on object_spawns.ObjectUID = object_data.ObjectUID
 WHERE
-  object_spawns.classname = ?
+  object_spawns.type = ?
   AND object_data.ObjectUID IS NOT NULL
 EndSQL
 ) or die "FATAL: SQL Error - " . DBI->errstr . "\n";

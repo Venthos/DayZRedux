@@ -1,33 +1,11 @@
 private["_agent","_target","_targets","_targetDis","_c","_man","_manDis","_targets","_agent","_agentheight","_nearEnts","_rnd","_assigned","_range","_objects"];
 _agent = _this;
 _target = objNull;
-/*
-_local = [];
-_remote = [];
-*/
 _targets = [];
 _targetDis = [];
-_range = 300;
+_range = 250; //300
 _manDis = 0;
 _refobj = vehicle player;
-
-/*
-_local =	_agent getVariable ["target",[]];
-//diag_log ("Local is: " + str(_local));
-_remote =	_agent getVariable ["targets",[]];
-//diag_log ("Remote is: " + str(_remote));
-
-if (count _remote == 0) then
-{
-	_targets = _local;
-	//diag_log ("Targets is: " + str(_targets));
-}
-else
-{
-	_targets = _local + _remote;
-	//diag_log ("Local + Remote targets is: " + str(_targets));
-};
-*/
 
 _targets = _agent getVariable ["targets",[]];
 
@@ -80,4 +58,4 @@ if (_manDis > _range) then
 	_target = objNull;
 };
 
-_target
+_target;
