@@ -9,6 +9,8 @@ _text = getText (configFile >> _type >> _classname >> "displayName");
 
 _holder setVariable["claimed",_playerID,true];
 
+if (!canPickup) exitwith { cutText ["You may only pickup an item once!","PLAIN DOWN"] };
+
 if (_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
 
 player playActionNow "PutDown";
@@ -29,8 +31,9 @@ if(_classname == "WoodenArrow") then {
 		_broken = true;
 	};
 };
-if (_broken) exitWith { deleteVehicle _holder; cutText [localize "str_broken_arrow", "PLAIN DOWN"] };
+if (_broken) exitWith { deleteVehicle _holder; cutText [format[localize "str_broken_arrow"] , "PLAIN DOWN"]};
 
+canPickup = false;
 sleep 0.25;
 
 _claimedBy = _holder getVariable["claimed",0];

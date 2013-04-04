@@ -12,6 +12,7 @@ Changelog
 - [Change] Main rotor parts chance reduced.
 - [Change] Debug warning if you are less than 500M away from debug, skull and crossbones icon.
 - [Change] Helicopter wrecks will spawn at random intervals, not immediately.
+- [Change] Added randomized (max of 10) number of wrecks per restart.
 
 ------
 

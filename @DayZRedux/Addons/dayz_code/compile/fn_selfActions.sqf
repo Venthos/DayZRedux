@@ -62,7 +62,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	_ownerID = cursorTarget getVariable ["characterID","0"];
 	_isAnimal = cursorTarget isKindOf "Animal";
 	_isDog =  (cursorTarget isKindOf "DZ_Pastor" || cursorTarget isKindOf "DZ_Fin");
-	_isZombie = cursorTarget isKindOf "zZombie_Base";
+	_isZombie = cursorTarget isKindOf "zZambie_Base";
 	_isDestructable = cursorTarget isKindOf "BuiltItems";
 	_isTent = ((cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX"));
 	_isStorageBox = (cursorTarget isKindOf "Land_Mag_RX");

@@ -135,6 +135,13 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 				_object setVariable ["lastUpdate",time];
 				_object setVariable ["ObjectID", _idKey, true];
 				_object setVariable ["CharacterID", _ownerID, true];
+
+		if (_object isKindOf "AllVehicles") then {
+			_object addEventHandler ["HandleDamage", { _this call vehicle_handleDamage }];
+			_object addEventHandler ["GetOut", { _this call vehicle_handleInteract }];
+			_object addEventHandler ["GetIn", { _this call vehicle_handleInteract }];
+			_object addEventHandler ["Killed", { _this call vehicle_handleKilled }];
+		};
 				
 				clearWeaponCargoGlobal  _object;
 				clearMagazineCargoGlobal  _object;

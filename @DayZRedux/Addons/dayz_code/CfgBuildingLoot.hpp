@@ -5,7 +5,7 @@ class CfgBuildingLoot {
 		zombieChance = 0.2;
 		minRoaming = 0;
 		maxRoaming = 2;
-		zombieClass[] = {"zZombie_Base", "z_hunter", "z_teacher", "z_suit1", "z_suit2", "z_worker1", "z_worker2", "z_worker3", "z_villager1", "z_villager2", "z_villager3"};
+		zombieClass[] = {"zZambie_Base", "z_hunter", "z_teacher", "z_suit1", "z_suit2", "z_worker1", "z_worker2", "z_worker3", "z_villager1", "z_villager2", "z_villager3"};
 		lootChance = 0;
 		lootPos[] = {};
 		itemType[] = {};
@@ -88,7 +88,7 @@ class CfgBuildingLoot {
 	class Residential : Default {
 		zombieChance = 0.3;
 		maxRoaming = 2;
-		zombieClass[] = {"zZombie_Base", "z_hunter", "z_teacher", "z_villager1", "z_villager2", "z_villager3"};
+		zombieClass[] = {"zZambie_Base", "z_hunter", "z_teacher", "z_villager1", "z_villager2", "z_villager3"};
 		lootChance = 0.3;
 		lootPos[] = {};
 		//itemType[] = {{"ItemSodaMdew", "magazine"}, {"ItemWatch", "generic"}, {"ItemCompass", "generic"}, {"ItemMap", "weapon"}, {"Makarov", "weapon"}, {"Colt1911", "weapon"}, {"ItemFlashlight", "generic"}, {"ItemKnife", "generic"}, {"ItemMatchbox", "generic"}, {"", "generic"}, {"LeeEnfield", "weapon"}, {"revolver_EP1", "weapon"}, {"CZ_VestPouch_EP1", "object"}, {"DZ_CivilBackpack_EP1", "object"}, {"DZ_ALICE_Pack_EP1", "object"}, {"Winchester1866", "weapon"}, {"WeaponHolder_ItemTent", "object"}, {"", "military"}, {"", "trash"}, {"Crossbow_DZ", "weapon"}, {"Binocular", "weapon"}, {"PartWoodPile", "magazine"}, {"Skin_Camo1_DZ", "magazine"}, {"Skin_Sniper1_DZ", "magazine"}, {"WeaponHolder_MeleeCrowbar", "object"}, {MR43, "weapon"}};
@@ -195,7 +195,7 @@ class CfgBuildingLoot {
 	class Farm : Default {
 		zombieChance = 0.3;
 		maxRoaming = 3;
-		zombieClass[] = {"zZombie_Base", "z_hunter", "z_hunter", "z_hunter", "z_villager1", "z_villager2", "z_villager3"};
+		zombieClass[] = {"zZambie_Base", "z_hunter", "z_hunter", "z_hunter", "z_villager1", "z_villager2", "z_villager3"};
 		lootChance = 0.4;
 		lootPos[] = {};
 		//itemType[] = {{"WeaponHolder_ItemJerrycan", "object"}, {"", "generic"}, {"huntingrifle", "weapon"}, {"LeeEnfield", "weapon"}, {"Winchester1866", "weapon"}, {"", "trash"}, {"Crossbow_DZ", "weapon"}, {"PartWoodPile", "magazine"}, {"WeaponHolder_ItemHatchet", "object"}, {MR43, "weapon"}, {"TrapBear", "magazine"}};
@@ -233,7 +233,7 @@ class CfgBuildingLoot {
 		minRoaming = 2;
 		maxRoaming = 6;
 		zombieChance = 0.3;
-		zombieClass[] = {"zZombie_Base", "zZombie_Base", "z_teacher", "z_suit1", "z_suit2"};
+		zombieClass[] = {"zZambie_Base", "zZambie_Base", "z_teacher", "z_suit1", "z_suit2"};
 		//itemType[] = {{"ItemWatch", "generic"}, {"ItemCompass", "generic"}, {"ItemMap", "weapon"}, {"Makarov", "weapon"}, {"Colt1911", "weapon"}, {"ItemFlashlight", "generic"}, {"ItemKnife", "generic"}, {"ItemMatchbox", "generic"}, {"", "generic"}, {"LeeEnfield", "weapon"}, {"revolver_EP1", "weapon"}, {"CZ_VestPouch_EP1", "object"}, {"DZ_CivilBackpack_EP1", "object"}, {"DZ_ALICE_Pack_EP1", "object"}, {"Winchester1866", "weapon"}, {"WeaponHolder_ItemTent", "object"}, {"", "food"}, {"", "trash"}, {"Crossbow_DZ", "weapon"}, {"Binocular", "weapon"}, {"PartWoodPile", "magazine"}, {MR43, "weapon"}};
 		//itemChance[] = {0.15, 0.01, 0.05, 0.02, 0.02, 0.05, 0.02, 0.05, 0.05, 0.01, 0.01, 0.01, 0.02, 0.03, 0.01, 0.01, 0.3, 0.15, 0.01, 0.05, 0.02, 0.01};
 		itemType[] = {
@@ -807,7 +807,7 @@ class CfgBuildingLoot {
 	
 	class Land_A_FuelStation_Build : Industrial {
 		lootChance = 0.4;
-		zombieClass[] = {"zZombie_Base", "zZombie_Base", "z_teacher", "z_suit1", "z_suit2"};
+		zombieClass[] = {"zZambie_Base", "zZambie_Base", "z_teacher", "z_suit1", "z_suit2"};
 		lootPos[] = {{-1.31958, -0.655151, -1.57448}, {1.82349, 0.769653, -1.57458}, {1.67871, -0.918701, -1.57458}, {-1.23242, 1.26794, -1.57458}};
 	};
 	
@@ -1272,7 +1272,7 @@ class CfgBuildingLoot {
 	class Land_Ind_Shed_01_end : HouseRoaming {};
 	
 	class Land_A_statue01 : HouseRoaming {
-		zombieClass[] = {"zZombie_Base", "zZombie_Base", "z_teacher", "z_suit1", "z_suit2", "z_soldier", "z_soldier_heavy", "z_policeman"};
+		zombieClass[] = {"zZambie_Base", "zZambie_Base", "z_teacher", "z_suit1", "z_suit2", "z_soldier", "z_soldier_heavy", "z_policeman"};
 		minRoaming = 2;
 		maxRoaming = 8;
 	};

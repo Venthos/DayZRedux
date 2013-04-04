@@ -1,6 +1,7 @@
 -- YOU MUST HAVE FIRST IMPORTED YOUR OLD rspawns TABLE!!
-USE redux;
 SET FOREIGN_KEY_CHECKS=0;
+
+USE redux;
 
 -- rspawns = object_spawns
 -- convert rspawns to object_spawns

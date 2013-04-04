@@ -340,7 +340,7 @@ while {true} do {
 	};
 
 	// Tmp Debug
-	//_zombies = 	{alive _x} count entities "zZombie_Base";
+	//_zombies = 	{alive _x} count entities "zZambie_Base";
 	//hintSilent format["Zoms: %1",_zombies];
 
 	// Loot Placement Helper (only enable for debug)
@@ -361,16 +361,17 @@ while {true} do {
 	*/
 
 	// Nearest Object
-	//_nearestZam = nearestObject [player, "zZombie_Base"];
+	//_nearestZam = nearestObject [player, "zZambie_Base"];
 	//_zamDistance = player distance _nearestZam;
 	//_intersecting = {_x isKindOf "All"} count lineIntersectsWith [(eyePos player), (eyePos _nearestZam)] > 0;
 	//hintSilent format["INTERSECTION BETWEEN: %1\n\nCantSee: %2\nDistance: %3", typeOf(_nearestZam), str(_intersecting), _zamDistance];
   
   //Pause for pickup actions
-  if ((pickupInit) AND (!canPickup)) then {
+  if (pickupInit AND !canPickup) then {
   hintSilent format["canPickup was set to true!"];
   canPickup = true;
-   } else { actionMonitor = nil};
+  pickupInit = false;
+   };
 
 	/*
 	setGroupIconsVisible [false,false];

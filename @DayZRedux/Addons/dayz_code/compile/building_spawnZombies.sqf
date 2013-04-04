@@ -28,7 +28,7 @@ if (_canLoot) then {
 	};
 	
 	//Add Internal Zombies
-	_clean = {alive _x} count ((getPosATL _obj) nearEntities ["zZombie_Base",(sizeOf _type)]) == 0;
+	_clean = {alive _x} count ((getPosATL _obj) nearEntities ["zZambie_Base",(sizeOf _type)]) == 0;
 	if (_clean) then {
 		_positions =	getArray (_config >> "lootPos");
 		_zombieChance =	getNumber (_config >> "zombieChance");
@@ -37,7 +37,7 @@ if (_canLoot) then {
 			_rnd = random 1;
 			if (_rnd < _zombieChance) then {
 				_iPos = _obj modelToWorld _x;
-				_nearBy = {alive _x} count nearestObjects [_iPos, ["zZombie_Base"],1] > 0;
+				_nearBy = {alive _x} count nearestObjects [_iPos, ["zZambie_Base"],1] > 0;
 				_nearByPlayer = ({isPlayer _x} count (_iPos nearEntities ["CAManBase",30])) > 0;
 				//diag_log ("BUILDING: " + _type + " / " + str(_nearBy) + " / " + str(_nearByPlayer));
 				if (!_nearByPlayer and !_nearBy) then {

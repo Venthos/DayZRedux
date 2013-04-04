@@ -18,7 +18,7 @@ _targets = _lead nearTargets _range;
 	_obj = _x select 4;
 	_dis = _obj distance _lead;
 //	if (_obj isKindOf "Man") then {
-		if (((_obj isKindOf "Man") or (_obj isKindOf "AllVehicles")) and !(_obj isKindOf "zZombie_Base") and !(_obj in _targetMen)) then {
+		if (((_obj isKindOf "Man") or (_obj isKindOf "AllVehicles")) and !(_obj isKindOf "zZambie_Base") and !(_obj in _targetMen)) then {
 			//process man targets
 			_targetMen set [count _targetMen,_obj];
 			_targetDis set [count _targetDis,_dis];

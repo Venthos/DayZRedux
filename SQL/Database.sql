@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 
 -- Just make a backup by dumping the schema, the above won't be a full backup
 -- Make sure you dump your rspawns table seperately as you will need to convert it if you wish to keep the same spawns (if you have customized your vehicles).
-CREATE SCHEMA redux;
+CREATE SCHEMA IF NOT EXISTS redux;
 USE redux; -- Rename to whatever DB you plan to use MAKE SURE IT DOESN'T EXIST
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;

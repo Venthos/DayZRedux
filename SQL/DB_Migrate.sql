@@ -39,7 +39,6 @@ ALTER TABLE Character_Data ADD COLUMN Generation int(11) UNSIGNED NOT NULL DEFAU
 ALTER TABLE Character_Data ADD COLUMN Humanity int(11) NOT NULL DEFAULT '2500';
 ALTER TABLE Character_Data ADD COLUMN Alive tinyint(4) UNSIGNED NOT NULL DEFAULT '1';
 ALTER TABLE Character_Data ADD COLUMN LastLogin datetime NOT NULL;
--- ALTER TABLE character_data ADD COLUMN PlayerID int(11) NOT NULL DEFAULT '0';
 
 UPDATE Character_Data 
 SET 
@@ -59,17 +58,10 @@ UPDATE Character_Data t1
     profile t2 ON t1.PlayerUID = t2.unique_id 
 SET 
     t1.Humanity = t2.humanity;
-/*
-UPDATE Character_Data t1
-        INNER JOIN
-    profile t2 ON t1.PlayerUID = t2.unique_id 
-SET 
-    t1.PlayerID = t2.ID;
-*/
+
 ALTER TABLE Character_Data ADD KEY `CharFetch` (`PlayerUID`,`Alive`) USING BTREE;
 ALTER TABLE Character_Data ADD KEY `PlayerID` (`PlayerID`);
 ALTER TABLE Character_Data ADD KEY `Alive_PlayerID` (`Alive`,`LastLogin`,`PlayerID`);
--- ALTER TABLE Character_Data ADD KEY `PlayerUID` (`PlayerUID`);
 ALTER TABLE Character_Data ADD KEY `Alive_PlayerUID` (`Alive`,`LastLogin`,`PlayerUID`);
 -- END Character_Data
 --
@@ -123,23 +115,19 @@ CHANGE Damage Damage double(13,5) NOT NULL DEFAULT '0.00000',
 CHANGE lastupdate last_updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CHANGE created Datestamp datetime NOT NULL,
 CHANGE instance Instance int(11) NOT NULL DEFAULT '1';
--- ALTER TABLE Object_Data ADD PRIMARY KEY `ObjectID` (`ObjectID`);
 ALTER TABLE Object_Data ADD UNIQUE KEY `CheckUID` (`ObjectUID`,`Instance`);
 ALTER TABLE Object_Data ADD KEY `Instance` (`Instance`);
--- ALTER TABLE Object_Data ADD KEY `ObjectUID` (`ObjectUID`);
 
 RENAME TABLE rspawns TO object_spawns;
 
 ALTER TABLE object_spawns
---  id int(11) NOT NULL AUTO_INCREMENT,
 MODIFY type varchar(45) DEFAULT NULL,
 CHANGE pos Worldspace varchar(128) DEFAULT NULL,
--- CHANGE description MapID varchar(255) NOT NULL DEFAULT '',
 CHANGE uid ObjectUID bigint(20) NOT NULL DEFAULT '0';
--- ALTER TABLE object_spawns ADD UNIQUE KEY `uid_UNIQUE` (`ObjectUID`);
 ALTER TABLE object_spawns ADD COLUMN `Inventory` longtext;
 ALTER TABLE object_spawns ADD COLUMN `Last_changed` int(10) DEFAULT NULL;
 ALTER TABLE object_spawns ADD COLUMN MapID varchar(255) NOT NULL DEFAULT '';
+
 -- ADD PROCEDURES
 
 DELIMITER //

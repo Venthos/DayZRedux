@@ -20,7 +20,7 @@ _recordable = false;
 _isPlayer = (isPlayer _source);
 _humanityHit = 0;
 _myKills = 0;
-_sourceZombie = _source isKindOf "zZombie_Base";
+_sourceZombie = _source isKindOf "zZambie_Base";
 _unitIsPlayer = _unit == player;
 
 //Publish Damage
