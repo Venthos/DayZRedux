@@ -1,4 +1,4 @@
-private["_position","_num","_config","_itemType","_itemChance","_weights","_index","_iArray","_crashModel","_lootTable","_guaranteedLoot","_randomizedLoot","_frequency","_variance","_spawnChance","_spawnMarker","_spawnRadius","_spawnFire","_permanentFire","_crashName"];
+private["_position","_maxCrashes","_spawnedCrashes","_num","_config","_itemType","_itemChance","_weights","_index","_iArray","_crashModel","_lootTable","_guaranteedLoot","_randomizedLoot","_frequency","_variance","_spawnChance","_spawnMarker","_spawnRadius","_spawnFire","_permanentFire","_crashName"];
 
 //_crashModel	= _this select 0;
 //_lootTable	= _this select 1;
@@ -12,14 +12,24 @@ _spawnRadius	= _this select 6;
 _spawnFire	= _this select 7;
 _fadeFire	= _this select 8;
 
-
 diag_log("CRASHSPAWNER: Starting spawn logic for Crash Spawner");
 
-while {true} do {
+  //Begin limit max crashes
+	_maxCrashes		= ceil(random 9) + 1;  //Randomize max number, maximum of 10
+	_spawnedCrashes	= count _crash;
+	if (isNil "_crash") then {
+	_spawnedCrashes = 0; //Prevent return of SCALAR = no value
+	};
+	diag_log(format["CRASHSPAWNER: Current number of crashes is: %1 Max number of crashes is: %2", _spawnedCrashes, _maxCrashes]);
+
+  
+  while {_spawnedCrashes < _maxCrashes} do {
+//while {true} do {
 	private["_timeAdjust","_timeToSpawn","_spawnRoll","_crash","_hasAdjustment","_newHeight","_adjustedPos"];
 	// Allows the variance to act as +/- from the spawn frequency timer
 	_timeAdjust = round(random(_variance * 2) - _variance);
 	_timeToSpawn = time + _frequency + _timeAdjust;
+
 	
 	//Adding some Random systems
 	_crashModel = ["BHC_RX","HooeyC_RX","LilBC_RX","MyAteC_RX","BlimpTooC_RX","HumC_RX"] call BIS_fnc_selectRandom;
@@ -29,26 +39,33 @@ while {true} do {
 	//_lootTable = ["Military","HeliCrash","MilitarySpecial"] call BIS_fnc_selectRandom;
 	//Table without 50 cals
 	//_lootTable = ["Military","HeliCrash_No50s","MilitarySpecial"] call BIS_fnc_selectRandom;
-  
-  if (_crashModel == "BHC_RX") then {
-  _lootTable = "BHCrash";
+
+
+switch _crashModel do {
+  case "BHC_RX" : {
+  _lootTable = ["BHCrash"];
   };
-  if (_crashModel == "HooeyC_RX") then {
-  _lootTable = "HeliCrash";
+  case "HooeyC_RX" : {
+  _lootTable = ["HeliCrash"];
   };
-  if (_crashModel == "LilBC_RX") then {
-  _lootTable = "LilBCrash";
+  case "LilBC_RX" : {
+  _lootTable = ["LilBCrash"];
   };
-  if (_crashModel == "MyAteC_RX") then {
-  _lootTable = "MyAteCrash";
+  case "MyAteC_RX" : {
+  _lootTable = ["MyAteCrash"];
   };
-  if (_crashModel == "BlimpTooC_RX") then {
-  _lootTable = "BlimpTooCrash";
+  case "BlimpTooC_RX" : {
+  _lootTable = ["BlimpTooCrash"];
   };
-  if (_crashModel == "HumC_RX") then {
-  _lootTable = "HumCrash";
+  case "HumC_RX" : {
+  _lootTable = ["HumCrash"];
   };
-	
+  default {
+  diag_log("CRASHSPAWNER: Error geting wreck type, falling back to default loot tables!");
+  _lootTable = ["Military","HeliCrash","MilitarySpecial"] call BIS_fnc_selectRandom;
+  };
+};
+
 	_crashName	= getText (configFile >> "CfgVehicles" >> _crashModel >> "displayName");
 
 	diag_log(format["CRASHSPAWNER: %1%2 chance to spawn '%3' with loot table '%4' at %5", round(_spawnChance * 100), '%', _crashName, _lootTable, _timeToSpawn]);
@@ -97,6 +114,7 @@ while {true} do {
 			//["dayzFire",[_crash,2,time,false,_fadeFire]] call broadcastRpcCallAll;
 			dayzFire = [_crash,2,time,false,_fadeFire];
 			publicVariable "dayzFire";
+			nul=dayzFire spawn BIS_Effects_Burn;
 			_crash setvariable ["fadeFire",_fadeFire,true];
 		};
 
@@ -109,13 +127,14 @@ while {true} do {
 		_weights =		dayz_CBLChances select _index;
 		_cntWeights = count _weights;
 
+		waituntil {!isnil "fnc_buildWeightedArray"};
 
 		for "_x" from 1 to _num do {
 			//create loot
-			_index = floor(random _cntWeights);
-			_index = _weights select _index;
-			_itemType = _itemTypes select _index;
-			[_itemType select 0, _itemType select 1, _position, 5] call spawn_loot;
+			//_index = floor(random _cntWeights);
+			//_index = _weights select _index;
+			//_itemType = _itemTypes select _index;
+			//[_itemType select 0, _itemType select 1, _position, 5] call spawn_loot;
       
 			//_index = _weights call BIS_fnc_selectRandom;
 			//diag_log(format["DIAG: _index => %1", str(_index)]);

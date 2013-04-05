@@ -80,7 +80,7 @@ if (!_isNew) then {
 	_model =		_primary select 7;
 	_hiveVer =		_primary select 8;
 	
-	if (!(_model in ["SW2_RX","S2_RX","GS1_RX","GB1_RX","A1_RX","CS1_RX","CB1_RX","BW1_RX","B1_RX","BR1_RX","PS1_RX","PB1_RX"])) then {
+	if (!(_model in ["SW2_RX","S2_RX","S3_RX","GS1_RX","GB1_RX","A1_RX","CS1_RX","CB1_RX","BW1_RX","B1_RX","BR1_RX","PS1_RX","PB1_RX","S1_RX","R_RX"])) then {
 		_model = "S2_RX";
 	};
 	

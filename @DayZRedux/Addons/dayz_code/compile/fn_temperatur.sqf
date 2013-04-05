@@ -19,10 +19,11 @@ Missing:
 */
 
 
-	private ["_looptime","_sun_factor","_building_factor","_vehicle_factor","_fire_factor","_water_factor","_rain_factor","_night_factor","_wind_factor","_height_mod","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_building"];
+	private ["_looptime","_model","_sun_factor","_building_factor","_vehicle_factor","_fire_factor","_water_factor","_rain_factor","_night_factor","_wind_factor","_height_mod","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_building"];
 
 	_looptime 			= _this;
-	
+	_model = typeOf player;
+ 	
 	//Factors are equal to win/loss of factor*basic value
 	//All Values can be seen as x of 100: 100 / x = minutes from min temperetaure to max temperature (without other effects)
 	_vehicle_factor		=	4;
@@ -36,11 +37,53 @@ Missing:
 		_moving_factor 		=  	1;
 		_building_factor 	=  	2;
 	};
-	
+
 	_water_factor		= 	-8;
 	_rain_factor		=	-6; // -3
 	_night_factor		= 	-4; // -1.5
 	_wind_factor		=	-2; // -1
+
+//custom values for skins
+	 if (_model == "S2_RX" or _model == "S3_RX" or _model == "SW2_RX" or _model == "B1_RX" or _model == "BW1_RX" or _model == "BR1_RX" or _model == "B2_RX" or _model == "S1_RX" or _model == "R_RX") then {	
+ //defaults
+	_water_factor		= 	-8;
+	_rain_factor		=	-6;
+	_night_factor		= 	-4;
+	_wind_factor		=	-2;
+  } else { 
+    if (_model == "CB1_RX") then {
+	_water_factor		= 	-7.5;
+	_rain_factor		=	-6;
+	_night_factor		= 	-4;
+	_wind_factor		=	-1.7;
+ };
+    if (_model == "CS1_RX") then {
+  _water_factor		= 	-7;
+	_rain_factor		=	-5.5;
+	_night_factor		= 	-4;
+	_wind_factor		=	-2;
+  //For debug
+	//hintSilent format["TEMP CS1: %1",_water_factor];
+  };
+    if (_model == "GS1_RX" OR _model == "GB1_RX") then {
+  _water_factor		= 	-6;
+	_rain_factor		=	-4.5;
+	_night_factor		= 	-3;
+	_wind_factor		=	-1.5;
+  };
+    if (_model == "PS1_RX") then {
+	_water_factor		= 	-7;
+	_rain_factor		=	-4.5;
+	_night_factor		= 	-2;
+	_wind_factor		=	-1.5;
+  };
+    if (_model == "PB1_RX") then {
+	_water_factor		= 	-8;
+	_rain_factor		=	-6;
+	_night_factor		= 	-4;
+	_wind_factor		=	-1;  //windbreaker lol.
+  };
+};
 	
 	_difference 	= 0;
 	_hasfireffect	= false;

@@ -1130,7 +1130,7 @@ class FSM
        "" \n
        "dayz_Totalzedscheck = [] spawn {" \n
        "	while {true} do {" \n
-       "		dayz_maxCurrentZeds = {alive _x} count entities ""zZombie_Base"";" \n
+       "		dayz_maxCurrentZeds = {alive _x} count entities ""zZambie_Base"";" \n
        "		sleep 60;" \n
        "	};" \n
        "};" \n
@@ -1302,7 +1302,7 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"//stream in location" \n
        "call stream_locationCheck;" \n
        "" \n
-       "_zombies = (getPosATL player) nearEntities [""zZombie_Base"",30];" \n
+       "_zombies = (getPosATL player) nearEntities [""zZambie_Base"",30];" \n
        "{deleteVehicle _x} forEach _zombies;" \n
        "" \n
        "//endLoadingScreen;"/*%FSM</STATEINIT""">*/;

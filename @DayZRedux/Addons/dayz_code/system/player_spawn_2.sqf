@@ -80,8 +80,19 @@ while {true} do {
 		};
 		if (_model == "SW2_RX") then {
 			[dayz_playerUID,dayz_characterID,"BW1_RX"] spawn player_humanityMorph;
-		};
+		};   
 	};
+  if (_humanity < 0) then {
+    if (_model == "CS1_RX") then {
+			[dayz_playerUID,dayz_characterID,"CB1_RX"] spawn player_humanityMorph;
+		};
+    if (_model == "GS1_RX") then {
+			[dayz_playerUID,dayz_characterID,"GB1_RX"] spawn player_humanityMorph;
+		};
+    if (_model == "PS1_RX") then {
+			[dayz_playerUID,dayz_characterID,"PB1_RX"] spawn player_humanityMorph;
+		}; 
+  };
 	
 	if (_humanity > 0 and _isBandit) then {
 		_isBandit = false;
@@ -92,6 +103,12 @@ while {true} do {
 		if (_model == "BW1_RX") then {
 			[dayz_playerUID,dayz_characterID,"SW2_RX"] spawn player_humanityMorph;
 		};
+    if (_model == "CB1_RX") then {
+			[dayz_playerUID,dayz_characterID,"CS1_RX"] spawn player_humanityMorph;
+		};
+    if (_model == "GB1_RX") then {
+			[dayz_playerUID,dayz_characterID,"GS1_RX"] spawn player_humanityMorph;
+		};
 	};
 	
 	if (_humanity > 5000 and !_isHero) then {
@@ -100,6 +117,9 @@ while {true} do {
 		if (_model == "S2_RX") then {
 			[dayz_playerUID,dayz_characterID,"S3_RX"] spawn player_humanityMorph;
 		};
+    if (_model == "PB1_RX") then {
+			[dayz_playerUID,dayz_characterID,"PS1_RX"] spawn player_humanityMorph;
+		}; 
 	};
 	
 	//Has infection?
@@ -320,7 +340,7 @@ while {true} do {
 	};
 
 	// Tmp Debug
-	//_zombies = 	{alive _x} count entities "zZombie_Base";
+	//_zombies = 	{alive _x} count entities "zZambie_Base";
 	//hintSilent format["Zoms: %1",_zombies];
 
 	// Loot Placement Helper (only enable for debug)
@@ -341,10 +361,17 @@ while {true} do {
 	*/
 
 	// Nearest Object
-	//_nearestZam = nearestObject [player, "zZombie_Base"];
+	//_nearestZam = nearestObject [player, "zZambie_Base"];
 	//_zamDistance = player distance _nearestZam;
 	//_intersecting = {_x isKindOf "All"} count lineIntersectsWith [(eyePos player), (eyePos _nearestZam)] > 0;
 	//hintSilent format["INTERSECTION BETWEEN: %1\n\nCantSee: %2\nDistance: %3", typeOf(_nearestZam), str(_intersecting), _zamDistance];
+  
+  //Pause for pickup actions
+  if (pickupInit AND !canPickup) then {
+  hintSilent format["canPickup was set to true!"];
+  canPickup = true;
+  pickupInit = false;
+   };
 
 	/*
 	setGroupIconsVisible [false,false];
@@ -353,7 +380,8 @@ while {true} do {
 	"colorCorrections" ppEffectAdjust [1, 1, 0, [1, 1, 1, 0.0], [1, 1, 1, (r_player_blood/r_player_bloodTotal)],  [1, 1, 1, 0.0]];
 	"colorCorrections" ppEffectCommit 0;
 	sleep 2;
-	
+  
+   	
 	_myPos = player getVariable["lastPos",[]];
 	if (count _myPos > 0) then {
 		player setVariable["lastPos",_mylastPos, true];
@@ -374,6 +402,7 @@ while {true} do {
 			};
 		};
 	};
+
 	//Hatchet ammo fix	
 	//"MeleeHatchet" call dayz_meleeMagazineCheck;
 	
