@@ -19,6 +19,7 @@
 "dayzVehicleInit"	addPublicVariableEventHandler {(_this select 1) call fnc_vehicleEventHandler};
 "dayzHumanity"		addPublicVariableEventHandler {(_this select 1) spawn player_humanityChange};
 "dayz_serverObjectMonitor"		addPublicVariableEventHandler {dayz_serverObjectMonitor = dayz_safety};
+"dayz_serverCrashMonitor"		addPublicVariableEventHandler {dayz_serverCrashMonitor = dayz_safety};
 
 //Server only
 if (isServer) then {

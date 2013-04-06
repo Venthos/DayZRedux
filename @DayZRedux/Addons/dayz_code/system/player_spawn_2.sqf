@@ -368,7 +368,6 @@ while {true} do {
   
   //Pause for pickup actions
   if (pickupInit AND !canPickup) then {
-  hintSilent format["canPickup was set to true!"];
   canPickup = true;
   pickupInit = false;
    };
