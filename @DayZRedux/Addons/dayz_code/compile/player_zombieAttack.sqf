@@ -1,13 +1,10 @@
-private["_unit","_targets","_move","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
+private["_unit","_targets","_move","_openVehicles","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
 _unit = _this select 0;
 _type = _this select 1;
 _vehicle = (vehicle player);
 
 _targets = _unit getVariable ["targets",[]];
 //if (!(_vehicle in _targets)) exitWith {};
-
-if (_x isKindOf "helicopter") exitWith {} foreach _objects;
-//Remove getting hit in helicopters since the zombies stand at the edge of the blades, not at the body
 
 //Do the attack
 if (r_player_unconscious && _vehicle == player && _type == "zombie") then {
@@ -34,7 +31,10 @@ if (_vehicle != player) then {
 	_wound = 	getText(configFile >> "cfgVehicles" >> (typeOf _vehicle) >> "HitPoints" >> _hp >> "name");
 	_damage = 	random 0.08;
 	_chance =	round(random 12);
-	
+  
+if (_vehicle isKindOf "Helicopter") exitWith {};
+//Remove getting hit in helicopters since the zombies stand at the edge of the blades, not at the body
+	       
 	if ((_chance % 4) == 0) then {
 		_openVehicles = ["ATV_Base_EP1", "Motorcycle", "Bicycle"];
 		{
@@ -43,6 +43,18 @@ if (_vehicle != player) then {
 			};
 		} forEach _openVehicles;
 	};
+  
+  //Remove vehicles that are moving faster than 10KPH
+  if (!(_vehicle isKindOf _openVehicles)) then {
+  _curpos = getPosATL (vehicle player);
+	_curheight = (ATLtoASL _curpos) select 2;
+	_curtime = time;
+	_distance = _lastpos distance _curpos;
+	_difftime = (_curtime - _lasttime) max 0.001;
+	_speed = _distance / _difftime;
+	_threshold = 10;
+      if (_speed > _threshold) exitWith{};
+  };
 
 	if ((_wound == "Glass1") or (_wound == "Glass2") or (_wound == "Glass3") or (_wound == "Glass4") or (_wound == "Glass5") or (_wound == "Glass6")) then {
 		[_unit,"hit",4,false] call dayz_zombieSpeak;

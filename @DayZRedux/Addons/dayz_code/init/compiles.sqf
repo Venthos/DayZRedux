@@ -280,7 +280,6 @@ if (!isDedicated) then {
 		};
     //instant check for ESC -- May cause lag for menu item disable
     if (_dikCode == 0x01) then {
-    	dayz_lastCheckBit = time;
 			call dayz_forceSave;
       };
 		/*

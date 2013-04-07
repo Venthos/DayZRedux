@@ -1,4 +1,4 @@
-private["_display","_btnRespawn","_btnAbort","_timeOut","_timeMax","_isDead"];
+private["_display","_btnRespawn","_btnAbort","_timeOut","_timeMax","_isDead","_isInCombat"];
 
 disableSerialization;
 
@@ -13,6 +13,7 @@ disableSerialization;
 		_timeOut = 0;
 		_timeMax = 30;
 		dayz_lastCheckBit = time;
+		_isInCombat = player getVariable["isincombat", 0];
 		
 		if(r_player_dead) exitWith {_btnAbort ctrlEnable true;};
 		if(r_fracture_legs) exitWith {_btnRespawn ctrlEnable true; _btnAbort ctrlEnable true;};
@@ -34,7 +35,7 @@ disableSerialization;
 					cutText [format ["Can Abort in %1", (_timeMax - _timeOut)], "PLAIN DOWN"];
 					//cutText [format[localize "str_abort_zedsclose",_text, "PLAIN DOWN"];
 				};
-				case ((dayz_combatTimer > 0) || (player getVariable["combattimeout", 0] >= time)) : {
+				case ((dayz_combatTimer > 0) || (player getVariable["combattimeout", 0] >= time) || (_isInCombat == 1)) : {
 					_btnAbort ctrlEnable false;
 					//cutText ["Cannot Abort while in combat!", "PLAIN DOWN"];
 					cutText [format[localize "str_abort_playerincombat",_text], "PLAIN DOWN"];					

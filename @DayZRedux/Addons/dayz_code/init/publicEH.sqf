@@ -44,7 +44,7 @@ if (isServer) then {
 	"dayz_logDamage"		addPublicVariableEventHandler {_id = (_this select 1) call server_logDamage};
 	//"dayz_serverSpawnLoot"	addPublicVariableEventHandler {_id = (_this select 1) call server_lootEvent};
 	"dayzKiller"		addPublicVariableEventHandler {_id = (_this select 1) call server_killerReport};
-	"atp"				addPublicVariableEventHandler { _array = _this select 1; diag_log format["TELEPORT REVERT: %1 (%2) from %3 to %4 now at %5", _array select 0, _array select 1, _array select 2, _array select 3, _array select 4];};
+	//"atp"				addPublicVariableEventHandler { _array = _this select 1; diag_log format["TELEPORT REVERT: %1 (%2) from %3 to %4 now at %5", _array select 0, _array select 1, _array select 2, _array select 3, _array select 4];};
 };
 
 //Client only
