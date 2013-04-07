@@ -23,18 +23,17 @@ if (_foodVal > 0.75) exitWith {cutText [format[(localize "str_player_32")] , "PL
 if ((r_player_infected) && (_rawfood)) exitWith {cutText ["You cannot eat raw meat when infected!", "PLAIN DOWN"]};
 
 player removeMagazine _itemorignal;
+
+//We have to close the gear display since in a vehicle the player must open gear or perform an action for the display to update
 if (vehicle player != player) then {
-	_display = findDisplay 140;
+  _display = findDisplay 106;
 	_display closeDisplay 0;
-	_display closeDisplay 1;
-	_display closeDisplay 2;
-//openmap false;
 vehicle player removeMagazine _itemorignal;
 };
 player playActionNow "PutDown";
 sleep 1;
 
-_dis=20;
+_dis=10;
 _sfx = "eat";
 [player,_sfx,0,false,_dis] call dayz_zombieSpeak;
 [player,_dis,true,(getPosATL player)] spawn player_alertZombies;

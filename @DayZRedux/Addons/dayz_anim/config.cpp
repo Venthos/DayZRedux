@@ -1249,7 +1249,7 @@ class CfgVehicles {
 	class MVD_Soldier_Marksman: Banned {};
 	class MVD_Soldier_Sniper: Banned {};
 	class GUE_Soldier_Base: Banned {};
-	//class GUE_Soldier_1: Banned {};
+	class GUE_Soldier_1: Banned {};
 	class GUE_Soldier_2: Banned {};
 	class GUE_Soldier_3: Banned {};
 	class GUE_Soldier_GL: Banned {};
@@ -1261,7 +1261,7 @@ class CfgVehicles {
 	class GUE_Villager4: Banned {};
 	class GUE_Soldier_CO: Banned {};
 	class GUE_Commander: Banned {};
-	class GUE_Soldier_AT: Banned {};
+	//class GUE_Soldier_AT: Banned {};
 	class GUE_Soldier_AA: Banned {};
 	class GUE_Soldier_AR: Banned {};
 	class GUE_Soldier_MG: Banned {};
@@ -1274,7 +1274,7 @@ class CfgVehicles {
 	class Ins_Soldier_Base: Banned {};
 	class Ins_Soldier_1: Banned {};
 	class Ins_Soldier_2: Banned {};
-	//class Ins_Soldier_GL: Banned {};
+	class Ins_Soldier_GL: Banned {};
 	class Ins_Soldier_CO: Banned {};
 	class Ins_Commander: Banned {};
 	class Ins_Soldier_Medic: Banned {};
@@ -1296,10 +1296,10 @@ class CfgVehicles {
 	class Ins_Soldier_Pilot: Banned {};
 	class Ins_Soldier_Crew: Banned {};
 	class CDF_Soldier_Base: Banned {};
-	//class CDF_Soldier: Banned {};
+	class CDF_Soldier: Banned {};
 	class CDF_Soldier_Light: Banned {};
 	class CDF_Soldier_GL: Banned {};
-	//class CDF_Soldier_Militia: Banned {};
+	class CDF_Soldier_Militia: Banned {};
 	class CDF_Soldier_Medic: Banned {};
 	class CDF_Soldier_Sniper: Banned {};
 	class CDF_Soldier_Spotter: Banned {};

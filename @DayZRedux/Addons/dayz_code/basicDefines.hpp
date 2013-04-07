@@ -104,8 +104,6 @@
 
 #define NEVER_DESTROY 1000	// for MP - destroying dead bodies
 
-#define CT_MAP_MAIN 104 //Close map
-
 #define TracerEColor 0.2,0.8,0.1
 #define TracerWColor 0.8,0.5,0.1
 #define TracerGColor 0.7,0.7,0.5

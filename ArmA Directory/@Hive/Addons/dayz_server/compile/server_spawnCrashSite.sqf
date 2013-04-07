@@ -14,15 +14,11 @@ _fadeFire	= _this select 8;
 
 diag_log("CRASHSPAWNER: Starting spawn logic for Crash Spawner");
 
-  //Begin limit max crashes
-	_maxCrashes		= ceil(random 9) + 1;  //Randomize max number, maximum of 10
-	_spawnedCrashes	= count _crash;
-	if (isNil "_crash") then {
-	_spawnedCrashes = 0; //Prevent return of SCALAR = no value
-	};
-	diag_log(format["CRASHSPAWNER: Current number of crashes is: %1 Max number of crashes is: %2", _spawnedCrashes, _maxCrashes]);
+  //limit max crashes -- Min 4 Max 11
+	_maxCrashes	= ceil(random 7) + 4;
+	_spawnedCrashes	= 0;
 
-  
+	diag_log(format["CRASHSPAWNER: Current number of crashes is: %1 max number of crashes is: %2", _spawnedCrashes, _maxCrashes]);
   while {_spawnedCrashes < _maxCrashes} do {
 //while {true} do {
 	private["_timeAdjust","_timeToSpawn","_spawnRoll","_crash","_hasAdjustment","_newHeight","_adjustedPos"];
@@ -43,22 +39,22 @@ diag_log("CRASHSPAWNER: Starting spawn logic for Crash Spawner");
 
 switch _crashModel do {
   case "BHC_RX" : {
-  _lootTable = ["BHCrash"];
+  _lootTable = "BHCrash";
   };
   case "HooeyC_RX" : {
-  _lootTable = ["HeliCrash"];
+  _lootTable = "HeliCrash";
   };
   case "LilBC_RX" : {
-  _lootTable = ["LilBCrash"];
+  _lootTable = "LilBCrash";
   };
   case "MyAteC_RX" : {
-  _lootTable = ["MyAteCrash"];
+  _lootTable = "MyAteCrash";
   };
   case "BlimpTooC_RX" : {
-  _lootTable = ["BlimpTooCrash"];
+  _lootTable = "BlimpTooCrash";
   };
   case "HumC_RX" : {
-  _lootTable = ["HumCrash"];
+  _lootTable = "HumCrash";
   };
   default {
   diag_log("CRASHSPAWNER: Error geting wreck type, falling back to default loot tables!");
@@ -107,6 +103,9 @@ switch _crashModel do {
 
 		// I don't think this is needed (you can't get "in" a crash), but it was in the original DayZ Crash logic
 		dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_crash];
+		
+		//Separate monitor for crashes since the object monitor includes everything...
+		dayz_serverCrashMonitor set [count dayz_serverCrashMonitor,_crash];
 
 		_crash setVariable ["ObjectID",1,true];
 
@@ -126,9 +125,15 @@ switch _crashModel do {
 		_index =        dayz_CBLBase  find "HeliCrash";
 		_weights =		dayz_CBLChances select _index;
 		_cntWeights = count _weights;
-
+		_num		= round(random _randomizedLoot) + _guaranteedLoot;
+		_itemType	= [] + getArray (_config >> "itemType");
+		
+		if (isNil "fnc_buildWeightedArray") then {
+	fnc_buildWeightedArray = 	compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_buildWeightedArray.sqf";
+	};
+		
 		waituntil {!isnil "fnc_buildWeightedArray"};
-
+		
 		for "_x" from 1 to _num do {
 			//create loot
 			//_index = floor(random _cntWeights);
@@ -163,5 +168,7 @@ switch _crashModel do {
 				_x setVariable ["permaLoot",true];
 			} forEach _nearBy;
 		};
+		_spawnedCrashes	= count dayz_serverCrashMonitor;
+		diag_log(format["CRASHSPAWNER: Current number of crashes is: %1 max number of crashes is: %2", _spawnedCrashes, _maxCrashes]);
 	};
 };

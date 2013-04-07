@@ -64,17 +64,14 @@ class RscDisplayDebriefing: RscStandardDisplay
 		delete Mainback;
 	};
 };
-//disable admin panel, stop duping by shift + p
+//disable admin panel
 class RscDisplayDSinterface : RscStandardDisplay {
 	idd = 155;
 	movingEnable = 0;
   enableDisplay = 0;
 	onLoad = "closeDialog 0;";
 };
-//Delete editor (The button "host new session" button in the server browser cannot be disabled so let's F the host pop-up and editor)
-//delete CfgEditorObjects;
-//delete RscDisplayMissionEditor;
-//delete RscDisplayHostSettings;
+// Disable host and create game buttons and menu
 class RscDisplayHostSettings : RscStandardDisplay {
 	class controlsBackground {
 		delete MainbackFaded1;
@@ -126,8 +123,8 @@ class RscDisplayMissionFail: RscStandardDisplay
 {
 	class controls
 	{
-		delete Debriefing_MissionTitle;
-		delete CA_MissionTitle;
+		//delete Debriefing_MissionTitle;
+		//delete CA_MissionTitle;
 		delete CA_TextVotingTimeLeft;
 		delete CA_MissionResult;
 		//delete CA_DebriefingInfo;
@@ -173,7 +170,7 @@ class RscDisplayGameOptions
 class RscShortcutButtonMain;
 class RscDisplayMain : RscStandardDisplay {
 	class controlsBackground {
-		class Mainback;	// External class reference
+		class Mainback;
 		
 		class CA_ARMA2 : RscPicture {
 			text = "\z\addons\dayz_code\gui\dayz_logo_ca.paa";
@@ -190,6 +187,7 @@ class RscDisplayMain : RscStandardDisplay {
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		class CA_TitleMainMenu;	// External class reference
+		//delete CA_SinglePlayer;
 		class CA_SinglePlayer;	// External class reference
 		class CA_MP;	// External class reference
 		class CA_Options;	// External class reference

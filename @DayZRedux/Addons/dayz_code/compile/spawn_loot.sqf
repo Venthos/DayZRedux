@@ -47,7 +47,7 @@ switch (_iClass) do {
 				_item addMagazineCargoGlobal [(_mags select 0),(round(random 1) + 2)];
 			} else {
 			if (_mags select 0 == "Quiver") then { _mags set [0, "WoodenArrow"] }; // Prevent spawning a Quiver
-			_item addMagazineCargoGlobal [(_mags select 0), (round(random 2))];
+				_item addMagazineCargoGlobal [(_mags select 0),(round(random 1) + 1)];
 			};
 		};
 	};

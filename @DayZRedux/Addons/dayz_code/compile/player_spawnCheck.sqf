@@ -109,7 +109,7 @@ diag_log ("dayz_maxCurrentZeds: " +str(dayz_maxCurrentZeds) + "/" +str(dayz_maxZ
 	
 _nearby = _position nearObjects ["building",_radius];
 _nearbyCount = count _nearby;
-	_tooManyZs = {alive _x} count (_position nearEntities ["zZambie_Base",300]) > dayz_maxLocalZombies;
+	_tooManyZs = {alive _x} count (_position nearEntities ["zZambie_Base",200]) > dayz_maxLocalZombies;
 if (_nearbyCount < 1) exitwith 
 {
 	if ((dayz_spawnZombies < _maxWildZombies) and !_inVehicle)  then {
