@@ -3778,8 +3778,8 @@ class CfgVehicles {
 		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
 		canHideBodies = 1;
 	};
-	class INS_Soldier_GL;
-	class CB1_RX: INS_Soldier_GL {
+	class GUE_Soldier_AT;
+	class CB1_RX: GUE_Soldier_AT {
 		displayName = "Bandit";
 		side = 1;
 		weapons[] = {"Throw","Put"};

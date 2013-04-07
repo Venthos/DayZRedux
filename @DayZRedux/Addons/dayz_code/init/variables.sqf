@@ -173,6 +173,7 @@ SleepTemperatur	= 		90 / 100;	//Firs Value = Minutes untill Player reaches the c
 allowConnection = 		false;
 isSinglePlayer =		false;
 dayz_serverObjectMonitor = [];
+dayz_serverCrashMonitor = []; //define for crash spawner
 
 //Streaming Variables (player only)
 dayz_Locations = [];
@@ -380,10 +381,6 @@ if(!isDedicated) then {
 	};
 	_cfgLocation = configFile >> "CfgTownGenerator";
 	_cfgLocation call _funcGetLocation;
-	
-	//dayz_buildingMonitor = [];	//Buildings to check
-	//dayz_bodyMonitor = [];
-	//dayz_flyMonitor = [];		//used for monitor flies
 	
 	dayz_buildingMonitor = [];	//Buildings to check
 	dayz_bodyMonitor = [];

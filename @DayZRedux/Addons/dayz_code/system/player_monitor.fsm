@@ -114,8 +114,8 @@ link56[] = {49,50};
 link57[] = {50,49};
 link58[] = {51,52};
 link59[] = {52,29};
-globals[] = {25.000000,1,0,0,0,640,480,1,81,6316128,1,-190.908371,174.873718,1294.537354,842.201965,486,601,1};
-window[] = {2,-1,-1,-1,-1,802,22,1394,22,3,503};
+globals[] = {25.000000,1,0,0,0,640,480,1,81,6316128,1,-190.908371,174.873718,1294.537354,842.201965,485,880,1};
+window[] = {2,-1,-1,-1,-1,988,208,1580,208,3,503};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -1146,8 +1146,8 @@ class FSM
        "};" \n
        "*/" \n
        "" \n
-       "//Removed for now" \n
-       "[] execVM ""\z\addons\dayz_code\system\antihack.sqf"";" \n
+       "//Removed for now -- Moved to mission" \n
+       "//[] execVM ""\z\addons\dayz_code\system\antihack.sqf"";" \n
        "" \n
        "// TODO: questionably" \n
        "{ _x call fnc_vehicleEventHandler; } forEach vehicles;" \n

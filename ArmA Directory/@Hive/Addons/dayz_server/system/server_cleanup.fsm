@@ -45,8 +45,8 @@ link20[] = {15,16};
 link21[] = {16,1};
 link22[] = {17,9};
 link23[] = {18,17};
-globals[] = {25.000000,1,0,0,0,640,480,1,24,6316128,1,-435.866425,318.641937,87.611969,-590.910767,705,634,1};
-window[] = {0,-1,-1,-32000,-32000,832,52,1381,52,1,723};
+globals[] = {25.000000,1,0,0,0,640,480,1,24,6316128,1,-591.832581,552.199646,456.481262,-572.336548,705,634,1};
+window[] = {0,-1,-1,-1,-1,962,182,1511,182,1,723};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -90,7 +90,7 @@ class FSM
           priority = 2.000000;
           to="cleanup_dead";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"(_numDead > 300) || (((time - _lastCleanDead) > 1200) && (_numDead > 1))"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(_numDead > 200)"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/

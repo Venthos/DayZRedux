@@ -13,12 +13,15 @@ Changelog
 - [Change] Debug warning if you are less than 500M away from debug, skull and crossbones icon.
 - [Change] Helicopter wrecks will spawn at random intervals, not immediately.
 - [Change] Added randomized (max of 10) number of wrecks per restart.
+- [Change] Players in moving closed vehicles > 10 KPH cannot be hurt by zombies
+- [Change] Since zombies can hit helicopters when they are not even close, or an object/wall is in the way, players cannot be hurt by zeds in helicopters.
 
 ------
 
-- [Fix] You may now eat in vehicles
+- [Fix] You may now eat and drink in vehicles
 - [Fix] Duplication by "take" action to pick up objects
 - [Fix] Ammo refill on relog.
+- [Fix] Other duplication methods.
 
 ------
 
@@ -38,18 +41,17 @@ Changelog
 ------
 
 Notable 1.7.6.1 changes implemented
-- [Vanilla] Added backpack variant
+- [Vanilla] Added new backpack variants
 - [Vanilla] Combat roll
 - [Vanilla] Updated UI
 - [Vanilla] Shake and cough when infected.
 - [Vanilla] Zombie changes
 - [Vanilla] Machete added
-- [Vanilla] Melee weapon ammo fix
-- [Vanilla] Loot models, I.e. compass is a compass not a bag in a lott pile anymore. 
+- [Vanilla] Wild zombie spawns
+- [Vanilla] Melee weapon ammo reload fix
+- [Vanilla] Loot models, i.e. compass is a compass not a bag in a loot pile anymore. 
 
 - [Note] The loot table/chances has not been changed aside from the above changes.
-
-** This is a rough changelog.
 
 Prerequisites
 -------------
