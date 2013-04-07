@@ -2,6 +2,9 @@
 	FUNCTION COMPILES
 */
 //Player only
+//Start loadscreen early in hopes to stop load preview.
+	startLoadingScreen ["","RscDisplayLoadCustom"];
+
 if (!isDedicated) then {
 	_config = 	configFile >> "CfgLoot";
 	_config1 = 	configFile >> "CfgMagazines" >> "FoodEdible";
@@ -271,10 +274,15 @@ if (!isDedicated) then {
 			_nill = execvm "\z\addons\dayz_code\actions\playerstats.sqf";
 		};
 */
-		if ((_dikCode == 0x3E or _dikCode == 0x0F or _dikCode == 0xD3) and (time - dayz_lastCheckBit > 10)) then {
+		if ((_dikCode == 0x3E or _dikCode == 0x0F or _dikCode == 0xD3 or _dikCode == 0x22) and (time - dayz_lastCheckBit > 10)) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
+    //instant check for ESC -- May cause lag for menu item disable
+    if (_dikCode == 0x01) then {
+    	dayz_lastCheckBit = time;
+			call dayz_forceSave;
+      };
 		/*
 		if (_dikCode in actionKeys "IngamePause") then {
 			_idOnPause = [] spawn dayz_onPause;

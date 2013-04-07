@@ -6,6 +6,9 @@ _vehicle = (vehicle player);
 _targets = _unit getVariable ["targets",[]];
 //if (!(_vehicle in _targets)) exitWith {};
 
+if (_x isKindOf "helicopter") exitWith {} foreach _objects;
+//Remove getting hit in helicopters since the zombies stand at the edge of the blades, not at the body
+
 //Do the attack
 if (r_player_unconscious && _vehicle == player && _type == "zombie") then {
 	_rnd = round(random 4) + 1;

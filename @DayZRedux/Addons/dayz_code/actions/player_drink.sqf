@@ -15,17 +15,16 @@ _sfx =  getText (_config >> "sfx");
 if (!_hasdrinkitem) exitWith {cutText [format[(localize "str_player_31"),_text,"drink"] , "PLAIN DOWN"]};
 
 _thirstVal = dayz_statusArray select 1;
-if (_thirstVal > 0.75) exitWith {cutText [format[(localize "str_player_33")] , "PLAIN DOWN"]};
+if (_thirstVal > 0.90) exitWith {cutText [format[(localize "str_player_33")] , "PLAIN DOWN"]};
 
 if ((r_player_infected) && (_itemorignal == "ItemWaterbottle")) exitWith {cutText ["You cannot drink contaminated water when infected!", "PLAIN DOWN"]};
 
 player removeMagazine _itemorignal;
 
+//We have to close the gear display since in a vehicle the player must open gear or perform an action for the display to update
 if (vehicle player != player) then {
-	_display = findDisplay 140;
+  _display = findDisplay 106;
 	_display closeDisplay 0;
-	_display closeDisplay 1;
-	_display closeDisplay 2;
 //openmap false;
 if (["ItemWaterbottle",_itemorignal] call fnc_inString) then {
     _dis=15;
