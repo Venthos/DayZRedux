@@ -45,16 +45,17 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 	};
   
   //Remove vehicles that are moving faster than 10KPH
-  if (!(_vehicle isKindOf _openVehicles)) then {
+  if (!(_vehicle isKindOf _x)) then {
+  _lastpos = getPosATL (vehicle player);
+  _lasttime = time;
   _curpos = getPosATL (vehicle player);
-	_curheight = (ATLtoASL _curpos) select 2;
 	_curtime = time;
 	_distance = _lastpos distance _curpos;
 	_difftime = (_curtime - _lasttime) max 0.001;
 	_speed = _distance / _difftime;
 	_threshold = 10;
-      if (_speed > _threshold) exitWith{};
-  };
+      if (_speed > _threshold) exitWith {};
+		} forEach _openVehicles;
 
 	if ((_wound == "Glass1") or (_wound == "Glass2") or (_wound == "Glass3") or (_wound == "Glass4") or (_wound == "Glass5") or (_wound == "Glass6")) then {
 		[_unit,"hit",4,false] call dayz_zombieSpeak;

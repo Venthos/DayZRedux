@@ -3,7 +3,7 @@ _agent = _this;
 _target = objNull;
 _targets = [];
 _targetDis = [];
-_range = 250; //300
+_range = 300;
 _manDis = 0;
 _refobj = vehicle player;
 
@@ -11,13 +11,11 @@ _targets = _agent getVariable ["targets",[]];
 
 if (isNil "_targets") exitWith {};
 //Search for objects
-if (count _targets == 0) then
-{
+if (count _targets == 0) then {
 	_objects = nearestObjects [_agent,["ThrownObjects","GrenadeHandTimedWest","SmokeShell"],50];
 	{
 		private["_dis"];
-		if (!(_x in _targets)) then
-		{
+		if (!(_x in _targets)) then {
 			_targets set [count _targets,_x];
 			_targetDis set [count _targetDis,_dis];
 		};
@@ -37,10 +35,6 @@ if (count _targets > 0) then
 			_man = _x;
 			_manDis = _dis;
 		};
-		if (_dis > _range) then
-		{
-			_targets = _targets - [_x];
-		};
 		if (_x isKindOf "SmokeShell") then
 		{
 			_man = _x;
@@ -52,10 +46,8 @@ if (count _targets > 0) then
 };
 
 //Check if too far
-if (_manDis > _range) then
-{
+if (_manDis > _range) then {
 	_targets = _targets - [_target];
 	_target = objNull;
 };
-
 _target;

@@ -22,7 +22,9 @@ while {true} do {
 	_vel = 		velocity player;
 	_speed = 	round((_vel distance [0,0,0]) * 3.5);
 	_saveTime = (playersNumber west * 2) + 10;
-		
+	_isBandit = typeOf player == "Bandit1_DZ" || typeOf player == "BanditW1_DZ"; 
+	_isHero = typeOf player == "Survivor3_DZ";
+  		
 	//reset position
 	_randomSpot = true;
 	_tempPos = getPosATL player;
@@ -73,7 +75,7 @@ while {true} do {
 	};
 	
 	if (_humanity < -2000 and !_isBandit) then {
-		_isBandit = true;
+
 		_model = typeOf player;
 		if (_model == "S2_RX" or _model == "S3_RX") then {
 			[dayz_playerUID,dayz_characterID,"B1_RX"] spawn player_humanityMorph;
@@ -95,7 +97,7 @@ while {true} do {
   };
 	
 	if (_humanity > 0 and _isBandit) then {
-		_isBandit = false;
+
 		_model = typeOf player;
 		if (_model == "B1_RX") then {
 			[dayz_playerUID,dayz_characterID,"S2_RX"] spawn player_humanityMorph;
@@ -112,7 +114,7 @@ while {true} do {
 	};
 	
 	if (_humanity > 5000 and !_isHero) then {
-		_isBandit = false;
+
 		_model = typeOf player;
 		if (_model == "S2_RX") then {
 			[dayz_playerUID,dayz_characterID,"S3_RX"] spawn player_humanityMorph;
@@ -174,7 +176,7 @@ while {true} do {
 						_rnd = random 1;
 						if (_rnd > 0.7) then {
 							r_player_infected = true;
-							player setVariable["USEC_infected",true];
+							//player setVariable["USEC_infected",true];
 						};
 					};
 				};
@@ -185,7 +187,7 @@ while {true} do {
 					_rnd = random 1;
 					if (_rnd > 0.95) then {
 						r_player_infected = true;
-						player setVariable["USEC_infected",true];
+						//player setVariable["USEC_infected",true];
 					};
 				};
 			};
@@ -269,11 +271,15 @@ while {true} do {
 	//Save Checker
 	if (dayz_unsaved) then {
 		if ((time - dayz_lastSave) > _saveTime) then {
+			//["dayzPlayerSave",[player,dayz_Magazines,false]] call callRpcProcedure;
+			
 			dayzPlayerSave = [player,dayz_Magazines,false];
 			publicVariableServer "dayzPlayerSave";
+			
 			if (isServer) then {
 				dayzPlayerSave call server_playerSync;
 			};
+						
 			dayz_lastSave = time;
 			dayz_Magazines = [];
 		};

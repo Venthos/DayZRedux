@@ -9,7 +9,7 @@ _text = getText (configFile >> _type >> _classname >> "displayName");
 
 _holder setVariable["claimed",_playerID,true];
 
-if (!canPickup) exitwith { cutText ["You may only pickup an item once!","PLAIN DOWN"] };
+if (!canPickup) exitwith { cutText ["You may only pick up one item at a time!","PLAIN DOWN"] };
 
 if (_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
 

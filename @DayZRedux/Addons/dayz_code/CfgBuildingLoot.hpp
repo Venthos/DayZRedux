@@ -147,11 +147,53 @@ class CfgBuildingLoot {
 		maxRoaming = 3;
 		zombieClass[] = {"z_suit1", "z_suit2"};
 	};
-	
+
 	class Industrial : Default {
 		zombieChance = 0.4;
 		zombieClass[] = {"z_worker1", "z_worker2", "z_worker3"};
 		maxRoaming = 2;
+		lootChance = 0.2;
+		lootPos[] = {};
+		//itemType[] = {{"", "generic"}, {"", "trash"}, {"", "military"}, {"WeaponHolder_PartGeneric", "object"}, {"WeaponHolder_PartWheel", "object"}, {"WeaponHolder_PartFueltank", "object"}, {"WeaponHolder_PartEngine", "object"}, {"WeaponHolder_PartGlass", "object"}, {"WeaponHolder_PartVRotor", "object"}, {"WeaponHolder_ItemJerrycan", "object"}, {"WeaponHolder_ItemHatchet", "object"}, {"ItemKnife", "military"}, {"ItemToolbox", "weapon"}, {"ItemWire", "magazine"}, {"ItemTankTrap", "magazine"}};
+		//itemChance[] = {0.18, 0.29, 0.04, 0.04, 0.05, 0.02, 0.01, 0.04, 0.01, 0.04, 0.11, 0.07, 0.02, 0.06, 0.04};
+		itemType[] = {
+			{"", "generic"},
+			{"", "trash"},
+			{"WeaponHolder_PartGeneric", "object"},
+			{"WeaponHolder_PartWheel", "object"},
+			{"WeaponHolder_PartFueltank", "object"},
+			{"WeaponHolder_PartEngine", "object"},
+			{"WeaponHolder_PartGlass", "object"},
+			{"WeaponHolder_ItemJerrycan", "object"},
+			{"WeaponHolder_ItemHatchet", "object"},
+			{"ItemKnife", "generic"},
+			{"ItemToolbox", "weapon"},
+			{"PartNails", "trash"},
+			{"ItemWire", "magazine"},
+			{"ItemTankTrap", "magazine"}
+		};
+		itemChance[] = {
+			0.31,	//generic
+			0.31,	//trash
+			0.03,	//WeaponHolder_PartGeneric
+			0.05,	//WeaponHolder_PartWheel
+			0.01,	//WeaponHolder_PartFueltank
+			0.02,	//WeaponHolder_PartEngine
+			0.04,	//WeaponHolder_PartGlass
+			0.04,	//WeaponHolder_ItemJerrycan
+			0.07,	//WeaponHolder_ItemHatchet
+			0.04,	//ItemKnife
+			0.03,	//ItemToolbox
+			0.01,	//PartNails
+			0.04,	//ItemWire
+			0.04	//ItemTankTrap
+		};
+	};
+
+	class Factory : Default {
+		zombieChance = 0.4;
+		zombieClass[] = {"z_worker1", "z_worker2", "z_worker3"};
+		maxRoaming = 3;
 		lootChance = 0.2;
 		lootPos[] = {};
 		//itemType[] = {{"", "generic"}, {"", "trash"}, {"", "military"}, {"WeaponHolder_PartGeneric", "object"}, {"WeaponHolder_PartWheel", "object"}, {"WeaponHolder_PartFueltank", "object"}, {"WeaponHolder_PartEngine", "object"}, {"WeaponHolder_PartGlass", "object"}, {"WeaponHolder_PartVRotor", "object"}, {"WeaponHolder_ItemJerrycan", "object"}, {"WeaponHolder_ItemHatchet", "object"}, {"ItemKnife", "military"}, {"ItemToolbox", "weapon"}, {"ItemWire", "magazine"}, {"ItemTankTrap", "magazine"}};
@@ -176,10 +218,10 @@ class CfgBuildingLoot {
 		itemChance[] = {
 			0.31,	//generic
 			0.31,	//trash
-			0.03,	//WeaponHolder_PartGeneric
+			0.04,	//WeaponHolder_PartGeneric
 			0.05,	//WeaponHolder_PartWheel
-			0.01,	//WeaponHolder_PartFueltank
-			0.02,	//WeaponHolder_PartEngine
+			0.02,	//WeaponHolder_PartFueltank
+			0.03,	//WeaponHolder_PartEngine
 			0.04,	//WeaponHolder_PartGlass
 			0.01,	//WeaponHolder_PartVRotor
 			0.04,	//WeaponHolder_ItemJerrycan
@@ -930,7 +972,7 @@ class CfgBuildingLoot {
 		lootPos[] = {{4.72266, -5.74121, -8.15108}, {0.961426, -5.16943, -8.15076}};
 	};
 	
-	class Land_A_BuildingWIP : Industrial {
+	class Land_A_BuildingWIP : Factory {
 		lootChance = 0.4;
 		lootPos[] = {{-4.62573, 4.52344, -6.45268}, {-12.6377, 0.494141, -6.49242}, {-14.6023, -8.62842, -6.49961}, {-16.0005, -9.80957, -6.50423}, {-15.5627, -5.17725, -6.50523}, {0.94458, -2.30371, -6.43043}, {7.28125, 3.20898, -6.44042}, {9.75708, 10.1138, -6.40827}, {14.771, 7.29688, -6.47756}, {15.4504, -0.314941, -6.52979}, {20.4895, 2.31836, -4.52571}, {17.3123, -3.1001, -2.53291}, {10.707, -6.51611, -2.53255}, {2.22534, -9.21582, -2.534}, {-8.91943, -7.18896, -2.53313}, {-16.3179, -8.35645, -2.53357}, {-21.3064, -6.7915, -2.53182}, {-21.6018, -1.79541, -2.53182}, {-17.5808, 6.14746, -2.53182}, {-23.198, 8.44727, -2.53182}, {-17.1973, 9.58594, -2.53182}, {-4.99023, 9.80957, -2.53182}, {14.0872, 7.44092, -2.52676}, {10.5796, -6.84912, 1.48116}, {-3.19116, -2.49463, 1.49403}, {-13.8186, 3.98975, 1.49829}, {-15.9502, -6.17383, 1.48802}, {-20.6997, -16.9761, 1.50282}, {-15.415, -13.3901, 5.46683}};
 	};
