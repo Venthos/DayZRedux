@@ -1,31 +1,37 @@
-private["_serial","_positions","_min","_lootGroup","_iArray","_iItem","_iClass","_iPos","_item","_mags","_qty","_max","_tQty","_canType","_obj","_type","_nearBy","_clean","_unitTypes","_max","_isNoone","_config","_num","_originalPos","_zombieChance","_rnd","_fastRun"];
+private["_obj","_type","_config","_canLoot","_unitTypes","_min","_max","_num","_zombieChance","_rnd","_noPlayerNear","_position","_clean","_positions","_iPos","_nearBy","_nearByPlayer","_i"];
 _obj = 			_this select 0;
 _type = 		typeOf _obj;
 _config = 		configFile >> "CfgBuildingLoot" >> _type;
 _canLoot = 		isClass (_config);
-_fastRun = 		_this select 1;
-_originalPos = 	getPosATL _obj;
+
 //KEEP SPAWNING
 //if (dayz_maxCurrentZeds > dayz_maxZeds) exitwith {};
 //if (dayz_CurrentZombies > dayz_maxGlobalZombies) exitwith {}; 
 //if (dayz_spawnZombies > dayz_maxLocalZombies) exitwith {}; 
 
 if (_canLoot) then {
-	//Get zombie class
+//Get zombie class
 	_unitTypes = 	getArray (_config >> "zombieClass");
 	_min = 			getNumber (_config >> "minRoaming");
 	_max = 			getNumber (_config >> "maxRoaming");
 
-	//Walking Zombies
-	_num = round(random _max) max _min; // + round(_max / 3);
-	//diag_log ("Class: " + _type + " / Zombies: " + str(_unitTypes) + " / Walking: " + str(_num));
-	for "_i" from 1 to _num do
-	{
-		[_originalPos,true,_unitTypes] call zombie_generate;
-		if (!_fastRun) then {
-			sleep 0.1;
+//Walking Zombies
+	_num = round(random _max) max _min;
+	_config = 		configFile >> "CfgBuildingLoot" >> _type;
+
+//Get zombie class
+	_zombieChance =	getNumber (_config >> "zombieChance");
+	_rnd = random 1;
+		
+		_noPlayerNear = (count ((getPosATL _obj) nearEntities ["CAManBase",30])) == 0;
+		
+		if (_noPlayerNear) then {
+			_position = getPosATL _obj;
+			for "_i" from 1 to _num do
+			{
+				[_position,true,_unitTypes] call zombie_generate;
+			};		
 		};
-	};
 	
 	//Add Internal Zombies
 	_clean = {alive _x} count ((getPosATL _obj) nearEntities ["zZambie_Base",(sizeOf _type)]) == 0;
@@ -41,11 +47,8 @@ if (_canLoot) then {
 				_nearByPlayer = ({isPlayer _x} count (_iPos nearEntities ["CAManBase",30])) > 0;
 				//diag_log ("BUILDING: " + _type + " / " + str(_nearBy) + " / " + str(_nearByPlayer));
 				if (!_nearByPlayer and !_nearBy) then {
-					[_iPos,false,_unitTypes] call zombie_generate;
+					[_iPos,true,_unitTypes] call zombie_generate;
 				};
-			};
-			if (!_fastRun) then {
-				sleep 0.1;
 			};
 		} forEach _positions;
 	};

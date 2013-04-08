@@ -1,4 +1,4 @@
-private["_onLadder","_itemorignal","_hasfooditem","_rawfood","_cookedfood","_hasoutput","_config","_text","_regen","_dis","_sfx","_Cookedtime","_itemtodrop","_nearByPile","_item","_display"];
+private["_onLadder","_invehicle","_itemorignal","_hasfooditem","_rawfood","_cookedfood","_hasoutput","_config","_text","_regen","_dis","_sfx","_Cookedtime","_itemtodrop","_nearByPile","_item","_display"];
 disableserialization;
 call gear_ui_init;
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
@@ -9,6 +9,7 @@ _hasfooditem = _itemorignal in magazines player;
 _rawfood = _itemorignal in meatraw;
 _cookedfood = _itemorignal in meatcooked;
 _hasoutput = _itemorignal in food_with_output;
+_invehicle = false;
 
 _config =   configFile >> "CfgMagazines" >> _itemorignal;
 
@@ -28,6 +29,7 @@ player removeMagazine _itemorignal;
 if (vehicle player != player) then {
   _display = findDisplay 106;
 	_display closeDisplay 0;
+  _invehicle = true;
 vehicle player removeMagazine _itemorignal;
 };
 player playActionNow "PutDown";
@@ -46,13 +48,13 @@ if (dayz_lastMeal < 3600) then {
     };
 };
 
-if (_hasoutput) then{
+if ((_hasoutput) && (!_invehicle)) then {
     // Selecting output
     _itemtodrop = food_output select (food_with_output find _itemorignal);
 
     sleep 3;
     _nearByPile= nearestObjects [(position player), ["WeaponHolder","WeaponHolderBase"],2];
-    if (count _nearByPile ==0) then { 
+    if (count _nearByPile == 0) then { 
         _item = createVehicle ["WeaponHolder", position player, [], 0.0, "CAN_COLLIDE"];
     } else {
         _item = _nearByPile select 0;
