@@ -30,11 +30,13 @@ while {alive player} do
 	
 	//diag_log format["DEBUG: terrain: %1    current: %2", _terrainHeight, _curheight];
 	//diag_log format["DEBUG: all: %1		player: %2		fall: %3		terrain: %4", !((vehicle player == player) && (_curheight < _lastheight) && ((_curheight - _terrainHeight) > 1)), (vehicle player == player), (_curheight < _lastheight), (_curheight - _terrainHeight) > 1];
+
 	if (teleport_pause) then {
-		if (_lasttime < (_curtime + 2)) then {
+		if ((_lasttime + 5) < _curtime) then {
 			teleport_pause = false;
 		};
 	};
+
 	_debug = getMarkerPos "respawn_west";
 	if ((_speed > _topSpeed) && (alive player) && ((driver (vehicle player) == player) or (isNull (driver (vehicle player)))) && (_debug distance _lastpos > 3000) && !((vehicle player == player) && (_curheight < _lastheight) && ((_curheight - _terrainHeight) > 1)) && (!teleport_pause)) then {
 		(vehicle player) setpos _lastpos;
