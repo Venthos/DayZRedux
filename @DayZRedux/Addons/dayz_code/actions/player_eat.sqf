@@ -46,13 +46,13 @@ if (dayz_lastMeal < 3600) then {
     };
 };
 
-if (_hasoutput) then{
+if ((_hasoutput) && (vehicle player = player)) then{
     // Selecting output
     _itemtodrop = food_output select (food_with_output find _itemorignal);
 
     sleep 3;
     _nearByPile= nearestObjects [(position player), ["WeaponHolder","WeaponHolderBase"],2];
-    if (count _nearByPile ==0) then { 
+    if (count _nearByPile == 0) then { 
         _item = createVehicle ["WeaponHolder", position player, [], 0.0, "CAN_COLLIDE"];
     } else {
         _item = _nearByPile select 0;
