@@ -120,7 +120,7 @@ if (!isDedicated) then {
 		_control1 = _display displayctrl 8400;
 		_control2 = _display displayctrl 102;
 	// 40 sec timeout
-		while { _timeOut < 650 && !dayz_clientPreload } do {
+		while { _timeOut < 600 && !dayz_clientPreload } do {
 			if ( isNull _display ) then {
 				waitUntil { !dialog; };
 				startLoadingScreen ["","RscDisplayLoadCustom"];
@@ -137,11 +137,10 @@ if (!isDedicated) then {
 			sleep 0.1;
 		};
 		endLoadingScreen;
-		if ( !dayz_clientPreload ) then {
-
+		if ( !dayz_clientPreload && !dayz_authed ) then {
 			diag_log "DEBUG: loadscreen guard ended with timeout.";
 			disableUserInput false;
-			1 cutText ["Something went wrong! disconnect and try again!", "PLAIN"];
+			1 cutText ["Disconnected!", "PLAIN"];
 			player enableSimulation false;
 		} else { diag_log "DEBUG: loadscreen guard ended."; };
 	};
