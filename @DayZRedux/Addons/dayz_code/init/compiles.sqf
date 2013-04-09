@@ -274,7 +274,7 @@ if (!isDedicated) then {
 			_nill = execvm "\z\addons\dayz_code\actions\playerstats.sqf";
 		};
 */
-		if ((_dikCode == 0x3E or _dikCode == 0x0F or _dikCode == 0xD3 or _dikCode == 0x22) and (time - dayz_lastCheckBit > 10)) then {
+		if ((_dikCode == 0x3E or _dikCode == 0x0F or _dikCode == 0xD3) and (time - dayz_lastCheckBit > 10)) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};

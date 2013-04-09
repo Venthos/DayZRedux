@@ -6,23 +6,27 @@ disableSerialization;
 			_display = findDisplay 49;
 			!isNull _display;
 		};
+		_btnSave = _display displayCtrl 103;
+		_btnSkip = _display displayCtrl 1002;		
 		_btnRespawn = _display displayCtrl 1010;
 		_btnAbort = _display displayCtrl 104;
+		_btnSave ctrlEnable false;
+		_btnSkip ctrlEnable false;
 		_btnRespawn ctrlEnable false;
 		_btnAbort ctrlEnable false;
 		_timeOut = 0;
 		_timeMax = 30;
-		dayz_lastCheckBit = time;
+		//dayz_lastCheckBit = time;
 		_isInCombat = player getVariable["isincombat", 0];
 		
 		if(r_player_dead) exitWith {_btnAbort ctrlEnable true;};
 		if(r_fracture_legs) exitWith {_btnRespawn ctrlEnable true; _btnAbort ctrlEnable true;};
-		
+/*
 		//force gear save
 		if (time - dayz_lastCheckBit > 10) then {
 			call dayz_forceSave;
 		};			
-				
+*/				
 		while {!isNull _display} do {
 			switch true do {
 				case ({isPlayer _x} count (player nearEntities ["AllVehicles", 6]) > 1) : {
