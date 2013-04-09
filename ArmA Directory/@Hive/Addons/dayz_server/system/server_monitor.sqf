@@ -153,7 +153,15 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 				};
 				_object setdir _dir;
 				_object setDamage _damage;
-				
+
+		// Temporary removal of Huey ammo
+		if (_object isKindOf "HH_RX") then {
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[0]];
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[0]];
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[1]];
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[1]];
+		};
+
 				if (count _intentory > 0) then {
 					//Add weapons
 					_objWpnTypes = (_intentory select 0) select 0;
