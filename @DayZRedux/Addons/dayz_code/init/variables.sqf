@@ -29,7 +29,8 @@ meatraw = [
     "FoodmuttonRaw",
     "FoodchickenRaw",
     "FoodrabbitRaw",
-    "FoodbaconRaw"
+    "FoodbaconRaw",
+    "FoodgoatRaw"
 ];
 meatcooked = [
     "FoodSteakCooked",
@@ -38,10 +39,19 @@ meatcooked = [
     "FoodmuttonCooked",
     "FoodchickenCooked",
     "FoodrabbitCooked",
-    "FoodbaconCooked"
+    "FoodbaconCooked",
+    "FoodgoatCooked"
 ];
 //Eating
-no_output_food = ["FoodMRE", "FoodPistachio", "FoodNutmix"]+meatcooked+meatraw;
+no_output_food = [
+	"FoodMRE", 
+	"FoodPistachio", 
+	"FoodNutmix",
+	"FoodCandyAnders",
+	"FoodCandyLegacys",
+	"FoodCandyMintception"
+]+meatcooked+meatraw;
+
 food_with_output=[
     "FoodCanBakedBeans",
     "FoodCanSardines",
@@ -424,6 +434,7 @@ if(!isDedicated) then {
 	dayz_playerName =		"Unknown";
 	dayz_sourceBleeding =	objNull;
 	dayz_clientPreload = 	false;
+	dayz_authed = 			false;
 	dayz_panicCooldown = 	0;
 	dayz_areaAffect =		2;
 	dayz_heartBeat = 		false;
