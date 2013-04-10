@@ -65,7 +65,7 @@ if (_unitIsPlayer) then {
 				_source setVariable["startcombattimer",1];	
 			};
 			_canHitFree = 	player getVariable ["freeTarget",false];
-			_isBandit = 	((typeOf player) == "B1_RX" or (typeOf player) == "B2_RX" or (typeOf player) == "BW1_RX");
+			_isBandit = 	((typeOf player) == "B1_RX" or (typeOf player) == "B2_RX" or (typeOf player) == "BW1_RX" or (typeOf player) == "CB1_RX" or (typeOf player) == "GB1_RX");
 			if (!_canHitFree and !_isBandit) then {
 				_myKills = 		200 - (((player getVariable ["humanKills",0]) / 30) * 100);
 				//Process Morality Hit
