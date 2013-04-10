@@ -68,17 +68,13 @@ switch _crashModel do {
 
 	// Apprehensive about using one giant long sleep here given server time variances over the life of the server daemon
 	while {time < _timeToSpawn} do {
-		sleep 5;
+		sleep 10;
 	};
 
-	_spawnRoll = random 1;
-
 	// Percentage roll
-	if (_spawnRoll <= _spawnChance) then {
-
+	if (random 1 <= _spawnChance) then {
 		_position = [getMarkerPos _spawnMarker,0,_spawnRadius,10,0,2000,0] call BIS_fnc_findSafePos;
-
-		diag_log(format["CRASHSPAWNER: Spawning '%1' with loot table '%2' NOW! (%3) at: %4", _crashName, _lootTable, time, str(_position)]);
+		diag_log(format["CRASHSPAWNER: Spawning '%1' with loot table '%2' NOW! (%3) at: %4 - (%5)", _crashName, _lootTable, time, str(_position),mapGridPosition _position]);
 
 		_crash = createVehicle [_crashModel,_position, [], 0, "CAN_COLLIDE"];
 		// Randomize the direction the wreck is facing
