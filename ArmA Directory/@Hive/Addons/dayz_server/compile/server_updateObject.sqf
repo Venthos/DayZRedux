@@ -5,11 +5,19 @@ private ["_object","_type","_objectID","_uid","_lastUpdate","_needUpdate","_obje
 
 _object = 	_this select 0;
 _type = 	_this select 1;
+_forced = false;
+if (count _this > 2) then {
+	_forced = _this select 2;
+};
 _parachuteWest = typeOf _object == "ParachuteWest";
 _isNotOk = false;
 
-_objectID =	_object getVariable ["ObjectID","0"];
-_uid = 		_object getVariable ["ObjectUID","0"];
+_objectID = "0";
+_uid = "0";
+if (!((isNil "_object") OR {(isNull _object)})) then {
+	_objectID = _object getVariable ["ObjectID","0"];
+	_uid = _object getVariable ["ObjectUID","0"];
+};
 
 if ((typeName _objectID != "string") || (typeName _uid != "string")) then
 { 
@@ -76,6 +84,8 @@ _object_inventory = {
 };
 
 _object_damage = {
+
+	//Allow dmg process
 	private["_hitpoints","_array","_hit","_selection","_key","_damage"];
 	_hitpoints = _object call vehicle_getHitpoints;
 	_damage = damage _object;
@@ -87,10 +97,20 @@ _object_damage = {
 		_object setHit ["_selection", _hit]
 	} forEach _hitpoints;
 	
-	_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
-	diag_log ("HIVE: WRITE: "+ str(_key));
-	_key call server_hiveWrite;
-	_object setVariable ["needUpdate",false,true];
+	//Mark for db update 
+	if (((time - _lastUpdate) > 5) or _forced) then {
+		if ((_object in needUpdate_objects)) then {
+			needUpdate_objects = needUpdate_objects - [_object];
+		};
+		_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
+		diag_log ("HIVE: WRITE: "+ str(_key));
+		_key call server_hiveWrite;
+	} else {
+		if (!(_object in needUpdate_objects)) then {
+			diag_log format["DEBUG: Added to NeedUpdate=%1",_object];
+			needUpdate_objects set [count needUpdate_objects, _object];
+		};
+	};
 };
 
 _object_killed = {
@@ -114,7 +134,6 @@ _object_killed = {
 	};
 	diag_log ("HIVE: WRITE: "+ str(_key));
 	_key call server_hiveWrite;
-	_object setVariable ["needUpdate",false,true];
 };
 
 _object_repair = {
@@ -132,8 +151,8 @@ _object_repair = {
 	_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
 	diag_log ("HIVE: WRITE: "+ str(_key));
 	_key call server_hiveWrite;
-	_object setVariable ["needUpdate",false,true];
 };
+
 // TODO ----------------------
 
 _object setVariable ["lastUpdate",time,true];
@@ -144,23 +163,13 @@ switch (_type) do {
 		call _object_damage;
 	};
 	case "position": {
-		if (!(_object in needUpdate_objects)) then {
-			diag_log format["DEBUG Position: Added to NeedUpdate=%1",_object];
-			needUpdate_objects set [count needUpdate_objects, _object];
-		};
+		call _object_position;
 	};
 	case "gear": {
 		call _object_inventory;
 	};
 	case "damage": {
-		if ( (time - _lastUpdate) > 5) then {
-			call _object_damage;
-		} else {
-			if (!(_object in needUpdate_objects)) then {
-				diag_log format["DEBUG Damage: Added to NeedUpdate=%1",_object];
-				needUpdate_objects set [count needUpdate_objects, _object];
-			};
-		};
+		call _object_damage;
 	};
 	case "killed": {
 		call _object_killed;

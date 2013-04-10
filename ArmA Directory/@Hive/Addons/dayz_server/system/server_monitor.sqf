@@ -120,13 +120,14 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 					_wsDone = true;
 				}
 			};			
+/*
 			if (!_wsDone) then {
 				if (count _worldspace >= 1) then { _dir = _worldspace select 0; };
-				_pos = [getMarkerPos "center",0,4000,10,0,2000,0] call BIS_fnc_findSafePos;
+				_pos = [getMarkerPos "center",0,50,10,0,2000,0] call BIS_fnc_findSafePos;
 				if (count _pos < 3) then { _pos = [_pos select 0,_pos select 1,0]; };
 				diag_log ("MOVED OBJ: " + str(_idKey) + " of class " + _type + " to pos: " + str(_pos));
 			};
-			
+*/			
 			if (_damage < 1) then {
 				diag_log format["OBJ: %1 - %2", _idKey,_type];
 				
@@ -237,7 +238,18 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 	_result = _key call server_hiveReadWrite;
 	_outcome = _result select 0;
 	if(_outcome == "PASS") then {
+  
 		_date = _result select 1; 
+		//date setup
+		_year = _date select 0;
+		_month = _date select 1;
+		_day = _date select 2;
+		_hour = _date select 3;
+		_minute = _date select 4;
+		
+		//Force full moon nights
+		_date = [2012,6,6,_hour,_minute];
+    
 		if(isDedicated) then {
 			//["dayzSetDate",_date] call broadcastRpcCallAll;
 			setDate _date;
