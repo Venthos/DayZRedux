@@ -19,7 +19,7 @@ Missing:
 */
 
 
-	private ["_looptime","_model","_sun_factor","_building_factor","_vehicle_factor","_fire_factor","_water_factor","_rain_factor","_night_factor","_wind_factor","_height_mod","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_building"];
+private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","_rain_factor","_night_factor","_wind_factor","_building_factor","_sun_factor","_water_factor","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_vel","_speed","_fireplaces","_building","_daytime","_height_mod","_temp"];
 
 	_looptime 			= _this;
 	_model = typeOf player;
@@ -108,7 +108,6 @@ Missing:
 	};
 	
 	//fire
-	private ["_fireplaces"];
 	_fireplaces = nearestObjects [player, ["Land_Fire","Land_Campfire"], 8];
 	if(({inflamed _x} count _fireplaces) > 0 && !_isinvehicle ) then {
 		//Math: factor * 1 / (0.5*(distance max 1)^2) 		0.5 = 12.5% of the factor effect in a distance o 4 meters
@@ -176,7 +175,6 @@ Missing:
 	};
 	
 	//night
-	private ["_daytime"];
 	if((daytime < _sunrise || daytime > (24 - _sunrise)) && !_isinvehicle) then {
 		_daytime 	= if(daytime < 12) then {daytime + 24} else {daytime};
 		if(_isinbuilding) then {

@@ -5,8 +5,8 @@ _messTimer = 0;
 _lastSave = 0;
 _lastTemp = dayz_temperatur;
 _debug = getMarkerpos "respawn_west";
-_isBandit = false;
-_isHero = false;
+//_isBandit = false;
+//_isHero = false;
 
 player setVariable ["temperature",dayz_temperatur,true];
 
@@ -22,8 +22,8 @@ while {true} do {
 	_vel = 		velocity player;
 	_speed = 	round((_vel distance [0,0,0]) * 3.5);
 	_saveTime = (playersNumber west * 2) + 10;
-	_isBandit = typeOf player == "Bandit1_DZ" || typeOf player == "BanditW1_DZ"; 
-	_isHero = typeOf player == "Survivor3_DZ";
+	_isBandit = typeOf player == "B1_RX" || typeOf player == "BW1_RX"; 
+	_isHero = typeOf player == "S3_RX";
   		
 	//reset position
 	_randomSpot = true;

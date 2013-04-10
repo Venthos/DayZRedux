@@ -1,12 +1,12 @@
-private["_unit","_ammo","_audible","_distance","_listTalk","_weapon","_projectile","_vUp","_endPos","_dir","_height","_bolt","_hitArray","_hitObject","_hitSelection","_config","_hitMemoryPt","_variation","_val","_doLoop","_countr"];
-_unit = 		_this select 0;
-_weapon = 		_this select 1;
-_ammo = 		_this select 4;
-_projectile = 	_this select 6;
+private["_obj","_unit","_ammo","_distance","_weapon","_projectile","_endPos","_doWait"];
+_obj = _this select 0;
+_unit =			_obj select 0;
+_weapon =		_obj select 1;
+_ammo =			_obj select 4;
+_projectile =	_obj select 6;
 
-_projectile = nearestObject [_unit, _ammo];
+_projectile = nearestObject [_unit,_ammo];
 _endPos = getPosATL _projectile;
-_dir = 0;
 
 _doWait = true;
 while {_doWait} do {
@@ -30,4 +30,4 @@ if (_ammo isKindOf "RoadFlare") then {
 	};
 };
 
-_id = [_unit,_distance,false,_endPos] spawn player_alertZombies;
+[_unit,_distance,false,_endPos] spawn player_alertZombies;

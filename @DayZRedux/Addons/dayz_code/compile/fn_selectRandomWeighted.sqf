@@ -18,7 +18,7 @@ scriptName "Functions\arrays\fn_selectRandomWeighted.sqf";
 	[*] Algorithm is inefficient?
 */
 
-private ["_array", "_weights","_index","_weighted","_i"];
+private["_array", "_weights","_index","_weighted","_i","_k"];
 _array = _this select 0;
 _weights = _this select 1;
 
@@ -28,7 +28,6 @@ if ((typeName _weights) != (typeName [])) exitWith {debugLog "Log: [selectRandom
 if ((count _array) > (count _weights)) exitWith {debugLog "Log: [selectRandomWeighted] There must be at least as many elements in Weights (1) as there are in Array (0)!"; nil};
 
 //Created weighted array of indices.
-private ["_weighted"];
 _weighted = [];
 for "_i" from 0 to ((count _weights) - 1) do 
 {
@@ -53,7 +52,6 @@ for "_i" from 0 to ((count _weights) - 1) do
 };
 
 //Randomly select an index from the weighted array and therefore an element.
-private ["_index"];
 _index = _weighted call BIS_fnc_selectRandom;
 
 _array select _index

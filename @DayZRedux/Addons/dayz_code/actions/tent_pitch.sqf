@@ -10,6 +10,8 @@ _text = getText (_config >> "displayName");
 
 if (!_hastentmag) exitWith {cutText [format[(localize "str_player_31"),_text,"pitch"] , "PLAIN DOWN"]};
 
+if (vehicle player != player) exitWith {cutText ["You may not place a tent while in a vehicle", "PLAIN DOWN"]};//check if player can build
+
 _location = player modeltoworld [0,2.5,0];
 _location set [2,0];
 _building = nearestObject [(vehicle player), "HouseBase"];

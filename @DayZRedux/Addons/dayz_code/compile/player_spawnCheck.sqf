@@ -133,7 +133,7 @@ if (dayz_spawnZombies == 0) then {
 	_checkLoot = ((count (getArray (_config >> "lootPos"))) > 0);
 	
 	//Loot
-	if ((_dis < 120) and (_dis > 30) and _canLoot and !_inVehicle) then {
+	if ((_dis < 120) and (_dis > 30) and _canLoot and !_inVehicle and _checkLoot) then {
 		_looted = (_x getVariable ["looted",-0.1]);
 		_cleared = (_x getVariable ["cleared",true]);
 		_dateNow = (DateToNumber date);
