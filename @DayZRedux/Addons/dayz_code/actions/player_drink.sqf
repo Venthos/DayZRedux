@@ -27,17 +27,7 @@ if (vehicle player != player) then {
   _display = findDisplay 106;
 	_display closeDisplay 0;
   _invehicle = true;
-if (["ItemWaterbottle",_itemorignal] call fnc_inString) then {
-    _dis=5;
-    [vehicle player,_sfx,0,false,_dis] call dayz_zombieSpeak;
-    [vehicle player,_dis,true,(getPosATL player)] spawn player_alertZombies;
-    vehicle player addMagazine "ItemWaterbottleUnfilled";
-} else {
-    _dis=15;
-    [vehicle player,_sfx,0,false,_dis] call dayz_zombieSpeak;
-    _id = [vehicle player,_dis,true,(getPosATL player)] spawn player_alertZombies;
 vehicle player removeMagazine _itemorignal;
-  };
 };
 
 player playActionNow "PutDown";
