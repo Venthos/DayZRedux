@@ -15,7 +15,7 @@ if (vehicle _object != _object) then {
 
 if (59 in _playerIDtoarray) exitWith { };
 
-if (((_timeout - time) > 0) || (_isInCombat > 0)) then {
+if (_isInCombat > 0) then {
 	diag_log format["COMBAT LOGGED: %1 (%2)", _playerName,_timeout];
   dayz_combatLog = _playerName;
 	publicVariable "dayz_combatLog";
