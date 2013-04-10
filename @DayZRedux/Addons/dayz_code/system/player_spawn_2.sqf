@@ -22,8 +22,8 @@ while {true} do {
 	_vel = 		velocity player;
 	_speed = 	round((_vel distance [0,0,0]) * 3.5);
 	_saveTime = (playersNumber west * 2) + 10;
-	_isBandit = typeOf player == "B1_RX" || typeOf player == "BW1_RX"; 
-	_isHero = typeOf player == "S3_RX";
+	_isBandit = typeOf player == "B1_RX" || typeOf player == "BW1_RX" || typeOf player == "GB1_RX" || typeOf player == "CB1_RX"; 
+	_isHero = typeOf player == "S3_RX" || typeOf player == "PS1_RX";
   		
 	//reset position
 	_randomSpot = true;
@@ -73,18 +73,9 @@ while {true} do {
 			player setVariable ["humanity",_humanity,true];
 		};
 	};
-	
-	if (_humanity < -2000 and !_isBandit) then {
 
-		_model = typeOf player;
-		if (_model == "S2_RX" or _model == "S3_RX") then {
-			[dayz_playerUID,dayz_characterID,"B1_RX"] spawn player_humanityMorph;
-		};
-		if (_model == "SW2_RX") then {
-			[dayz_playerUID,dayz_characterID,"BW1_RX"] spawn player_humanityMorph;
-		};   
-	};
-  if (_humanity < 0) then {
+  if ((_humanity < 0) and !_isBandit) then {
+	_model = typeOf player;
     if (_model == "CS1_RX") then {
 			[dayz_playerUID,dayz_characterID,"CB1_RX"] spawn player_humanityMorph;
 		};
@@ -95,6 +86,16 @@ while {true} do {
 			[dayz_playerUID,dayz_characterID,"PB1_RX"] spawn player_humanityMorph;
 		}; 
   };
+	if (_humanity < -2000 and !_isBandit) then {
+
+		_model = typeOf player;
+		if (_model == "S2_RX" or _model == "S3_RX") then {
+			[dayz_playerUID,dayz_characterID,"B1_RX"] spawn player_humanityMorph;
+		};
+		if (_model == "SW2_RX") then {
+			[dayz_playerUID,dayz_characterID,"BW1_RX"] spawn player_humanityMorph;
+		};   
+	};  
 	
 	if (_humanity > 0 and _isBandit) then {
 
