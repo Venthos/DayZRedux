@@ -1,4 +1,5 @@
-private["_flare","_sfx","_isLocal","_lightArea","_lightSpark","_type","_color"];
+private["_flare","_type","_sfx","_isLocal","_lightArea","_lightSpark","_color"];
+
 _flare = _this select 0;
 _type = _this select 1;
 _sfx = objNull;

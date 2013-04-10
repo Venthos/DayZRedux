@@ -30,7 +30,7 @@ if (count _this > 4) then {
 	if (_type in ["shout","hit","attack","scream","breath","spotted"]) then {
 		_dis = 100;
 	} else {
-		_dis = 80;
+		_dis = 60;
 	};
 };
 

@@ -16,7 +16,7 @@ _playerID =	getPlayerUID player;
 dayzKiller = dayz_myKiller;
 publicVariableServer "dayzKiller";
 
-_id = [player,50,true,getPosATL player] spawn player_alertZombies;
+_id = [player,30,true,getPosATL player] spawn player_alertZombies;
 
 sleep 0.5;
 

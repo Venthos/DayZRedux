@@ -53,7 +53,6 @@ actionMonitor = {
 			_run = false;
 		};
 	sleep _timeout;
-  pickupInit = true;
 	};
 };
 
@@ -63,15 +62,13 @@ if (_classname == "WoodenArrow") then {
   if (canPickup) then {
 	null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
 	player reveal _holder;
-    sleep 1.5;
-    pickupInit = true;
+	pickupInit = true;
   } else {
 	waitUntil {!pickupInit};
 	  if (canPickup) then {
 		null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
 		player reveal _holder;
-    sleep 1.5;
-    pickupInit = true;
+		pickupInit = true;
 	  };
   };
 };

@@ -29,6 +29,15 @@ disableSerialization;
 */				
 		while {!isNull _display} do {
 			switch true do {
+				case (canAbort) : {
+					_btnAbort ctrlEnable true;
+					cutText ["", "PLAIN DOWN"];
+				};
+				case ((dayz_combatTimer > 0) || (player getVariable["combattimeout", 0] >= time) || (_isInCombat == 1)) : {
+					_btnAbort ctrlEnable false;
+					//cutText ["Cannot Abort while in combat!", "PLAIN DOWN"];
+					cutText [format[localize "str_abort_playerincombat",_text], "PLAIN DOWN"];					
+				};
 				case ({isPlayer _x} count (player nearEntities ["AllVehicles", 6]) > 1) : {
 					_btnAbort ctrlEnable false;
 					//cutText ["You cannot abort with other players nearby!", "PLAIN DOWN"];
@@ -39,17 +48,12 @@ disableSerialization;
 					cutText [format ["Can Abort in %1", (_timeMax - _timeOut)], "PLAIN DOWN"];
 					//cutText [format[localize "str_abort_zedsclose",_text, "PLAIN DOWN"];
 				};
-				case ((dayz_combatTimer > 0) || (player getVariable["combattimeout", 0] >= time) || (_isInCombat == 1)) : {
-					_btnAbort ctrlEnable false;
-					//cutText ["Cannot Abort while in combat!", "PLAIN DOWN"];
-					cutText [format[localize "str_abort_playerincombat",_text], "PLAIN DOWN"];					
-				};
 				default {
 					_btnAbort ctrlEnable true;
 					cutText ["", "PLAIN DOWN"];				
 				};
 			};
-			sleep 1.0;
+			sleep 1;
 			_timeOut = _timeOut + 1;
 		};
 		cutText ["", "PLAIN DOWN"];

@@ -4,7 +4,7 @@ scriptName "Functions\misc\fn_damageActions.sqf";
 	- Function
 	- [] call fnc_usec_damageActions;
 ************************************************************/
-private["_menClose","_unit","_unconscious","_lowBlood","_injured","_inPain","_hasBandage","_hasEpi","_hasMorphine","_hasBlood","_action1","_action2","_action","_vehClose","_hasVehicle","_vehicle","_inVehicle","_crew","_unconscious_crew","_patients"];
+private["_menClose","_hasPatient","_vehicle","_inVehicle","_isClose","_bag","_classbag","_assignedRole","_turret","_weapons","_weaponName","_action","_unit","_vehClose","_hasVehicle","_unconscious","_lowBlood","_injured","_inPain","_legsBroke","_armsBroke","_hasBandage","_hasEpi","_hasMorphine","_hasBlood","_hasToolbox","_hasJerry","_hasEtool","_hasWire","_hasPainkillers","_action1","_action2","_vehType","_type","_typeVeh","_weapon","_magTypes","_ammoSerial","_ammoQty","_displayName","_isEngineer","_index","_inventory","_unitTo","_crew","_unconscious_crew","_patients","_y"];
 
 _menClose = cursorTarget;
 _hasPatient = alive _menClose;
@@ -13,7 +13,6 @@ _inVehicle = (_vehicle != player);
 _isClose = ((player distance _menClose) < ((sizeOf typeOf _menClose) / 2));
 _bag = unitBackpack player;
 _classbag = typeOf _bag;
-
 /*
 if (_inVehicle) then {
 	r_player_lastVehicle = _vehicle;
@@ -40,7 +39,6 @@ if (_inVehicle) then {
 	r_player_lastSeat = [];
 };
 */
-
 if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unconscious and _isClose) then {
 	_unit = 		cursorTarget;
 	player reveal _unit;
@@ -58,6 +56,7 @@ if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unco
 	_hasBlood = 	"ItemBloodbag" in magazines player;	
 	_hasToolbox = 	"ItemToolbox" in items player;
 	_hasJerry = 	"ItemJerrycan" in magazines player;
+	_hasFuel5 = 	"ItemFuelcan" in magazines player;
 	_hasEtool = 	"ItemEtool" in weapons player;
 	_hasWire = 		"ItemWire" in magazines player;
 	_hasPainkillers = 	"ItemPainkiller" in magazines player;
@@ -71,13 +70,13 @@ if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unco
 	};
 	//Load Vehicle
 	if (_hasVehicle and _unconscious) then {
-		_x = 0;
+		_y = 0;
 		r_action = true;
 		_unit = _unit;
-		_vehicle = (_vehClose select _x);
-		while{((!alive _vehicle) and (_x < (count _vehClose)))} do {
-			_x = _x + 1;
-			_vehicle = (_vehClose select _x);
+		_vehicle = (_vehClose select _y);
+		while{((!alive _vehicle) and (_y < (count _vehClose)))} do {
+			_y = _y + 1;
+			_vehicle = (_vehClose select _y);
 		};
 		_vehType = typeOf _vehicle;
 		_action = _unit addAction [format[localize "str_actions_medical_03",_vehType], "\z\addons\dayz_code\medical\load\load_act.sqf",[player,_vehicle,_unit], 0, true, true];
@@ -121,9 +120,14 @@ if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unco
 		_typeVeh = getText(configFile >> "cfgVehicles" >> _type >> "displayName");
 
 		//CAN WE REFUEL THE OBJECT?
-		if ((fuel _unit < 1) and _hasJerry) then {
+		if ((fuel _unit < 1) and (_hasJerry or _hasFuel5)) then {
 			r_action = true;
-			_action = _unit addAction [format[localize "str_actions_medical_10",_typeVeh], "\z\addons\dayz_code\actions\refuel.sqf",[_unit], 0, true, true, "", "'ItemJerrycan' in magazines player"];
+			if (_hasJerry) then {
+				_action = _unit addAction [format[localize "str_actions_medical_10",_typeVeh], "\z\addons\dayz_code\actions\refuel.sqf",["ItemJerrycan"], 0, true, true, "", "'ItemJerrycan' in magazines player"];
+			};
+			if (_hasFuel5) then {
+				_action = _unit addAction [format[localize "str_actions_medical_10",_typeVeh], "\z\addons\dayz_code\actions\refuel.sqf",["ItemFuelcan"], 0, true, true, "", "'ItemFuelcan' in magazines player"];
+			};
 			r_player_actions set [count r_player_actions,_action];
 		};
 		//CAN WE ISSUE ANOTHER KIND OF AMMUNITION?

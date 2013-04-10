@@ -4,7 +4,7 @@ _target = objNull;
 _lead = leader _group;
 _targetMen = [];
 _targetDis = [];
-_range = 400; //500
+_range = 500;
 
 _assigned = _group getVariable ["targets",[]];
 {

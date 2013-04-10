@@ -2,8 +2,6 @@
 	FUNCTION COMPILES
 */
 //Player only
-//Start loadscreen early in hopes to stop load preview.
-	startLoadingScreen ["","RscDisplayLoadCustom"];
 
 if (!isDedicated) then {
 	_config = 	configFile >> "CfgLoot";

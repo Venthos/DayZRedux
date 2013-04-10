@@ -13,8 +13,9 @@
 "dayzHitV" 			addPublicVariableEventHandler {(_this select 1) call fnc_usec_damageVehicle};
 "dayzHideBody"		addPublicVariableEventHandler {hideBody (_this select 1)};
 "dayzGutBody"		addPublicVariableEventHandler {(_this select 1) spawn local_gutObject};
-//"dayzSetFuel"		addPublicVariableEventHandler {(_this select 1) call local_sefFuel};
-//"dayzSetFix"		addPublicVariableEventHandler {(_this select 1) call object_setFixServer};
+//Moved from isserver
+"dayzSetFuel"		addPublicVariableEventHandler {(_this select 1) spawn local_setFuel};
+"dayzSetFix"		addPublicVariableEventHandler {(_this select 1) call object_setFixServer};
 "dayzDelLocal"		addPublicVariableEventHandler {(_this select 1) call object_delLocal};
 "dayzVehicleInit"	addPublicVariableEventHandler {(_this select 1) call fnc_vehicleEventHandler};
 "dayzHumanity"		addPublicVariableEventHandler {(_this select 1) spawn player_humanityChange};
@@ -28,7 +29,7 @@ if (isServer) then {
 	"dayzDiscoRem"		addPublicVariableEventHandler {dayz_disco = dayz_disco - [(_this select 1)];};
 	"dayzPlayerSave"	addPublicVariableEventHandler {_id = (_this select 1) spawn server_playerSync;};
 	"dayzPublishObj"	addPublicVariableEventHandler {(_this select 1) call server_publishObj};
-	"dayzUpdateVehicle" addPublicVariableEventHandler {_id = (_this select 1) spawn server_updateObject};
+	"dayzUpdateVehicle" addPublicVariableEventHandler {(_this select 1) call server_updateObject};
 	//"dayzDeleteObj"		addPublicVariableEventHandler {(_this select 1) spawn server_deleteObj};
 	"dayzLogin"			addPublicVariableEventHandler {_id = (_this select 1) spawn server_playerLogin};
 	"dayzLogin2"		addPublicVariableEventHandler {(_this select 1) call server_playerSetup};
@@ -37,9 +38,6 @@ if (isServer) then {
 	"dayzLoginRecord"	addPublicVariableEventHandler {_id = (_this select 1) spawn dayz_recordLogin};
 	"dayzCharSave"		addPublicVariableEventHandler {_id = (_this select 1) spawn server_playerSync};
 	//"dayzCharDisco"		addPublicVariableEventHandler {_id = (_this select 1) call server_characterSync};
-	//Checking
-	"dayzSetFuel"		addPublicVariableEventHandler {(_this select 1) spawn local_setFuel};
-	"dayzSetFix"		addPublicVariableEventHandler {(_this select 1) call object_setFixServer};
 	"dayzDeleteObj"		addPublicVariableEventHandler {(_this select 1) spawn server_deleteObj};
 	"dayz_logDamage"		addPublicVariableEventHandler {_id = (_this select 1) call server_logDamage};
 	//"dayz_serverSpawnLoot"	addPublicVariableEventHandler {_id = (_this select 1) call server_lootEvent};

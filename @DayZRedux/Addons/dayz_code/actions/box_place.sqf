@@ -1,5 +1,7 @@
 private["_position","_box","_location","_isOk","_backpack","_tentType","_trg","_key"];
-//check if can build here
+
+if (vehicle player != player) exitWith {cutText ["You may not place a box while in a vehicle", "PLAIN DOWN"]};//check if player can build
+
 call gear_ui_init;
 _item = _this;
 
