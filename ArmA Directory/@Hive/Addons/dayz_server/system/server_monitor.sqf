@@ -23,51 +23,6 @@ if (_script != "") then
 	};
 };
 
-// Spawn custom buildings
-_cfgLocations = configFile >> "CfgChernarusRedux";
-
-diag_log(format["ChernarusRedux Loading (%1)...", count _cfgLocations]);
-for "_i" from 0 to ((count _cfgLocations) - 1) do 
-{
-	_config = _cfgLocations select _i;
-	_locName = configName _config;
-
-	_buildingList = configFile >> "CfgChernarusRedux" >> _locName;
-	diag_log(format["Generating ChernarusRedux Buildings for: %1 (%2)", _locName, count _buildingList]);
-
-	for "_j" from 0 to ((count _buildingList) - 1) do 
-	{
-		_config	= _buildingList select _j;
-		if (isClass(_config)) then {
-			_type		= getText(_config >> "type");
-			_position	= [] + getArray	(_config >> "position");
-			_dir		= getNumber	(_config >> "direction");
-			_noTilt		= getNumber	(_config >> "noTilt");
-		
-			_object =  createVehicle [_type, _position, [], 0, "CAN_COLLIDE"];
-
-			// noTilt means the building/object will not be tilted to match the terrain incline
-			// However, you generally don't want this other than for proper cement buildings,
-			// as doing a setDir after a setPos risks misplacement of the building
-			if (_noTilt == 1) then {
-				_object setDir _dir;
-				_object setPos _position;
-				_object setDir _dir;
-			} else {
-				_object setDir _dir;
-				_object setPos _position;
-			};
-
-			_object allowDamage false;
-
-			//Monitor the object
-			//dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object];
-
-			diag_log(format["Added: %1", _type]);
-		};
-	};
-};
-
 	//Stream in objects
 	/* STREAM OBJECTS */
 		//Send the key
@@ -120,13 +75,14 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 					_wsDone = true;
 				}
 			};			
+/*
 			if (!_wsDone) then {
 				if (count _worldspace >= 1) then { _dir = _worldspace select 0; };
-				_pos = [getMarkerPos "center",0,4000,10,0,2000,0] call BIS_fnc_findSafePos;
+				_pos = [getMarkerPos "center",0,50,10,0,2000,0] call BIS_fnc_findSafePos;
 				if (count _pos < 3) then { _pos = [_pos select 0,_pos select 1,0]; };
 				diag_log ("MOVED OBJ: " + str(_idKey) + " of class " + _type + " to pos: " + str(_pos));
 			};
-			
+*/			
 			if (_damage < 1) then {
 				diag_log format["OBJ: %1 - %2", _idKey,_type];
 				
@@ -153,7 +109,15 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 				};
 				_object setdir _dir;
 				_object setDamage _damage;
-				
+
+		// Temporary removal of Huey ammo
+		if (_object isKindOf "HH_RX") then {
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[0]];
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[0]];
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[1]];
+			_object removeMagazineTurret ["100Rnd_762x51_M240",[1]];
+		};
+
 				if (count _intentory > 0) then {
 					//Add weapons
 					_objWpnTypes = (_intentory select 0) select 0;
@@ -229,7 +193,18 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 	_result = _key call server_hiveReadWrite;
 	_outcome = _result select 0;
 	if(_outcome == "PASS") then {
+  
 		_date = _result select 1; 
+		//date setup
+		_year = _date select 0;
+		_month = _date select 1;
+		_day = _date select 2;
+		_hour = _date select 3;
+		_minute = _date select 4;
+		
+		//Force full moon nights
+		_date = [2012,6,6,_hour,_minute];
+    
 		if(isDedicated) then {
 			//["dayzSetDate",_date] call broadcastRpcCallAll;
 			setDate _date;
@@ -239,7 +214,52 @@ for "_i" from 0 to ((count _cfgLocations) - 1) do
 
 		diag_log ("HIVE: Local Time set to " + str(_date));
 	};
-	
+
+// Spawn custom buildings
+_cfgLocations = configFile >> "CfgChernarusRedux";
+
+diag_log(format["ChernarusRedux Loading (%1)...", count _cfgLocations]);
+for "_i" from 0 to ((count _cfgLocations) - 1) do 
+{
+	_config = _cfgLocations select _i;
+	_locName = configName _config;
+
+	_buildingList = configFile >> "CfgChernarusRedux" >> _locName;
+	diag_log(format["Generating ChernarusRedux Buildings for: %1 (%2)", _locName, count _buildingList]);
+
+	for "_j" from 0 to ((count _buildingList) - 1) do 
+	{
+		_config	= _buildingList select _j;
+		if (isClass(_config)) then {
+			_type		= getText(_config >> "type");
+			_position	= [] + getArray	(_config >> "position");
+			_dir		= getNumber	(_config >> "direction");
+			_noTilt		= getNumber	(_config >> "noTilt");
+		
+			_object =  createVehicle [_type, _position, [], 0, "CAN_COLLIDE"];
+
+			// noTilt means the building/object will not be tilted to match the terrain incline
+			// However, you generally don't want this other than for proper cement buildings,
+			// as doing a setDir after a setPos risks misplacement of the building
+			if (_noTilt == 1) then {
+				_object setDir _dir;
+				_object setPos _position;
+				_object setDir _dir;
+			} else {
+				_object setDir _dir;
+				_object setPos _position;
+			};
+
+			_object allowDamage false;
+
+			//Monitor the object
+			//dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object];
+
+			diag_log(format["Added: %1", _type]);
+		};
+	};
+};
+
 	createCenter civilian;
 	if (isDedicated) then {
 		endLoadingScreen;

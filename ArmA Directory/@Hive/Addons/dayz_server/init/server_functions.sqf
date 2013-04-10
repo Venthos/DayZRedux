@@ -29,8 +29,10 @@ server_killerReport = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\
 vehicle_handleInteract = {
 	private["_object"];
 	_object = _this select 0;
-	needUpdate_objects = needUpdate_objects - [_object];
-	[_object, "all"] call server_updateObject;
+	if (_object in needUpdate_objects) then {
+		needUpdate_objects = needUpdate_objects - [_object];
+	};
+	[_object, "damage"] call server_updateObject;
 };
 
 vehicle_handleServerKilled = {

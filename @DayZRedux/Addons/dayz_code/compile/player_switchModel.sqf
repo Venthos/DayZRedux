@@ -75,9 +75,6 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	//diag_log("DIAG: switchmodel allowdamage false");
 	player allowDamage false;
   
-  //Pause for anti-teleport so people don't fall into the ocean...
-  teleport_pause = true;
-  
 //BackUp Player Object
 	_oldUnit = player;
 	
@@ -200,8 +197,6 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
   
 	//diag_log("DIAG: switchmodel allowdamage true");
 	player allowDamage true;
-  
-  teleport_pause = false;
 
 	// Only enable when testing on test server!! UNCOMMENT THE CODE IN THE debug_teleport.sqf FIRST!
 	//player addAction ["Debug Teleport", "\z\addons\dayz_code\actions\debug_teleport.sqf"];

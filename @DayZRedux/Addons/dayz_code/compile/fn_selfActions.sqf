@@ -4,7 +4,7 @@ scriptName "Functions\misc\fn_selfActions.sqf";
 	- Function
 	- [] call fnc_usec_selfActions;
 ************************************************************/
-private["_menClose","_hasBandage","_hasEpi","_hasMorphine","_hasBlood","_vehicle","_inVehicle","_color","_part"];
+private ["_vehicle","_hasChloroform","_inVehicle","_bag","_classbag","_isWater","_hasAntiB","_hasFuelE","_hasFuel5","_hasbottleitem","_hastinitem","_hasKnife","_hasToolbox","_onLadder","_nearLight","_canPickLight","_canDo","_text","_isHarvested","_isVehicle","_isVehicletype","_isMan","_ownerID","_isAnimal","_isDog","_isZombie","_isDestructable","_isTent","_isFuel","_isAlive","_canmove","_rawmeat","_hasRawMeat","_allFixed","_hitpoints","_damage","_part","_cmpt","_damagePercent","_color","_string","_handle","_dogHandle","_lieDown","_warn","_dog","_speed","_array","_newArray","_toStr","_fullPartName","_glassName","_isStorageBox","_hasMatches"];
 
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
@@ -13,6 +13,7 @@ _classbag = typeOf _bag;
 _isWater = 		(surfaceIsWater (position player)) or dayz_isSwimming;
 _hasAntiB = 	"ItemAntibiotic" in magazines player;
 _hasFuelE = 	"ItemJerrycanEmpty" in magazines player;
+_hasFuel5 = 	"ItemFuelcanEmpty" in magazines player;
 //boiled Water
 _hasbottleitem = "ItemWaterbottle" in magazines player;
 _hastinitem = false;
@@ -81,7 +82,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		} forEach _rawmeat; 
 	
 	
-	if (_hasFuelE) then {
+	if (_hasFuelE or _hasFuel5) then {
 		_isFuel = (cursorTarget isKindOf "Land_Ind_TankSmall") or (cursorTarget isKindOf "Land_fuel_tank_big") or (cursorTarget isKindOf "Land_fuel_tank_stairs") or (cursorTarget isKindOf "Land_wagon_tanker");
 	};
 	//diag_log ("OWNERID = " + _ownerID + " CHARID = " + dayz_characterID + " " + str(_ownerID == dayz_characterID));
@@ -138,7 +139,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 	
 	//Allow player to fill jerrycan
-	if(_hasFuelE and _isFuel and _canDo) then {
+	if((_hasFuelE or _hasFuel5) and _isFuel and _canDo) then {
 		if (s_player_fillfuel < 0) then {
 			s_player_fillfuel = player addAction [localize "str_actions_self_10", "\z\addons\dayz_code\actions\jerry_fill.sqf",[], 1, false, true, "", ""];
 		};
@@ -213,7 +214,57 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		player removeAction s_player_retrievebox;
 		s_player_retrievebox = -1;
 	};
-  
+
+	// Remove Parts from Vehicles - By SilverShot.
+	if( !_isMan and _canDo and _hasToolbox and (silver_myCursorTarget != cursorTarget) and cursorTarget isKindOf "AllVehicles" and (getDammage cursorTarget < 0.95) ) then {
+		_vehicle = cursorTarget;
+		_invalidVehicle = (_vehicle isKindOf "Motorcycle") or (_vehicle isKindOf "Tractor") or (_vehicle isKindOf "Ship"); //or (_vehicle isKindOf "ATV_US_EP1") or (_vehicle isKindOf "ATV_CZ_EP1");
+		if( !_invalidVehicle ) then {
+		{silver_myCursorTarget removeAction _x} forEach s_player_removeActions;
+		
+		s_player_removeActions = [];
+		silver_myCursorTarget = _vehicle;
+		 
+		_hitpoints = _vehicle call vehicle_getHitpoints;
+		 
+		{
+		_damage = [_vehicle,_x] call object_getHit;
+		 
+		if( _damage < 0.15 ) then {
+		 
+		//change "HitPart" to " - Part" rather than complicated string replace
+		_cmpt = toArray (_x);
+		_cmpt set [0,20];
+		_cmpt set [1,toArray ("-") select 0];
+		_cmpt set [2,20];
+		_cmpt = toString _cmpt;
+		 
+		_skip = true;
+		if((_damage < 10) and _skip and _x == "HitFuel" ) then { _skip = false; _part = "PartFueltank"; _cmpt = _cmpt + "tank"};
+		if((_damage < 10) and _skip and _x == "HitEngine" ) then { _skip = false; _part = "PartEngine"; };
+		if((_damage < 10) and _skip and _x == "HitLFWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if((_damage < 10) and _skip and _x == "HitRFWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if((_damage < 10) and _skip and _x == "HitLBWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if((_damage < 10) and _skip and _x == "HitRBWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if((_damage < 10) and _skip and _x == "HitGlass1" ) then { _skip = false; _part = "PartGlass"; };
+		if((_damage < 10) and _skip and _x == "HitGlass2" ) then { _skip = false; _part = "PartGlass"; };
+		if((_damage < 10) and _skip and _x == "HitGlass3" ) then { _skip = false; _part = "PartGlass"; };
+		if((_damage < 10) and _skip and _x == "HitGlass4" ) then { _skip = false; _part = "PartGlass"; };
+		if((_damage < 10) and _skip and _x == "HitGlass5" ) then { _skip = false; _part = "PartGlass"; };
+		if((_damage < 10) and _skip and _x == "HitGlass6" ) then { _skip = false; _part = "PartGlass"; };
+		if((_damage < 10) and _skip and _x == "HitHRotor" ) then { _skip = false; _part = "PartVRotor"; };
+		 
+		if (!_skip ) then {
+			_string = format["<t color='#0096ff'>Remove%1</t>",_cmpt,_color]; //Remove - Part
+			_handle = silver_myCursorTarget addAction [_string, "\z\addons\dayz_code\actions\remove_parts.sqf",[_vehicle,_part,_x], 0, false, true, "",""];
+			s_player_removeActions set [count s_player_removeActions,_handle];
+		};
+		};
+		 
+		} forEach _hitpoints;
+		};
+	};
+
 	//Repairing Vehicles
 	if ((dayz_myCursorTarget != cursorTarget) and _isVehicle and !_isMan and _hasToolbox and (damage cursorTarget < 1)) then {
 		_vehicle = cursorTarget;
@@ -395,6 +446,9 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		s_player_followdog = -1;
 	};
 } else {
+  //remove vehicle parts
+	{silver_myCursorTarget removeAction _x} forEach s_player_removeActions;s_player_removeActions = [];
+	silver_myCursorTarget = objNull;
 	//Engineering
 	{dayz_myCursorTarget removeAction _x} forEach s_player_repairActions;s_player_repairActions = [];
 	dayz_myCursorTarget = objNull;

@@ -1,10 +1,7 @@
-private["_unit","_targets","_move","_openVehicles","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
+private["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
 _unit = _this select 0;
 _type = _this select 1;
 _vehicle = (vehicle player);
-
-_targets = _unit getVariable ["targets",[]];
-//if (!(_vehicle in _targets)) exitWith {};
 
 //Do the attack
 if (r_player_unconscious && _vehicle == player && _type == "zombie") then {
@@ -18,9 +15,18 @@ if (r_player_unconscious && _vehicle == player && _type == "zombie") then {
 		_move = "Dog_Attack";
 	};
 };
-_dir = [_unit,player] call BIS_Fnc_dirTo;
+
+_dir = [_unit,player] call BIS_fnc_dirTo;
 _unit setDir _dir;
-_unit playMove _move;
+
+if (local _unit) then
+{
+	_unit playMove _move;
+}
+else
+{
+	[objNull,_unit,rPlayMove,_move] call RE;
+};
 
 //Wait
 sleep 0.3;
@@ -45,7 +51,8 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 	};
   
   //Remove vehicles that are moving faster than 10KPH
-  if (!(_vehicle isKindOf _x)) then {
+	_closedVehicles = ["Helicopter", "Car", "Truck"];
+  if (_vehicle isKindOf _x) then { 
   _lastpos = getPosATL (vehicle player);
   _lasttime = time;
   _curpos = getPosATL (vehicle player);
@@ -55,7 +62,7 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 	_speed = _distance / _difftime;
 	_threshold = 10;
       if (_speed > _threshold) exitWith {};
-		} forEach _openVehicles;
+		} forEach _closedVehicles;
 
 	if ((_wound == "Glass1") or (_wound == "Glass2") or (_wound == "Glass3") or (_wound == "Glass4") or (_wound == "Glass5") or (_wound == "Glass6")) then {
 		[_unit,"hit",4,false] call dayz_zombieSpeak;
@@ -124,19 +131,7 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 				//dayzHit =	[player,_wound, _damage, _unit,"zombie"];
 				//publicVariable "dayzHit";
 				[_unit,"hit",2,false] call dayz_zombieSpeak;
-			} else {
-				/*
-				_isZombieInside = [_unit,_building] call fnc_isInsideBuilding;
-				if (_isPlayerInside) then {
-					_damage = 0.1 + random (1.2);
-					//diag_log ("START DAM: Player Hit on " + _wound + " for " + str(_damage));
-					[player, _wound, _damage, _unit,"zombie"] call fnc_usec_damageHandler;
-					//dayzHit =	[player,_wound, _damage, _unit,"zombie"];
-					//publicVariable "dayzHit";
-					[_unit,"hit",2,false] call dayz_zombieSpeak;	
-				};
-				*/
+        };
 			};
 		};
 	};
-};

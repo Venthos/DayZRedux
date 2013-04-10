@@ -15,19 +15,17 @@
 // Revision History:
 // 09/01/08 0.1 - First cut VBS2
 //------------------
-
-
-private["_dir1","_dir2","_dir3","_small","_large","_x","_y","_r"];
+private["_r","_small","_large","_xpos","_ypos","_dir1","_dir2","_dir3"];
 
 _r = false;
 
 _small = (_this select 1) - ((_this select 2) / 2);
 _large = (_this select 1) + ((_this select 2) / 2);
 
-_x = ((_this select 3) select 0) - ((_this select 0) select 0);
-_y = ((_this select 3) select 1) - ((_this select 0) select 1);
+_xpos = ((_this select 3) select 0) - ((_this select 0) select 0);
+_ypos = ((_this select 3) select 1) - ((_this select 0) select 1);
 
-_dir1 = _x atan2 _y;
+_dir1 = _xpos atan2 _ypos;
 
 if (_dir1 < 0) then {_dir1 = _dir1 + 360};
 
