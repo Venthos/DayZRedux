@@ -45,7 +45,7 @@ if (_notInBuilding) then {
 	player playActionNow "Medic";
 	sleep 1;
 	
-	_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
+	_id = [player,0,true,(getPosATL player)] spawn player_alertZombies;
 	
 	sleep 5;
 	//place box
