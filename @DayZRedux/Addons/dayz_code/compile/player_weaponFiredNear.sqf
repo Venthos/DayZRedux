@@ -20,7 +20,7 @@ private["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","
 	_recordable = false;
 	
 	// Color in the combat icon immediately since player_spawn2.sqf loops on a 2 second delay
-	//dayz_combat = 1;
+	dayz_combat = 1;
 	// Queue up for combat
 	dayz_combatStart = true;
 	diag_log("COMBAT: In combat from weaponFiredNear");

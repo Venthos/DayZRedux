@@ -3778,8 +3778,8 @@ class CfgVehicles {
 		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
 		canHideBodies = 1;
 	};
-	class GUE_Soldier_1;
-	class CB1_RX: GUE_Soldier_1 {
+	class GUE_Commander;
+	class CB1_RX: GUE_Commander {
 		displayName = "Bandit";
 		side = 1;
 		weapons[] = {"Throw","Put"};
@@ -3802,8 +3802,8 @@ class CfgVehicles {
 		weaponSlots = "1	 + 	4	 + 12*		256	 + 2*	4096	 + 	2	 + 8*	16  + 12*131072";
 		canHideBodies = 1;
 	};
-	class GUE_Soldier_Pilot;
-	class PB1_RX: GUE_Soldier_Pilot {
+	class INS_Lopotev;
+	class PB1_RX: INS_Lopotev {
 		displayName = "Criminal";
 		side = 1;
 		weapons[] = {"Throw","Put"};
