@@ -3868,7 +3868,7 @@ class CfgVehicles {
 		picture = "\ca\weapons_e\data\icons\backpack_ACR_small_CA.paa";
 		scope = 2;
 		transportmaxweapons = 0;
-		transportmaxmagazines = 7;
+		transportmaxmagazines = 8;
 	};
 
 	class DZ_ALICE_Pack_EP1: Bag_Base_EP1
