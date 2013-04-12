@@ -3855,7 +3855,7 @@ class CfgVehicles {
 		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
 		mapSize = 2;
 		model = "\ca\weapons_e\AmmoBoxes\backpack_us_assault.p3d";
-		transportMaxWeapons = 1;
+		transportMaxWeapons = 2;
 		transportMaxMagazines = 12;
 	};
 
@@ -3879,8 +3879,8 @@ class CfgVehicles {
 		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
 		mapsize = 2;
 		model = "\ca\weapons_e\AmmoBoxes\backpack_tk_alice.p3d";
-		transportMaxWeapons = 2;
-		transportMaxMagazines = 16;
+		transportMaxWeapons = 4;
+		transportMaxMagazines = 20;
 	};
 
 	class DZ_TK_Assault_Pack_EP1 : Bag_Base_EP1
@@ -3915,7 +3915,7 @@ class CfgVehicles {
 		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
 		mapsize = 2;
 		model = "\ca\weapons_e\AmmoBoxes\backpack_acr.p3d";
-		transportMaxWeapons = 2;
+		transportMaxWeapons = 3;
 		transportMaxMagazines = 16;
 	};
 
