@@ -7,9 +7,9 @@ _holder = _array select 2;
 _playerID = getPlayerUID player;
 _text = getText (configFile >> _type >> _classname >> "displayName");
 
-_holder setVariable["claimed",_playerID,true];
-
 if (!canPickup) exitwith { cutText ["You may only pick up one item at a time!","PLAIN DOWN"] };
+
+_holder setVariable["claimed",_playerID,true];
 
 if (_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
 
@@ -33,8 +33,7 @@ if(_classname == "WoodenArrow") then {
 };
 if (_broken) exitWith { deleteVehicle _holder; cutText [format[localize "str_broken_arrow"] , "PLAIN DOWN"]};
 
-canPickup = false;
-sleep 0.25;
+//sleep 0.25;
 
 _claimedBy = _holder getVariable["claimed",0];
 
@@ -60,6 +59,7 @@ if (_isOk) then {
 			};
 		};
 	};
+canPickup = false;
 } else {
 	_holder setVariable["claimed",0,true];
 	cutText [localize "STR_DAYZ_CODE_2", "PLAIN DOWN"];
@@ -72,4 +72,5 @@ if (_isOk) then {
 	if (_classname == "MeleeMachete") then {
 			player removeMagazine 'Machete_swing';
 	};
+canPickup = false;
 };

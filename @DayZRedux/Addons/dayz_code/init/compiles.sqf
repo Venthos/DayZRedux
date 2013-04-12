@@ -229,7 +229,7 @@ if (!isDedicated) then {
 		if (_dikCode in (actionKeys "GetOver")) then {
 			if (!r_fracture_legs and (time - dayz_lastCheckBit > 4)) then {
 				_inBuilding = [player] call fnc_isInsideBuilding;
-				_nearbyObjects = nearestObjects[getPosATL player, ["Land_Cont_RX", "Land_Cont2_RX", "Land_Mag_RX", "Hedgehog_DZ", "Sandbag1_DZ","TrapBear","Wire_cat1"], 8];
+				_nearbyObjects = nearestObjects[getPosATL player, ["Land_Cont_RX", "Land_Cont2_RX", "Hedgehog_DZ", "Sandbag1_DZ","TrapBear","Wire_cat1"], 8];
 				if (!_inBuilding and (count _nearbyObjects == 0)) then {
 					dayz_lastCheckBit = time;
 					call player_CombatRoll;

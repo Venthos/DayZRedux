@@ -5,9 +5,9 @@ item0[] = {"init",0,250,-75.000000,-400.000000,25.000000,-350.000000,0.000000,"i
 item1[] = {"true",8,218,-75.000000,-175.000000,25.000000,-125.000000,0.000000,"true"};
 item2[] = {"waiting",2,250,-75.000000,-100.000000,25.000000,-50.000000,0.000000,"waiting"};
 item3[] = {"too_many_dead",4,218,-150.000000,-25.000000,-50.000000,25.000000,2.000000,"too many" \n "dead"};
-item4[] = {"cleanup_dead",2,4346,-150.000000,50.000000,-50.000000,100.000000,0.000000,"cleanup" \n "dead"};
+item4[] = {"cleanup_dead",2,250,-150.000000,50.000000,-50.000000,100.000000,0.000000,"cleanup" \n "dead"};
 item5[] = {"too_many_objects",4,218,-25.000000,-25.000000,75.000000,25.000000,0.000000,"too many" \n "objects"};
-item6[] = {"cleanup_objects",2,250,-25.000000,50.000000,75.000000,100.000000,0.000000,"cleanup" \n "objects"};
+item6[] = {"cleanup_objects",2,4346,-25.000000,50.000000,75.000000,100.000000,0.000000,"cleanup" \n "objects"};
 item7[] = {"time_sync",4,218,-275.000000,-25.000000,-175.000000,25.000000,1.000000,"time" \n "sync"};
 item8[] = {"sync_the_time",2,250,-275.000000,50.000000,-175.000000,100.000000,0.000000,"sync" \n "the time"};
 item9[] = {"true",8,218,-75.000000,125.000000,25.000000,175.000000,0.000000,"true"};
@@ -243,23 +243,23 @@ class FSM
        "diag_log (""CLEANUP:TOTAL "" + str(_qty) + "" LOOT BAGS"");" \n
        "" \n
        "_delQty = 0;" \n
-       "{" \n
-       "	_keep = _x getVariable [""permaLoot"",false];" \n
-       "	 _nearby = {isPlayer _x} count (_x nearEntities [[""CAManBase""], 130]);" \n
+       "//{" \n
+       "	//_keep = _x getVariable [""permaLoot"",false];" \n
+       "	// _nearby = {isPlayer _x} count (_x nearEntities [[""CAManBase""], 130]);" \n
        "" \n
-       "	_created = (_x getVariable [""created"",-0.1]);" \n
+       "	//_created = (_x getVariable [""created"",-0.1]);" \n
        "" \n
-       "	if (_created == -0.1) then {" \n
-       "		_x setVariable [""created"",(DateToNumber date),true];" \n
-       "	};" \n
+       "	//if (_created == -0.1) then {" \n
+       "		//_x setVariable [""created"",(DateToNumber date),true];" \n
+       "	//};" \n
        "" \n
-       "	_age = ((DateToNumber date) - _created) * 525948;" \n
+       "	//_age = ((DateToNumber date) - _created) * 525948;" \n
        "	" \n
-       "	if ( (!_keep) && (_nearby==0) && (_age > 10) ) then {" \n
-       "		deleteVehicle _x;" \n
-       "		_delQty = _delQty + 1;" \n
-       "	};" \n
-       "} forEach _missionObjs;" \n
+       "	//if ( (!_keep) && (_nearby==0) && (_age > 10) ) then {" \n
+       "		//deleteVehicle _x;" \n
+       "		//_delQty = _delQty + 1;" \n
+       "	//};" \n
+       "//} forEach _missionObjs;" \n
        "" \n
        "if (_delQty > 0) then {" \n
        "	diag_log (""CLEANUP: DELETED "" + str(_delQty) + "" LOOT BAGS"");" \n
