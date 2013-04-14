@@ -73,6 +73,7 @@ while {true} do {
 			player setVariable ["humanity",_humanity,true];
 		};
 	};
+<<<<<<< HEAD
 	if (_humanity < 5000 and !_isBandit) then {
 		_model = typeOf player;
 	if (_model == "PS1_RX") then {
@@ -88,12 +89,33 @@ while {true} do {
 		if (_model == "SW2_RX") then {
 			[dayz_playerUID,dayz_characterID,"BW1_RX"] spawn player_humanityMorph;
 		};
+=======
+
+  if ((_humanity < 0) and !_isBandit) then {
+	_model = typeOf player;
+>>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
     if (_model == "CS1_RX") then {
 			[dayz_playerUID,dayz_characterID,"CB1_RX"] spawn player_humanityMorph;
 		};
     if (_model == "GS1_RX") then {
 			[dayz_playerUID,dayz_characterID,"GB1_RX"] spawn player_humanityMorph;
 		};
+<<<<<<< HEAD
+=======
+    if (_model == "PS1_RX") then {
+			[dayz_playerUID,dayz_characterID,"PB1_RX"] spawn player_humanityMorph;
+		}; 
+  };
+	if (_humanity < -2000 and !_isBandit) then {
+
+		_model = typeOf player;
+		if (_model == "S2_RX" or _model == "S3_RX") then {
+			[dayz_playerUID,dayz_characterID,"B1_RX"] spawn player_humanityMorph;
+		};
+		if (_model == "SW2_RX") then {
+			[dayz_playerUID,dayz_characterID,"BW1_RX"] spawn player_humanityMorph;
+		};   
+>>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 	};  
 	
 	if (_humanity > 0 and _isBandit) then {

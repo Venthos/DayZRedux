@@ -27,11 +27,15 @@ if (vehicle player != player) then {
   _display = findDisplay 106;
 	_display closeDisplay 0;
   _invehicle = true;
+<<<<<<< HEAD
 if (["ItemWaterbottle",_itemorignal] call fnc_inString) then {
     vehicle player addMagazine "ItemWaterbottleUnfilled";
 } else {
     vehicle player removeMagazine _itemorignal;
   };
+=======
+//vehicle player removeMagazine _itemorignal;
+>>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 };
 
 player playActionNow "PutDown";

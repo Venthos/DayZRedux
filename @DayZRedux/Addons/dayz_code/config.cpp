@@ -26,7 +26,11 @@ class CfgMods
 		hidePicture = 0;
 		hideName = 0;
 		action = "http://www.dayzredux.com";
+<<<<<<< HEAD
 		version = "1.1.2";
+=======
+		version = "1.1.2";
+>>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 		hiveVersion = 0.96; //0.93
 	};
 	class DZ_InitWorld

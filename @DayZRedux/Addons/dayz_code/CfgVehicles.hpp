@@ -3868,7 +3868,11 @@ class CfgVehicles {
 		picture = "\ca\weapons_e\data\icons\backpack_ACR_small_CA.paa";
 		scope = 2;
 		transportmaxweapons = 0;
+<<<<<<< HEAD
 		transportmaxmagazines = 8;
+=======
+		transportmaxmagazines = 8;
+>>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 	};
 
 	class DZ_ALICE_Pack_EP1: Bag_Base_EP1
@@ -3915,7 +3919,11 @@ class CfgVehicles {
 		icon = "\ca\weapons_e\data\icons\mapIcon_backpack_CA.paa";
 		mapsize = 2;
 		model = "\ca\weapons_e\AmmoBoxes\backpack_acr.p3d";
+<<<<<<< HEAD
 		transportMaxWeapons = 3;
+=======
+		transportMaxWeapons = 2;
+>>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 		transportMaxMagazines = 16;
 	};
 
