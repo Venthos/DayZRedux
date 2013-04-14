@@ -218,11 +218,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	// Remove Parts from Vehicles - By SilverShot.
 	if( !_isMan and _canDo and _hasToolbox and (silver_myCursorTarget != cursorTarget) and cursorTarget isKindOf "AllVehicles" and (getDammage cursorTarget < 0.95) ) then {
 		_vehicle = cursorTarget;
-<<<<<<< HEAD
 		_invalidVehicle = (_vehicle isKindOf "Motorcycle") or (_vehicle isKindOf "Tractor") or (_vehicle isKindOf "Ship") or (_vehicle isKindOf "ATV_Base_EP1"); //or (_vehicle isKindOf "ATV_US_EP1") or (_vehicle isKindOf "ATV_CZ_EP1");
-=======
-		_invalidVehicle = (_vehicle isKindOf "Motorcycle") or (_vehicle isKindOf "Tractor") or (_vehicle isKindOf "Ship") or (_vehicle isKindOf "ATV_Base_EP1"); //or (_vehicle isKindOf "ATV_US_EP1") or (_vehicle isKindOf "ATV_CZ_EP1");
->>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 		if( !_invalidVehicle ) then {
 		{silver_myCursorTarget removeAction _x} forEach s_player_removeActions;
 		

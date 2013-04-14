@@ -183,11 +183,7 @@ class RscDisplayMain : RscStandardDisplay {
 		
 		class DAYZ_Version : CA_Version {
 			idc = -1;
-<<<<<<< HEAD
 			text = "DayZ Redux 1.1.2";
-=======
-			text = "DayZ Redux 1.1.2";
->>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		class CA_TitleMainMenu;	// External class reference
@@ -226,11 +222,7 @@ class RscDisplayMain : RscStandardDisplay
 		class DAYZ_Version : CA_Version
 		{
 			idc = -1;
-<<<<<<< HEAD
 			text = "DayZ Redux 1.1.2";
-=======
-			text = "DayZ Redux 1.1.1";
->>>>>>> a413987f5de0a4ace7f5aca9450b3642c4298b56
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		delete CA_TitleMainMenu;
