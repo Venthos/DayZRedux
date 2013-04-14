@@ -68,7 +68,7 @@ class RscDisplayDebriefing: RscStandardDisplay
 class RscDisplayDSinterface : RscStandardDisplay {
 	idd = 155;
 	movingEnable = 0;
-  enableDisplay = 0;
+	enableDisplay = 0;
 	onLoad = "closeDialog 0;";
 };
 // Disable host and create game buttons and menu
@@ -183,7 +183,7 @@ class RscDisplayMain : RscStandardDisplay {
 		
 		class DAYZ_Version : CA_Version {
 			idc = -1;
-			text = "DayZ Redux 1.1.1";
+			text = "DayZ Redux 1.1.2";
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		class CA_TitleMainMenu;	// External class reference
@@ -222,7 +222,7 @@ class RscDisplayMain : RscStandardDisplay
 		class DAYZ_Version : CA_Version
 		{
 			idc = -1;
-			text = "DayZ Redux 1.1.1";
+			text = "DayZ Redux 1.1.2";
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		delete CA_TitleMainMenu;

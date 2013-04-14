@@ -11,6 +11,12 @@ dayzHiveRequest = [];
 initialized = false;
 dayz_previousID = 0;
 
+//Define first person settings. Leave commented out to disable this feature or when using difficulty to disable third person
+//FPOnly = 1; is First Person only, in vehicles.
+//FPOnly = 2; is First Person only, on foot.
+
+FPOnly = 2;
+
 //disable greeting menu 
 player setVariable ["BIS_noCoreConversations", true];
 //disable radio messages to be heard and shown in the left lower corner of the screen

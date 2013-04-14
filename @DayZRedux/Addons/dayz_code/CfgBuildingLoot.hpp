@@ -106,9 +106,6 @@ class CfgBuildingLoot {
 			{"revolver_EP1", "weapon"},
 			{"DZ_Assault_Pack_EP1","object"}, // 12
 			{"DZ_Czech_Vest_Puch","object"}, // 12-0
-			{"DZ_ALICE_Pack_EP1","object"}, // 16
-			{"DZ_TK_Assault_Pack_EP1","object"}, // 16
-			{"DZ_British_ACU","object"}, // 18
 			{"WeaponHolder_ItemTent", "object"},
 			{"", "military"},
 			{"", "trash"},
@@ -130,9 +127,6 @@ class CfgBuildingLoot {
 			0.04,	//revolver_EP1
 			0.03, //12
 			0.03, // 12-0
-			0.02, //16
-			0.01, //16
-			0.01, //18
 			0.01,	//WeaponHolder_ItemTent
 			0.03,	//military
 			1.5,	//trash
@@ -486,7 +480,7 @@ class CfgBuildingLoot {
 		itemType[] = {
 			{M9SD, "weapon"},
 			{FN_FAL, "weapon"},
-			{"DZ_ALICE_Pack_EP1", "object"},
+			{"DZ_British_ACU", "object"},
 			{"M4A1_Aim", "weapon"},
 			{"Binocular", "weapon"},
 			{"", "medical"},
@@ -496,7 +490,7 @@ class CfgBuildingLoot {
 		itemChance[] = {
 			0.1,	//M9SD
 			0.1,	//FN_FAL
-			0.4,	//DZ_ALICE_Pack_EP1
+			0.4,	//DZ_British_ACU
 			0.2,	//M4A1_Aim
 			0.7,	//Binocular
 			1.0,	//medical

@@ -59,10 +59,10 @@ if (_notInBuilding) then {
 
 	dayzPublishObj = [dayz_characterID,_box,[_dir,_location],"Land_Mag_RX"];
 	publicVariable "dayzPublishObj";
-	if (isServer) then {
+/*	if (isServer) then {
 		dayzPublishObj call server_publishObj;
 	};
-	
+*/	
 	cutText [localize "str_success_box_place", "PLAIN DOWN"];
 } else {
 	cutText [localize "str_fail_box_place", "PLAIN DOWN"];

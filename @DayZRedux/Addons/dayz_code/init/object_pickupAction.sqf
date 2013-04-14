@@ -31,7 +31,7 @@ actionMonitor = {
 			// Remove action from player
 			if ((_distance >= 1.75) and (_action != -1)) then {
 				player removeAction _action;
-				canPickup = false;
+				pickupInit = true;
 				_action = -1;
 				_timeout = 2;
 			};
@@ -40,14 +40,13 @@ actionMonitor = {
 				null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
 				player reveal _holder;
 				_run = false;
-				canPickup = false;
 				_timeout = 0;
   	   };
 		} else {
 			if (_action != -1) then {
 				player removeAction _action;
 				_action = -1;
-				canPickup = false;
+				pickupInit = true;
 			};
 			_timeout = 0;
 			_run = false;
@@ -64,7 +63,8 @@ if (_classname == "WoodenArrow") then {
 	player reveal _holder;
 	pickupInit = true;
   } else {
-	waitUntil {!pickupInit};
+  //sleep 2;
+	 waitUntil {!pickupInit};
 	  if (canPickup) then {
 		null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
 		player reveal _holder;
