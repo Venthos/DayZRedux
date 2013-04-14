@@ -2,8 +2,13 @@ private ["_objects"];
 
 _objects = nearestObjects [getPosATL player, ["Car", "Helicopter", "Motorcycle", "Ship", "Land_Cont_RX", "Land_Cont2_RX", "Land_Mag_RX"], 10];
 {
+	if ((_x isKindOf "Land_Cont_RX") or (_x isKindOf "Land_Cont2_RX") or (_x isKindOf "Land_Mag_RX")) then {
+		dayzUpdateVehicle = [_x,"gear"];
+	} else {
+		dayzUpdateVehicle = [_x,"all"];
+	};
 	//["dayzUpdateVehicle",[_x,"gear"]] call callRpcProcedure;
-	dayzUpdateVehicle = [_x,"gear"];
+	//dayzUpdateVehicle = [_x,"gear"];
 	publicVariable "dayzUpdateVehicle";
 	
 } foreach _objects;

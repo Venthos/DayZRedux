@@ -1,4 +1,4 @@
-private["_refObj","_size","_vel","_speed","_hunger","_thirst","_array","_unsaved","_timeOut","_result","_lastSave"];
+private["_refObj","_size","_vel","_speed","_hunger","_thirst","_array","_unsaved","_timeOut","_result","_lastSave","_isokay"];
 disableSerialization;
 _timeOut = 	0;
 _messTimer = 0;
@@ -73,19 +73,12 @@ while {true} do {
 			player setVariable ["humanity",_humanity,true];
 		};
 	};
-
-  if ((_humanity < 0) and !_isBandit) then {
-	_model = typeOf player;
-    if (_model == "CS1_RX") then {
-			[dayz_playerUID,dayz_characterID,"CB1_RX"] spawn player_humanityMorph;
-		};
-    if (_model == "GS1_RX") then {
-			[dayz_playerUID,dayz_characterID,"GB1_RX"] spawn player_humanityMorph;
-		};
-    if (_model == "PS1_RX") then {
+	if (_humanity < 5000 and !_isBandit) then {
+		_model = typeOf player;
+	if (_model == "PS1_RX") then {
 			[dayz_playerUID,dayz_characterID,"PB1_RX"] spawn player_humanityMorph;
-		}; 
-  };
+		};
+	};		
 	if (_humanity < -2000 and !_isBandit) then {
 
 		_model = typeOf player;
@@ -94,7 +87,13 @@ while {true} do {
 		};
 		if (_model == "SW2_RX") then {
 			[dayz_playerUID,dayz_characterID,"BW1_RX"] spawn player_humanityMorph;
-		};   
+		};
+    if (_model == "CS1_RX") then {
+			[dayz_playerUID,dayz_characterID,"CB1_RX"] spawn player_humanityMorph;
+		};
+    if (_model == "GS1_RX") then {
+			[dayz_playerUID,dayz_characterID,"GB1_RX"] spawn player_humanityMorph;
+		};
 	};  
 	
 	if (_humanity > 0 and _isBandit) then {
@@ -117,7 +116,7 @@ while {true} do {
 	if (_humanity > 5000 and !_isHero) then {
 
 		_model = typeOf player;
-		if (_model == "S2_RX") then {
+	if (_model == "S2_RX") then {
 			[dayz_playerUID,dayz_characterID,"S3_RX"] spawn player_humanityMorph;
 		};
     if (_model == "PB1_RX") then {
@@ -293,7 +292,19 @@ while {true} do {
 	if (!dayz_unsaved) then {
 		dayz_lastSave = time;
 	};
-
+	
+	//Pause for pickup actions
+    _isokay = pickupInit AND !canPickup || !pickupInit AND canPickup; 
+ if (pickupInit AND !canPickup) then {
+  canPickup = true;
+  pickupInit = false;
+   };
+   //Reset if stuck...
+  if (!_isokay) then {
+  canPickup = false;
+  pickupInit = true;
+  };
+   
 	//Attach Trigger Current Object
 	//dayz_playerTrigger attachTo [_refObj,[0,0,0]];
 	//dayz_playerTrigger setTriggerArea [_size,_size,0,false];
@@ -372,12 +383,6 @@ while {true} do {
 	//_zamDistance = player distance _nearestZam;
 	//_intersecting = {_x isKindOf "All"} count lineIntersectsWith [(eyePos player), (eyePos _nearestZam)] > 0;
 	//hintSilent format["INTERSECTION BETWEEN: %1\n\nCantSee: %2\nDistance: %3", typeOf(_nearestZam), str(_intersecting), _zamDistance];
-  
-  //Pause for pickup actions
-  if (pickupInit AND !canPickup) then {
-  canPickup = true;
-  pickupInit = false;
-   };
 
 	/*
 	setGroupIconsVisible [false,false];
