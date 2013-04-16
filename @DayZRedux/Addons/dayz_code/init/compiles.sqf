@@ -109,7 +109,7 @@ if (!isDedicated) then {
 	// TODO: need move it in player_monitor.fsm
 	// allow player disconnect from server, if loading hang, kicked by BE etc.
 	[] spawn {
-		private["_timeOut","_display","_control1","_control2"];
+		private["_timeOut","_display","_control1","_control2","_displayG"];
 		disableSerialization;
 		_timeOut = 0;
 		dayz_loadScreenMsg = "";
@@ -275,7 +275,12 @@ if (!isDedicated) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-    //instant check for ESC and F4
+		//Find gear display...
+	_displayG = findDisplay 106;
+	if ((!isNull _displayG) AND (_dikCode == 0xB8 OR _dikCode == 0x38 OR _dikCode == DIK_LMENU OR _dikCode == DIK_RMENU)) then {
+			call dayz_forceSave;
+	};
+    //instant check for ESC and F4 -- F4 does not work when ALT is held first...
     if (_dikCode == 0x01 or _dikCode == 0x3E) then {
 			call dayz_forceSave;
       };
