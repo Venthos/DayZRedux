@@ -75,14 +75,14 @@ if (_script != "") then
 					_wsDone = true;
 				}
 			};			
-/*
 			if (!_wsDone) then {
 				if (count _worldspace >= 1) then { _dir = _worldspace select 0; };
-				_pos = [getMarkerPos "center",0,50,10,0,2000,0] call BIS_fnc_findSafePos;
+				_objectPos = [_worldspace select 1 select 0,_worldspace select 1 select 1,0];		
+				_pos = [(_objectPos),0,15,1,0,2000,0,[],[_objectPos,[]]] call BIS_fnc_findSafePos;
 				if (count _pos < 3) then { _pos = [_pos select 0,_pos select 1,0]; };
 				diag_log ("MOVED OBJ: " + str(_idKey) + " of class " + _type + " to pos: " + str(_pos));
 			};
-*/			
+		
 			if (_damage < 1) then {
 				diag_log format["OBJ: %1 - %2", _idKey,_type];
 				

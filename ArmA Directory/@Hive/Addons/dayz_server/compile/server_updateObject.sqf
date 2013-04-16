@@ -99,7 +99,7 @@ _object_damage = {
 	
 	//Mark for db update 
 	if (((time - _lastUpdate) > 5) or _forced) then {
-		if ((_object in needUpdate_objects)) then {
+		if (_object in needUpdate_objects) then {
 			needUpdate_objects = needUpdate_objects - [_object];
 		};
 		_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
@@ -127,6 +127,9 @@ _object_killed = {
 	} forEach _hitpoints;
 	_damage = 1;
 	
+	if (_object in needUpdate_objects) then {
+		needUpdate_objects = needUpdate_objects - [_object];
+	};
 	if (_objectID == "0") then {
 		_key = format["CHILD:306:%1:%2:%3:",_uid,_array,_damage];
 	} else {
@@ -148,6 +151,9 @@ _object_repair = {
 		_object setHit ["_selection", _hit]
 	} forEach _hitpoints;
 	
+	if (_object in needUpdate_objects) then {
+		needUpdate_objects = needUpdate_objects - [_object];
+	};
 	_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
 	diag_log ("HIVE: WRITE: "+ str(_key));
 	_key call server_hiveWrite;
@@ -175,6 +181,6 @@ switch (_type) do {
 		call _object_killed;
 	};
 	case "repair": {
-		call _object_damage;
+		call _object_repair;
 	};
 };
