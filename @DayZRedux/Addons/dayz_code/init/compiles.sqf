@@ -271,12 +271,12 @@ if (!isDedicated) then {
 			_nill = execvm "\z\addons\dayz_code\actions\playerstats.sqf";
 		};
 */
-		if ((_dikCode == 0x3E or _dikCode == 0x0F or _dikCode == 0xD3) and (time - dayz_lastCheckBit > 10)) then {
+		if ((_dikCode == 0x0F or _dikCode == 0xD3) and (time - dayz_lastCheckBit > 10)) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-    //instant check for ESC -- May cause lag for menu item disable
-    if (_dikCode == 0x01) then {
+    //instant check for ESC and F4
+    if (_dikCode == 0x01 or _dikCode == 0x3E) then {
 			call dayz_forceSave;
       };
 		/*
