@@ -177,7 +177,7 @@ _nearSpawnPos = ((dayz_spawnPos distance _charPos) < 100);
 _xCoord = _charPos select 0;
 _yCoord = _charPos select 1;
 
-if (_xCoord > 14860 or _xCoord < 500 or _yCoord > 14860 or _yCoord < 500) then {
+if (_xCoord > 14360 or _xCoord < 1000 or _yCoord > 14360 or _yCoord < 1000) then {
 	//cutText ["Warning you are within 500 meters of the debug, going out of bounds will kill you!", "PLAIN DOWN"];
 	_ctrlDebug ctrlShow true;
 } else {

@@ -2,8 +2,9 @@ private["_ent"];
 _ent = _this select 3;
 canAbort = true;
 
-player removeAction s_player_igniteTent;
-s_player_igniteTent = -1;
+player removeAction s_player_igniteTentNo;
+player removeAction s_player_igniteTentYes;
+s_player_igniteTentSwitch = -1;
 
 player playActionNow "Medic";
 sleep 7;

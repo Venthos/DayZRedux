@@ -1,4 +1,4 @@
-private["_array","_type","_classname","_holder","_config","_isOk","_muzzles","_playerID","_claimedBy","_text","_control","_dialog","_item","_val","_max","_bolts","_quivers","_quiver","_broken"];
+private["_array","_type","_random","_classname","_holder","_config","_isOk","_muzzles","_playerID","_claimedBy","_text","_control","_dialog","_item","_val","_max","_bolts","_quivers","_quiver","_broken"];
 _array = _this select 3;
 _type = _array select 0;
 _classname = _array select 1;
@@ -8,10 +8,13 @@ _playerID = getPlayerUID player;
 _text = getText (configFile >> _type >> _classname >> "displayName");
 
 if (!canPickup) exitwith { cutText ["You may only pick up one item at a time!","PLAIN DOWN"] };
-
 _holder setVariable["claimed",_playerID,true];
+_random = random 0.75;
+sleep _random; //sleep to trip up coordinated dupe
+_claimedBy = _holder getVariable["claimed",0];
 
 if (_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
+if (_claimedBy != _playerID) exitWith {cutText [format[(localize "str_player_beinglooted"),_text] , "PLAIN DOWN"]};
 
 player playActionNow "PutDown";
 if (_classname == "MeleeCrowbar") then {
@@ -34,10 +37,6 @@ if(_classname == "WoodenArrow") then {
 if (_broken) exitWith { deleteVehicle _holder; cutText [format[localize "str_broken_arrow"] , "PLAIN DOWN"]};
 
 //sleep 0.25;
-
-_claimedBy = _holder getVariable["claimed",0];
-
-if (_claimedBy != _playerID) exitWith {cutText [format[(localize "str_player_beinglooted"),_text] , "PLAIN DOWN"]};
 
 if(_classname isKindOf "Bag_Base_EP1") then {
 	diag_log("Picked up a bag: " + _classname);

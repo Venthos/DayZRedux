@@ -7,7 +7,6 @@ _dateNow = (DateToNumber date);
 _maxZombies = dayz_maxLocalZombies;
 _maxWildZombies = 5;
 _age = -1;
-_age = -1;
 _force = false;
 
 _nearbyBuildings = [];
@@ -18,37 +17,11 @@ if (_inVehicle) then {
 	_maxZombies = 10;
 };
 if (_isAir) then {
-	_maxZombies = 5
+	_maxZombies = 10
 };
-
-
-//diag_log ("Type: " +str(_type));
-
-
-//diag_log("SPAWN CHECKING: Starting");
-	//_locationstypes = ["NameCityCapital","NameCity","NameVillage"];
-	//_nearestCity = nearestLocations [getPos player, _locationstypes, _radius/2];
-	//_townname = text (_nearestCity select 0);	
-	//_nearbytype = type (_nearestCity select 0);
-/*
-switch (_nearbytype) do {
-	case "NameVillage": {
-		//_radius = 250; 
-		_maxZombies = 30;
-	};
-	case "NameCity": {
-		//_radius = 300; 
-		_maxZombies = 40;
-	};
-	case "NameCityCapital": {
-		//_radius = 400; 
-		_maxZombies = 40;
-	};
-};
-*/
 
 _players = _position nearEntities ["CAManBase",_radius+200];
-dayz_maxGlobalZombies = 30;
+dayz_maxGlobalZombies = 40;
 {
 	if (isPlayer _x) then {
 		dayz_maxGlobalZombies = dayz_maxGlobalZombies + 10;
@@ -128,16 +101,36 @@ if (dayz_spawnZombies == 0) then {
 {
 	_type = typeOf _x;
 	_config = 		configFile >> "CfgBuildingLoot" >> _type;
-	_canLoot = 		isClass (_config);
+	//_canLoot = 		isClass (_config);
 	_dis = _x distance player;
 	_checkLoot = ((count (getArray (_config >> "lootPos"))) > 0);
+	_canLoot = ((count (getArray (_config >> "lootPos"))) > 0);
+		if (_canLoot) then {	
+			_keepAwayDist = ((sizeOf _type)+5);
+			_isNoone =	{isPlayer _x} count (_x nearEntities ["CAManBase",_keepAwayDist]) == 0;
+
+			if (_isNoone) then {
+				_looted = (_x getVariable ["looted",-0.1]);
+				_cleared = (_x getVariable ["cleared",true]);
+				_dateNow = (DateToNumber date);
+				_age = (_dateNow - _looted) * 525948;
+				if (_age > 9) then {
+					_x setVariable ["looted",_dateNow,true];
+					dayz_lootWait = time;
+					_handle = [_x] spawn building_spawnLoot;
+					waitUntil{scriptDone _handle};
+				};
+			};
+		};
 	
-	//Loot
+	//Loot NEW
+	/*
 	if ((_dis < 120) and (_dis > 30) and _canLoot and !_inVehicle and _checkLoot) then {
 		_looted = (_x getVariable ["looted",-0.1]);
 		_cleared = (_x getVariable ["cleared",true]);
 		_dateNow = (DateToNumber date);
 		_age = (_dateNow - _looted) * 525948;
+
 		//diag_log ("SPAWN LOOT: " + _type + " Building is " + str(_age) + " old" );
 		if ((_age > 9) and (!_cleared)) then {
 			_nearByObj = nearestObjects [(getPosATL _x), ["WeaponHolder","WeaponHolderBase"],((sizeOf _type)+5)];
@@ -153,6 +146,7 @@ if (dayz_spawnZombies == 0) then {
 			waitUntil{scriptDone _handle};
 		};
 	};
+*/
 	//Zeds
 	if ((((time - dayz_spawnWait) > dayz_spawnDelay) or _force)) then {
 		if (dayz_CurrentZombies < dayz_maxGlobalZombies) then {

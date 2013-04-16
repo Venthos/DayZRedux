@@ -364,7 +364,7 @@ class CfgBuildingLoot {
 			0.01,	//MP5SD
 			0.01,	//M9SD
 			0.3,	//Skin_Camo1_DZ
-			0.6,	//Skin_Bait1_DZ
+			0.3,	//Skin_Bait1_DZ
 			0.1,	//Skin_Uniform1_DZ
 			0.1		//Skin_Sniper1_DZ
 		};
@@ -417,7 +417,7 @@ class CfgBuildingLoot {
 			0.01,	//MP5SD
 			0.01,	//M9SD
 			0.3,	//Skin_Camo1_DZ
-			0.6,	//Skin_Bait1_DZ
+			0.3,	//Skin_Bait1_DZ
 			0.1,	//Skin_Uniform1_DZ
 			0.1		//Skin_Sniper1_DZ
 		};
@@ -444,7 +444,7 @@ class CfgBuildingLoot {
 			0.5,	//bloodbags
 			0.75,	//M9
 			0.5,	//glock17_EP1
-			0.5,	//Skin_Bait1_DZ
+			0.3,	//Skin_Bait1_DZ
 			0.25	//Skin_Camo1_DZ
 			};
 	};
@@ -720,7 +720,7 @@ class CfgBuildingLoot {
 				3.0,	//generic
 				5.0,	//military
 				0.01,	//Skin_Camo1_DZ
-				0.01,	//Skin_Bait1_DZ
+				0.03,	//Skin_Bait1_DZ
 				0.01,	//Skin_Uniform1_DZ
 				0.01	//Skin_Sniper1_DZ
 		};

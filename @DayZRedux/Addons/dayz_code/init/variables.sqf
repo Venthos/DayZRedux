@@ -160,7 +160,6 @@ dayz_myKiller = ['None', 'None', 'None'];
 dayzFire = [];
 canPickup = false;
 pickupInit = false;
-teleport_pause = false;
 //dayz_serverSpawnLoot = [];
 
 //Hunting Variables
@@ -215,8 +214,8 @@ dayz_resetSelfActions = {
 	s_build_Wire_cat1 =		-1;
 	s_player_deleteBuild =	-1;
 	s_player_forceSave = 	-1;
-	s_player_igniteTent = -1;
-	s_player_igniteBox = -1;
+  s_player_igniteTentSwitch = -1;
+  s_player_igniteBoxSwitch = -1;
 	s_player_retrievebox = -1;
 	s_player_flipveh = 		-1;
 	s_player_stats =		-1;
