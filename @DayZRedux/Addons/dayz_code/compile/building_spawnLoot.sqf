@@ -14,7 +14,7 @@ _itemChance =	 [] + getArray (_config >> "itemChance");
 	_rnd = random 1;
   
 	//Place something at each position
-		_nearBy = _iPos2 nearObjects ["ReammoBox",1];
+		_nearBy = _iPos2 nearObjects ["ReammoBox",2];
 		{deleteVehicle _x} forEach _nearBy;
 
 		if (count _nearBy > 0) then {

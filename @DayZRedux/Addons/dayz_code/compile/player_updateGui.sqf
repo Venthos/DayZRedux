@@ -1,4 +1,4 @@
-private["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
+private["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolor","_gxcolor","_xCoord","_ycolor","_xcolor","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
 disableSerialization;
 
 _foodVal = 		1 - (dayz_hunger / SleepFood);
@@ -178,8 +178,27 @@ _xCoord = _charPos select 0;
 _yCoord = _charPos select 1;
 
 if (_xCoord > 14360 or _xCoord < 1000 or _yCoord > 14360 or _yCoord < 1000) then {
-	//cutText ["Warning you are within 500 meters of the debug, going out of bounds will kill you!", "PLAIN DOWN"];
 	_ctrlDebug ctrlShow true;
+if (_xCoord > 14360) then { 
+  _xcolor = ((_xCoord - 14360) / 1000); //(15360 - 14360) / 1000 = 1.00
+};
+if (_xCoord < 1000) then {
+  _xcolor = _xCoord / 1000;
+};
+if (_yCoord > 14360) then { 
+  _ycolor = ((_yCoord - 14360) / 1000);
+};
+if (_yCoord < 1000) then {
+  _ycolor = _yCoord / 1000;
+};
+if (_yCoord > 14360 or _yCoord < 1000) then {
+    _gycolor = abs (_ycolor - 1);
+    _ctrlDebug ctrlSetTextColor [_ycolor, _gycolor, 0, 0.8];
+};
+if (_xCoord > 14360 or _xCoord < 1000) then {
+    _gxcolor = abs (_xcolor - 1);
+    _ctrlDebug ctrlSetTextColor [_xcolor, _gxcolor, 0, 0.8];
+};
 } else {
 	_ctrlDebug ctrlShow false;
 };

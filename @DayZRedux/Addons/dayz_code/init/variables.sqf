@@ -158,8 +158,6 @@ dayz_chloroform = [];
 dayz_logDamage = [];
 dayz_myKiller = ['None', 'None', 'None'];
 dayzFire = [];
-canPickup = false;
-pickupInit = false;
 //dayz_serverSpawnLoot = [];
 
 //Hunting Variables
@@ -232,6 +230,11 @@ dayz_resetSelfActions = {
 	s_player_followdog = 	-1;
 };
 call dayz_resetSelfActions;
+
+//ANTI DUPE
+gearCheck = false;
+canPickup = false;
+pickupInit = false;
 
 //Engineering variables
 s_player_lastTarget =	objNull;

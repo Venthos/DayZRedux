@@ -55,7 +55,8 @@ if (!isDedicated) then {
 	//Objects
 	object_roadFlare = 			compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_roadFlare.sqf";
 	object_setpitchbank	=		compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_setpitchbank.sqf";
-	
+	object_monitorGear =		compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_monitorGear.sqf";
+
 	//Zombies
 	zombie_findTargetAgent = 	compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\zombie_findTargetAgent.sqf";
 	zombie_loiter = 			compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\zombie_loiter.sqf";			//Server compile, used for loiter behaviour
@@ -109,7 +110,7 @@ if (!isDedicated) then {
 	// TODO: need move it in player_monitor.fsm
 	// allow player disconnect from server, if loading hang, kicked by BE etc.
 	[] spawn {
-		private["_timeOut","_display","_control1","_control2","_displayG"];
+		private["_timeOut","_display","_control1","_control2"];
 		disableSerialization;
 		_timeOut = 0;
 		dayz_loadScreenMsg = "";
@@ -271,18 +272,22 @@ if (!isDedicated) then {
 			_nill = execvm "\z\addons\dayz_code\actions\playerstats.sqf";
 		};
 */
-		if ((_dikCode == 0x0F or _dikCode == 0xD3) and (time - dayz_lastCheckBit > 10)) then {
+		if ((_dikCode == 0x0F or _dikCode == 0xD3 or _dikCode == 0x3E) and (time - dayz_lastCheckBit > 10)) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-		//Find gear display...
-	_displayG = findDisplay 106;
-	if ((!isNull _displayG) AND (_dikCode == 0xB8 OR _dikCode == 0x38 OR _dikCode == DIK_LMENU OR _dikCode == DIK_RMENU)) then {
+    /*
+    if (_dikCode == 0x22) then {
+    gearCheck = true;
+    };
+    */
+	 if ((!(isNull (findDisplay 106) or !(isNull (findDisplay 6901))) and (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == DIK_LMENU or _dikCode == DIK_RMENU))) then {
 			call dayz_forceSave;
-	};
-    //instant check for ESC and F4 -- F4 does not work when ALT is held first...
-    if (_dikCode == 0x01 or _dikCode == 0x3E) then {
+	 };
+    //instant check for ESC
+    if (_dikCode == 0x01) then {
 			call dayz_forceSave;
+      gearCheck = false;
       };
 		/*
 		if (_dikCode in actionKeys "IngamePause") then {
@@ -386,22 +391,15 @@ if (!isDedicated) then {
 			dayz_heartBeat = false;
 		};
 	};
-	/*
 	dayz_meleeMagazineCheck = {
 		private["_meleeNum","_magType","_wpnType"];
-		_wpnType = _this;
+		_wpnType = primaryWeapon player;
 		_magType = 	([] + getArray (configFile >> "CfgWeapons" >> _wpnType >> "magazines")) select 0;
 		_meleeNum = ({_x == _magType} count magazines player);
-		if (_meleeNum > 1) then {
-			if (player hasWeapon _wpnType) then {
-				_meleeNum = _meleeNum - 1;
-			};
-			for "_i" from 1 to _meleeNum do {
-				player removeMagazine _magType;
-			};
+		if (_meleeNum < 1) then {
+			player addMagazine _magType;
 		};
 	};
-	*/
 	dayz_originalPlayer =		player;
 };
 

@@ -220,7 +220,7 @@ class RscIGText; // External class reference
 #include "CfgBuildingLoot.hpp"
 #include "CfgChernarusRedux.hpp"
 #include "RscDisplayMultiplayerSetup.hpp"
-#include "RscDisplayMPInterrupt.hpp"
+//#include "RscDisplayMPInterrupt.hpp"
 #include "RscDisplayMainMap.hpp"
 #include "CfgActions.hpp"
 

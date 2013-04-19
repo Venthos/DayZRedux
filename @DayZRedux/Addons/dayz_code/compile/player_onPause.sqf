@@ -1,7 +1,6 @@
 private["_display","_btnRespawn","_btnAbort","_timeOut","_timeMax","_isDead","_isInCombat"];
 
 disableSerialization;
-
 		waitUntil {
 			_display = findDisplay 49;
 			!isNull _display;
