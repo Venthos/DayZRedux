@@ -1,4 +1,4 @@
-private["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolor","_gxcolor","_xCoord","_ycolor","_xcolor","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
+private["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolorS","_gycolorB","_gxcolorS","_gxcolorB","_ycolorS","_ycolorB","_xcolorS","_xcolorB","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
 disableSerialization;
 
 _foodVal = 		1 - (dayz_hunger / SleepFood);
@@ -176,28 +176,26 @@ _nearDebug = ((_debug distance _charPos) < 1500);
 _nearSpawnPos = ((dayz_spawnPos distance _charPos) < 100);
 _xCoord = _charPos select 0;
 _yCoord = _charPos select 1;
-
 if (_xCoord > 14360 or _xCoord < 1000 or _yCoord > 14360 or _yCoord < 1000) then {
 	_ctrlDebug ctrlShow true;
-if (_xCoord > 14360) then { 
-  _xcolor = ((_xCoord - 14360) / 1000); //(15360 - 14360) / 1000 = 1.00
+if (_xCoord > 14360) then {
+  _xcolorB = ((_xCoord - 14360) / 1000); //(15360 - 14360) / 1000 = 1.00
+  _gxcolorB = abs (_xcolorB - 1);
+  _ctrlDebug ctrlSetTextColor [_xcolorB, _gxcolorB, 0, 0.8];
 };
 if (_xCoord < 1000) then {
-  _xcolor = _xCoord / 1000;
+  _xcolorS = _xCoord / 1000;
+  _gxcolorS = abs (_xcolorS - 1);
+  _ctrlDebug ctrlSetTextColor [_gxcolorS, _xcolorS, 0, 0.8];
 };
 if (_yCoord > 14360) then { 
-  _ycolor = ((_yCoord - 14360) / 1000);
-};
+  _ycolorB = ((_yCoord - 14360) / 1000);
+  _gycolorB = abs (_ycolorB - 1);
+  _ctrlDebug ctrlSetTextColor [_ycolorB, _gycolorB, 0, 0.8];};
 if (_yCoord < 1000) then {
-  _ycolor = _yCoord / 1000;
-};
-if (_yCoord > 14360 or _yCoord < 1000) then {
-    _gycolor = abs (_ycolor - 1);
-    _ctrlDebug ctrlSetTextColor [_ycolor, _gycolor, 0, 0.8];
-};
-if (_xCoord > 14360 or _xCoord < 1000) then {
-    _gxcolor = abs (_xcolor - 1);
-    _ctrlDebug ctrlSetTextColor [_xcolor, _gxcolor, 0, 0.8];
+  _ycolorS = _yCoord / 1000;
+  _gycolorS = abs (_ycolorS - 1);
+  _ctrlDebug ctrlSetTextColor [_gycolorS, _ycolorS, 0, 0.8];
 };
 } else {
 	_ctrlDebug ctrlShow false;
