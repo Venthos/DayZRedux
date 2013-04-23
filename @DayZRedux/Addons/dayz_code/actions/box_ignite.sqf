@@ -3,6 +3,9 @@ _ent = _this select 3;
 canAbort = true;
 
 player removeAction s_player_igniteBoxNo;
+s_player_igniteBoxNo = -1;
+player removeAction s_player_igniteBoxYes;
+s_player_igniteBoxYes = -1;
 player removeAction s_player_igniteBoxYes;
 s_player_igniteBoxSwitch = -1;
 

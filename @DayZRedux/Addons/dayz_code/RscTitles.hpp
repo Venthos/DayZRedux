@@ -645,9 +645,7 @@ class RscDisplayGear
 {
 	idd = 106;
 	enableDisplay = 1;
-	//onLoad = "gearCheck = true";
 	onUnLoad = "call player_gearSync; call dayz_forceSave;";
-  onDestroyed = "gearCheck = false;";
 	class controls
 	{
 		class CA_Filter_Icon: RscPicture
@@ -803,7 +801,6 @@ class RscDisplayGear
 					idc = 146;
 					x = -2;
 					style = 2048;
-          onLoad = "gearCheck = true";
 					onSetFocus = "private [""_dummy""]; _dummy = [_this,""onFocus""] execVM	""\ca\ui\scripts\handleGear.sqf""; _dummy;";
 					onButtonClick = "private [""_dummy""]; _dummy = [_this,""onLBListSelChanged""] execVM ""\ca\ui\scripts\handleGear.sqf""; _dummy;";
 					text = "&lt;";
@@ -816,7 +813,6 @@ class RscDisplayGear
 					idcRight = 147;
 					idcLeft = 146;
 					colorPlayerItem[] = {0.8784,0.8471,0.651,1};
-          onLoad = "gearCheck = true";
 					onKeyDown = "private [""_dummy""]; _dummy = [_this,""onKeyDown"",0,107,0,107] execVM	""\ca\ui\scripts\handleGear.sqf""; _dummy;";
 					onLBSelChanged = "private [""_dummy""]; _dummy = [_this,""onLBSelChanged""] execVM ""\ca\ui\scripts\handleGear.sqf""; _dummy;";
 					onLBListSelChanged = "private [""_dummy""]; _dummy = [_this,""onLBListSelChanged""] execVM ""\ca\ui\scripts\handleGear.sqf""; _dummy;";
@@ -831,7 +827,6 @@ class RscDisplayGear
 				{
 					idc = 147;
 					x = -2;
-          onLoad = "gearCheck = true";
 					onSetFocus = "private [""_dummy""]; _dummy = [_this,""onFocus""] execVM ""\ca\ui\scripts\handleGear.sqf""; _dummy;";
 					onButtonClick = "private [""_dummy""]; _dummy = [_this,""onLBListSelChanged""] execVM ""\ca\ui\scripts\handleGear.sqf""; _dummy;";
 					text = ">";

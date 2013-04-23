@@ -130,7 +130,7 @@ link65[] = {56,57};
 link66[] = {57,58};
 link67[] = {58,59};
 globals[] = {25.000000,1,0,0,0,640,480,1,90,6316128,1,-398.867798,155.006592,1269.721558,129.603317,308,634,1};
-window[] = {0,-1,-1,-1,-1,1014,234,1606,234,1,326};
+window[] = {0,-1,-1,-1,-1,858,78,1450,78,1,326};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -977,6 +977,7 @@ class FSM
       init = /*%FSM<STATEINIT""">*/"dayz_lastCheckBit = 0;" \n
        "" \n
        "(findDisplay 46) displayAddEventHandler [""KeyDown"",""_this call dayz_spaceInterrupt""];" \n
+       "(findDisplay 106) displayAddEventHandler [""KeyDown"",""_this call dayz_spaceInterrupt""];" \n
        "player disableConversation true;" \n
        "" \n
        "eh_player_killed = player addeventhandler [""FiredNear"",{_this call player_weaponFiredNear;} ];" \n

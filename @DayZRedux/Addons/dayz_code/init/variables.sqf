@@ -214,6 +214,10 @@ dayz_resetSelfActions = {
 	s_player_forceSave = 	-1;
   s_player_igniteTentSwitch = -1;
   s_player_igniteBoxSwitch = -1;
+  s_player_igniteBoxYes = -1;
+  s_player_igniteBoxNo = -1;
+  s_player_igniteTentYes = -1;
+  s_player_igniteTentNo = -1;
 	s_player_retrievebox = -1;
 	s_player_flipveh = 		-1;
 	s_player_stats =		-1;
@@ -232,7 +236,6 @@ dayz_resetSelfActions = {
 call dayz_resetSelfActions;
 
 //ANTI DUPE
-gearCheck = false;
 canPickup = false;
 pickupInit = false;
 
