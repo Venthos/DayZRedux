@@ -195,10 +195,9 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	call compile format["%1 = player;",_playerObjName];
 	publicVariable _playerObjName;
   
-	//diag_log("DIAG: switchmodel allowdamage true");
-	player allowDamage true;
-
 	// Only enable when testing on test server!! UNCOMMENT THE CODE IN THE debug_teleport.sqf FIRST!
 	//player addAction ["Debug Teleport", "\z\addons\dayz_code\actions\debug_teleport.sqf"];
 
 	{player reveal _x} forEach (nearestObjects [getPosATL player, ["AllVehicles","WeaponHolder","Land_Cont_RX","Land_Cont2_RX","Land_Mag_RX","BuiltItems"], 75]);
+	//diag_log("DIAG: switchmodel allowdamage true");
+	player allowDamage true;

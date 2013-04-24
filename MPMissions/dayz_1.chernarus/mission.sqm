@@ -5,7 +5,9 @@ class Mission
 	{
 		"chernarus",
 		"ca_modules_animals",
+		"dayz_anim",
 		"dayz_code",
+		"dayz_communityassets",
 		"dayz_weapons",
 		"dayz_equip",
 		"dayz_vehicles",

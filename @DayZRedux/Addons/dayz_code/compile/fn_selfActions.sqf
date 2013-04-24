@@ -65,8 +65,8 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	_isDog =  (cursorTarget isKindOf "DZ_Pastor" || cursorTarget isKindOf "DZ_Fin");
 	_isZombie = cursorTarget isKindOf "zZambie_Base";
 	_isDestructable = cursorTarget isKindOf "BuiltItems";
-	_isTent = ((cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX"));
-	_isStorageBox = (cursorTarget isKindOf "Land_Mag_RX");
+  _isTent = (cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX");
+  _isStorageBox = cursorTarget isKindOf "Land_Mag_RX";
 	_isFuel = false;
 	_isAlive = alive cursorTarget;
 	_canmove = canmove cursorTarget;
@@ -120,22 +120,22 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 
 	//Allow player to set tent ablaze
 	if(_isTent and _hasMatches and _canDo and !_isMan) then {
-		if (s_player_igniteTent < 0) then {
-			s_player_igniteTent = player addAction [format[localize "str_actions_ignite_tent"], "\z\addons\dayz_code\actions\tent_ignite.sqf",cursorTarget, 1, true, true, "", ""];
+		if (s_player_igniteTentSwitch < 0) then {
+			s_player_igniteTentSwitch = player addAction [format[localize "str_actions_ignite_tent"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", cursorTarget, 1, true, false, "", ""];
 		};
 	} else {
-		player removeAction s_player_igniteTent;
-		s_player_igniteTent = -1;
+		player removeAction s_player_igniteTentSwitch;
+		s_player_igniteTentSwitch = -1;
 	};
 
 	//Allow player to set storage box ablaze
 	if(_isStorageBox and _hasMatches and _canDo and !_isMan and _isAlive) then {
-		if (s_player_igniteBox < 0) then {
-			s_player_igniteBox = player addAction [format[localize "str_actions_ignite_box"], "\z\addons\dayz_code\actions\box_ignite.sqf",cursorTarget, 1, true, true, "", ""];
+		if (s_player_igniteBoxSwitch < 0) then {
+			s_player_igniteBoxSwitch = player addAction [format[localize "str_actions_ignite_box"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", cursorTarget, 1, true, false, "", ""];
 		};
 	} else {
-		player removeAction s_player_igniteBox;
-		s_player_igniteBox = -1;
+		player removeAction s_player_igniteBoxSwitch;
+		s_player_igniteBoxSwitch = -1;
 	};
 	
 	//Allow player to fill jerrycan
@@ -459,10 +459,18 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	s_player_flipveh = -1;
 	player removeAction s_player_sleep;
 	s_player_sleep = -1;
-	player removeAction s_player_igniteTent;
-	s_player_igniteTent = -1;
-	player removeAction s_player_igniteBox;
-	s_player_igniteBox = -1;
+	player removeAction s_player_igniteTentSwitch;
+	s_player_igniteTentSwitch = -1;
+	player removeAction s_player_igniteBoxSwitch;
+	s_player_igniteBoxSwitch = -1;
+	player removeAction s_player_igniteBoxNo;
+	s_player_igniteBoxNo = -1;
+	player removeAction s_player_igniteBoxYes;
+	s_player_igniteBoxYes = -1;
+	player removeAction s_player_igniteTentNo;
+	s_player_igniteTentNo = -1;
+	player removeAction s_player_igniteTentYes;
+	s_player_igniteTentYes = -1;
 	player removeAction s_player_deleteBuild;
 	s_player_deleteBuild = -1;
 	player removeAction s_player_butcher;

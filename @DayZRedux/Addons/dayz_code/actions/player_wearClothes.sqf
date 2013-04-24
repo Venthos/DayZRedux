@@ -21,6 +21,8 @@ if (_isFemale) exitWith {cutText ["Currently Female Characters cannot change to 
 
 private["_itemNew","_myModel","_humanity","_isBandit","_isHero"];
 _myModel = (typeOf player);
+	//diag_log("DIAG: wearClothes allowdamage false");
+	player allowDamage false;
 
 if (_myModel == "B1_RX") then {
 	_myModel = "Survivor2_DZ";
@@ -115,7 +117,8 @@ switch (_item) do {
 		_model = "BR1_RX";
 	};
 };
-
+	//diag_log("DIAG: wearClothes allowdamage true");
+	player allowDamage true;
 if (_model != _myModel) then {
 	player removeMagazine _item;
 	player addMagazine _itemNew;

@@ -26,7 +26,7 @@ class CfgMods
 		hidePicture = 0;
 		hideName = 0;
 		action = "http://www.dayzredux.com";
-		version = "1.1.2";
+		version = "1.1.3";
 		hiveVersion = 0.96; //0.93
 	};
 	class DZ_InitWorld
@@ -220,7 +220,7 @@ class RscIGText; // External class reference
 #include "CfgBuildingLoot.hpp"
 #include "CfgChernarusRedux.hpp"
 #include "RscDisplayMultiplayerSetup.hpp"
-#include "RscDisplayMPInterrupt.hpp"
+//#include "RscDisplayMPInterrupt.hpp"
 #include "RscDisplayMainMap.hpp"
 #include "CfgActions.hpp"
 

@@ -7,6 +7,7 @@ _unit setVariable ["hit_hands",0];
 call fnc_usec_medic_removeActions;
 r_action = false;
 
+	player removeMagazine "ItemMorphine";
 if (vehicle player == player) then {
 	//not in a vehicle
 	player playActionNow "Medic";
@@ -16,6 +17,7 @@ _animState = animationState player;
 r_doLoop = true;
 _started = false;
 _finished = false;
+
 while {r_doLoop} do {
 	_animState = animationState player;
 	_isMedic = ["medic",_animState] call fnc_inString;
@@ -41,8 +43,6 @@ if (_finished) then {
 		//dayzHumanity = [player,50];
 		[player,50] call player_humanityChange;
 	};
-
-	player removeMagazine "ItemMorphine";
 
 	//["usecMorphine",[_unit,player]] call broadcastRpcCallAll;
 	usecMorphine = [_unit,player];

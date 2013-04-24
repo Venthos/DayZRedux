@@ -12,8 +12,9 @@ _itemChance =	 [] + getArray (_config >> "itemChance");
 	private["_iPos2"];
 	_iPos2 = _obj modelToWorld _x;
 	_rnd = random 1;
+  
 	//Place something at each position
-		_nearBy = _iPos2 nearObjects ["ReammoBox",1];
+		_nearBy = _iPos2 nearObjects ["ReammoBox",2];
 		{deleteVehicle _x} forEach _nearBy;
 
 		if (count _nearBy > 0) then {
@@ -35,4 +36,19 @@ _itemChance =	 [] + getArray (_config >> "itemChance");
 			};
 			_item setVariable ["created",(DateToNumber date),true];
 		};
+/* we don't need this, plus I don't feel like perfecting it..
+  //add wait for player to leave
+  _playerNear = ({isPlayer _x} count (player nearEntities ["AllVehicles", 10]) >= 1);
+  if (_playerNear) then {
+  _slowRun = true;
+  hint "_slowRun was set to true";
+  } else {
+  _slowRun = false;
+  };
+  if (_slowRun) then {
+    hint "wait started";
+  waitUntil {!_playerNear};
+	diag_log ("Wait: DONE!");	
+  };
+*/
 } forEach _positions;

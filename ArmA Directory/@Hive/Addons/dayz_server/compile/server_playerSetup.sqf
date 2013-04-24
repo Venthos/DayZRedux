@@ -185,21 +185,22 @@ if (_randomSpot) then {
 	while {_findSpot} do {
 		_counter = 0;
 		while {_counter < 20 and _findSpot} do {
-			_mkr = "spawn" + str(round(random 4));
+			_mkr = "spawn" + str(floor(random 5));
 			_position = ([(getMarkerPos _mkr),0,1500,10,0,2000,1] call BIS_fnc_findSafePos);
-			_isNear = count (_position nearEntities ["Man",100]) == 0;
+			_isNear = count (_position nearEntities ["Man",100]) > 0; // spawn point too close from other players/zombies
 			_isZero = ((_position select 0) == 0) and ((_position select 1) == 0);
 		//Island Check		//TeeChange
 			_pos 		= _position;
 			_isIsland	= false;		//Can be set to true during the Check
 			for [{_w=0},{_w<=150},{_w=_w+2}] do {
-				_pos = [(_pos select 0),((_pos select 1) + _w),(_pos select 2)];
+				_pos = [((_pos select 0) - _w),((_pos select 1) + _w),(_pos select 2)];
 				if(surfaceisWater _pos) exitWith {
 					_isIsland = true;
 				};
 			};
 			
-			if ((_isNear and !_isZero) || _isIsland) then {_findSpot = false};
+			// break the loop is spawn point if far from others, coordinates are legit, and spawn is not on an island	
+			if ((!_isNear and !_isZero) AND !_isIsland) then {_findSpot = false};
 			_counter = _counter + 1;
 		};
 	};

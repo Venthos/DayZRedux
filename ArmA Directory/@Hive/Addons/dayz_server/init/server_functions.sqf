@@ -32,7 +32,7 @@ vehicle_handleInteract = {
 	if (_object in needUpdate_objects) then {
 		needUpdate_objects = needUpdate_objects - [_object];
 	};
-	[_object, "damage"] call server_updateObject;
+	[_object, "damage",true] call server_updateObject;
 };
 
 vehicle_handleServerKilled = {

@@ -333,6 +333,7 @@ class CfgBuildingLoot {
 			{"Mk_48_DZ", "weapon"},
 			{M249_DZ, "weapon"},
 			{M40A3, "weapon"},
+			{SCAR_H_CQC_CCO, "weapon"},
 			{AK_107_pso, "weapon"},
 			{"", "military"},
 			{"", "medical"},
@@ -355,8 +356,9 @@ class CfgBuildingLoot {
 			0.01,	//Mk_48_DZ
 			0.01,	//M249_DZ
 			0.01,	//M40A3
+			0.01,	//SCAR_H_CQC_CCO
 			0.01,	//AK_107_pso
-			1.0,	//military
+			1.1,	//military
 			0.25,	//medical
 			0.25,	//MedBawx0
 			0.01,	//NVGoggles
@@ -364,7 +366,7 @@ class CfgBuildingLoot {
 			0.01,	//MP5SD
 			0.01,	//M9SD
 			0.3,	//Skin_Camo1_DZ
-			0.6,	//Skin_Bait1_DZ
+			0.3,	//Skin_Bait1_DZ
 			0.1,	//Skin_Uniform1_DZ
 			0.1		//Skin_Sniper1_DZ
 		};
@@ -417,7 +419,7 @@ class CfgBuildingLoot {
 			0.01,	//MP5SD
 			0.01,	//M9SD
 			0.3,	//Skin_Camo1_DZ
-			0.6,	//Skin_Bait1_DZ
+			0.3,	//Skin_Bait1_DZ
 			0.1,	//Skin_Uniform1_DZ
 			0.1		//Skin_Sniper1_DZ
 		};
@@ -444,7 +446,7 @@ class CfgBuildingLoot {
 			0.5,	//bloodbags
 			0.75,	//M9
 			0.5,	//glock17_EP1
-			0.5,	//Skin_Bait1_DZ
+			0.3,	//Skin_Bait1_DZ
 			0.25	//Skin_Camo1_DZ
 			};
 	};
@@ -478,6 +480,7 @@ class CfgBuildingLoot {
 		lootChance = 0;
 		lootPos[] = {};
 		itemType[] = {
+			{G36A_camo, "weapon"},
 			{M9SD, "weapon"},
 			{FN_FAL, "weapon"},
 			{"DZ_British_ACU", "object"},
@@ -488,6 +491,7 @@ class CfgBuildingLoot {
 			{"Skin_Camo1_DZ", "magazine"}
 		};
 		itemChance[] = {
+			0.1,	//G36A_camo
 			0.1,	//M9SD
 			0.1,	//FN_FAL
 			0.4,	//DZ_British_ACU
@@ -620,7 +624,7 @@ class CfgBuildingLoot {
 			0.15,	//Remington870_lamp
 			0.15,	//glock17_EP1
 			0.1,	//MP5A5
-			0.08, //Sa58P_EP1
+			0.08, 	//Sa58P_EP1
 			0.06,	//Binocular
 			0.1,	//ItemFlashlightRed
 			0.07,	//ItemKnife
@@ -663,7 +667,7 @@ class CfgBuildingLoot {
 			{"Remington870_lamp", "weapon"},
 			{"glock17_EP1", "weapon"},
 			{M16A4_ACG, "weapon"},
-			{Sa58V_CCO_EP1, "weapon"},
+			{BAF_L85A2_UGL_Holo, "weapon"},
 			{Sa58V_RCO_EP1, "weapon"},
 			{"M4A1_HWS_GL_camo", "weapon"},
 			{M4A3_CCO_EP1, "weapon"},
@@ -701,8 +705,8 @@ class CfgBuildingLoot {
 				0.15,	//Remington870_lamp
 				0.25,	//glock17_EP1
 				0.01,	//M16A4_ACG
-				0.03,	//Sa58V_CCO_EP1
-				0.01,	//Sa58V_RCO_EP1
+				0.01,	//BAF_L85A2_UGL_Holo
+				0.01,	//Sa58V_RCO_EP1 
 				0.01,	//M4A1_HWS_GL_camo
 				0.01,	//M4A3_CCO_EP1
 				0.04,	//AmmoBawxSmall_762_556_545
@@ -717,10 +721,10 @@ class CfgBuildingLoot {
 				0.03,	//DZ_ALICE_Pack_EP1
 				0.02,	//DZ_Backpack_EP1
 				0.3,	//medical
-				3.0,	//generic
+				3.6,	//generic
 				5.0,	//military
 				0.01,	//Skin_Camo1_DZ
-				0.01,	//Skin_Bait1_DZ
+				0.03,	//Skin_Bait1_DZ
 				0.01,	//Skin_Uniform1_DZ
 				0.01	//Skin_Sniper1_DZ
 		};
