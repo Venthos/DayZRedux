@@ -158,9 +158,6 @@ dayz_chloroform = [];
 dayz_logDamage = [];
 dayz_myKiller = ['None', 'None', 'None'];
 dayzFire = [];
-canPickup = false;
-pickupInit = false;
-teleport_pause = false;
 //dayz_serverSpawnLoot = [];
 
 //Hunting Variables
@@ -215,8 +212,12 @@ dayz_resetSelfActions = {
 	s_build_Wire_cat1 =		-1;
 	s_player_deleteBuild =	-1;
 	s_player_forceSave = 	-1;
-	s_player_igniteTent = -1;
-	s_player_igniteBox = -1;
+  s_player_igniteTentSwitch = -1;
+  s_player_igniteBoxSwitch = -1;
+  s_player_igniteBoxYes = -1;
+  s_player_igniteBoxNo = -1;
+  s_player_igniteTentYes = -1;
+  s_player_igniteTentNo = -1;
 	s_player_retrievebox = -1;
 	s_player_flipveh = 		-1;
 	s_player_stats =		-1;
@@ -233,6 +234,13 @@ dayz_resetSelfActions = {
 	s_player_followdog = 	-1;
 };
 call dayz_resetSelfActions;
+
+//ANTI DUPE
+canPickup = false;
+pickupInit = false;
+
+//Allow player to leave by default
+canAbort = true;
 
 //Engineering variables
 s_player_lastTarget =	objNull;

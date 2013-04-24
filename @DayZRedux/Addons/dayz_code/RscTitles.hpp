@@ -6,6 +6,7 @@ class RscControlsGroup;
 class RscLineBreak;
 class RscIGUIShortcutButton;
 class RscGearShortcutButton;
+class RscShortcutButtonMain;
 //class RscIGUIListNBox;
 class RscActiveText;
 
@@ -64,12 +65,118 @@ class RscDisplayDebriefing: RscStandardDisplay
 		delete Mainback;
 	};
 };
+class RscDisplayMPInterrupt : RscStandardDisplay {
+	movingEnable = 0;
+	enableSimulation = 1;
+	//onLoad = "_dummy = ['Init', _this] execVM '\ca\ui\scripts\pauseLoadinit.sqf'; [(_this select 0)] execVM '\z\addons\dayz_code\compile\player_onPause.sqf';"; _respawn = (_this select 0) displayCtrl 1010); _respawn ctrlEnable false; _abort = (_this select 0) displayCtrl 104); _abort ctrlEnable false;						
+	onLoad = "_dummy = [""Init"", _this] execVM ""\ca\ui\scripts\pauseLoadinit.sqf""";
+	onUnload = "private ['_dummy']; _dummy = ['Unload', _this] execVM '\ca\ui\scripts\pauseOnUnload.sqf';";
+	
+	class controlsBackground {
+		class Mainback : RscPicture {
+			idc = 1104;
+			x = 0.045;
+			y = 0.17;
+			w = 0.627451;
+			h = 0.836601;
+			text = "\ca\ui\data\ui_background_mp_pause_ca.paa";
+		};
+	};
+	
+	class controls {
+	/*
+		class Title {};
+		class B_Players {};
+		class B_Options {};
+		class B_Abort {};
+		class B_Retry {};
+		class B_Load {};
+		class B_Save {};
+		class B_Continue {};
+		class B_Diary {};
+	*/	
+		
+		class MissionTitle : RscText {
+			idc = 120;
+			x = 0.05;
+			y = 0.818;
+			text = "";
+		};
+		
+		class DifficultyTitle : RscText {
+			idc = 121;
+			x = 0.05;
+			y = 0.772;
+			text = "";
+		};
+		
+		class Paused_Title : CA_Title {
+			idc = 523;
+			x = 0.087;
+			y = 0.192;
+			text = $STR_DISP_MAIN_MULTI;
+		};
+		
+		class CA_B_SAVE : RscShortcutButtonMain {
+			idc = 103;
+			y = 0.2537 + 0.101903 * 0;
+			x = 0.051;
+			text = $STR_DISP_INT_SAVE;
+			default = 0;
+		};
+		
+		class CA_B_Skip : CA_B_SAVE {
+			idc = 1002;
+			text = $STR_DISP_INT_SKIP;
+		};
+		
+		class CA_B_REVERT : CA_B_SAVE {
+			idc = 119;
+			y = 0.2537 + 0.101903 * 1;
+			text = "$str_disp_revert";
+			default = 0;
+		};
+		
+		class CA_B_Respawn : CA_B_SAVE {
+			idc = 1010;
+			//onButtonClick = "hint str (_this select 0);";
+			onButtonClick = "if ((alive player) && (r_fracture_legs)) then { player SetDamage 1;};";
+			y = 0.2537 + 0.101903 * 2;
+			text = $STR_DISP_INT_RESPAWN;
+			default = 0;
+		};
+		
+		class CA_B_Options : CA_B_SAVE {
+			idc = 101;
+			y = 0.2537 + 0.101903 * 3;
+			text = $STR_DISP_INT_OPTIONS;
+			default = 0;
+		};
+		
+		class CA_B_Abort : CA_B_SAVE {
+			idc = 104;
+			y = 0.2537 + 0.101903 * 4;
+			onButtonClick = "call dayz_forceSave; if (!canAbort) then { private [""_display","_cancel""]; if (canAbortForce) exitWith {}; cutText [""You cannot abort right now!","PLAIN DOWN"",2]; _display = findDisplay 49; _display closeDisplay 0; _display closeDisplay 1; _display closeDisplay 2; _cancel = _display displayCtrl 2; ctrlActivate _cancel;};";
+			text = $STR_DISP_INT_ABORT;
+			default = 0;
+		};
+		
+		class ButtonCancel : RscShortcutButton {
+			idc = 2;
+			shortcuts[] = {0x00050000 + 1, 0x00050000 + 8};
+			default = 1;
+			x = 0.1605;
+			y = 0.8617;
+			text = $STR_DISP_INT_CONTINUE;
+		};
+	};
+};
 //disable admin panel
 class RscDisplayDSinterface : RscStandardDisplay {
 	idd = 155;
 	movingEnable = 0;
 	enableDisplay = 0;
-	onLoad = "closeDialog 0;";
+	onLoad = "private [""_display""]; closeDialog 0; closeDialog 155; _display = findDisplay 155; _display closeDisplay 0;";
 };
 // Disable host and create game buttons and menu
 class RscDisplayHostSettings : RscStandardDisplay {
@@ -167,7 +274,6 @@ class RscDisplayGameOptions
 	};
 };
 //class RscShortcutButton;
-class RscShortcutButtonMain;
 class RscDisplayMain : RscStandardDisplay {
 	class controlsBackground {
 		class Mainback;
@@ -183,7 +289,7 @@ class RscDisplayMain : RscStandardDisplay {
 		
 		class DAYZ_Version : CA_Version {
 			idc = -1;
-			text = "DayZ Redux 1.1.2";
+			text = "DayZ Redux 1.1.3";
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		class CA_TitleMainMenu;	// External class reference
@@ -222,7 +328,7 @@ class RscDisplayMain : RscStandardDisplay
 		class DAYZ_Version : CA_Version
 		{
 			idc = -1;
-			text = "DayZ Redux 1.1.2";
+			text = "DayZ Redux 1.1.3";
 			y = "(SafeZoneH + SafeZoneY) - (1 - 0.95)";
 		};
 		delete CA_TitleMainMenu;
@@ -543,7 +649,7 @@ class RscDisplayGear
 {
 	idd = 106;
 	enableDisplay = 1;
-	onUnload = "call player_gearSync; call dayz_forceSave;";
+	onUnLoad = "call player_gearSync; call dayz_forceSave;";
 	class controls
 	{
 		class CA_Filter_Icon: RscPicture
@@ -1265,7 +1371,7 @@ class RscDisplayGear
 	emptyMag2 = "\ca\ui\data\ui_gear_mag2_gs.paa";
 	emptyHGun = "\ca\ui\data\ui_gear_hgun_gs.paa";
 	emptyHGunMag = "\ca\ui\data\ui_gear_hgunmag_gs.paa";
-	onLoad = "call gear_ui_init;if (isNil('IGUI_GEAR_activeFilter')) then { IGUI_GEAR_activeFilter = 0;}; private ['_dummy']; _dummy = [_this,'initDialog'] call compile preprocessFile	'\ca\ui\scripts\handleGear.sqf'; _dummy = [_this,'onLoad'] execVM	'\ca\ui\scripts\handleGear.sqf'; _dummy;";
+	onLoad = "[] spawn object_monitorGear; call gear_ui_init;if (isNil('IGUI_GEAR_activeFilter')) then { IGUI_GEAR_activeFilter = 0;}; private ['_dummy']; _dummy = [_this,'initDialog'] call compile preprocessFile	'\ca\ui\scripts\handleGear.sqf'; _dummy = [_this,'onLoad'] execVM	'\ca\ui\scripts\handleGear.sqf'; _dummy;";
 	class ControlsBackground
 	{
 		class Mainback: RscPicture

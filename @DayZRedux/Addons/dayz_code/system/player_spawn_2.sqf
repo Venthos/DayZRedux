@@ -5,8 +5,6 @@ _messTimer = 0;
 _lastSave = 0;
 _lastTemp = dayz_temperatur;
 _debug = getMarkerpos "respawn_west";
-//_isBandit = false;
-//_isHero = false;
 
 player setVariable ["temperature",dayz_temperatur,true];
 
@@ -294,7 +292,7 @@ while {true} do {
 	};
 	
 	//Pause for pickup actions
-    _isokay = pickupInit AND !canPickup || !pickupInit AND canPickup; 
+  _isokay = pickupInit AND !canPickup || !pickupInit AND canPickup; 
  if (pickupInit AND !canPickup) then {
   canPickup = true;
   pickupInit = false;

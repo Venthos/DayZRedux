@@ -1,3 +1,4 @@
+/*
 //Let Zeds know
 [player,4,true,(getPosATL player)] spawn player_alertZombies;
 
@@ -19,7 +20,7 @@ hintSilent parseText format ["
 	(player getVariable['humanity', 0]),
 	(dayz_skilllevel)
 ];
-
+*/
 /*
 player createDiarySubject ["MyDiary","My Diary"];
 player createDiaryRecord ["MyDiary",["Stats", "Zombies Killed: <execute expression='player getVariable['zombieKills', 0]'</execute>"]];

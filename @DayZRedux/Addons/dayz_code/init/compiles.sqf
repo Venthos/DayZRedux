@@ -55,7 +55,8 @@ if (!isDedicated) then {
 	//Objects
 	object_roadFlare = 			compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_roadFlare.sqf";
 	object_setpitchbank	=		compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_setpitchbank.sqf";
-	
+	object_monitorGear =		compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_monitorGear.sqf";
+
 	//Zombies
 	zombie_findTargetAgent = 	compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\zombie_findTargetAgent.sqf";
 	zombie_loiter = 			compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\zombie_loiter.sqf";			//Server compile, used for loiter behaviour
@@ -223,7 +224,7 @@ if (!isDedicated) then {
 	};
 	
 	dayz_spaceInterrupt = {
-		private ["_dikCode", "_handled"];
+		private ["_dikCode", "_handled","_displayg"];
 		_dikCode = 	_this select 1;
 		_handled = false;
 		if (_dikCode in (actionKeys "GetOver")) then {
@@ -236,14 +237,6 @@ if (!isDedicated) then {
 				};
 			};
 		};
-		//if (_dikCode == 57) then {_handled = true}; // space
-		//if (_dikCode in actionKeys 'MoveForward' or _dikCode in actionKeys 'MoveBack') then {r_interrupt = true};
-/*
-		if (_dikCode == 210) then //SCROLL LOCK
-		{
-			_nill = execvm "\z\addons\dayz_code\actions\playerstats.sqf";
-		};
-*/
 		if (_dikCode in actionKeys "MoveLeft") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveRight") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveForward") then {r_interrupt = true};
@@ -265,25 +258,36 @@ if (!isDedicated) then {
 			dayz_lastCheckBit = time;
 			[player,25,false,(getPosATL player)] spawn player_alertZombies;
 		};
-/*
-		if (_dikCode in actionKeys "User20" and (time - dayz_lastCheckBit > 5)) then {
-			dayz_lastCheckBit = time;
-			_nill = execvm "\z\addons\dayz_code\actions\playerstats.sqf";
-		};
-*/
-		if ((_dikCode == 0x3E or _dikCode == 0x0F or _dikCode == 0xD3) and (time - dayz_lastCheckBit > 10)) then {
+		if ((_dikCode == 0x0F or _dikCode == 0xD3 or _dikCode == 0x3E) and (time - dayz_lastCheckBit > 10)) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-    //instant check for ESC -- May cause lag for menu item disable
-    if (_dikCode == 0x01) then {
+		if (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == 0x3E) then { // or _dikCode == DIK_LMENU or _dikCode == DIK_RMENU
+			_displayg = findDisplay 106;
+			if (!isNull _displayg) then {
+			closeDialog 106;
+			openMap false;
 			call dayz_forceSave;
-      };
-		/*
-		if (_dikCode in actionKeys "IngamePause") then {
-			_idOnPause = [] spawn dayz_onPause;
+			} else {
+				/*
+				for "_i" from 0 to 999 do {
+					_displayi = findDisplay _i;
+					if (_i == 46) then {_displayi = findDisplay 47;};
+					closeDialog _i;
+					_displayi closeDisplay 0;
+					_displayi closeDisplay 1;
+					_displayi closeDisplay 2;
+					openMap false;
+				};
+				*/
+				if (dialog) then {
+					call dayz_forceSave;
+				};
+			};
 		};
-		*/
+		if (_dikCode == 0x01) then {
+			call dayz_forceSave;
+		};
 		_handled
 	};
 	
@@ -381,22 +385,15 @@ if (!isDedicated) then {
 			dayz_heartBeat = false;
 		};
 	};
-	/*
 	dayz_meleeMagazineCheck = {
 		private["_meleeNum","_magType","_wpnType"];
-		_wpnType = _this;
+		_wpnType = primaryWeapon player;
 		_magType = 	([] + getArray (configFile >> "CfgWeapons" >> _wpnType >> "magazines")) select 0;
 		_meleeNum = ({_x == _magType} count magazines player);
-		if (_meleeNum > 1) then {
-			if (player hasWeapon _wpnType) then {
-				_meleeNum = _meleeNum - 1;
-			};
-			for "_i" from 1 to _meleeNum do {
-				player removeMagazine _magType;
-			};
+		if (_meleeNum < 1) then {
+			player addMagazine _magType;
 		};
 	};
-	*/
 	dayz_originalPlayer =		player;
 };
 

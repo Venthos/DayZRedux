@@ -13,6 +13,8 @@ if (vehicle _object != _object) then {
 	_object action ["eject", vehicle _object];
 };
 
+[_object,[],true] call server_playerSync; //sync no matter what
+
 if (59 in _playerIDtoarray) exitWith { };
 
 if (_isInCombat > 0) then {
@@ -32,7 +34,7 @@ if (!isNull _object) then {
 		(nearestObjects [getPosATL _object, ["Car", "Helicopter", "Motorcycle", "Ship", "TentStorage", "Land_Mag_RX", "Land_Cont_RX", "Land_Cont2_RX"], 10]);
 	if (alive _object) then {
 		//[_object,(magazines _object),true,(unitBackpack _object)] call server_playerSync;
-		[_object,[],true] call server_playerSync;
+		//[_object,[],true] call server_playerSync;	// we already saved!
 		_myGroup = group _object;
 		deleteVehicle _object;
 		deleteGroup _myGroup;
