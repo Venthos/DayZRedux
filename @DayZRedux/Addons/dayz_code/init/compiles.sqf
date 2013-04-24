@@ -224,7 +224,7 @@ if (!isDedicated) then {
 	};
 	
 	dayz_spaceInterrupt = {
-		private ["_dikCode", "_handled","_display"];
+		private ["_dikCode", "_handled","_displayg"];
 		_dikCode = 	_this select 1;
 		_handled = false;
 		if (_dikCode in (actionKeys "GetOver")) then {
@@ -262,10 +262,28 @@ if (!isDedicated) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-		if (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == DIK_LMENU or _dikCode == DIK_RMENU) then {
-			_display = findDisplay 106;
-			_display closeDisplay 0;
+		if (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == 0x3E) then { // or _dikCode == DIK_LMENU or _dikCode == DIK_RMENU
+			_displayg = findDisplay 106;
+			if (!isNull _displayg) then {
+			closeDialog 106;
+			openMap false;
 			call dayz_forceSave;
+			} else {
+				/*
+				for "_i" from 0 to 999 do {
+					_displayi = findDisplay _i;
+					if (_i == 46) then {_displayi = findDisplay 47;};
+					closeDialog _i;
+					_displayi closeDisplay 0;
+					_displayi closeDisplay 1;
+					_displayi closeDisplay 2;
+					openMap false;
+				};
+				*/
+				if (dialog) then {
+					call dayz_forceSave;
+				};
+			};
 		};
 		if (_dikCode == 0x01) then {
 			call dayz_forceSave;

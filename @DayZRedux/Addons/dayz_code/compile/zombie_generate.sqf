@@ -78,17 +78,9 @@ _rnd = random 1;
 if (_rnd > 0.3) then {
 	_lootType = 		configFile >> "CfgVehicles" >> _type >> "zombieLoot";
 	if (isText _lootType) then {
-		_array = [];
-		{
-			_array set [count _array, _x select 0]
-		} foreach getArray (configFile >> "cfgLoot" >> getText(_lootType));
+		_array = []+ getArray (configFile >> "cfgLoot" >> getText(_lootType));
 		if (count _array > 0) then {
 			_loot = _array call BIS_fnc_selectRandomWeighted;
-		/* //broken
-			_index = dayz_CLBase find getText(_lootType);
-			_weights = dayz_CLChances select _index;
-			_loot = _array select (_weights select (floor(random (count _weights))));
-		*/
 			if(!isNil "_array") then {
 				_agent addMagazine _loot;
 			};

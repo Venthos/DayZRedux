@@ -1,12 +1,12 @@
 private["_ent"];
 _ent = _this select 3;
-canAbort = true;
+canAbortForce = true;
 
 player removeAction s_player_igniteTentNo;
 s_player_igniteTentNo = -1;
 player removeAction s_player_igniteTentYes;
 s_player_igniteTentYes = -1;
-player removeAction s_player_igniteTentYes;
+player removeAction s_player_igniteTentSwitch;
 s_player_igniteTentSwitch = -1;
 
 player playActionNow "Medic";
@@ -23,4 +23,4 @@ _ent setDamage 2;
 
 dayzDeleteObj = [_objectID,_objectUID];
 publicVariableServer "dayzDeleteObj";
-canAbort = false;
+canAbortForce = false;

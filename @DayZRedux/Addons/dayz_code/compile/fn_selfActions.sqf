@@ -121,7 +121,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	//Allow player to set tent ablaze
 	if(_isTent and _hasMatches and _canDo and !_isMan) then {
 		if (s_player_igniteTentSwitch < 0) then {
-			s_player_igniteTentSwitch = player addAction [format[localize "str_actions_ignite_tent"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", "cursorTarget", 1, true, false, "", ""];
+			s_player_igniteTentSwitch = player addAction [format[localize "str_actions_ignite_tent"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", cursorTarget, 1, true, false, "", ""];
 		};
 	} else {
 		player removeAction s_player_igniteTentSwitch;
@@ -131,7 +131,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	//Allow player to set storage box ablaze
 	if(_isStorageBox and _hasMatches and _canDo and !_isMan and _isAlive) then {
 		if (s_player_igniteBoxSwitch < 0) then {
-			s_player_igniteBoxSwitch = player addAction [format[localize "str_actions_ignite_box"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", "cursorTarget", 1, true, false, "", ""];
+			s_player_igniteBoxSwitch = player addAction [format[localize "str_actions_ignite_box"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", cursorTarget, 1, true, false, "", ""];
 		};
 	} else {
 		player removeAction s_player_igniteBoxSwitch;

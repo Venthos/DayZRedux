@@ -239,6 +239,9 @@ call dayz_resetSelfActions;
 canPickup = false;
 pickupInit = false;
 
+//Allow player to leave by default
+canAbort = true;
+
 //Engineering variables
 s_player_lastTarget =	objNull;
 s_player_repairActions = [];
