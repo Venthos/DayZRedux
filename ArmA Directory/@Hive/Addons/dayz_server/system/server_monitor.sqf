@@ -12,16 +12,39 @@ waitUntil{initialized}; //means all the functions are now defined
 
 diag_log "HIVE: Starting";
 
-if (_script != "") then
-{
-	diag_log "MISSION: File Updated";
-} else {
-	while {true} do
-	{
-		diag_log "MISSION: File Needs Updating";
-		sleep 1;
+//Set the Time
+	//Send request
+	_key = "CHILD:307:";
+	_result = _key call server_hiveReadWrite;
+	_outcome = _result select 0;
+	if(_outcome == "PASS") then {
+		_date = _result select 1;
+		
+		//date setup
+		_year = _date select 0;
+		_month = _date select 1;
+		_day = _date select 2;
+		_hour = _date select 3;
+		_minute = _date select 4;
+		
+		//Force full moon nights
+		_date = [2012,6,6,_hour,_minute];
+		
+		if(isDedicated) then {
+			//["dayzSetDate",_date] call broadcastRpcCallAll;
+			setDate _date;
+			dayzSetDate = _date;
+			publicVariable "dayzSetDate";
+		};
+		diag_log ("HIVE: Local Time set to " + str(_date));
 	};
-};
+
+	if (_script != "") then
+	{
+		diag_log "MISSION: File Updated";
+	} else {
+		diag_log "MISSION: File Needs Updating";
+	};
 
 	//Stream in objects
 	/* STREAM OBJECTS */
@@ -177,6 +200,10 @@ if (_script != "") then
 					_object setvelocity [0,0,1];
 					_object setFuel _fuel;
 					_object call fnc_vehicleEventHandler;
+					//Updated object position if moved
+					if (!_wsDone) then {
+						[_object, "position"] call server_updateObject;
+					};
 				};
 
 				//Monitor the object
@@ -186,34 +213,6 @@ if (_script != "") then
 		} forEach _myArray;
 		
 	// # END OF STREAMING #
-
-//Set the Time
-	//Send request
-	_key = "CHILD:307:";
-	_result = _key call server_hiveReadWrite;
-	_outcome = _result select 0;
-	if(_outcome == "PASS") then {
-  
-		_date = _result select 1; 
-		//date setup
-		_year = _date select 0;
-		_month = _date select 1;
-		_day = _date select 2;
-		_hour = _date select 3;
-		_minute = _date select 4;
-		
-		//Force full moon nights
-		_date = [2012,6,6,_hour,_minute];
-    
-		if(isDedicated) then {
-			//["dayzSetDate",_date] call broadcastRpcCallAll;
-			setDate _date;
-			dayzSetDate = _date;
-			publicVariable "dayzSetDate";
-		};
-
-		diag_log ("HIVE: Local Time set to " + str(_date));
-	};
 
 // Spawn custom buildings
 _cfgLocations = configFile >> "CfgChernarusRedux";
@@ -270,11 +269,10 @@ if (isDedicated) then {
 };
 
 allowConnection = true;
-
 // [_guaranteedLoot, _randomizedLoot, _frequency, _variance, _spawnChance, _spawnMarker, _spawnRadius, _spawnFire, _fadeFire]
 //Randomize spawn chance, it may be a little cruel with a randomized amount but let's try it...
+
 private ["_random"];
 _random = ceil(random 6) + 4; //Minimum of 40%
-
 nul = [3, 4, (50 * 60), (15 * 60), _random/10, 'center', 4000, true, false] spawn server_spawnCrashSite;
 //nul = [3, 4, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnCrashSite;

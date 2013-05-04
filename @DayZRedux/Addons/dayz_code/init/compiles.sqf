@@ -120,7 +120,7 @@ if (!isDedicated) then {
 		_control2 = _display displayctrl 102;
 	// 40 sec timeout
 		while { _timeOut < 600 && !dayz_clientPreload } do {
-			if ( isNull _display ) then {
+			if (isNull _display) then {
 				waitUntil { !dialog; };
 				startLoadingScreen ["","RscDisplayLoadCustom"];
 				_display = uiNameSpace getVariable "BIS_loadingScreen";
@@ -262,31 +262,18 @@ if (!isDedicated) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-		if (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == 0x3E) then { // or _dikCode == DIK_LMENU or _dikCode == DIK_RMENU
+		//				R_ALT				L_ALT				F4					L_SHIFT				R_SHIFT				ESC
+		if (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == 0x3E or _dikCode == 0x2A or _dikCode == 0x36 or _dikCode == 0x01) then {
 			_displayg = findDisplay 106;
 			if (!isNull _displayg) then {
-			closeDialog 106;
-			openMap false;
+			call player_gearSync;
 			call dayz_forceSave;
 			} else {
-				/*
-				for "_i" from 0 to 999 do {
-					_displayi = findDisplay _i;
-					if (_i == 46) then {_displayi = findDisplay 47;};
-					closeDialog _i;
-					_displayi closeDisplay 0;
-					_displayi closeDisplay 1;
-					_displayi closeDisplay 2;
-					openMap false;
-				};
-				*/
 				if (dialog) then {
+					call player_gearSync;
 					call dayz_forceSave;
 				};
 			};
-		};
-		if (_dikCode == 0x01) then {
-			call dayz_forceSave;
 		};
 		_handled
 	};

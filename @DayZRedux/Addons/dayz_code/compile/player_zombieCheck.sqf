@@ -10,7 +10,6 @@ _attacked = false;
 {
 	_continue = true;
 	_type = "zombie";
-	_targets = _group getVariable ["targets",[]];
 
 	if (alive _x && _continue) then {
 		private["_dist"];

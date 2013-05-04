@@ -130,7 +130,7 @@ link65[] = {56,57};
 link66[] = {57,58};
 link67[] = {58,59};
 globals[] = {25.000000,1,0,0,0,640,480,1,90,6316128,1,-340.044830,364.444611,393.922516,-458.455902,524,634,1};
-window[] = {0,-1,-1,-32000,-32000,1014,234,1606,234,1,542};
+window[] = {0,-1,-1,-32000,-32000,806,26,1398,26,1,542};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -224,8 +224,12 @@ class FSM
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
           condition=/*%FSM<CONDITION""">*/"!isnil ""bis_fnc_init"""/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/"dayz_forceSave = {" \n
+           "_gearSave = false;" \n
            "" \n
+           "if (!dialog) then {" \n
            "	createGearDialog [player, ""RscDisplayGear""];" \n
+           "	_gearSave = true;" \n
+           "};" \n
            "" \n
            "_dialog = findDisplay 106;" \n
            "_magazineArray = 	[];" \n
@@ -261,9 +265,9 @@ class FSM
            "		};" \n
            "	};" \n
            "};" \n
-           "" \n
-           "	closeDialog 0;" \n
-           "" \n
+           "	if (_gearSave) then {" \n
+           "		closeDialog 0;" \n
+           "	};" \n
            "	_medical = player call player_sumMedical;" \n
            "		" \n
            "	/*" \n

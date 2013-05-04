@@ -65,8 +65,8 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	_isDog =  (cursorTarget isKindOf "DZ_Pastor" || cursorTarget isKindOf "DZ_Fin");
 	_isZombie = cursorTarget isKindOf "zZambie_Base";
 	_isDestructable = cursorTarget isKindOf "BuiltItems";
-  _isTent = (cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX");
-  _isStorageBox = cursorTarget isKindOf "Land_Mag_RX";
+	_isTent = (cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX");
+	_isStorageBox = cursorTarget isKindOf "Land_Mag_RX";
 	_isFuel = false;
 	_isAlive = alive cursorTarget;
 	_canmove = canmove cursorTarget;
@@ -216,6 +216,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 
 	// Remove Parts from Vehicles - By SilverShot.
+
 	if( !_isMan and _canDo and _hasToolbox and (silver_myCursorTarget != cursorTarget) and cursorTarget isKindOf "AllVehicles" and (getDammage cursorTarget < 0.95) ) then {
 		_vehicle = cursorTarget;
 		_invalidVehicle = (_vehicle isKindOf "Motorcycle") or (_vehicle isKindOf "Tractor") or (_vehicle isKindOf "Ship") or (_vehicle isKindOf "ATV_Base_EP1"); //or (_vehicle isKindOf "ATV_US_EP1") or (_vehicle isKindOf "ATV_CZ_EP1");

@@ -15,6 +15,7 @@ _claimedBy = _holder getVariable "claimed";
 if (isnil "claimed") then { 
 	_holder setVariable["claimed",_playerID,true];
 };
+canPickup = false;
 
 if(_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
 
@@ -56,14 +57,10 @@ _count = 0;
 if (_freeSlots select _count >= _slotType select _count) then
 {
 	if (_type == "cfgWeapons") then { player addWeapon _classname; } else { player addMagazine _classname; };
-	deleteVehicle _holder;
-	canPickup = false;
-	
+	deleteVehicle _holder;	
 } else {
-
 	_holder setVariable["claimed",0,true];
 	cutText [localize "str_player_24", "PLAIN DOWN"];
-	canPickup = false;
 };
 
 diag_log format["Array: %1, Type: %2, Classname: %3, Holder: %4, SlotNeeded: %5, Freeslots: %6",_array,_type,_classname,_holder,_slotType,_freeSlots];

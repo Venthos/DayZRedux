@@ -2,21 +2,21 @@ disableSerialization;
 
 //Model Variables
 B1_RX = 	"B1_RX";
-B2_RX =	"B2_RX";
+B2_RX =		"B2_RX";
 BW1_RX =	"BW1_RX";
 S1_RX = 	"S2_RX";
 S2_RX = 	"S2_RX";
-SW2_RX = "SW2_RX";
+SW2_RX = 	"SW2_RX";
 GS1_RX = 	"GS1_RX";
 GB1_RX = 	"GB1_RX ";
 PS1_RX = 	"PS1_RX ";
 PB1_RX = 	"PB1_RX ";
-CS1_RX = 		"CS1_RX";
-CB1_RX = 		"CB1_RX";
-BR1_RX = 		"BR1_RX";
-R_RX = 	"R_RX";
-G1_RX = "GS1_RX";
-C1_RX = "CS1_RX";
+CS1_RX = 	"CS1_RX";
+CB1_RX = 	"CB1_RX";
+BR1_RX = 	"BR1_RX";
+R_RX = 		"R_RX";
+G1_RX = 	"GS1_RX";
+C1_RX = 	"CS1_RX";
 
 AllPlayers = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX"];
 AllPlayersVehicles = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX","AllVehicles"];
@@ -237,10 +237,11 @@ call dayz_resetSelfActions;
 
 //ANTI DUPE
 canPickup = false;
-pickupInit = false;
+pickupInit = true;
 
-//Allow player to leave by default
+//Allow player to leave by default -- Disallow forced leaving
 canAbort = true;
+canAbortForce = false;
 
 //Engineering variables
 s_player_lastTarget =	objNull;

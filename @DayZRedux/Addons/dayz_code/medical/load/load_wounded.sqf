@@ -5,7 +5,7 @@ private ["_wounded","_vcl","_group"];
 
 _wounded 	= _this select 0;
 
-if (!local _wounded) exitWith {};
+//if (!local _wounded) exitWith {};
 
 sleep 1;
 _vcl = _wounded getVariable "NORRN_loadVcl";
@@ -48,4 +48,3 @@ if (local _wounded) then
 };
 sleep 0.01;
 if (true) exitWith {};
-

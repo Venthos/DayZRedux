@@ -34,7 +34,7 @@ _itemChance =	 [] + getArray (_config >> "itemChance");
 				_iArray call spawn_loot;
 				_iArray = [];
 			};
-			_item setVariable ["created",(DateToNumber date),true];
+			_obj setVariable ["created",(DateToNumber date),true];
 		};
 /* we don't need this, plus I don't feel like perfecting it..
   //add wait for player to leave
