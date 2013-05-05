@@ -269,10 +269,11 @@ if (isDedicated) then {
 };
 
 allowConnection = true;
+
 // [_guaranteedLoot, _randomizedLoot, _frequency, _variance, _spawnChance, _spawnMarker, _spawnRadius, _spawnFire, _fadeFire]
 //Randomize spawn chance, it may be a little cruel with a randomized amount but let's try it...
-
 private ["_random"];
 _random = ceil(random 6) + 4; //Minimum of 40%
+
 nul = [3, 4, (50 * 60), (15 * 60), _random/10, 'center', 4000, true, false] spawn server_spawnCrashSite;
 //nul = [3, 4, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnCrashSite;

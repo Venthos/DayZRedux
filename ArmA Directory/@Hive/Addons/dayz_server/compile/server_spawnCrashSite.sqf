@@ -106,11 +106,13 @@ switch _crashModel do {
 		_crash setVariable ["ObjectID",1,true];
 
 		if (_spawnFire) then {
+			if (floor(random 100) >= 65) then {
 			//["dayzFire",[_crash,2,time,false,_fadeFire]] call broadcastRpcCallAll;
 			dayzFire = [_crash,2,time,false,_fadeFire];
 			publicVariable "dayzFire";
 			nul=dayzFire spawn BIS_Effects_Burn;
 			_crash setvariable ["fadeFire",_fadeFire,true];
+			};
 		};
 
 		_num		= round(random _randomizedLoot) + _guaranteedLoot;
@@ -125,8 +127,8 @@ switch _crashModel do {
 		_itemType	= [] + getArray (_config >> "itemType");
 		
 		if (isNil "fnc_buildWeightedArray") then {
-	fnc_buildWeightedArray = 	compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_buildWeightedArray.sqf";
-	};
+			fnc_buildWeightedArray = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_buildWeightedArray.sqf";
+		};
 		
 		waituntil {!isnil "fnc_buildWeightedArray"};
 		

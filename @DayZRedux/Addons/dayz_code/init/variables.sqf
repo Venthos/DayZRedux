@@ -21,6 +21,12 @@ C1_RX = 	"CS1_RX";
 AllPlayers = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX"];
 AllPlayersVehicles = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX","AllVehicles"];
 
+MeleeWeapons = ["MeleeHatchet","MeleeCrowbar","MeleeMachete"];
+MeleeMagazines = ["hatchet_swing","crowbar_swing","Machete_swing"];
+
+SafeObjects = ["Land_Fire_DZ", "TentStorage", "Wire_cat1", "Sandbag1_DZ", "Hedgehog_DZ", "Land_Mag_RX", "Land_Cont_RX", "Land_Cont2_RX"];
+
+
 //Cooking
 meatraw = [
     "FoodSteakRaw",
@@ -212,12 +218,12 @@ dayz_resetSelfActions = {
 	s_build_Wire_cat1 =		-1;
 	s_player_deleteBuild =	-1;
 	s_player_forceSave = 	-1;
-  s_player_igniteTentSwitch = -1;
-  s_player_igniteBoxSwitch = -1;
-  s_player_igniteBoxYes = -1;
-  s_player_igniteBoxNo = -1;
-  s_player_igniteTentYes = -1;
-  s_player_igniteTentNo = -1;
+	s_player_igniteTentSwitch = -1;
+	s_player_igniteBoxSwitch = -1;
+	s_player_igniteBoxYes = -1;
+	s_player_igniteBoxNo = -1;
+	s_player_igniteTentYes = -1;
+	s_player_igniteTentNo = -1;
 	s_player_retrievebox = -1;
 	s_player_flipveh = 		-1;
 	s_player_stats =		-1;
@@ -232,6 +238,7 @@ dayz_resetSelfActions = {
 	s_player_barkdog = 		-1;
 	s_player_warndog = 		-1;
 	s_player_followdog = 	-1;
+	s_player_tamedog =		-1;
 };
 call dayz_resetSelfActions;
 
@@ -246,6 +253,7 @@ canAbortForce = false;
 //Engineering variables
 s_player_lastTarget =	objNull;
 s_player_repairActions = [];
+s_player_removeactions = [];
 
 //Initialize Medical Variables
 r_interrupt = 			false;

@@ -162,7 +162,7 @@ if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unco
 		_typeVeh = getText(configFile >> "cfgVehicles" >> _type >> "displayName");
 		_isEngineer = _hasToolbox;//(_classbag isKindOf "BAF_AssaultPack_Engineer");
 		//CAN DISASSEMBLE
-		if (_isEngineer and (_type in USEC_CanDisassemble)) then {
+		if (_isEngineer and (_type in ["usec_wire_cat1", "usec_wire_cat2", "Land_Mag_RX", "Land_Cont_RX", "Land_Cont2_RX", "tentStorage", "Wire_cat1", "Sandbag1_DZ", "Hedgehog_DZ", "BearTrap_DZ"])) then {
 			r_action = true;
 			_index = USEC_CanDisassemble find _type;
 			_inventory = USEC_DisassembleKits select _index;
