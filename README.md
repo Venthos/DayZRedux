@@ -1,58 +1,6 @@
 ![DayZRedux Logo](http://forums.dayzredux.com/public/style_images/mystic/logo.png)        
 A variant of DayZ Mod intended to be more brutal and unforgiving.
 
-Changelog
----------
-
-***** Most changes from 1.7.6.1 are in the update without notice, since the code was updated to 1.7.6.1 *****
-
-- [Change] All skins now have a bandit and survivor variant, excluding bait runner.
-- [Change] Zombies are ridiculous.
-- [Change] The M24 is now the M40A3.
-- [Change] Main rotor parts chance reduced.
-- [Change] Debug warning if you are less than 500M away from debug, skull and crossbones icon.
-- [Change] Helicopter wrecks will spawn at random intervals, not immediately.
-- [Change] Added randomized (max of 10) number of wrecks per restart.
-- [Change] Players in moving closed vehicles > 10 KPH cannot be hurt by zombies
-- [Change] Since zombies can hit helicopters when they are not even close, or an object/wall is in the way, players cannot be hurt by zeds in helicopters.
-
-------
-
-- [Fix] You may now eat and drink in vehicles
-- [Fix] Duplication by "take" action to pick up objects
-- [Fix] Ammo refill on relog.
-- [Fix] Other duplication methods.
-
-------
-
-- [new] Simple benefits of clothing, I.e. insulation, waterproofing, wind resistance etc.
-- [New] SA58V-Acog
-- [New] SA58V-CCO
-- [New] SA58P
-- [New] Criminal (uniform), police (uniform) and bait runner skins.
-- [New] You cannot eat or drink uncooked food or water while infected.
-- [New] Hive extension instead of Bliss, mainly since bliss is no longer updated by its developer.
-- [New] Server admins may use the Hive extension to change time settings on their server, link multiple servers etc.
-
-------
-
-- [Removed] New and host server buttons.
-
-------
-
-Notable 1.7.6.1 changes implemented
-- [Vanilla] Added new backpack variants
-- [Vanilla] Combat roll
-- [Vanilla] Updated UI
-- [Vanilla] Shake and cough when infected.
-- [Vanilla] Zombie changes
-- [Vanilla] Machete added
-- [Vanilla] Wild zombie spawns
-- [Vanilla] Melee weapon ammo reload fix
-- [Vanilla] Loot models, i.e. compass is a compass not a bag in a loot pile anymore. 
-
-- [Note] The loot table/chances has not been changed aside from the above changes.
-
 Prerequisites
 -------------
 
