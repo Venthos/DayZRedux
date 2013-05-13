@@ -4,7 +4,7 @@
 	Refactored By Alby
 */
 
-private["_debug","_curpos","_lastpos","_curheight","_lastheight","_terrainHeight","_curtime","_lasttime","_distance","_difftime","_speed","_topSpeed"];
+private ["_debug","_curpos","_lastpos","_curheight","_lastheight","_terrainHeight","_curtime","_lasttime","_distance","_difftime","_speed","_topSpeed"];
 
 waitUntil {vehicle player == player};
 

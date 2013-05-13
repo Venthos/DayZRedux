@@ -1,4 +1,4 @@
-private["_hasChloroform","_item","_text","_body","_name"];
+private ["_hasChloroform","_item","_text","_body","_name"];
 _body = 	_this select 3;
 
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;

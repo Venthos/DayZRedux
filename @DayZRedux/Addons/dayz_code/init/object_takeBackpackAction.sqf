@@ -1,4 +1,4 @@
-private["_holder","_type","_classname","_name","_actionSet"];
+private ["_holder","_type","_classname","_name","_actionSet"];
 _holder = _this;
 
 _actionSet = _holder getVariable["actionSet", false];

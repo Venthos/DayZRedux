@@ -1,7 +1,7 @@
-private["_countMagazines","_countWeapons","_countBackpacks","_countFreeSlots","_getControlText","_setControlText","_object","_objectName","_controlText","_magazinesMax","_weaponsMax","_backpacksMax","_distance","_isVehicle","_isMan","_isTent","_isOK","_magazines","_weapons","_backpacks","_freeSlots","_timeout"];
+private ["_countMagazines","_countWeapons","_countBackpacks","_countFreeSlots","_getControlText","_setControlText","_object","_objectName","_controlText","_magazinesMax","_weaponsMax","_backpacksMax","_distance","_isVehicle","_isMan","_isTent","_isOK","_magazines","_weapons","_backpacks","_freeSlots","_timeout"];
 
 _countWeapons = {
-	private["_weapons","_return"];	
+	private ["_weapons","_return"];	
 	_weapons = [];
 	_return = 0;
 	
@@ -11,7 +11,7 @@ _countWeapons = {
 };
 
 _countMagazines = {
-	private["_magazines","_return"];
+	private ["_magazines","_return"];
 	_magazines = [];
 	_return = 0;
 	
@@ -21,7 +21,7 @@ _countMagazines = {
 };
 
 _countBackpacks = {
-	private["_backpacks","_return"];
+	private ["_backpacks","_return"];
 	_backpacks = [];
 	_return = 0;
 	
@@ -31,13 +31,13 @@ _countBackpacks = {
 };
 
 _countFreeSlots = {
-	private["_return"];
+	private ["_return"];
 	_return = [(_weaponsMax - _weapons), (_magazinesMax - _magazines), (_backpacksMax - _backpacks)];
 	_return;
 };
 
 _getControlText = {
-	private["_control","_return"];
+	private ["_control","_return"];
 	disableSerialization;
 	_control = (findDisplay 106) displayCtrl 156;
 	_return = ctrlText _control;
@@ -45,7 +45,7 @@ _getControlText = {
 };
 
 _setControlText = {
-	private["_control"];
+	private ["_control"];
 	disableSerialization;
 	_control = (findDisplay 106) displayCtrl 156;
 	_control ctrlSetText format["%1 (%2/%3/%4)", _objectName, _freeSlots select 0, _freeSlots select 1, _freeSlots select 2];

@@ -13,7 +13,7 @@ _objects = nearestObjects [getPosATL player, ["Car", "Helicopter", "Motorcycle",
 	
 } foreach _objects;
 
-private["_dialog","_magazineArray","_control","_item","_val","_max"];
+private ["_dialog","_magazineArray","_control","_item","_val","_max"];
 
 disableSerialization;
 _dialog = 			_this select 0;

@@ -1,5 +1,5 @@
 // animHealed.sqf
-private["_array","_unit","_medic","_display","_control"];
+private ["_array","_unit","_medic","_display","_control"];
 disableserialization;
 _array = _this; //_this select 0;
 _unit = _array select 0;

@@ -1,4 +1,4 @@
-private["_totalTimeout","_display","_ctrl1","_ctrl1Pos","_timeout","_isOnDeck","_isInLocation","_inVehicle","_bloodLow","_animType","_anim","_isHospital"];
+private ["_totalTimeout","_display","_ctrl1","_ctrl1Pos","_timeout","_isOnDeck","_isInLocation","_inVehicle","_bloodLow","_animType","_anim","_isHospital"];
 
 disableSerialization;
 if ((!r_player_handler1) and (r_handlerCount == 0)) then {

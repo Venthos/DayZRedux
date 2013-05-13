@@ -1,4 +1,4 @@
-private["_unit","_type","_chance","_rnd","_sound","_local","_dis"];
+private ["_unit","_type","_chance","_rnd","_sound","_local","_dis"];
 _unit = _this select 0;
 _type = _this select 1;
 _chance = _this select 2;

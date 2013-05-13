@@ -1,4 +1,4 @@
-private["_location","_isOk","_dir","_classname","_item","_restrictBuild","_inBuilding","_hasbuildmag","_requireItem","_buildError","_toolName"];
+private ["_location","_isOk","_dir","_classname","_item","_restrictBuild","_inBuilding","_hasbuildmag","_requireItem","_buildError","_toolName"];
 _location = player modeltoworld [0,1,0];
 _location set [2,0];
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;

@@ -1,4 +1,4 @@
-private["_display","_btnRespawn","_btnAbort","_timeOut","_timeMax","_isDead","_isInCombat"];
+private ["_display","_btnRespawn","_btnAbort","_timeOut","_timeMax","_isDead","_isInCombat"];
 	disableSerialization;
 		canAbort = false;
 		waitUntil {

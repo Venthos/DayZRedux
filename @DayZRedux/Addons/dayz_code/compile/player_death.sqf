@@ -1,4 +1,4 @@
-private["_array","_source","_kills","_killsV","_humanity","_wait","_myKills"];
+private ["_array","_source","_kills","_killsV","_humanity","_wait","_myKills"];
 if (deathHandled) exitWith {};
 
 deathHandled = true;

@@ -1,4 +1,4 @@
-private["_hasBag","_item","_text","_key","_inBuilding","_isHospital","_giveBag"];
+private ["_hasBag","_item","_text","_key","_inBuilding","_isHospital","_giveBag"];
 disableserialization;
 call gear_ui_init;
 _onLadder =	(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;

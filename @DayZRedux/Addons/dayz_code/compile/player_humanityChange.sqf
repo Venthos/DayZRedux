@@ -1,4 +1,4 @@
-private["_object","_change","_humanity","_timeStart"];
+private ["_object","_change","_humanity","_timeStart"];
 //Set Variables
 _object = _this select 0;
 _change = _this select 1;

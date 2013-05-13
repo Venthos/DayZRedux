@@ -1,4 +1,4 @@
-private["_refObj","_size","_vel","_speed","_hunger","_thirst","_array","_unsaved","_timeOut","_result","_lastSave","_isokay","_mylastPos"];
+private ["_refObj","_size","_vel","_speed","_hunger","_thirst","_array","_unsaved","_timeOut","_result","_lastSave","_isokay","_mylastPos"];
 disableSerialization;
 _timeOut = 	0;
 _messTimer = 0;

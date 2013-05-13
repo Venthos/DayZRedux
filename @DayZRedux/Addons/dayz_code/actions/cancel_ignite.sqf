@@ -1,4 +1,4 @@
-private["_isTent","_isStorageBox"];
+private ["_isTent","_isStorageBox"];
 _isTent = ((cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX"));
 _isStorageBox = cursorTarget isKindOf "Land_Mag_RX";
 

@@ -1,4 +1,4 @@
-private["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
+private ["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
 _unit = _this select 0;
 _type = _this select 1;
 _vehicle = (vehicle player);
@@ -105,7 +105,7 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 	_attackanimations = ["zombiestandingattack1","zombiestandingattack2","zombiestandingattack3","zombiestandingattack4","zombiestandingattack5","zombiestandingattack6","zombiestandingattack7","zombiestandingattack8","zombiestandingattack9","zombiestandingattack10","zombiefeed1","zombiefeed2","zombiefeed3","zombiefeed4","zombiefeed5"];
 	if (((_unit distance player) <= 3) and ((animationState _unit) in _attackanimations)) then {
 		//check LOS
-		private[];
+		private [];
 		_tPos = (getPosASL _vehicle);
 		_zPos = (getPosASL _unit);
 		_inAngle = [_zPos,(getdir _unit),50,_tPos] call fnc_inAngleSector;

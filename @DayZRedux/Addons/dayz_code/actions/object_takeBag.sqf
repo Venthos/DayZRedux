@@ -1,4 +1,4 @@
-private["_array","_type","_classname","_holder","_config","_isOk","_muzzles","_playerID","_claimedBy","_text"];
+private ["_array","_type","_classname","_holder","_config","_isOk","_muzzles","_playerID","_claimedBy","_text"];
 _holder = _this select 3;
 _classname = typeOf _holder;
 _text = getText (configFile >> "CfgVehicles" >> _classname >> "displayName");

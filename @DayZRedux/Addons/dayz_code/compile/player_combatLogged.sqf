@@ -1,4 +1,4 @@
-private["_playerName","_center","_group"];
+private ["_playerName","_center","_group"];
 _playerName = _this;
 
 //cutText [format["%1 has combat logged!",_playerName], "PLAIN DOWN"];

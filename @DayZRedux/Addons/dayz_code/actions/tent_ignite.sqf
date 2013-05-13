@@ -1,4 +1,4 @@
-private["_ent"];
+private ["_ent"];
 _ent = _this select 3;
 canAbortForce = true;
 

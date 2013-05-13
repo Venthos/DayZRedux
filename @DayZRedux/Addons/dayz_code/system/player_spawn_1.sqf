@@ -1,4 +1,4 @@
-private["_handle","_body","_cursor","_delMe"];
+private ["_handle","_body","_cursor","_delMe"];
 while {true} do {
 	_handle = [] spawn player_animalCheck;
 	waitUntil{scriptDone _handle};
@@ -17,7 +17,7 @@ while {true} do {
 	_cursor = 0;
 	_delMe = false;
 	{
-		private["_bPos","_isNoone"];
+		private ["_bPos","_isNoone"];
 		_bPos = getPosATL _x;
 		_isNoone = {isPlayer _x} count (_bPos nearEntities ["Man",200]) == 0;
 		if (_isNoone) then {
@@ -35,7 +35,7 @@ while {true} do {
 	_cursor = 0;
 	_delMe = false;
 	{
-		private["_bPos","_isNoone"];
+		private ["_bPos","_isNoone"];
 		_bPos = getPosATL _x;
 		_isNoone = {isPlayer _x} count (_bPos nearEntities ["Man",50]) == 0;
 		if (_isNoone) then {

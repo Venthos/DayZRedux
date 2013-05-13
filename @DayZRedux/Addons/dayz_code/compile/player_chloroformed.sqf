@@ -1,4 +1,4 @@
-private["_body","_duration"];
+private ["_body","_duration"];
 _body = _this select 0;
 _duration = _this select 1;
 

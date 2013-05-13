@@ -1,5 +1,5 @@
-private["_location","_isOk","_dir","_classname"];
-private["_item"];
+private ["_location","_isOk","_dir","_classname"];
+private ["_item"];
 _item = _this;
 call gear_ui_init;
 

@@ -1,4 +1,4 @@
-private["_hasFood","_item","_text","_qty"];
+private ["_hasFood","_item","_text","_qty"];
 
 call gear_ui_init;
 

@@ -1,4 +1,4 @@
-private["_location","_isOk","_dir","_classname"];
+private ["_location","_isOk","_dir","_classname"];
 _location = player modeltoworld [0,1,0];
 _location set [2,0];
 _isOk = count (_location isFlatEmpty [0.5,0,0,4,0,false,player]) > 0;

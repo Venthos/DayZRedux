@@ -3,7 +3,7 @@
 #define GREEN [0.6,0.8,0.4,1]
 #define RED [1,0.1,0,1]
 
-private["_task", "_taskDescription", "_taskStatus", "_taskParams"];
+private ["_task", "_taskDescription", "_taskStatus", "_taskParams"];
 
 _task                    = _this select 0;
 _taskDescription = (taskDescription _task) select 1;

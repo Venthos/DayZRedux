@@ -1,4 +1,4 @@
-private["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolorS","_gycolorB","_gxcolorS","_gxcolorB","_ycolorS","_ycolorB","_xcolorS","_xcolorB","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
+private ["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolorS","_gycolorB","_gxcolorS","_gxcolorB","_ycolorS","_ycolorB","_xcolorS","_xcolorB","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
 disableSerialization;
 
 _foodVal = 		1 - (dayz_hunger / SleepFood);
@@ -167,7 +167,7 @@ if (r_player_inpain) then {
 
 };
 
-//private["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord"];
+//private ["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord"];
 //Debug Warning
 
 _debug = getMarkerpos "respawn_west";

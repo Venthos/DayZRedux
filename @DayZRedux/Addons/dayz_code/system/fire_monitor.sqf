@@ -1,4 +1,4 @@
-private["_firePlace","_ok","_mags","_serial","_qty","_countr"];
+private ["_firePlace","_ok","_mags","_serial","_qty","_countr"];
 _firePlace = _this;
 while {alive _firePlace} do {
 	while {inflamed _firePlace and alive _fireplace} do {

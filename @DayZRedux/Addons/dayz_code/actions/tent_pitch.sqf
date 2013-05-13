@@ -1,4 +1,4 @@
-private["_position","_tent","_location","_isOk","_backpack","_tentType","_trg","_key"];
+private ["_position","_tent","_location","_isOk","_backpack","_tentType","_trg","_key"];
 //check if can pitch here
 call gear_ui_init;
 _item = _this;

@@ -2,7 +2,7 @@
 delete object from db
 parameters: _obj
 */
-private["_obj","_objectID","_objectUID"];
+private ["_obj","_objectID","_objectUID"];
 _obj		= _this select 3;
 _objectID 	= _obj getVariable ["ObjectID","0"];
 _objectUID	= _obj getVariable ["ObjectUID","0"];

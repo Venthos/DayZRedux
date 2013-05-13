@@ -1,4 +1,4 @@
-private["_item","_buildError","_toolName","_itemName","_requiredName","_requiredCount"];
+private ["_item","_buildError","_toolName","_itemName","_requiredName","_requiredCount"];
 disableSerialization;
 _item = 	_this;
 _config =	configFile >> "CfgMagazines" >> _item;

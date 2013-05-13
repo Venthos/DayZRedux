@@ -1,4 +1,4 @@
-private["_updates","_playerUID","_charID","_humanity","_worldspace","_model"];
+private ["_updates","_playerUID","_charID","_humanity","_worldspace","_model"];
 _playerUID 	= _this select 0;
 _charID 	= _this select 1;
 _model 		= _this select 2;

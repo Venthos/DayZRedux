@@ -4,7 +4,7 @@ fnc_usec_damageHandle = {
 	- Function
 	- [unit] call fnc_usec_damageHandle;
 	************************************************************/
-	private["_unit","_eh"];
+	private ["_unit","_eh"];
 	_unit = _this select 0;
 	mydamage_eh1 = _unit addeventhandler ["HandleDamage",{_this call fnc_usec_damageHandler;0} ];
 	mydamage_eh2 = _unit addEventHandler ["Fired", {_this call player_fired;}];
@@ -29,7 +29,7 @@ fnc_usec_pitchWhine = {
 };
 
 fnc_usec_damageUnconscious = {
-	private["_unit","_damage"];
+	private ["_unit","_damage"];
 	_unit = _this select 0;
 	_damage = _this select 1;
 	_inVehicle = (vehicle _unit != _unit);
@@ -43,7 +43,7 @@ fnc_usec_damageUnconscious = {
 	};
 	if (_inVehicle) then {
 		_unit spawn {
-			private["_veh","_unit"];
+			private ["_veh","_unit"];
 			_veh = vehicle _this;
 			_unit = _this;
 			waitUntil{(((position _veh select 2 < 1) and (speed _veh < 1)) or (!r_player_unconscious))};
@@ -64,7 +64,7 @@ fnc_usec_damageUnconscious = {
 //Action Handlers added to init file
 
 fnc_usec_bulletHit = {
-	private["_commit"];
+	private ["_commit"];
 	_commit = _this;
 	if (!r_player_unconscious) then {
 		"colorCorrections" ppEffectEnable true;"colorCorrections" ppEffectAdjust [1, 1, 0, [1, 1, 1, 0.0], [1, 1, 1, 0.1],  [1, 1, 1, 0.0]];"colorCorrections" ppEffectCommit 0;
@@ -76,7 +76,7 @@ fnc_usec_bulletHit = {
 };
 
 fnc_usec_damageType = {
-	private["_damage","_ammo","_type"];
+	private ["_damage","_ammo","_type"];
 	_damage = _this select 0;
 	_ammo = _this select 1;
 	_type = 0;
@@ -90,7 +90,7 @@ fnc_usec_damageType = {
 };
 
 fnc_usec_damageGetWound = {
-	private["_hit","_sPoint","_options","_rnd","_wound"];
+	private ["_hit","_sPoint","_options","_rnd","_wound"];
 	_hit = format["%1",_this];
 	_sPoint = USEC_woundHit find _hit;
 	_options = USEC_woundPoint select _sPoint;
@@ -127,7 +127,7 @@ fnc_med_publicBlood = {
 };
 
 fnc_usec_playerBleed = {
-	private["_bleedTime","_bleedPerSec","_total","_bTime","_myBleedTime"];
+	private ["_bleedTime","_bleedPerSec","_total","_bTime","_myBleedTime"];
 	_bleedTime = 400;		//seconds
 	_bleedPerSec = (r_player_bloodTotal / _bleedTime);
 	_total = r_player_bloodTotal;
@@ -157,7 +157,7 @@ fnc_usec_damageBleed = {
 	- Function
 	- [_unit, _wound, _injury] call fnc_usec_damageBleed;
 	************************************************************/
-		private["_unit","_wound","_injury","_modelPos","_point","_source"];
+		private ["_unit","_wound","_injury","_modelPos","_point","_source"];
 		_unit = _this select 0;
 		_wound = _this select 1;
 		_injury = _this select 2;

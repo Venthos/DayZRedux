@@ -1,4 +1,4 @@
-private["_itemType","_iPos","_indexLootSpawn","_iArray","_iItem","_iClass","_item","_qty","_max","_tQty","_arrayLootSpawn","_canType"];
+private ["_itemType","_iPos","_indexLootSpawn","_iArray","_iItem","_iClass","_item","_qty","_max","_tQty","_arrayLootSpawn","_canType"];
 // [_itemType,_weights]
 _iItem = 	_this select 0;
 _iClass = 	_this select 1;
@@ -20,7 +20,7 @@ switch (_iClass) do {
 		_max = ceil(random 2) + 1;
 		//diag_log ("LOOTSPAWN: QTY: " + str(_max) + " ARRAY: " + str(_arrayLootSpawn));
 		while {_qty < _max} do {
-			private["_tQty","_indexLootSpawn","_canType"];
+			private ["_tQty","_indexLootSpawn","_canType"];
 			_tQty = floor(random 1) + 1;
 			//diag_log ("LOOTSPAWN: ITEM QTY: " + str(_tQty));
 			

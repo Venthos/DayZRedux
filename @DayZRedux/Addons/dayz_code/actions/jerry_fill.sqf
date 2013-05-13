@@ -1,4 +1,4 @@
-private["_hasFood","_item","_text","_qty"];
+private ["_hasFood","_item","_text","_qty"];
 
 player removeAction s_player_fillfuel;
 s_player_fillfuel = -1;

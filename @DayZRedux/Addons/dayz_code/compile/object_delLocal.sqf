@@ -1,4 +1,4 @@
-private["_type","_pos","_tent"];
+private ["_type","_pos","_tent"];
 
 _type = _this select 0;
 _pos = _this select 1;

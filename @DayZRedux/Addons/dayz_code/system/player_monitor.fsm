@@ -1030,7 +1030,7 @@ class FSM
        "	//Establish default weapon" \n
        "	if (count weapons player > 0) then" \n
        "	{" \n
-       "		private['_type', '_muzzles'];" \n
+       "		private ['_type', '_muzzles'];" \n
        "" \n
        "		_type = ((weapons player) select 0);" \n
        "		// check for multiple muzzles (eg: GL)" \n
@@ -1105,7 +1105,7 @@ class FSM
        """colorCorrections"" ppEffectCommit 0;" \n
        "" \n
        "dayz_gui = [] spawn {" \n
-       "	private[""_distance""];" \n
+       "	private [""_distance""];" \n
        "	dayz_musicH = [] spawn player_music;" \n
        "	while {true} do {" \n
        "		_array = player call world_surfaceNoise;" \n
@@ -1141,7 +1141,7 @@ class FSM
        "dayz_animalCheck = 	[] spawn player_spawn_1;" \n
        "" \n
        "dayz_lootCheck = [_playerUID,_charID] spawn {" \n
-       "	private[""_handle"",""_humanity"",""_playerUID"",""_oldModel"",""_runOnce""];" \n
+       "	private [""_handle"",""_humanity"",""_playerUID"",""_oldModel"",""_runOnce""];" \n
        "	_playerUID = _this select 0;" \n
        "	_charID = _this select 1;" \n
        "	_runOnce = false;" \n
@@ -1205,7 +1205,7 @@ class FSM
        "// TODO: questionably" \n
        "{ _x call fnc_vehicleEventHandler; } forEach vehicles;" \n
        "" \n
-       "private[""_fadeFire""];" \n
+       "private [""_fadeFire""];" \n
        "{" \n
        "	_fadeFire = _x getVariable['fadeFire', true];" \n
        "	if (!_fadeFire) then {" \n

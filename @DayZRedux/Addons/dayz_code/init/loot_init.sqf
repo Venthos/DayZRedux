@@ -1,4 +1,4 @@
-private["_cfgCount","_config","_i","_itemChances","_itemCount","_weighted","_j","_weight","_l","_k","_type","_canZombie","_canLoot"];
+private ["_cfgCount","_config","_i","_itemChances","_itemCount","_weighted","_j","_weight","_l","_k","_type","_canZombie","_canLoot"];
 dayz_CBLChances = [];
 dayz_CBLBase = [];
 
@@ -45,7 +45,7 @@ for "_i" from 0 to ((count (_config)) - 1) do {
 	dayz_CLChances set [count dayz_CLChances, _weighted];		
 };
 
-private["_i","_type","_config","_canZombie","_canLoot"];
+private ["_i","_type","_config","_canZombie","_canLoot"];
 dayz_ZombieBuildings = [];
 dayz_LootBuildings = [];
 for "_i" from 0 to (count (configFile >> "CfgBuildingLoot") - 1) do {

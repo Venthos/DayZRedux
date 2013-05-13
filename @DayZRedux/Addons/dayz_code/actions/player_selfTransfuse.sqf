@@ -1,4 +1,4 @@
-private["_hasKit","_item","_text","_key"];
+private ["_hasKit","_item","_text","_key"];
 disableserialization;
 call gear_ui_init;
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;

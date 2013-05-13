@@ -110,7 +110,7 @@ if (!isDedicated) then {
 	// TODO: need move it in player_monitor.fsm
 	// allow player disconnect from server, if loading hang, kicked by BE etc.
 	[] spawn {
-		private["_timeOut","_display","_control1","_control2"];
+		private ["_timeOut","_display","_control1","_control2"];
 		disableSerialization;
 		_timeOut = 0;
 		dayz_loadScreenMsg = "";
@@ -144,7 +144,7 @@ if (!isDedicated) then {
 		} else { diag_log "DEBUG: loadscreen guard ended."; };
 	};
 	dayz_losChance = {
-		private["_agent","_maxDis","_dis","_val","_maxExp","_myExp"];
+		private ["_agent","_maxDis","_dis","_val","_maxExp","_myExp"];
 		_agent = 	_this select 0;
 		_dis =		_this select 1;
 		_maxDis = 	_this select 2;
@@ -157,7 +157,7 @@ if (!isDedicated) then {
 	};
 	
 	ui_initDisplay = {
-		private["_control","_ctrlBleed","_display","_ctrlFracture","_ctrlDogFood","_ctrlDogWater","_ctrlDogWaterBorder", "_ctrlDogFoodBorder"];
+		private ["_control","_ctrlBleed","_display","_ctrlFracture","_ctrlDogFood","_ctrlDogWater","_ctrlDogWaterBorder", "_ctrlDogFoodBorder"];
 		disableSerialization;
 		_display = uiNamespace getVariable 'DAYZ_GUI_display';
 		//_control = 	_display displayCtrl 1204;
@@ -182,7 +182,7 @@ if (!isDedicated) then {
 	};
 
 	dayz_losCheck = {
-		private["_target","_agent","_cantSee"];
+		private ["_target","_agent","_cantSee"];
 		_target = _this select 0;
 		_agent = _this select 1;
 		_cantSee = true;
@@ -202,7 +202,7 @@ if (!isDedicated) then {
 	};
 	
 	eh_zombieInit = 	{
-		private["_unit","_pos"];
+		private ["_unit","_pos"];
 		//_unit = 	_this select 0;
 		//_pos =		getPosATL _unit;
 		//_id = [_pos,_unit] execFSM "\z\AddOns\dayz_code\system\zombie_agent.fsm";
@@ -298,7 +298,7 @@ if (!isDedicated) then {
 	};
 	
 	player_serverModelChange = {
-		private["_object","_model"];
+		private ["_object","_model"];
 		_object = _this select 0;
 		_model = _this select 1;
 		if (_object == player) then {
@@ -307,7 +307,7 @@ if (!isDedicated) then {
 	};
 	
 	player_guiControlFlash = 	{
-		private["_control"];
+		private ["_control"];
 		_control = _this;
 		if (ctrlShown _control) then {
 			_control ctrlShow false;
@@ -317,7 +317,7 @@ if (!isDedicated) then {
 	};
 	
 	gear_ui_offMenu = {
-		private["_control","_parent","_menu"];
+		private ["_control","_parent","_menu"];
 		disableSerialization;
 		_control = 	_this select 0;
 		_parent = 	findDisplay 106;
@@ -335,7 +335,7 @@ if (!isDedicated) then {
 	};
 
 	gear_ui_init = {
-		private["_control","_parent","_menu","_dspl","_grpPos"];
+		private ["_control","_parent","_menu","_dspl","_grpPos"];
 		disableSerialization;
 		_parent = findDisplay 106;
 		_control = 	_parent displayCtrl 6902;
@@ -351,7 +351,7 @@ if (!isDedicated) then {
 	};
 	
 	dayz_eyeDir = {
-		private["_vval","_vdir"];
+		private ["_vval","_vdir"];
 		_vval = (eyeDirection _this);
 		_vdir = (_vval select 0) atan2 (_vval select 1);
 		if (_vdir < 0) then {_vdir = 360 + _vdir};
@@ -359,7 +359,7 @@ if (!isDedicated) then {
 	};
 	
 	dayz_lowHumanity = {
-		private["_unit","_humanity","_delay"];
+		private ["_unit","_humanity","_delay"];
 		_unit = _this;
 		if ((_unit distance player) < 15) then {
 			_humanity = _unit getVariable["humanity",0];
@@ -373,7 +373,7 @@ if (!isDedicated) then {
 		};
 	};
 	dayz_meleeMagazineCheck = {
-		private["_meleeNum","_magType","_wpnType"];
+		private ["_meleeNum","_magType","_wpnType"];
 		_wpnType = primaryWeapon player;
 		_magType = 	([] + getArray (configFile >> "CfgWeapons" >> _wpnType >> "magazines")) select 0;
 		_meleeNum = ({_x == _magType} count magazines player);
@@ -428,7 +428,7 @@ if (!isDedicated) then {
 	player_projectileNear = 		compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_projectileNear.sqf";
 
 	player_sumMedical = {
-		private["_character","_wounds","_legs","_arms","_medical"];
+		private ["_character","_wounds","_legs","_arms","_medical"];
 		_character = 	_this;
 		_wounds =		[];
 		if (_character getVariable["USEC_injured",false]) then {

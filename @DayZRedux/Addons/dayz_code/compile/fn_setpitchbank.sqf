@@ -20,7 +20,7 @@ which should be issued before using this function, if required.
 The pitch/bank can be leveled out (set to 0) by using the
 setdir command.
 ************************************************************/
-private["_obj","_pitch","_bank","_yaw","_rotate","_sign","_vdir","_vup"];
+private ["_obj","_pitch","_bank","_yaw","_rotate","_sign","_vdir","_vup"];
 
 _obj = _this select 0;
 _pitch = _this select 1;

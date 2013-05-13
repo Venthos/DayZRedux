@@ -1,4 +1,4 @@
-private["_agent","_target","_targets","_targetDis","_c","_man","_manDis","_targets","_agent","_agentheight","_nearEnts","_rnd","_assigned","_range","_objects"];
+private ["_agent","_target","_targets","_targetDis","_c","_man","_manDis","_targets","_agent","_agentheight","_nearEnts","_rnd","_assigned","_range","_objects"];
 _agent = _this;
 _target = objNull;
 _targets = [];
@@ -14,7 +14,7 @@ if (isNil "_targets") exitWith {};
 if (count _targets == 0) then {
 	_objects = nearestObjects [_agent,["ThrownObjects","GrenadeHandTimedWest","SmokeShell"],50];
 	{
-		private["_dis"];
+		private ["_dis"];
 		if (!(_x in _targets)) then {
 			_targets set [count _targets,_x];
 			_targetDis set [count _targetDis,_dis];
@@ -28,7 +28,7 @@ if (count _targets > 0) then
 	_man = _targets select 0;
 	_manDis = _man distance _agent;
 	{
-		private["_dis"];
+		private ["_dis"];
 		_dis =  _x distance _agent;
 		if (_dis < _manDis) then
 		{

@@ -1,4 +1,4 @@
-private["_holder","_type","_classname","_name"];
+private ["_holder","_type","_classname","_name"];
 _holder = _this select 0;
 _type = _this select 1;
 _classname = _this select 2;
@@ -8,7 +8,7 @@ _name = getText (configFile >> _type >> _classname >> "displayName");
 pickupInit = true;
 
 actionMonitor = {
-	private["_holder","_type","_classname","_name","_action","_distance","_run","_timeout"];
+	private ["_holder","_type","_classname","_name","_action","_distance","_run","_timeout"];
 	_holder = _this select 0;
 	_type = _this select 1;
 	_classname = _this select 2;

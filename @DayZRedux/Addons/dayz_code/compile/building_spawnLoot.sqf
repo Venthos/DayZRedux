@@ -1,4 +1,4 @@
-private["_serial","_positions","_lootGroup","_iArray","_iItem","_iClass","_iPos","_item","_mags","_qty","_max","_tQty","_canType","_obj","_type","_nearBy","_allItems","_items","_itemType","_itemChance","_lootChance","_weights","_index"];
+private ["_serial","_positions","_lootGroup","_iArray","_iItem","_iClass","_iPos","_item","_mags","_qty","_max","_tQty","_canType","_obj","_type","_nearBy","_allItems","_items","_itemType","_itemChance","_lootChance","_weights","_index"];
 
 _obj = 			_this select 0;
 _type = 		typeOf _obj;
@@ -9,7 +9,7 @@ _itemType =		 [] + getArray (_config >> "itemType");
 _itemChance =	 [] + getArray (_config >> "itemChance");	
 
 {
-	private["_iPos2"];
+	private ["_iPos2"];
 	_iPos2 = _obj modelToWorld _x;
 	_rnd = random 1;
   
@@ -23,7 +23,7 @@ _itemChance =	 [] + getArray (_config >> "itemChance");
 
 		if (_rnd < _lootChance) then {
 
-			private["_index","_iArray"];
+			private ["_index","_iArray"];
 			_weights = [_itemType,_itemChance] call fnc_buildWeightedArray;
 			_index = _weights call BIS_fnc_selectRandom;
 			if (_index >= 0) then {

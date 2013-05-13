@@ -1,4 +1,4 @@
-private["_radius","_position","_inVehicle","_dateNow","_age","_locationstypes","_nearestCity","_maxZombies","_nearby","_maxWildZombies","_tooManyZs","_tooManyWildZs","_type","_config","_canZombie","_dis","_zombied","_bPos","_zombiesNum","_withinRange","_spawnWildZs"];
+private ["_radius","_position","_inVehicle","_dateNow","_age","_locationstypes","_nearestCity","_maxZombies","_nearby","_maxWildZombies","_tooManyZs","_tooManyWildZs","_type","_config","_canZombie","_dis","_zombied","_bPos","_zombiesNum","_withinRange","_spawnWildZs"];
 
 _radius = _this select 0;
 _position = _this select 1;

@@ -19,7 +19,7 @@ Missing:
 */
 
 
-private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","_rain_factor","_night_factor","_wind_factor","_building_factor","_sun_factor","_water_factor","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_vel","_speed","_fireplaces","_building","_daytime","_height_mod","_temp"];
+private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","_rain_factor","_night_factor","_wind_factor","_building_factor","_sun_factor","_water_factor","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_vel","_speed","_fireplaces","_building","_daytime","_height_mod","_temp"];
 
 	_looptime 			= _this;
 	_model = typeOf player;
@@ -101,7 +101,7 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 		_isinvehicle 	= true;
 	} else {
 		//speed factor
-		private["_vel","_speed"];
+		private ["_vel","_speed"];
 		_vel = 		velocity player;
 		_speed = 	round((_vel distance [0,0,0]) * 3.5);
 		_difference = (_moving_factor * (_speed / 20)) min 1;

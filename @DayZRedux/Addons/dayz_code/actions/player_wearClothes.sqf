@@ -2,7 +2,7 @@
 _item spawn player_wearClothes;
 TODO: female
 */
-private["_item","_isFemale","_itemNew","_item","_onLadder","_model","_hasclothesitem","_config","_text"];
+private ["_item","_isFemale","_itemNew","_item","_onLadder","_model","_hasclothesitem","_config","_text"];
 _item = _this;
 call gear_ui_init;
 _onLadder = (getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
@@ -19,7 +19,7 @@ if (vehicle player != player) exitWith {cutText ["You may not change clothes whi
 _isFemale = ((typeOf player == "SW2_RX")||(typeOf player == "BW1_RX"));
 if (_isFemale) exitWith {cutText ["Currently Female Characters cannot change to this skin. This will change in a future update.", "PLAIN DOWN"]};
 
-private["_itemNew","_myModel","_humanity","_isBandit","_isHero"];
+private ["_itemNew","_myModel","_humanity","_isBandit","_isHero"];
 _myModel = (typeOf player);
 	//diag_log("DIAG: wearClothes allowdamage false");
 	player allowDamage false;
