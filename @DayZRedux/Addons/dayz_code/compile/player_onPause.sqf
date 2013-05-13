@@ -16,7 +16,12 @@ private["_display","_btnRespawn","_btnAbort","_timeOut","_timeMax","_isDead","_i
 		_isInCombat = player getVariable["isincombat", 0];
 		
 		if(r_player_dead) exitWith {_btnAbort ctrlEnable true; canAbort = true;};
-		if(r_fracture_legs) exitWith {_btnRespawn ctrlEnable true; _btnAbort ctrlEnable true; canAbort = true;};
+		
+		if(r_fracture_legs) exitWith {_btnRespawn ctrlEnable true; 
+			if (!((dayz_combatTimer > 0) || (player getVariable["combattimeout", 0] >= time) || (_isInCombat == 1))) then {
+				_btnAbort ctrlEnable true; canAbort = true;
+			};
+		};
 		
 		//force gear save
 		if (time - dayz_lastCheckSave > 10) then {

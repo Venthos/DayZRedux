@@ -15,17 +15,17 @@ call fnc_usec_medic_removeActions;
 _dragger removeAction NORRN_loadWoundedAction;
   
 if ((_vcl emptyPositions "cargo") > 0) then
-{	
+{
 	detach _wounded;
 	_dragger  switchMove "";
 	_wounded setVariable ["NORRN_LoadVcl", _vcl, true];
 	sleep 1;
 	//["norrnRLact",_wounded] call broadcastRpcCallAll;
-	norrnRLact = [_wounded];
+	[_wounded] execVM "\z\addons\dayz_code\medical\load\load_wounded.sqf";
+	norrnRLact = _wounded;
 	publicVariable "norrnRLact";
 	player removeAction NORRN_dropAction;
-}else{
-	
+} else {
 	hint "No space left in vehicle";
 };
 NORRN_load_wounded_action = true;

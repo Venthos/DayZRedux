@@ -286,6 +286,26 @@
 			<French>You cannot place a Storage Box here. It must be away from structures and in grass or forest</French>
 			<Czech>You cannot place a Storage Box here. It must be away from structures and in grass or forest</Czech>
 		</Key>
+		<Key ID="str_action_diggrave">
+			<Original>Dig shallow grave</Original>
+			<English>Dig shallow grave</English>
+			<German>Dig shallow grave</German>
+			<Russian>Dig shallow grave</Russian>
+			<Spanish>Dig shallow grave</Spanish>
+			<Dutch>Dig shallow grave</Dutch>
+			<French>Dig shallow grave</French>
+			<Czech>Dig shallow grave</Czech>
+		</Key>
+		<Key ID="str_action_burybody">
+			<Original>Bury body</Original>
+			<English>Bury body</English>
+			<German>Bury body</German>
+			<Russian>Bury body</Russian>
+			<Spanish>Bury body</Spanish>
+			<Dutch>Bury body</Dutch>
+			<French>Bury body</French>
+			<Czech>Bury body</Czech>
+		</Key>
 		<Key ID="str_player_consumed">
 			<Original>You have consumed a %1</Original>
 			<English>You have consumed a %1</English>

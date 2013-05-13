@@ -8,7 +8,7 @@
 Start drop_body.sqf
 */
 
-_dragee	= _this select 3; 
+_dragee	= _this select 3;
 
 player removeAction NORRN_dropAction;
 player removeAction NORRN_carryAction;

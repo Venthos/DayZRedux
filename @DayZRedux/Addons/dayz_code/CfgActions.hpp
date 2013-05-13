@@ -10,7 +10,9 @@ class CfgActions {
 	class Rearm : None {
 		show = 0;
 	};
-
+	class HideBody : None {
+		show = 0;
+	};
 	/*
 	class Gear : None {
 		show = 0;

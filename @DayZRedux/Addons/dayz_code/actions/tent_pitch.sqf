@@ -45,7 +45,7 @@ if (_notInBuilding) then {
 	player playActionNow "Medic";
 	sleep 1;
 
-	_dis=50;
+	_dis=15;
 	_sfx = "tentunpack";
 	[player,_sfx,0,false,_dis] call dayz_zombieSpeak;  
 	[player,_dis,true,(getPosATL player)] spawn player_alertZombies;

@@ -7,4 +7,3 @@ while {isServer} do {
 	sleep 181;
 	};
 sleep 181;
-};

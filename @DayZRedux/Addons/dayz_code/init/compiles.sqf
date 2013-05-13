@@ -224,7 +224,7 @@ if (!isDedicated) then {
 	};
 	
 	dayz_spaceInterrupt = {
-		private ["_dikCode", "_handled","_displayg","_displayI"];
+		private ["_dikCode", "_handled","_displayg"];
 		_dikCode = 	_this select 1;
 		_handled = false;
 		if (_dikCode in (actionKeys "GetOver")) then {
@@ -274,19 +274,6 @@ if (!isDedicated) then {
 					call dayz_forceSave;
 				};
 			};
-			if ((_dikCode == 0x3E) or (_dikCode == 0xB8 and _dikCode == 0x3E) or (_dikCode == 0x38 and _dikCode == 0x3E)) then {
-				closeDialog 106;
-				_displayg closeDisplay 0;
-				openMap false;
-					for "_i" from -1 to 200 do {
-						_displayI = findDisplay _i;
-						if (_i == 46) then { _displayI = findDisplay 0; };
-						closeDialog _i;
-							for "_y" from -1 to 10 do {
-								_displayI closedisplay _y;
-							};
-					};
-				};
 		};
 		_handled
 	};

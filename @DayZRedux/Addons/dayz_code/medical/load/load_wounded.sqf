@@ -5,7 +5,7 @@ private ["_wounded","_vcl","_group"];
 
 _wounded 	= _this select 0;
 
-//if (!local _wounded) exitWith {};
+if (!local _wounded) exitWith {};
 
 sleep 1;
 _vcl = _wounded getVariable "NORRN_loadVcl";
@@ -15,17 +15,18 @@ _wounded assignAsCargo _vcl;
 _wounded moveInCargo _vcl;
 sleep 1;
 //["norrnRALW",_wounded] call broadcastRpcCallAll;
-	norrnRALW = [_wounded];
+	norrnRALW = _wounded;
 	publicVariable "norrnRALW";
+  _wounded switchMove "kia_hmmwv_driver";
 
 if (local _wounded) then 
 {	
 	waitUntil {!(_wounded getVariable "NORRN_unconscious")|| !alive _wounded || vehicle _wounded == _wounded || (assignedVehicleRole _wounded) select 0 != "Cargo"};
 	
-	if (vehicle _wounded == _wounded || (assignedVehicleRole _wounded) select 0 != "Cargo") exitWith 
+	if ((vehicle _wounded == _wounded) || (assignedVehicleRole _wounded) select 0 != "Cargo") exitWith 
 	{
 		if (_wounded getVariable "NORRN_AIunconscious") then
-		{	
+		{
 			if (vehicle _wounded != _wounded) then
 			{
 				unassignVehicle _wounded;
@@ -47,4 +48,5 @@ if (local _wounded) then
 	};
 };
 sleep 0.01;
+forceLoad = false;
 if (true) exitWith {};

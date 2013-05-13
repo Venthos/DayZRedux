@@ -96,7 +96,8 @@ _object_damage = {
 		if (_hit > 0) then {_array set [count _array,[_selection,_hit]]};
 		_object setHit ["_selection", _hit]
 	} forEach _hitpoints;
-	
+
+	_object setdamage _damage;	
 	//Mark for db update 
 	if (((time - _lastUpdate) > 5) or _forced) then {
 		if (_object in needUpdate_objects) then {

@@ -3,9 +3,9 @@ if (deathHandled) exitWith {};
 
 deathHandled = true;
 //Death
-
 _body =		player;
 _playerID =	getPlayerUID player;
+disableUserInput true;
 
 //Send Death Notice
 //["dayzDeath",[dayz_characterID,0,_body,_playerID,dayz_playerName]] call callRpcProcedure;
@@ -87,7 +87,6 @@ terminate dayz_spawnCheck;
 
 //Reset (just in case)
 //deleteVehicle dayz_playerTrigger;
-disableUserInput false;
 r_player_dead = true;
 
 "dynamicBlur" ppEffectEnable true;"dynamicBlur" ppEffectAdjust [4]; "dynamicBlur" ppEffectCommit 0.2;
@@ -125,7 +124,7 @@ dayz_combatTimer = 0;
 _body setVariable["combattimeout", 0, true];
 
 //["dayzFlies",player] call broadcastRpcCallAll;
-sleep 1;
+sleep 1.5;
 
 1 cutRsc ["DeathScreenBG","BLACK OUT",1];
 2 cutRsc ["DeathScreen1","BLACK OUT",1];
@@ -147,3 +146,4 @@ playMusic "dayz_track_death_1";
 
 "dynamicBlur" ppEffectAdjust [0]; "dynamicBlur" ppEffectCommit 5;
 "colorCorrections" ppEffectAdjust [1, 1, 0, [1, 1, 1, 0.0], [1, 1, 1, 1],  [1, 1, 1, 1]];"colorCorrections" ppEffectCommit 5;
+disableUserInput false;

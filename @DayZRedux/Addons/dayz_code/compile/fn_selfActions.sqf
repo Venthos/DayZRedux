@@ -4,7 +4,7 @@ scriptName "Functions\misc\fn_selfActions.sqf";
 	- Function
 	- [] call fnc_usec_selfActions;
 ************************************************************/
-private ["_vehicle","_hasChloroform","_inVehicle","_bag","_classbag","_isWater","_hasAntiB","_hasFuelE","_hasFuel5","_hasbottleitem","_hastinitem","_hasKnife","_hasToolbox","_onLadder","_nearLight","_canPickLight","_canDo","_text","_isHarvested","_isVehicle","_isVehicletype","_isMan","_ownerID","_isAnimal","_isDog","_isZombie","_isDestructable","_isTent","_isFuel","_isAlive","_canmove","_rawmeat","_hasRawMeat","_allFixed","_hitpoints","_damage","_part","_cmpt","_damagePercent","_color","_string","_handle","_dogHandle","_lieDown","_warn","_dog","_speed","_array","_newArray","_toStr","_fullPartName","_glassName","_isStorageBox","_hasMatches"];
+private ["_vehicle","_hasChloroform","_inVehicle","_nearGrave","_isDoing","_animState","_bag","_bodyPos","_bodyATL","_classbag","_isWater","_hasAntiB","_hasFuelE","_hasFuel5","_hasbottleitem","_hastinitem","_hasKnife","_hasToolbox","_onLadder","_nearLight","_canPickLight","_canDo","_text","_isHarvested","_isVehicle","_isVehicletype","_isMan","_ownerID","_isAnimal","_isDog","_isZombie","_isDestructable","_isTent","_isFuel","_isAlive","_canmove","_rawmeat","_hasRawMeat","_allFixed","_hitpoints","_damage","_part","_cmpt","_damagePercent","_color","_string","_handle","_dogHandle","_lieDown","_warn","_dog","_speed","_array","_newArray","_toStr","_fullPartName","_glassName","_isStorageBox","_hasMatches"];
 
 _vehicle = vehicle player;
 _inVehicle = (_vehicle != player);
@@ -27,12 +27,15 @@ _hastinitem = false;
 
 _hasKnife = 	"ItemKnife" in items player;
 _hasToolbox = 	"ItemToolbox" in items player;
+_hasETool = 	"ItemEtool" in items player;
 //_hasTent = 		"ItemTent" in items player;
 _hasChloroform = "ItemChloroform" in magazines player;
 _hasMatches = 	"ItemMatchbox" in items player;
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _nearLight = 	nearestObject [player,"LitObject"];
 _canPickLight = false;
+_animState = animationState player;
+_isDoing = ["medic",_animState] call fnc_inString;
 
 if (!isNull _nearLight) then {
 	if (_nearLight distance player < 4) then {
@@ -70,7 +73,11 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	_isFuel = false;
 	_isAlive = alive cursorTarget;
 	_canmove = canmove cursorTarget;
+	_nearGrave = nearestObject [cursorTarget,"Fort_EnvelopeSmall"];	
 	_text = getText (configFile >> "CfgVehicles" >> typeOf cursorTarget >> "displayName");
+	_bodyPos = getPosATL cursorTarget;
+	_bodyHeight = _bodyPos select 2;
+	_bodyATL = _bodyHeight >= -0.2;
 	
 	
 	_rawmeat = meatraw;
@@ -392,6 +399,35 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		player removeAction s_player_studybody;
 		s_player_studybody = -1;
 	};
+	//Dig grave
+	if (_isMan and !_isAlive and !_isAnimal and _hasETool and !_inVehicle and _canDo and (_nearGrave distance cursorTarget > 1) and _bodyATL and !_isDoing) then {
+		if (s_player_diggrave < 0) then {
+			s_player_diggrave = player addAction [localize "str_action_diggrave", "\z\addons\dayz_code\actions\dig_grave.sqf",cursorTarget, 0, false, true, "",""];
+		};
+	} else {
+		player removeAction s_player_diggrave;
+		s_player_diggrave = -1;
+	};
+	//Drag body
+	if (_isMan and !_isAlive and !_isAnimal and _canDo and (_nearGrave distance cursorTarget > 1) and !_inVehicle and _bodyATL and !_isDoing) then {
+		if (s_player_dragbody < 0) then {
+			forceDrag = true;
+			s_player_dragbody = player addAction [localize "str_actions_medical_01", "\z\addons\dayz_code\medical\drag.sqf",cursorTarget, 0, true, true];
+		};
+	} else {
+		player removeAction s_player_dragbody;
+		s_player_dragbody = -1;
+		forceDrag = false;
+	};
+	//Bury body
+	if ((_isMan and !_isAlive and _hasETool and _canDo and !_inVehicle and _bodyATL and !_isDoing and (_nearGrave distance cursorTarget <= 1)) or (_canDo and !_inVehicle and !_isMan and !_isAlive and !_isZombie and _isAnimal and _bodyATL)) then {
+		if (s_player_burybody < 0) then {
+			s_player_burybody = player addAction [localize "str_action_burybody", "\z\addons\dayz_code\actions\hide_body.sqf",cursorTarget, 0, false, true, "",""];
+		};
+	} else {
+		player removeAction s_player_burybody;
+		s_player_burybody = -1;
+	};
 
 	//Dog
 	if (_isDog and _isAlive and (_hasRawMeat) and _canDo and _ownerID == "0" and player getVariable ["dogID", 0] == 0) then {
@@ -476,6 +512,12 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	s_player_deleteBuild = -1;
 	player removeAction s_player_butcher;
 	s_player_butcher = -1;
+	player removeAction s_player_diggrave;
+	s_player_diggrave = -1;
+	player removeAction s_player_dragbody;
+	s_player_dragbody = -1;
+	player removeAction s_player_burybody;
+	s_player_burybody = -1;
 	player removeAction s_player_cook;
 	s_player_cook = -1;
 	player removeAction s_player_boil;
@@ -485,7 +527,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	player removeAction s_player_packtent;
 	s_player_packtent = -1;
 	player removeAction s_player_retrievebox;
-  s_player_retrievebox = -1;
+	s_player_retrievebox = -1;
 	player removeAction s_player_fillfuel;
 	s_player_fillfuel = -1;
 	player removeAction s_player_studybody;

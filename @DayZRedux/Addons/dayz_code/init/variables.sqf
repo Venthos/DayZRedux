@@ -225,6 +225,9 @@ dayz_resetSelfActions = {
 	s_player_igniteTentYes = -1;
 	s_player_igniteTentNo = -1;
 	s_player_retrievebox = -1;
+	s_player_diggrave =     -1;
+	s_player_burybody =    -1;
+	s_player_dragbody = 	-1;
 	s_player_flipveh = 		-1;
 	s_player_stats =		-1;
 	s_player_sleep =		-1;
@@ -239,6 +242,7 @@ dayz_resetSelfActions = {
 	s_player_warndog = 		-1;
 	s_player_followdog = 	-1;
 	s_player_tamedog =		-1;
+	diggingGrave = 			false;
 };
 call dayz_resetSelfActions;
 
@@ -256,6 +260,7 @@ s_player_repairActions = [];
 s_player_removeactions = [];
 
 //Initialize Medical Variables
+forceDrag =         	false;
 r_interrupt = 			false;
 r_doLoop = 				false;
 r_self = 				false;
