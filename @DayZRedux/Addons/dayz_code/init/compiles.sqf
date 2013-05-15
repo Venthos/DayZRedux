@@ -227,6 +227,7 @@ if (!isDedicated) then {
 		private ["_dikCode", "_handled","_displayg"];
 		_dikCode = 	_this select 1;
 		_handled = false;
+		/*
 		if (_dikCode in (actionKeys "GetOver")) then {
 			if (!r_fracture_legs and (time - dayz_lastCheckBit > 4)) then {
 				_inBuilding = [player] call fnc_isInsideBuilding;
@@ -236,7 +237,7 @@ if (!isDedicated) then {
 					call player_CombatRoll;
 				};
 			};
-		};
+		}; */
 		if (_dikCode in actionKeys "MoveLeft") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveRight") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveForward") then {r_interrupt = true};

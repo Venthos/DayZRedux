@@ -1,19 +1,14 @@
 private ["_notInBuilding","_isWater","_isGoodSurface","_animState","_isDoing","_canDo","_distanceFrom","_location","_building","_isMan","_isAlive","_inVehicle","_type","_minDistance","_dir","_dis","_sfx","_body","_bodyPos","_bodyHeight","_bodyATL"];
 
-/*********************************************************************/
-/* 					By icomrade for DayZRedux			  			 */
-/* Credits must remain if using this script in any form or adaptation*/
-/*********************************************************************/
-
 _notInBuilding = false;
 _isGoodSurface = true;
 _building = nearestObject [cursorTarget, "HouseBase"];
 _type = typeOf _building;
-if (_type != "Fort_EnvelopeSmall") then {
-_minDistance = (sizeOf _type) + 1;
- } else {
-_minDistance = 0;
- };
+  if (_type != "Fort_EnvelopeSmall") then {
+    _minDistance = (sizeOf _type) + 1;
+  } else {
+    _minDistance = 0;
+  };
 _location = position cursorTarget;
 _distanceFrom = _location distance _building;
 _isMan = cursorTarget isKindOf "Man";

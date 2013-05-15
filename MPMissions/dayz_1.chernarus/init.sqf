@@ -11,7 +11,7 @@ dayzHiveRequest = [];
 initialized = false;
 dayz_previousID = 0;
 
-//Define first person settings. Leave commented out to disable this feature or when using difficulty to disable third person
+//Define first person settings. Set 0 to disable this feature or when using difficulty to disable third person
 //FPOnly = 0; disables this feature.
 //FPOnly = 1; is First Person only in vehicles.
 //FPOnly = 2; is First Person only on foot.

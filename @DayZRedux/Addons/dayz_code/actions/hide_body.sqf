@@ -1,10 +1,5 @@
 private ["_body","_isMan","_isAlive","_inVehicle","_animState","_isDoing","_grave","_canDo","_isZombie","_cross","_dir","_location","_sfx","_dis","_isAnimal","_bodyPos","_bodyHeight","_bodyATL","_pos","_flies"];
 
-/*********************************************************************/
-/* 					By icomrade for DayZRedux			  			 */
-/* Credits must remain if using this script in any form or adaptation*/
-/*********************************************************************/
-
 _body = cursorTarget;
 _isMan = cursorTarget isKindOf "Man";
 _isAlive = alive cursorTarget;

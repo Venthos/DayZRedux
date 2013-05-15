@@ -45,7 +45,7 @@ _agent setVariable ["newDest",_newDest];
 //Add some loot
 _rnd = random 1;
 if (_rnd > 0.3) then {
-	_lootType = 		configFile >> "CfgVehicles" >> _type >> "zombieLoot";
+	_lootType = 		configFile >> "CfgVehicles" >> _type >> "zombieLoot"; 
 	if (isText _lootType) then {
 		_array = []+ getArray (configFile >> "cfgLoot" >> getText(_lootType));
 		if (count _array > 0) then {
