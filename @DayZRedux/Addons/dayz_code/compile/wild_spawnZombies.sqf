@@ -50,7 +50,7 @@ if (_rnd > 0.3) then {
 		_array = []+ getArray (configFile >> "cfgLoot" >> getText(_lootType));
 		if (count _array > 0) then {
 			_loot = _array call BIS_fnc_selectRandomWeighted;
-			if(!isNil "_array") then {
+			if (!isNil "_array") then {
 				_agent addMagazine _loot;
 			};
 		};

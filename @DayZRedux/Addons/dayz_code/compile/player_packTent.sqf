@@ -11,7 +11,7 @@ player playActionNow "Medic";
 player removeAction s_player_packtent;
 s_player_packtent = -1;
 
-if(_ownerID == dayz_characterID) then {
+if (_ownerID == dayz_characterID) then {
 	_alreadyPacking = _obj getVariable["packing",0];
 
 	if (_alreadyPacking == 1) exitWith {cutText [format[(localize "str_player_beingpacked")] , "PLAIN DOWN"]};

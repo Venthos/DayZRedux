@@ -7,8 +7,8 @@ _bypass = false;
 
 call gear_ui_init;
 
-if(_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
-if(_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
+if (_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
+if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
 
 _item =			_this;
 _classname = 	getText (configFile >> "CfgMagazines" >> _item >> "ItemActions" >> "Build" >> "create");
@@ -24,12 +24,12 @@ if (!_hasbuildmag) exitWith {cutText [format[(localize "str_player_31"),_text,"b
 {
 	_hasTool = _x in items player;
 	_toolName = getText(configFile >> "CfgWeapons" >> _x >> "displayName");
-	if (!_hasTool) exitWith{
+	if (!_hasTool) exitWith {
 		_buildError = true;
 	};
 } forEach _requireItems;
 
-if (_buildError) exitWith{
+if (_buildError) exitWith {
 	cutText [format["You must have a %1 to build %2.", _toolName,_text], "PLAIN DOWN"];
 };
 

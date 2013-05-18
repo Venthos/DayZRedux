@@ -97,7 +97,7 @@ _object_damage = {
 		_object setHit ["_selection", _hit]
 	} forEach _hitpoints;
 
-	_object setdamage _damage;	
+	//_object setdamage _damage;
 	//Mark for db update 
 	if (((time - _lastUpdate) > 5) or _forced) then {
 		if (_object in needUpdate_objects) then {

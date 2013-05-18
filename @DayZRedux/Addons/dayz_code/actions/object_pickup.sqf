@@ -18,13 +18,13 @@ if (isnil "claimed") then {
 };
 canPickup = false;
 
-if(_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
+if (_classname isKindOf "TrapBear") exitwith {deleteVehicle _holder;};
 
 player playActionNow "PutDown";
 
 //Adding random chance of arrow is re-usable on pickup
 _broken = false;
-if(_classname == "WoodenArrow") then {
+if (_classname == "WoodenArrow") then {
 	if (20 > random 100) then {
 		_broken = true;
 	};
@@ -37,7 +37,7 @@ _claimedBy = _holder getVariable["claimed","0"];
 
 if (_claimedBy != _playerID) exitWith {cutText [format[(localize "str_player_beinglooted"),_text] , "PLAIN DOWN"]; };
 
-if(_classname isKindOf "Bag_Base_EP1") then {
+if (_classname isKindOf "Bag_Base_EP1") then {
 	diag_log("Picked up a bag: " + _classname);
 };
 

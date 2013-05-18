@@ -177,7 +177,7 @@ if (_damage > 0.4) then {	//0.25
 			_id = [_source,"shothead"] spawn player_death;
 		};
 	};
-	if(!_isHit) then {
+	if (!_isHit) then {
 		//Create Wound
 		_unit setVariable[_wound,true,true];
 		[_unit,_wound,_hit] spawn fnc_usec_damageBleed;

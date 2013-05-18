@@ -194,7 +194,7 @@ if (_randomSpot) then {
 			_isIsland	= false;		//Can be set to true during the Check
 			for [{_w=0},{_w<=150},{_w=_w+2}] do {
 				_pos = [((_pos select 0) - _w),((_pos select 1) + _w),(_pos select 2)];
-				if(surfaceisWater _pos) exitWith {
+				if (surfaceisWater _pos) exitWith {
 					_isIsland = true;
 				};
 			};

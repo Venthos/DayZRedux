@@ -25,7 +25,7 @@ switch (_result select 1) do
 			_qresult = call compile _qresult;
 			_qresult = _qresult select 0;
 			_ret = ["",true,_qresult select 0,"S2_RX",dayz_hiveVersionNo];
-		}else{
+		} else {
 			_qresult = call compile _qresult;
 			_qresult = _qresult select 0;
 			_ret = ["",false,_qresult select 0,[],call compile (_qresult select 1),call compile ([_qresult select 2,"["",","["""","] call fnc_replace),[call compile (_qresult select 3),call compile (_qresult select 5),call compile (_qresult select 6)],call compile (_qresult select 4),dayz_hiveVersionNo];

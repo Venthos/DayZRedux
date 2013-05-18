@@ -8,7 +8,7 @@ s_player_speeddog =	-1;
 
 _dog = 	_handle getFSMVariable "_dog";
 
-if(player distance _dog > 5) then {
+if (player distance _dog > 5) then {
 	[nil,player,rSAY,["dog_slowDown", 120]] call RE;
 };
 

@@ -152,7 +152,7 @@ class FSM
        "			_delQtyZ = _delQtyZ + 1;" \n
        "		} else {" \n
        "			_exists = _x in _deadBodies;" \n
-       "			if(!_exists) then {" \n
+       "			if (!_exists) then {" \n
        "				_deadBodies set [count _deadBodies,_x];" \n
        "			};" \n
        "		};" \n
@@ -168,7 +168,7 @@ class FSM
        "for ""_i"" from 0 to _delDo do {" \n
        "	_body = _deadBodies select _i;" \n
        "	_nearGrave = nearestObject [_body,""GraveCrossHelmet_EP1""];" \n
-       "	if((!isNil ""_body"") and (_nearGrave  distance _body <= 1)) then {" \n
+       "	if ((!isNil ""_body"") and (_nearGrave  distance _body <= 1)) then {" \n
        "		_pos = getPosATL _body;" \n
        "		_sfx = nearestObject [_pos,""Sound_Flies""];" \n
        "		if (!(isNull _sfx)) then {" \n
@@ -293,7 +293,7 @@ class FSM
        "_key = ""CHILD:307:"";" \n
        "_result = _key call server_hiveReadWrite;" \n
        "_outcome = _result select 0;" \n
-       "if(_outcome == ""PASS"") then {" \n
+       "if (_outcome == ""PASS"") then {" \n
        "	_date = _result select 1;" \n
        "" \n
        "	//date setup" \n
@@ -344,7 +344,7 @@ class FSM
        "/*" \n
        "//Check for Ammobox" \n
        " {" \n
-       "	if(!(_x isKindOf ""WeaponHolder"")) then {" \n
+       "	if (!(_x isKindOf ""WeaponHolder"")) then {" \n
        "		diag_log (""CLEANUP: DELETING AN AMMOBOX "" + (typeOf _x));" \n
        "		deleteVehicle _x;" \n
        "	};" \n
@@ -353,7 +353,7 @@ class FSM
        "" \n
        "//Check for hackers" \n
        " {" \n
-       "  	if(vehicle _x != _x && !(vehicle _x in _safety) && (typeOf vehicle _x) != ""ParachuteWest"") then {" \n
+       "  	if (vehicle _x != _x && !(vehicle _x in _safety) && (typeOf vehicle _x) != ""ParachuteWest"") then {" \n
        "		diag_log (""CLEANUP: KILLING A HACKER "" + (name _x) + "" "" + str(_x) + "" IN "" + (typeOf vehicle _x));" \n
        "   		(vehicle _x) setDamage 1;" \n
        "   		_x setDamage 1;" \n

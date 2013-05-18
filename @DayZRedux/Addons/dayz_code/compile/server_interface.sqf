@@ -6,14 +6,14 @@ _data = _this select 0;
 _action = _this select 1;
 debuglog _action;
 
-if(typeName(_data select 0) == "DISPLAY")then 
+if (typeName(_data select 0) == "DISPLAY") then 
 {
 	_display = (_data select 0);
 };
 
 _lbindex = 0;
 _lbselected  = "";
-if(typeName(_data select 0) == "CONTROL")then 
+if (typeName(_data select 0) == "CONTROL") then 
 {
 	_control = (_data select 0);
 	_display = ctrlParent _control;

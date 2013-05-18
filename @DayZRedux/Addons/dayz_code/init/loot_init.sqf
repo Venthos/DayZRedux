@@ -20,7 +20,7 @@ for "_i" from 0 to ((count _config) - 1) do {
 			};
 		dayz_CBLChances set [count dayz_CBLChances, _weighted];
 		dayz_CBLBase set [count dayz_CBLBase, _classname];
-		} ;
+		};
 	} else {
 		dayz_CBLChances set [count dayz_CBLChances, [0]];
 		dayz_CBLBase set [count dayz_CBLBase, _classname];
@@ -53,13 +53,13 @@ for "_i" from 0 to (count (configFile >> "CfgBuildingLoot") - 1) do {
 	_type = (configFile >> "CfgBuildingLoot") select _i;
 	_canZombie = 	getNumber (_type >> "zombieChance") > 0;
 	_canLoot = 		getNumber (_type >> "lootChance") > 0;
-	if(_canZombie) then {
-		if(!((configName _type) in dayz_ZombieBuildings)) then {
+	if (_canZombie) then {
+		if (!((configName _type) in dayz_ZombieBuildings)) then {
 			dayz_ZombieBuildings set [count dayz_ZombieBuildings, configName _type];
 		};
 	};
-	if(_canLoot) then {
-		if(!((configName _type) in dayz_LootBuildings)) then {
+	if (_canLoot) then {
+		if (!((configName _type) in dayz_LootBuildings)) then {
 			dayz_LootBuildings set [count dayz_LootBuildings, configName _type];
 		};
 	};

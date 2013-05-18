@@ -90,13 +90,13 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	_isinbuilding	= false;
 	_isinvehicle	= false;
 	
-	_raining 		= if(rain > 0) then {true} else {false};
+	_raining 		= if (rain > 0) then {true} else {false};
 	_sunrise		= call world_sunRise;
 	
 	//POSITIV EFFECTS
 	
 	//vehicle
-	if((vehicle player) != player) then {
+	if ((vehicle player) != player) then {
 		_difference 	= _difference + _vehicle_factor;
 		_isinvehicle 	= true;
 	} else {
@@ -109,7 +109,7 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	
 	//fire
 	_fireplaces = nearestObjects [player, ["Land_Fire","Land_Campfire"], 8];
-	if(({inflamed _x} count _fireplaces) > 0 && !_isinvehicle ) then {
+	if (({inflamed _x} count _fireplaces) > 0 && !_isinvehicle ) then {
 		//Math: factor * 1 / (0.5*(distance max 1)^2) 		0.5 = 12.5% of the factor effect in a distance o 4 meters
 		_difference 	= _difference + (_fire_factor /(0.5*((player distance (_fireplaces select 0)) max 1)^2));
 		_hasfireffect 	= true;
@@ -117,10 +117,10 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	
 	//building
 	_building = nearestObject [player, "HouseBase"];
-	if(!isNull _building) then {
-		if([player,_building] call fnc_isInsideBuilding) then {
+	if (!isNull _building) then {
+		if ([player,_building] call fnc_isInsideBuilding) then {
 			//Make sure thate Fire and Building Effect can only appear single		Not used at the moment
-			//if(!_hasfireffect && _fire_factor > _building_factor) then {
+			//if (!_hasfireffect && _fire_factor > _building_factor) then {
 				_difference = _difference + _building_factor;
 			//};
 			_isinbuilding	= true;
@@ -134,7 +134,7 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	
 	
 	//sun
-	if(daytime > _sunrise && daytime < (24 - _sunrise) && !_raining && overcast <= 0.6 && !_isinbuilding) then {
+	if (daytime > _sunrise && daytime < (24 - _sunrise) && !_raining && overcast <= 0.6 && !_isinbuilding) then {
 		
 		/*Mathematic Basic
 		
@@ -165,19 +165,19 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	//NEGATIVE  EFFECTS
 	
 	//water
-	if(surfaceIsWater getPosATL player || dayz_isSwimming) then {
+	if (surfaceIsWater getPosATL player || dayz_isSwimming) then {
 		_difference = _difference + _water_factor;
 	};
 	
 	//rain
-	if(_raining && !_isinvehicle && !_isinbuilding) then {
+	if (_raining && !_isinvehicle && !_isinbuilding) then {
 		_difference = _difference + (rain * _rain_factor);
 	};
 	
 	//night
-	if((daytime < _sunrise || daytime > (24 - _sunrise)) && !_isinvehicle) then {
-		_daytime 	= if(daytime < 12) then {daytime + 24} else {daytime};
-		if(_isinbuilding) then {
+	if ((daytime < _sunrise || daytime > (24 - _sunrise)) && !_isinvehicle) then {
+		_daytime 	= if (daytime < 12) then {daytime + 24} else {daytime};
+		if (_isinbuilding) then {
 			_difference = _difference + ((((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor)) / 2;
 		} else {
 			_difference = _difference + (((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor);
@@ -185,7 +185,7 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	};
 	
 	//wind
-	if(((wind select 0) > 4 || (wind select 1) > 4) && !_isinvehicle && !_isinbuilding ) then {
+	if (((wind select 0) > 4 || (wind select 1) > 4) && !_isinvehicle && !_isinbuilding ) then {
 		_difference = _difference + _wind_factor;
 	};
 	
@@ -203,7 +203,7 @@ private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor",
 	
 	//Add Shivering
 	//						Percent when the Shivering will start 
-	if(dayz_temperatur <= (0.125 * (dayz_temperaturmax - dayz_temperaturmin) + dayz_temperaturmin)) then {
+	if (dayz_temperatur <= (0.125 * (dayz_temperaturmax - dayz_temperaturmin) + dayz_temperaturmin)) then {
 		//CamShake as linear Function Maximum reached when Temp is at temp minimum. First Entry = Max Value
 		_temp = 0.6 * (dayz_temperaturmin / dayz_temperatur );
 		addCamShake [_temp,(_looptime + 1),30];	//[0.5,looptime,6] -> Maximum is 25% of the Pain Effect	

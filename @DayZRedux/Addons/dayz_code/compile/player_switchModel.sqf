@@ -34,15 +34,15 @@ private ["_weapons","_magazines","_primweapon","_secweapon"];
 	_secweapon	= secondaryWeapon player;
 
 	//Checks
-	if(!(_primweapon in _weapons) && _primweapon != "") then {
+	if (!(_primweapon in _weapons) && _primweapon != "") then {
 		_weapons = _weapons + [_primweapon];
 	};
 
-	if(!(_secweapon in _weapons) && _secweapon != "") then {
+	if (!(_secweapon in _weapons) && _secweapon != "") then {
 		_weapons = _weapons + [_secweapon];
 	};
 	
-//	if(count _magazines == 0) then {
+//	if (count _magazines == 0) then {
 //		_magazines = magazines player;
 //	};
 
@@ -50,7 +50,7 @@ private ["_weapons","_magazines","_primweapon","_secweapon"];
 private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	dayz_myBackpack = unitBackpack player;
 	_newBackpackType = (typeOf dayz_myBackpack);
-	if(_newBackpackType != "") then {
+	if (_newBackpackType != "") then {
 		_backpackWpn = getWeaponCargo unitBackpack player;
 		_backpackMag = getMagazineCargo unitBackpack player;
 	};
@@ -106,7 +106,7 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	} forEach _weapons;
 
 //Check and Compare it
-	if(str(_weapons) != str(weapons _newUnit)) then {
+	if (str(_weapons) != str(weapons _newUnit)) then {
 		//Get Differecnce
 		{
 			_weapons = _weapons - [_x];
@@ -119,11 +119,11 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 		} forEach _weapons;
 	};
 	
-	if(_primweapon !=  (primaryWeapon _newUnit)) then {
+	if (_primweapon !=  (primaryWeapon _newUnit)) then {
 		_newUnit addWeapon _primweapon;		
 	};
 
-	if(_secweapon != (secondaryWeapon _newUnit) && _secweapon != "") then {
+	if (_secweapon != (secondaryWeapon _newUnit) && _secweapon != "") then {
 		_newUnit addWeapon _secweapon;		
 	};
 
@@ -183,7 +183,7 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 //Move player inside
 
 //	player switchCamera = _currentCamera;
-	if(_currentWpn != "") then {_newUnit selectWeapon _currentWpn;};
+	if (_currentWpn != "") then {_newUnit selectWeapon _currentWpn;};
 	[objNull, player, rSwitchMove,_currentAnim] call RE;
 	//dayz_originalPlayer attachTo [_newUnit];
 	player disableConversation true;

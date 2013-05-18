@@ -24,7 +24,7 @@ if (count _this > 2) then {
 	};
 };
 
-if(isNull group _unit) then {
+if (isNull group _unit) then {
 	_unit moveTo _pos;
 } else {
 	_unit domove _pos;		

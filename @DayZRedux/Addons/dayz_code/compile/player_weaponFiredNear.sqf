@@ -33,8 +33,8 @@ private ["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key",
 	};
 	
 	
-	if (_inVehicle) exitWith{};
-	if (_firer == player) exitWith{};
+	if (_inVehicle) exitWith {};
+	if (_firer == player) exitWith {};
 	
 	//Is in danger angle?
 	_turretDir = _firer weaponDirection _weapon;

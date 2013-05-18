@@ -570,7 +570,7 @@ class FSM
     class Staying
     {
       name = "Staying";
-      init = /*%FSM<STATEINIT""">*/"if(_standing) then {" \n
+      init = /*%FSM<STATEINIT""">*/"if (_standing) then {" \n
        "	_standing = false;" \n
        "	if (!_watchDog) then {" \n
        "		_move = ""Dog_LieDown"";" \n
@@ -965,7 +965,7 @@ class FSM
            "	_dog = createAgent [_type, _Pos, [], 0, ""NONE""];" \n
            "	_pos = [(getPos player),1,3,4,0,5,0] call BIS_fnc_findSafePos;" \n
            "	_dog setpos _pos;" \n
-           "} ;" \n
+           "};" \n
            "" \n
            "diag_log ""DOG RECREATED"";"/*%FSM</ACTION""">*/;
         };

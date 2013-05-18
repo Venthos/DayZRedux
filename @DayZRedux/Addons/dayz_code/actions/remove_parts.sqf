@@ -20,7 +20,7 @@ if (_hasToolbox) then {
 
         _damage = [_vehicle,_hitpoint] call object_getHit;
 
-        if( _damage < 0.20 ) then {
+        if ( _damage < 0.20 ) then {
             _result = [player,_part] call BIS_fnc_invAdd;
             if (_result) then {
 
@@ -29,15 +29,19 @@ if (_hasToolbox) then {
                 silver_myCursorTarget = objNull;
 
                 _selection = getText(configFile >> "cfgVehicles" >> _type >> "HitPoints" >> _hitpoint >> "name");
-                if( _hitpoint == "HitEngine" or _hitpoint == "HitFuel" ) then {
-                    dayzSetFix = [_vehicle,_selection,0.89];
+                if ( _hitpoint == "HitEngine" or _hitpoint == "HitFuel" ) then {
+					if (_type isKindOf "Helicopter") then {
+						dayzSetFix = [_vehicle,_selection,0.94];
+					} else {
+						dayzSetFix = [_vehicle,_selection,0.89];
+					};
                 } else {
                     dayzSetFix = [_vehicle,_selection,1];
                 };
 				
                 if (local _vehicle) then {
                     dayzSetFix call object_setFixServer;
-                }else{
+                } else {
                     publicVariable "dayzSetFix";
                 };
 
@@ -63,7 +67,7 @@ if (_hasToolbox) then {
     };
 };
 
-if( silver_myCursorTarget != objNull ) then {
+if ( silver_myCursorTarget != objNull ) then {
     {silver_myCursorTarget removeAction _x} forEach s_player_removeActions;
     s_player_removeActions = [];
     silver_myCursorTarget = objNull;

@@ -384,13 +384,13 @@ dayz_spawnPos = getPosATL player;
 //init global arrays for Loot Chances
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\loot_init.sqf";
 
-if(isServer) then {
+if (isServer) then {
 	dayz_players = [];
 	dead_bodyCleanup = [];
 	needUpdate_objects = [];
 };
 
-if(!isDedicated) then {
+if (!isDedicated) then {
 	//Establish Location Streaming
 	_funcGetLocation = 
 	{

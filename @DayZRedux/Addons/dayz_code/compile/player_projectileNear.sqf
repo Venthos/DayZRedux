@@ -10,7 +10,7 @@ _projectile = 	_this select 6;
 // being tracked for use in placing others in combat.  This should hopefully result
 // in increased performance, especially when people are firing off LMGs.
 _timeleft = dayz_combatTimer - time;
-if (_timeleft > 43) exitWith{};
+if (_timeleft > 43) exitWith {};
 
 //diag_log("COMBAT: Doing projectileNear calculations");
 

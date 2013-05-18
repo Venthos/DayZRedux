@@ -17,7 +17,7 @@ diag_log "HIVE: Starting";
 	_key = "CHILD:307:";
 	_result = _key call server_hiveReadWrite;
 	_outcome = _result select 0;
-	if(_outcome == "PASS") then {
+	if (_outcome == "PASS") then {
 		_date = _result select 1;
 		
 		//date setup
@@ -30,7 +30,7 @@ diag_log "HIVE: Starting";
 		//Force full moon nights
 		_date = [2012,6,6,_hour,_minute];
 		
-		if(isDedicated) then {
+		if (isDedicated) then {
 			//["dayzSetDate",_date] call broadcastRpcCallAll;
 			setDate _date;
 			dayzSetDate = _date;

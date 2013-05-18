@@ -95,7 +95,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	//diag_log ("OWNERID = " + _ownerID + " CHARID = " + dayz_characterID + " " + str(_ownerID == dayz_characterID));
 	
 	//Allow player to delete objects
-	if(_isDestructable and _hasToolbox and _canDo) then {
+	if (_isDestructable and _hasToolbox and _canDo) then {
 		if (s_player_deleteBuild < 0) then {
 			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "\z\addons\dayz_code\actions\remove.sqf",cursorTarget, 1, true, true, "", ""];
 		};
@@ -106,7 +106,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	
 	/*
 	//Allow player to force save
-	if((_isVehicle or _isTent) and _canDo and !_isMan) then {
+	if ((_isVehicle or _isTent) and _canDo and !_isMan) then {
 		if (s_player_forceSave < 0) then {
 			s_player_forceSave = player addAction [format[localize "str_actions_save",_text], "\z\addons\dayz_code\actions\forcesave.sqf",cursorTarget, 1, true, true, "", ""];
 		};
@@ -126,7 +126,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 
 	//Allow player to set tent ablaze
-	if(_isTent and _hasMatches and _canDo and !_isMan) then {
+	if (_isTent and _hasMatches and _canDo and !_isMan) then {
 		if (s_player_igniteTentSwitch < 0) then {
 			s_player_igniteTentSwitch = player addAction [format[localize "str_actions_ignite_tent"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", cursorTarget, 1, true, false, "", ""];
 		};
@@ -136,7 +136,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 
 	//Allow player to set storage box ablaze
-	if(_isStorageBox and _hasMatches and _canDo and !_isMan and _isAlive) then {
+	if (_isStorageBox and _hasMatches and _canDo and !_isMan and _isAlive) then {
 		if (s_player_igniteBoxSwitch < 0) then {
 			s_player_igniteBoxSwitch = player addAction [format[localize "str_actions_ignite_box"], "\z\addons\dayz_code\actions\confirm_ignite.sqf", cursorTarget, 1, true, false, "", ""];
 		};
@@ -146,7 +146,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 	
 	//Allow player to fill jerrycan
-	if((_hasFuelE or _hasFuel5) and _isFuel and _canDo) then {
+	if ((_hasFuelE or _hasFuel5) and _isFuel and _canDo) then {
 		if (s_player_fillfuel < 0) then {
 			s_player_fillfuel = player addAction [localize "str_actions_self_10", "\z\addons\dayz_code\actions\jerry_fill.sqf",[], 1, false, true, "", ""];
 		};
@@ -182,7 +182,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		s_player_boil = -1;
 	};
 	
-	if(cursorTarget == dayz_hasFire and _canDo) then {
+	if (cursorTarget == dayz_hasFire and _canDo) then {
 		if ((s_player_fireout < 0) and !(inflamed cursorTarget) and (player distance cursorTarget < 3)) then {
 			s_player_fireout = player addAction [localize "str_actions_self_06", "\z\addons\dayz_code\actions\fire_pack.sqf",cursorTarget, 0, false, true, "",""];
 		};
@@ -192,7 +192,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 	
 	//Packing my tent
-	if(((cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX")) and _canDo and _ownerID == dayz_characterID) then {
+	if (((cursorTarget isKindOf "Land_Cont_RX") or (cursorTarget isKindOf "Land_Cont2_RX")) and _canDo and _ownerID == dayz_characterID) then {
 		if ((s_player_packtent < 0) and (player distance cursorTarget < 3)) then {
 			s_player_packtent = player addAction [localize "str_actions_self_07", "\z\addons\dayz_code\actions\tent_pack.sqf",cursorTarget, 0, false, true, "",""];
 		};
@@ -203,7 +203,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	
 	//Sleep -- USELESS
 /*
-	if(cursorTarget isKindOf "TentStorage" and _canDo and _ownerID == dayz_characterID) then {
+	if (cursorTarget isKindOf "TentStorage" and _canDo and _ownerID == dayz_characterID) then {
 		if ((s_player_sleep < 0) and (player distance cursorTarget < 3)) then {
 			s_player_sleep = player addAction [localize "str_actions_self_sleep", "\z\addons\dayz_code\actions\player_sleep.sqf",cursorTarget, 0, false, true, "",""];
 		};
@@ -213,7 +213,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 	};
 */
 	//Retrieving my box
-	if((cursorTarget isKindOf "Land_Mag_RX") and _canDo and _ownerID == dayz_characterID and _isAlive) then {
+	if ((cursorTarget isKindOf "Land_Mag_RX") and _canDo and _ownerID == dayz_characterID and _isAlive) then {
 		if ((s_player_retrievebox < 0) and (player distance cursorTarget < 3)) then {
 			s_player_retrievebox = player addAction [localize "str_actions_self_11", "\z\addons\dayz_code\actions\box_retrieve.sqf",cursorTarget, 0, false, true, "",""];
 		};
@@ -224,10 +224,10 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 
 	// Remove Parts from Vehicles - By SilverShot.
 
-	if( !_isMan and _canDo and _hasToolbox and (silver_myCursorTarget != cursorTarget) and cursorTarget isKindOf "AllVehicles" and (getDammage cursorTarget < 0.95) ) then {
+	if ( !_isMan and _canDo and _hasToolbox and (silver_myCursorTarget != cursorTarget) and cursorTarget isKindOf "AllVehicles" and (getDammage cursorTarget < 0.95) ) then {
 		_vehicle = cursorTarget;
 		_invalidVehicle = (_vehicle isKindOf "Motorcycle") or (_vehicle isKindOf "Tractor") or (_vehicle isKindOf "Ship") or (_vehicle isKindOf "ATV_Base_EP1"); //or (_vehicle isKindOf "ATV_US_EP1") or (_vehicle isKindOf "ATV_CZ_EP1");
-		if( !_invalidVehicle ) then {
+		if ( !_invalidVehicle ) then {
 		{silver_myCursorTarget removeAction _x} forEach s_player_removeActions;
 		
 		s_player_removeActions = [];
@@ -238,7 +238,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		{
 		_damage = [_vehicle,_x] call object_getHit;
 		 
-		if( _damage < 0.15 ) then {
+		if ( _damage < 0.15 ) then {
 		 
 		//change "HitPart" to " - Part" rather than complicated string replace
 		_cmpt = toArray (_x);
@@ -248,19 +248,19 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		_cmpt = toString _cmpt;
 		 
 		_skip = true;
-		if((_damage < 10) and _skip and _x == "HitFuel" ) then { _skip = false; _part = "PartFueltank"; _cmpt = _cmpt + "tank"};
-		if((_damage < 10) and _skip and _x == "HitEngine" ) then { _skip = false; _part = "PartEngine"; };
-		if((_damage < 10) and _skip and _x == "HitLFWheel" ) then { _skip = false; _part = "PartWheel"; };
-		if((_damage < 10) and _skip and _x == "HitRFWheel" ) then { _skip = false; _part = "PartWheel"; };
-		if((_damage < 10) and _skip and _x == "HitLBWheel" ) then { _skip = false; _part = "PartWheel"; };
-		if((_damage < 10) and _skip and _x == "HitRBWheel" ) then { _skip = false; _part = "PartWheel"; };
-		if((_damage < 10) and _skip and _x == "HitGlass1" ) then { _skip = false; _part = "PartGlass"; };
-		if((_damage < 10) and _skip and _x == "HitGlass2" ) then { _skip = false; _part = "PartGlass"; };
-		if((_damage < 10) and _skip and _x == "HitGlass3" ) then { _skip = false; _part = "PartGlass"; };
-		if((_damage < 10) and _skip and _x == "HitGlass4" ) then { _skip = false; _part = "PartGlass"; };
-		if((_damage < 10) and _skip and _x == "HitGlass5" ) then { _skip = false; _part = "PartGlass"; };
-		if((_damage < 10) and _skip and _x == "HitGlass6" ) then { _skip = false; _part = "PartGlass"; };
-		if((_damage < 10) and _skip and _x == "HitHRotor" ) then { _skip = false; _part = "PartVRotor"; };
+		if ((_damage < 10) and _skip and _x == "HitFuel" ) then { _skip = false; _part = "PartFueltank"; _cmpt = _cmpt + "tank"};
+		if ((_damage < 10) and _skip and _x == "HitEngine" ) then { _skip = false; _part = "PartEngine"; };
+		if ((_damage < 10) and _skip and _x == "HitLFWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if ((_damage < 10) and _skip and _x == "HitRFWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if ((_damage < 10) and _skip and _x == "HitLBWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if ((_damage < 10) and _skip and _x == "HitRBWheel" ) then { _skip = false; _part = "PartWheel"; };
+		if ((_damage < 10) and _skip and _x == "HitGlass1" ) then { _skip = false; _part = "PartGlass"; };
+		if ((_damage < 10) and _skip and _x == "HitGlass2" ) then { _skip = false; _part = "PartGlass"; };
+		if ((_damage < 10) and _skip and _x == "HitGlass3" ) then { _skip = false; _part = "PartGlass"; };
+		if ((_damage < 10) and _skip and _x == "HitGlass4" ) then { _skip = false; _part = "PartGlass"; };
+		if ((_damage < 10) and _skip and _x == "HitGlass5" ) then { _skip = false; _part = "PartGlass"; };
+		if ((_damage < 10) and _skip and _x == "HitGlass6" ) then { _skip = false; _part = "PartGlass"; };
+		if ((_damage < 10) and _skip and _x == "HitHRotor" ) then { _skip = false; _part = "PartVRotor"; };
 		 
 		if (!_skip ) then {
 			_string = format["<t color='#0096ff'>Remove%1</t>",_cmpt,_color]; //Remove - Part
@@ -291,47 +291,47 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 				_part = "PartGeneric";
 				_cmpt = _x;
 				_damagePercent = round((1 - _damage) * 100);
-				if(["Body",_x,false] call fnc_inString) then {
+				if (["Body",_x,false] call fnc_inString) then {
 					_part = "PartGeneric";
 					_cmpt = "Body";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Engine",_x,false] call fnc_inString) then {
+				if (["Engine",_x,false] call fnc_inString) then {
 					_part = "PartEngine";
 					_cmpt = "Engine";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["HRotor",_x,false] call fnc_inString) then {
+				if (["HRotor",_x,false] call fnc_inString) then {
 					_part = "PartVRotor";
 					_cmpt = "Main Rotor Assembly";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Avionics",_x,false] call fnc_inString) then {
+				if (["Avionics",_x,false] call fnc_inString) then {
 					_part = "PartGeneric";
 					_cmpt = "Avionics";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Missiles",_x,false] call fnc_inString) then {
+				if (["Missiles",_x,false] call fnc_inString) then {
 					_part = "PartGeneric";
 					_cmpt = "Missiles";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["VRotor",_x,false] call fnc_inString) then {
+				if (["VRotor",_x,false] call fnc_inString) then {
 					_part = "PartGeneric";
 					_cmpt = "Rear Rotor Assembly";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Hull",_x,false] call fnc_inString) then {
+				if (["Hull",_x,false] call fnc_inString) then {
 					_part = "PartGeneric";
 					_cmpt = "Hull";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Fuel",_x,false] call fnc_inString) then {
+				if (["Fuel",_x,false] call fnc_inString) then {
 					_part = "PartFueltank";
 					_cmpt = "Fuel Tank";
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Wheel",_x,false] call fnc_inString) then {
+				if (["Wheel",_x,false] call fnc_inString) then {
 					_part = "PartWheel";
 					_cmpt = "Wheel";
 					_array = toArray _x;
@@ -357,7 +357,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 					_cmpt = _cmpt + " " + _toStr;
 					if (_damagePercent < 95) then {_allFixed = false};
 				};
-				if(["Glass",_x,false] call fnc_inString) then {
+				if (["Glass",_x,false] call fnc_inString) then {
 					_part = "PartGlass";
 
 					_fullPartName = toArray _x;

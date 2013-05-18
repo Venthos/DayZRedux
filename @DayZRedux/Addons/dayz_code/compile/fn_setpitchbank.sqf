@@ -67,11 +67,11 @@ _sign = [1,-1] select (_pitch < 0);
 while {abs _pitch > 180} do {_pitch = _sign*(abs _pitch - 180)};
 
 //we can't use pitch that is exactly equal to 90, because then the engine doesn't know what 2d compass direction the object is facing
-if(abs _pitch == 90) then {_pitch = _sign*(89.9)};
+if (abs _pitch == 90) then {_pitch = _sign*(89.9)};
 
 //we can't pitch beyond 90 degrees without changing the facing of our object
 //(pitching beyond 90 degrees means that the object's eyes will point in the 2d compass direction that its back used to point)
-if(abs _pitch > 90) then
+if (abs _pitch > 90) then
 {
 //we are rolling upside down; flip our direction (yaw)
 _obj setdir (getdir _obj)-180;
@@ -102,7 +102,7 @@ _sign = [1,-1] select (_bank < 0);
 while {abs _bank > 360} do {_bank = _sign*(abs _bank - 360)};
 
 //reflect numbers above 180
-if(abs _bank > 180) then {_sign = -1*_sign; _bank = (360-_bank)*_sign};
+if (abs _bank > 180) then {_sign = -1*_sign; _bank = (360-_bank)*_sign};
 
 //find appropriate vup according to our bank, as if we were facing north
 _vup  = [sin _bank, 0, cos _bank];

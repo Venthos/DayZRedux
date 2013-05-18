@@ -51,22 +51,22 @@ _primweapon	= primaryWeapon _object;
 _secweapon	= secondaryWeapon _object;
 
 //Checks
-if(!(_primweapon in _weapons) && _primweapon != "") then {
+if (!(_primweapon in _weapons) && _primweapon != "") then {
 	_weapons = _weapons + [_primweapon];
 };
 
-if(!(_secweapon in _weapons) && _secweapon != "") then {
+if (!(_secweapon in _weapons) && _secweapon != "") then {
 	_weapons = _weapons + [_secweapon];
 };
 
-if(count _magazines == 0) then {
+if (count _magazines == 0) then {
 	_magazines = magazines _object;
 };
 
 //BackUp Backpack
 private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	_newBackpackType = typeOf (unitBackpack _object);
-	if(_newBackpackType != "") then {
+	if (_newBackpackType != "") then {
 		_backpackWpn = getWeaponCargo unitBackpack _object;
 		_backpackMag = getMagazineCargo unitBackpack _object;
 	};
@@ -107,8 +107,8 @@ _magazines = (_primary select 4) select 1;
 //Equip New Charactar
 { _newUnit addMagazine _x } forEach _magazines;
 { _newUnit addWeapon _x } forEach _weapons;
-if(_primweapon !=  (primaryWeapon _newUnit)) then { _newUnit addWeapon _primweapon };
-if(_secweapon != (secondaryWeapon _newUnit) && _secweapon != "") then {	_newUnit addWeapon _secweapon };
+if (_primweapon !=  (primaryWeapon _newUnit)) then { _newUnit addWeapon _primweapon };
+if (_secweapon != (secondaryWeapon _newUnit) && _secweapon != "") then {	_newUnit addWeapon _secweapon };
 
 //Add and Fill BackPack
 private["_newBackpack"];

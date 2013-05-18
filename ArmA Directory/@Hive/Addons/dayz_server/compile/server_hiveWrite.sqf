@@ -29,16 +29,16 @@ switch (_key) do
 		_mdrank 	= _result select 8;
 		_mtime 		= _result select 12;
 
-		if(_mate == "false") then { _mate = _mtime; }
+		if (_mate == "false") then { _mate = _mtime; }
 		else{_mate = -1;};
 
-		if(_mdrank == "false") then { _mdrank = _mtime; }
+		if (_mdrank == "false") then { _mdrank = _mtime; }
 		else{ _mdrank = -1; };
 
 		_mmodel = _result select 16;
-		if(_mmodel == "") then { _mmodel = "any" };
+		if (_mmodel == "") then { _mmodel = "any" };
 		_mhumanity = _result select 17;
-		if(_mhumanity == "0") then { _mhumanity = 0 };
+		if (_mhumanity == "0") then { _mhumanity = 0 };
 		"blisshive" callExtension format ["E:%1:call proc_updateSurvivor(%2, '%3', '%4', '%5', '%6', %7, %8, %9, '%10', %11, %12, %13, %14, %15, '%16')", (call fnc_instanceName), _mid,_result select 3,_result select 4,_result select 5,_result select 6,_mate,_mdrank,_mtime,_mmodel,_mhumanity,_result select 9,_result select 10,_result select 14,_result select 15,_result select 13];
 	};
 	case "202":{
@@ -74,7 +74,7 @@ switch (_key) do
 		//diag_log("UPDOBJ:305");
 		//format["CHILD:305:%1:%2:%3:", _objectID, _worldspace, fuel _object];
 		_fuel = _result select 4;
-		if(_fuel == '') then { _fuel = -1 };
+		if (_fuel == '') then { _fuel = -1 };
 		"blisshive" callExtension format ["E:%1:call proc_updateObjectPosition(%2, '%3', %4)", (call fnc_instanceName), _result select 2, _result select 3, _fuel];
 	};
 	case "306":{
@@ -82,7 +82,7 @@ switch (_key) do
 		//diag_log("UPDIH:306");
 		//format["CHILD:306:%1:%2:%3:", _objectID, _array, damage _object];
 		_damage = _result select 4;
-		if( _damage == '' ) then { _damage = -1 };
+		if ( _damage == '' ) then { _damage = -1 };
 		"blisshive" callExtension format ["E:%1:call proc_updateObjectHealth(%2, '%3', %4)", (call fnc_instanceName), _result select 2, _result select 3, _damage];
 	};
 	case "308":{
