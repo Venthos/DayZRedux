@@ -26,7 +26,7 @@ class CfgMods
 		hidePicture = 0;
 		hideName = 0;
 		action = "http://www.dayzredux.com";
-		version = "1.2.0";
+		version = "1.2.0.1";
 		hiveVersion = 0.96; //0.93
 	};
 	class DZ_InitWorld
@@ -89,8 +89,8 @@ class CfgInGameUI
     {
         cueColor[] = {0,0,0,0};
     };
-	
-	
+
+
 	class MPTable
 	{
 		color[] = {0,0,0,0}; //{0.7,0.7,0.7,1};
@@ -102,7 +102,7 @@ class CfgInGameUI
 		colorCiv[] = {0,0,0,0}; //{0.8,0.8,0.8,1};
 		colorRes[] = {0,0,0,0}; //{0.7,0.7,0.95,1};
 		font = "EtelkaNarrowMediumPro";
-		size = "0"; //"( 21 / 408 )";
+		size = "( 21 / 408 )"; //"( 21 / 408 )";
 		class Columns
 		{
 			class Order
