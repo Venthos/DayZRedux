@@ -333,6 +333,7 @@ class CfgBuildingLoot {
 			{"Mk_48_DZ", "weapon"},
 			{M249_DZ, "weapon"},
 			{M40A3, "weapon"},
+			{Sa58V_RCO_EP1, "weapon"},
 			{SCAR_H_CQC_CCO, "weapon"},
 			{AK_107_pso, "weapon"},
 			{"", "military"},
@@ -356,6 +357,7 @@ class CfgBuildingLoot {
 			0.01,	//Mk_48_DZ
 			0.01,	//M249_DZ
 			0.01,	//M40A3
+			0.01,	//Sa58V_RCO_EP1
 			0.01,	//SCAR_H_CQC_CCO
 			0.01,	//AK_107_pso
 			1.1,	//military
@@ -668,7 +670,7 @@ class CfgBuildingLoot {
 			{"glock17_EP1", "weapon"},
 			{M16A4_ACG, "weapon"},
 			{BAF_L85A2_UGL_Holo, "weapon"},
-			{Sa58V_RCO_EP1, "weapon"},
+			{bizon_silenced, "weapon"},
 			{"M4A1_HWS_GL_camo", "weapon"},
 			{M4A3_CCO_EP1, "weapon"},
 			{"AmmoBawxSmall_762_556_545", "object"},
@@ -706,7 +708,7 @@ class CfgBuildingLoot {
 				0.25,	//glock17_EP1
 				0.01,	//M16A4_ACG
 				0.01,	//BAF_L85A2_UGL_Holo
-				0.01,	//Sa58V_RCO_EP1 
+				0.05,	//bizon_silenced 
 				0.01,	//M4A1_HWS_GL_camo
 				0.01,	//M4A3_CCO_EP1
 				0.04,	//AmmoBawxSmall_762_556_545
