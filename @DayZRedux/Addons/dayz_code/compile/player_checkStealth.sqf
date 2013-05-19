@@ -16,7 +16,7 @@ _anim4 = toString _anim4;
 if (["pknl",_anim] call fnc_inString) then {
 	_scaleMvmt = 0.2;	//0.1;
 	_scalePose = 0.6;	//0.4
-} else {;
+} else {
 	if (["ppne",_anim] call fnc_inString) then {
 		_scaleMvmt = 0.3;
 		_scalePose = 0.14;
