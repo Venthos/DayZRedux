@@ -723,7 +723,7 @@ class CfgBuildingLoot {
 				0.03,	//DZ_ALICE_Pack_EP1
 				0.02,	//DZ_Backpack_EP1
 				0.3,	//medical
-				3.6,	//generic
+				3.0,	//generic
 				5.0,	//military
 				0.01,	//Skin_Camo1_DZ
 				0.03,	//Skin_Bait1_DZ

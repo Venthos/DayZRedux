@@ -45,7 +45,7 @@ if (_finished) then {
 		dayz_sourceBleeding =	objNull;
 	} else {
 		//dayzHumanity = [player,20];
-		[player,20] call player_humanityChange;
+		[player,10] call player_humanityChange;
 	};
 
 	{_unit setVariable[_x,false,true];} forEach USEC_woundHit;
