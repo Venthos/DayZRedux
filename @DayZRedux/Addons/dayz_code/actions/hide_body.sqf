@@ -27,10 +27,12 @@ _isDoing = ["medic",_animState] call fnc_inString;
 		dayzHideBody = _body;
 		hideBody _body;
 		publicVariable "dayzHideBody";
+		sleep 2;
+		deleteVehicle _body;
 	};
 
 	//Zeds and players
-	if (_isMan and !_isAlive and !_inVehicle) then {
+	if ((_isMan or _isZombie) and !_isAlive and !_inVehicle) then {
 
 		player playActionNow "Medic";
 		sleep 1;
@@ -54,9 +56,9 @@ _isDoing = ["medic",_animState] call fnc_inString;
 			//Delete flies
 				_pos = getPosATL _body;
 				_flies = nearestObject [_pos,"Sound_Flies"];
-				if (!(isNull _flies)) then {
-				deleteVehicle _flies;
-				};
+					if (!(isNull _flies)) then {
+						deleteVehicle _flies;
+					};
 			player reveal _cross;
 		};
 

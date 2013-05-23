@@ -17,7 +17,7 @@ if (_inVehicle) then {
 	_maxZombies = 10;
 };
 if (_isAir) then {
-	_maxZombies = 10
+	_maxZombies = 10;
 };
 
 _players = _position nearEntities ["CAManBase",_radius+200];
@@ -118,7 +118,7 @@ if (dayz_spawnZombies == 0) then {
 					_x setVariable ["looted",_dateNow,true];
 					dayz_lootWait = time;
 					_handle = [_x] spawn building_spawnLoot;
-					waitUntil{scriptDone _handle};
+					//waitUntil{scriptDone _handle};
 				};
 			};
 		};
