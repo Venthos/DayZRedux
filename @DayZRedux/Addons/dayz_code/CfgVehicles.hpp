@@ -4933,7 +4933,7 @@ class CfgVehicles {
 		model="\dayz_equip\models\crowbar.p3d";
 		class eventHandlers
 		{
-			init="[(_this select 0),'cfgWeapons','ItemCrowbar'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
+			init= "[(_this select 0),'cfgWeapons','ItemCrowbar'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
 		};
 	};
 	class WeaponHolder_ItemMachete: WeaponHolderBase
@@ -4943,7 +4943,7 @@ class CfgVehicles {
 		model="\z\addons\dayz_communityassets\models\machete.p3d";
 		class eventHandlers
 		{
-			init="[(_this select 0),'cfgWeapons','ItemMachete'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
+			init= "[(_this select 0),'cfgWeapons','ItemMachete'] execVM '\z\addons\dayz_code\init\object_pickupAction.sqf';";
 		};
 	};
 };

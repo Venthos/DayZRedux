@@ -11,11 +11,17 @@ _playerID = getPlayerUID player;
 player removeAction s_player_holderPickup;
 _text = getText (configFile >> _type >> _classname >> "displayName");
 
-if (!canPickup) exitwith { cutText ["You may only pick up one item at a time!","PLAIN DOWN"] };
+if (!canPickup) exitwith {
+	if (pickupInit) then {
+		cutText ["[ANTI-DUPE] You must wait to pickup the next item!","PLAIN DOWN"] 
+	} else {
+		cutText ["You may only pick up one item at a time!","PLAIN DOWN"]
+	};
+};
 
 _claimedBy = _holder getVariable "claimed";
 
-if (isnil "claimed") then { 
+if (isnil "claimed") then {
 	_holder setVariable["claimed",_playerID,true];
 };
 canPickup = false;

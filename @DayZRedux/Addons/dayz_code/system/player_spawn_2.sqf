@@ -260,7 +260,7 @@ while {true} do {
 				dayz_canDisconnect = true;
 				//["dayzDiscoRem",getPlayerUID player] call callRpcProcedure;
 				dayzDiscoRem = getPlayerUID player;
-				publicVariable "dayzDiscoRem";
+				publicVariableServer "dayzDiscoRem";
 				
 				//Ensure Control is hidden
 				_display = uiNamespace getVariable 'DAYZ_GUI_display';
@@ -297,14 +297,15 @@ while {true} do {
 	
 	//Pause for pickup actions
   _isokay = pickupInit AND !canPickup || !pickupInit AND canPickup; 
- if (pickupInit AND !canPickup) then {
-  canPickup = true;
-  pickupInit = false;
+	if (pickupInit AND !canPickup) then {
+		canPickup = true;
+		pickupInit = false;
    };
+ 
    //Reset if stuck...
   if (!_isokay) then {
-  canPickup = false;
-  pickupInit = true;
+	canPickup = false;
+	pickupInit = true;
   };
    
 	//Attach Trigger Current Object

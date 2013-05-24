@@ -101,11 +101,12 @@ if (dayz_spawnZombies == 0) then {
 {
 	_type = typeOf _x;
 	_config = 		configFile >> "CfgBuildingLoot" >> _type;
-	//_canLoot = 		isClass (_config);
+	_canLoot = 		isClass (_config);
 	_dis = _x distance player;
 	_checkLoot = ((count (getArray (_config >> "lootPos"))) > 0);
-	_canLoot = ((count (getArray (_config >> "lootPos"))) > 0);
-		if (_canLoot) then {	
+	//_canLoot = ((count (getArray (_config >> "lootPos"))) > 0);
+	_x setVariable ["cleared",false,true];
+		if (_canLoot) then {
 			_keepAwayDist = ((sizeOf _type)+5);
 			_isNoone =	{isPlayer _x} count (_x nearEntities ["CAManBase",_keepAwayDist]) == 0;
 
@@ -114,39 +115,20 @@ if (dayz_spawnZombies == 0) then {
 				_cleared = (_x getVariable ["cleared",true]);
 				_dateNow = (DateToNumber date);
 				_age = (_dateNow - _looted) * 525948;
+			if (_age < -0.1) then {
+					_x setVariable ["looted",(DateToNumber date),true];
+			} else {
 				if (_age > 9) then {
 					_x setVariable ["looted",_dateNow,true];
 					dayz_lootWait = time;
-					_handle = [_x] spawn building_spawnLoot;
+					_qty = _x call building_spawnLoot;
+					_currentWeaponHolders = _currentWeaponHolders + _qty;
+					//_handle = [_x] spawn building_spawnLoot;
 					//waitUntil{scriptDone _handle};
+					};
 				};
 			};
 		};
-	
-	//Loot NEW
-	/*
-	if ((_dis < 120) and (_dis > 30) and _canLoot and !_inVehicle and _checkLoot) then {
-		_looted = (_x getVariable ["looted",-0.1]);
-		_cleared = (_x getVariable ["cleared",true]);
-		_dateNow = (DateToNumber date);
-		_age = (_dateNow - _looted) * 525948;
-
-		//diag_log ("SPAWN LOOT: " + _type + " Building is " + str(_age) + " old" );
-		if ((_age > 9) and (!_cleared)) then {
-			_nearByObj = nearestObjects [(getPosATL _x), ["WeaponHolder","WeaponHolderBase"],((sizeOf _type)+5)];
-			{deleteVehicle _x} forEach _nearByObj;
-			_x setVariable ["cleared",true,true];
-			_x setVariable ["looted",_dateNow,true];
-		};
-		if ((_age > 5) and (_cleared)) then {
-			//Register
-			_x setVariable ["looted",_dateNow,true];
-			//cleanup
-			_handle = [_x] spawn building_spawnLoot;
-			waitUntil{scriptDone _handle};
-		};
-	};
-*/
 	//Zeds
 	if ((((time - dayz_spawnWait) > dayz_spawnDelay) or _force)) then {
 		if (dayz_CurrentZombies < dayz_maxGlobalZombies) then {

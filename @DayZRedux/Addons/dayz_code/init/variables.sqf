@@ -248,7 +248,7 @@ call dayz_resetSelfActions;
 
 //ANTI DUPE
 canPickup = false;
-pickupInit = true;
+pickupInit = false;
 
 //Allow player to leave by default -- Disallow forced leaving
 canAbort = true;
