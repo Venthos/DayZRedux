@@ -64,6 +64,9 @@ NORRN_dropAction = player addAction ["Drop body", "\z\addons\dayz_code\medical\d
 sleep 1;
 _addAction = true;
 };
+	if (force_dropBody) then {
+		[cursorTarget, _unit, _unconscious, _dragee] execVM "\z\addons\dayz_code\medical\drop_body.sqf";
+	};
 
 	if (vehicle player != player) then {
 		player action ["eject", vehicle player];

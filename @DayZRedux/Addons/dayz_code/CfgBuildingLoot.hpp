@@ -246,7 +246,7 @@ class CfgBuildingLoot {
 			{"PartWoodPile", "magazine"},
 			{"WeaponHolder_ItemHatchet", "object"},
 			{MR43, "weapon"},
-			{"TrapBear", "magazine"},
+			//{"TrapBear", "magazine"},
 			{"WeaponHolder_ItemMachete"}
 		};
 		itemChance[] = {
@@ -259,7 +259,7 @@ class CfgBuildingLoot {
 			0.15,	//PartWoodPile
 			0.12,	//WeaponHolder_ItemHatchet
 			0.1,	//MR43
-			0.02,	//TrapBear
+			//0.02,	//TrapBear
 			0.12	//Machete
 		};
 	};

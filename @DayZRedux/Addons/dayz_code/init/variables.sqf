@@ -260,6 +260,7 @@ s_player_repairActions = [];
 s_player_removeactions = [];
 
 //Initialize Medical Variables
+force_dropBody = 		false;
 forceDrag =         	false;
 r_interrupt = 			false;
 r_doLoop = 				false;

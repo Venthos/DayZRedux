@@ -238,6 +238,10 @@ if (!isDedicated) then {
 				};
 			};
 		}; */
+		//Prevent exploit of drag body
+		if (_dikCode in actionKeys "Prone") then { force_dropBody = true; };
+		if (_dikCode in actionKeys "Crouch") then { force_dropBody = true; };
+
 		if (_dikCode in actionKeys "MoveLeft") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveRight") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveForward") then {r_interrupt = true};
@@ -263,7 +267,7 @@ if (!isDedicated) then {
 			dayz_lastCheckBit = time;
 			call dayz_forceSave;
 		};
-		//				      R_ALT			         	L_ALT			   	        F4					    L_SHIFT			       	R_SHIFT			          ESC
+		//				R_ALT			     L_ALT			   	 F4				L_SHIFT			      R_SHIFT			    ESC
 		if (_dikCode == 0xB8 or _dikCode == 0x38 or _dikCode == 0x3E or _dikCode == 0x2A or _dikCode == 0x36 or _dikCode == 0x01) then {
 			_displayg = findDisplay 106;
 			if (!isNull _displayg) then {
@@ -276,6 +280,7 @@ if (!isDedicated) then {
 				};
 			};
 		};
+
 		_handled
 	};
 	
