@@ -1,4 +1,4 @@
-private ["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
+private ["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage2","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
 _unit = _this select 0;
 _type = _this select 1;
 _vehicle = (vehicle player);
@@ -52,25 +52,31 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
   
   //Remove vehicles that are moving faster than 10KPH
 	_closedVehicles = ["Helicopter", "Car", "Truck"];
-  if (_vehicle isKindOf _x) then { 
-  _lastpos = getPosATL (vehicle player);
-  _lasttime = time;
-  _curpos = getPosATL (vehicle player);
+  if (_vehicle isKindOf _x) then {
+	_lastpos = getPosATL (vehicle player);
+	_lasttime = time;
+	_curpos = getPosATL (vehicle player);
 	_curtime = time;
 	_distance = _lastpos distance _curpos;
 	_difftime = (_curtime - _lasttime) max 0.001;
 	_speed = _distance / _difftime;
 	_threshold = 10;
       if (_speed > _threshold) exitWith {};
-		} forEach _closedVehicles;
+	} forEach _closedVehicles;
 
+		_hitpoints = _vehicle call vehicle_getHitpoints;
 	if ((_wound == "Glass1") or (_wound == "Glass2") or (_wound == "Glass3") or (_wound == "Glass4") or (_wound == "Glass5") or (_wound == "Glass6")) then {
 		[_unit,"hit",4,false] call dayz_zombieSpeak;
 		_strH = "hit_" + (_wound);
 		_dam = _vehicle getVariable [_strH,0];
 		_total = (_dam + _damage);
+		
+		_damage2 = [_vehicle,_x] call object_getHit;
+		{
 
-		//diag_log ("Hitpoints " +str(_wound) +str(_total));
+	//if ((_damage2 >= 90) and _x == "Glass") then {
+		if (["Glass",_x,false] call fnc_inString) then {
+	//diag_log ("Hitpoints " +str(_wound) +str(_total));
 
 		//["dayzHitV",[_vehicle, _wound,_total, _unit,"zombie"]] call broadcastRpcCallAll;
 		if (_total >= 1) then {
@@ -97,7 +103,9 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 			publicVariable "dayzHitV";
 		};
 	};
-} else {
+	} forEach _hitpoints;
+	};
+	} else {
 	//Did he hit?
 	//_currentAnim = animationState _unit;
 	//diag_log ("Animation state: " +(_currentAnim));

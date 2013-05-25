@@ -10,7 +10,7 @@ disableUserInput true;
 //Send Death Notice
 //["dayzDeath",[dayz_characterID,0,_body,_playerID,dayz_playerName]] call callRpcProcedure;
 		dayzDeath = [dayz_characterID,0,_body,_playerID,dayz_playerName];
-		publicVariable "dayzDeath";
+		publicVariableServer "dayzDeath";
     
 //Send Killer Information
 dayzKiller = dayz_myKiller;

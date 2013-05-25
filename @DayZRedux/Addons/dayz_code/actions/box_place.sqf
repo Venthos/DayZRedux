@@ -58,7 +58,7 @@ if (_notInBuilding) then {
 	_box setVariable ["characterID",dayz_characterID,true];
 
 	dayzPublishObj = [dayz_characterID,_box,[_dir,_location],"Land_Mag_RX"];
-	publicVariable "dayzPublishObj";
+	publicVariableServer "dayzPublishObj";
 /*	if (isServer) then {
 		dayzPublishObj call server_publishObj;
 	};

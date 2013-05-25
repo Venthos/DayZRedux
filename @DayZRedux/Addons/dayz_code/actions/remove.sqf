@@ -19,5 +19,5 @@ sleep 5;
 	
 //["dayzDeleteObj",[_objectID,_objectUID]] call callRpcProcedure;
 	dayzDeleteObj = [_objectID,_objectUID];
-	publicVariable "dayzDeleteObj";
+	publicVariableServer "dayzDeleteObj";
 deleteVehicle _obj;
