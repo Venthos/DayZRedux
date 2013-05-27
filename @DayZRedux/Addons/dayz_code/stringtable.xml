@@ -1111,6 +1111,15 @@
 			<French>&lt;t %2&gt;Réparer %1&lt;/t&gt;</French>
 			<Czech>&lt;t %2&gt;Opravit %1&lt;/t&gt;</Czech>
 		</Key>
+		<Key ID="str_actions_medical_09_status">
+			<English>%1 Status: %2%</English>
+			<German>%1 Status: %2%</German>
+			<Russian>%1 состояние: %2%</Russian>
+			<Spanish>%1 Estado: %2%</Spanish>
+			<Dutch>%1 Status: %2%</Dutch>
+			<French>%1 Statut: %2%</French>
+			<Czech>%1 Status: %2%</Czech>
+		</Key>
 		<Key ID="str_actions_medical_10">
 			<Original>Refuel %1</Original>
 			<English>Refuel %1</English>
@@ -1180,6 +1189,28 @@
 			<Dutch>%1 laten vallen</Dutch>
 			<French>Lâcher %1</French>
 			<Czech>Odhodit %1</Czech>
+		</Key>
+		<Key ID="str_action_fire_inflame">
+			<English>Light fire</English>
+			<German>Feuer entzünden</German>
+			<Italian>Accendi fuoco</Italian>
+			<Spanish>Encender fuego</Spanish>
+			<French>Allumer le feu</French>
+			<Czech>Zapálit oheň</Czech>
+			<Russian>Зажечь огонь</Russian>
+			<Polish>Rozpal ogień</Polish>
+			<Hungarian>Tűz meggyújtása</Hungarian>
+		</Key>
+		<Key ID="str_action_fire_put_down">
+			<English>Put out fire</English>
+			<German>Feuer löschen</German>
+			<Italian>Spegni fuoco</Italian>
+			<Spanish>Apagar fuego</Spanish>
+			<French>Éteindre le feu</French>
+			<Czech>Uhasit oheň</Czech>
+			<Russian>Потушить огонь</Russian>
+			<Polish>Zgaś ogień</Polish>
+			<Hungarian>Tűz eloltása</Hungarian>
 		</Key>
 		<Key ID="str_actions_medical_17">
 			<Original>Extinguish %1</Original>
@@ -1291,15 +1322,68 @@
 			<French>Activer les Stats</French>
 			<Czech>Zapnout statistiky</Czech>
 		</Key>
+		<Key ID="str_actions_stats_sd">
+			<English>Survived %1 Days</English>
+			<Russian>Прожито %1 дней</Russian>
+			<Spanish>%1 Días Sobrevividos</Spanish>
+			<Czech>Přežito %1 dnů</Czech>
+			<French>Survécu %1 jours</French>
+			<German>%1 Tage überlebt</German>
+			<Dutch>%1 dagen overleefd</Dutch>
+		</Key>
+		<Key ID="str_actions_stats_zk">
+			<English>Zombies Killed</English>
+			<Russian>Убито зомбей</Russian>
+			<Spanish>Zombies Matados</Spanish>
+			<Czech>Zombie zabito</Czech>
+			<French>Zombies Tués</French>
+			<German>Zombies getötet</German>
+			<Dutch>Zombies gedood</Dutch>
+		</Key>
+		<Key ID="str_actions_stats_hs">
+			<English>Headshots</English>
+			<Russian>Выстрелов в голову</Russian>
+			<Spanish>Headshots</Spanish>
+			<Czech>Střel do hlavy</Czech>
+			<French>Tirs à la tête</French>
+			<German>Kopfschüsse</German>
+			<Dutch>Hoofdschoten</Dutch>
+		</Key>
+		<Key ID="str_actions_stats_hk">
+			<English>Murders</English>
+			<Russian>Убийств</Russian>
+			<Spanish>Asesinatos</Spanish>
+			<Czech>Vražď</Czech>
+			<French>Meurtres</French>
+			<German>Mörder</German>
+			<Dutch>Moorden</Dutch>
+		</Key>
+		<Key ID="str_actions_stats_bk">
+			<English>Bandits Killed</English>
+			<Russian>Убито бандитов</Russian>
+			<Spanish>Bandidos Asesinados</Spanish>
+			<Czech>Zabito banditů</Czech>
+			<French>Bandits tués</French>
+			<German>Getötete Banditen</German>
+			<Dutch>Bandieten gedood</Dutch>
+		</Key>
+		<Key ID="str_actions_stats_hm">
+			<English>Humanity</English>
+			<Russian>Гуманность</Russian>
+			<Spanish>Humanidad</Spanish>
+			<Czech>Humanita</Czech>
+			<French>Humanité</French>
+			<German>Menschlichkeit</German>
+			<Dutch>Menselijkheid</Dutch>
+		</Key>
 		<Key ID="str_actions_self_sleep">
-			<Original>Sleep</Original>
-			<English>Sleep</English>
-			<German>Schlafen</German>
-			<Russian>Поспать</Russian>
-			<Spanish>Dormir</Spanish>
-			<Dutch>Sleep</Dutch>
-			<French>Dormir</French>
-			<Czech>Spát</Czech>
+			<English>Rest</English>
+			<German>Rest</German>
+			<Russian>Отдохнуть</Russian>
+			<Spanish>Descansar</Spanish>
+			<Dutch>Rest</Dutch>
+			<French>Se reposer</French>
+			<Czech>Odpočívat</Czech>
 		</Key>
 		<Key ID="STR_CHAR_2">
 			<Original>Bandit</Original>

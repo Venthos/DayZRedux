@@ -1,4 +1,4 @@
-private ["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage2","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
+private ["_unit","_targets","_openVehicles","_closedVehicles","_move","_damage","_wound","_index","_cnt","_sound","_local","_dir","_hpList","_hp","_strH","_dam","_total","_vehicle","_tPos","_zPos","_cantSee","_inAngle"];
 _unit = _this select 0;
 _type = _this select 1;
 _vehicle = (vehicle player);
@@ -22,9 +22,7 @@ _unit setDir _dir;
 if (local _unit) then
 {
 	_unit playMove _move;
-}
-else
-{
+} else {
 	[objNull,_unit,rPlayMove,_move] call RE;
 };
 
@@ -71,10 +69,7 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 		_dam = _vehicle getVariable [_strH,0];
 		_total = (_dam + _damage);
 		
-		_damage2 = [_vehicle,_x] call object_getHit;
 		{
-
-	//if ((_damage2 >= 90) and _x == "Glass") then {
 		if (["Glass",_x,false] call fnc_inString) then {
 	//diag_log ("Hitpoints " +str(_wound) +str(_total));
 
