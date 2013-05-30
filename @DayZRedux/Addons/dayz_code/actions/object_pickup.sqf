@@ -1,4 +1,4 @@
-private ["_array","_type","_classname","_holder","_playerID","_text","_broken","_claimedBy","_config","_isOk"];
+private ["_array","_type","_classname","_holder","_playerID","_text","_broken","_claimedBy","_config","_isOk","_wpn","_ismelee"];
 
 _array = _this select 3;
 _type = _array select 0;
@@ -8,7 +8,11 @@ _holder = _array select 2;
 if (player distance _holder > 3) exitwith {"You need to be within 3 meters to pickup!","PLAIN DOWN"};
 
 _playerID = getPlayerUID player;
-player removeAction s_player_holderPickup;
+
+if (!isNil "s_player_holderPickup") then {
+	player removeAction s_player_holderPickup;
+};
+
 _text = getText (configFile >> _type >> _classname >> "displayName");
 
 if (!canPickup) exitwith {
@@ -51,39 +55,7 @@ if (_classname isKindOf "Bag_Base_EP1") then {
 
 _config = (configFile >> _type >> _classname);
 
-//Remove melee magazines (BIS_fnc_invAdd fix)
 {player removeMagazines _x} forEach MeleeMagazines;
-/*
-_freeSlots = [player] call BIS_fnc_invSlotsEmpty;
-_slotType = [_config] call BIS_fnc_invSlotType;
-
-_count = 0;
-	{
-		if (_x > 0) exitWith {};
-		_count = _count + 1;
-	} forEach _slotType;
-
-if (_freeSlots select _count >= _slotType select _count) then
-{
-	if (_type == "cfgWeapons") then { player addWeapon _classname; } else { player addMagazine _classname; };
-	//canPickup = false;
-} else {
-
-	//_holder setVariable["claimed",0,true];
-	
-	cutText [localize "str_player_24", "PLAIN DOWN"];
-	//canPickup = false;
-	_nearByPile= nearestObjects [(position player), ["WeaponHolder","WeaponHolderBase"],2];
-    if (count _nearByPile ==0) then { 
-        _item = createVehicle ["WeaponHolder", position player, [], 0.0, "CAN_COLLIDE"];
-    } else {
-        _item = _nearByPile select 0;
-    };
-	if (_type == "cfgWeapons") then { _item addWeaponCargoGlobal [_classname,1]; } else { _item addMagazineCargoGlobal [_classname,1] };
-};
-
-diag_log format["Array: %1, Type: %2, Classname: %3, Holder: %4, SlotNeeded: %5, Freeslots: %6",_array,_type,_classname,_holder,_slotType,_freeSlots];
-*/
 
 _isOk = [player,_config] call BIS_fnc_invAdd;
 waitUntil {!isNil "_isOk"};

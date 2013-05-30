@@ -2,6 +2,7 @@ private ["_totalTimeout","_display","_ctrl1","_ctrl1Pos","_timeout","_isOnDeck",
 
 disableSerialization;
 if ((!r_player_handler1) and (r_handlerCount == 0)) then {
+	player switchMove ""; //reset anim state
 	//Unconscious Meter
 	_totalTimeout = r_player_timeout;
 	if (_totalTimeout == 0) then { _totalTimeout = r_player_timeout +1; }; //Fix for zero divisor

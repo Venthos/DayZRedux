@@ -240,7 +240,7 @@ if (!isDedicated) then {
 		}; */
 		//Prevent exploit of drag body
 		if (_dikCode in actionKeys "Prone") then { force_dropBody = true; };
-		if (_dikCode in actionKeys "Crouch") then { force_dropBody = true; };
+		if (_dikCode in actionKeys "Stand") then { force_dropBody = true; };
 
 		if (_dikCode in actionKeys "MoveLeft") then {r_interrupt = true};
 		if (_dikCode in actionKeys "MoveRight") then {r_interrupt = true};

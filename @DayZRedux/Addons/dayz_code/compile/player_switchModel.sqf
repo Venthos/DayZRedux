@@ -1,4 +1,4 @@
-private ["_class","_position","_dir","_group","_oldUnit","_newUnit","_currentWpn","_muzzles","_currentAnim","_currentCamera"];
+private ["_class","_position","_dir","_group","_oldUnit","_newUnit","_currentWpn","_muzzles","_currentAnim"];
 _class 			= _this;
 
 _position 		= getPosATL player;
@@ -190,7 +190,7 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	
 	player setVariable ["bodyName",dayz_playerName,true];
 
-	_playerUID=getPlayerUID player;
+	_playerUID = getPlayerUID player;
 	_playerObjName = format["player%1",_playerUID];
 	call compile format["%1 = player;",_playerObjName];
 	publicVariable _playerObjName;
@@ -201,3 +201,4 @@ private ["_newBackpackType","_backpackWpn","_backpackMag"];
 	{player reveal _x} forEach (nearestObjects [getPosATL player, ["AllVehicles","WeaponHolder","Land_Cont_RX","Land_Cont2_RX","Land_Mag_RX","BuiltItems"], 75]);
 	//diag_log("DIAG: switchmodel allowdamage true");
 	player allowDamage true;
+	call dayz_forceSave;

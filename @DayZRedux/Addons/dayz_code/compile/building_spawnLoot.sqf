@@ -1,10 +1,12 @@
-private ["_obj", "_type", "_config", "_positions", "_itemTypes", "_lootChance", "_countPositions", "_rnd", "_iPos", "_nearBy", "_index", "_weights", "_cntWeights", "_itemType"];
+private ["_obj", "_type", "_config", "_positions", "_itemChance", "_itemTypes", "_lootChance", "_countPositions", "_rnd", "_iPos", "_nearBy", "_index", "_weights", "_cntWeights", "_itemType"];
 
-_obj = _this;_type = typeOf _obj;
+_obj = _this;
+_type = typeOf _obj;
 _config = configFile >> "CfgBuildingLoot" >> _type;
 _positions = [] + getArray (_config >> "lootPos");
 _itemTypes = [] + getArray (_config >> "itemType");
 _lootChance = getNumber (_config >> "lootChance");
+_itemChance =	 [] + getArray (_config >> "itemChance");	
 _countPositions = count _positions;
 //_qty = 0; // effective quantity of spawned weaponholder 
 
@@ -32,7 +34,7 @@ _countPositions = count _positions;
 			//};
 			_obj setVariable ["created",(DateToNumber date),true];
 		};
-		sleep ((random 3) / 1000);
+		//sleep ((random 3) / 1000);
 	//};
 } forEach _positions;
 

@@ -273,15 +273,11 @@ while {true} do {
 	//Save Checker
 	if (dayz_unsaved) then {
 		if ((time - dayz_lastSave) > _saveTime) then {
-			//["dayzPlayerSave",[player,dayz_Magazines,false]] call callRpcProcedure;
-			
 			dayzPlayerSave = [player,dayz_Magazines,false];
 			publicVariableServer "dayzPlayerSave";
-			
 			if (isServer) then {
 				dayzPlayerSave call server_playerSync;
 			};
-						
 			dayz_lastSave = time;
 			dayz_Magazines = [];
 		};
@@ -296,7 +292,7 @@ while {true} do {
 	};
 	
 	//Pause for pickup actions
-  _isokay = pickupInit AND !canPickup || !pickupInit AND canPickup; 
+	_isokay = pickupInit AND !canPickup || !pickupInit AND canPickup; 
 	if (pickupInit AND !canPickup) then {
 		canPickup = true;
 		pickupInit = false;
