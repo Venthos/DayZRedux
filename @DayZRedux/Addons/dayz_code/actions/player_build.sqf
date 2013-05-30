@@ -4,6 +4,7 @@ _location set [2,0];
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		(surfaceIsWater _location) or dayz_isSwimming;
 _bypass = false;
+_buildError = false;
 
 call gear_ui_init;
 

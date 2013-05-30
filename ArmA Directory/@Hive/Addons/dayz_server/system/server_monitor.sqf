@@ -193,9 +193,11 @@ diag_log "HIVE: Starting";
 				if (_object isKindOf "AllVehicles") then {
 					{
 						_selection = _x select 0;
+						if (!isNil "_selection") then {
 						_dam = _x select 1;
 						if (_selection in dayZ_explosiveParts and _dam > 0.8) then {_dam = 0.8};
 						[_object,_selection,_dam] call object_setFixServer;
+						};
 					} forEach _hitpoints;
 					_object setvelocity [0,0,1];
 					_object setFuel _fuel;

@@ -4,6 +4,7 @@ _unit =			_this select 0;
 _selection =	_this select 1;
 _damage =		_this select 2;
 
+if (!isNil "_selection") then {
 if ((_selection != "") and (local _unit)) then {
 	_strH = "hit_" + (_selection);
 	_unit setHit[_selection,_damage];
@@ -24,4 +25,5 @@ if ((_selection != "") and (local _unit)) then {
 			publicVariable "dayzUpdateVehicle"; 
 		};
 	};
+};
 };

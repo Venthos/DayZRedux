@@ -11,7 +11,9 @@ Start drop_body.sqf
 _dragee	= _this select 3;
 
 player removeAction NORRN_dropAction;
-player removeAction NORRN_carryAction;
+if (!isNil "NORRN_carryAction") then {
+	player removeAction NORRN_carryAction;
+};
 NORRN_remove_drag = true;  
 r_drag_sqf = false;
 r_carry_sqf = false;

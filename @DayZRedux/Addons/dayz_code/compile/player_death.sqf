@@ -70,6 +70,9 @@ if (count _array > 0) then {
 			};
 		};
 	};
+	if (isNil "_method") then {
+		_method = "natural causes";
+	};
 	_body setVariable ["deathType",_method,true];
 };
 
@@ -80,9 +83,9 @@ terminate dayz_animalCheck;
 terminate dayz_monitor1;
 terminate dayz_medicalH;
 terminate dayz_gui;
-terminate dayz_zedCheck;
+//terminate dayz_zedCheck;
 terminate dayz_locationCheck;
-terminate dayz_combatCheck;
+//terminate dayz_combatCheck;
 terminate dayz_spawnCheck;
 
 //Reset (just in case)

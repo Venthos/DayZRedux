@@ -16,4 +16,4 @@ _age = (_dateNow - _zombied) * 525948;
 if (_age > 1) then {
 	_x setVariable ["zombieSpawn",_dateNow,true];
 	[_x] call building_spawnZombies;
-};		
+};

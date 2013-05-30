@@ -22,4 +22,5 @@ if (_object == player) then {
 	} else {
 		player setVariable["humanity",_humanity,true];
 	};
+	call dayz_forceSave;
 };

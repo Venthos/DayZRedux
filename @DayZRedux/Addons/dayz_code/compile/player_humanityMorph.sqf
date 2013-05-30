@@ -23,6 +23,7 @@ _zombieKills 	= player getVariable ["zombieKills",0];
 _headShots 		= player getVariable ["headShots",0];
 _humanKills 	= player getVariable ["humanKills",0];
 _banditKills 	= player getVariable ["banditKills",0];
+_isInCombat  = player getVariable ["isincombat",0];
 
 //Switch
 	_model call player_switchModel;
@@ -72,6 +73,7 @@ player setVariable["humanKills",_humanKills,true];
 player setVariable["banditKills",_banditKills,true];
 player setVariable["characterID",_charID,true];
 player setVariable["worldspace",_worldspace,true];
+player setVariable["isincombat",_isInCombat,true];
 
 //code for this on the server is missing
 //["dayzPlayerMorph",[_charID,player,_playerUID,[_zombieKills,_headShots,_humanKills,_banditKills],_humanity]] call callRpcProcedure;

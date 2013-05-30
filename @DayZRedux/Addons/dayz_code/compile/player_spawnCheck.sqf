@@ -1,4 +1,4 @@
-private ["_type","_isAir","_inVehicle","_dateNow","_maxZombies","_maxWildZombies","_age","_nearbyBuildings","_radius","_locationstypes","_nearestCity","_position","_nearbytype"];
+private ["_type","_isAir","_inVehicle","_zombied","_dateNow","_maxZombies","_maxWildZombies","_age","_nearbyBuildings","_radius","_locationstypes","_nearestCity","_position","_nearbytype"];
 _type = _this select 0;
 _Keepspawning = _this select 1;
 _isAir = vehicle player iskindof "Air";
@@ -10,7 +10,7 @@ _age = -1;
 _force = false;
 
 _nearbyBuildings = [];
-_radius = 250; 
+_radius = 250;
 _position = getPosATL player;
 
 if (_inVehicle) then {
@@ -122,7 +122,7 @@ if (dayz_spawnZombies == 0) then {
 					_x setVariable ["looted",_dateNow,true];
 					dayz_lootWait = time;
 					_qty = _x call building_spawnLoot;
-					_currentWeaponHolders = _currentWeaponHolders + _qty;
+					//_currentWeaponHolders = _currentWeaponHolders + _qty;
 					//_handle = [_x] spawn building_spawnLoot;
 					//waitUntil{scriptDone _handle};
 					};
