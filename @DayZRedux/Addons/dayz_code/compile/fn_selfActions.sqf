@@ -236,6 +236,7 @@ if (!isNull cursorTarget and !_inVehicle and (player distance cursorTarget < 4))
 		_hitpoints = _vehicle call vehicle_getHitpoints;
 		 
 		{
+		_color = "";
 		_damage = [_vehicle,_x] call object_getHit;
 		 
 		if ( _damage < 0.15 ) then {

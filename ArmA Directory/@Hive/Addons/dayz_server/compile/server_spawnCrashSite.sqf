@@ -107,11 +107,11 @@ switch _crashModel do {
 
 		if (_spawnFire) then {
 			if (floor(random 100) >= 65) then {
-			//["dayzFire",[_crash,2,time,false,_fadeFire]] call broadcastRpcCallAll;
-			dayzFire = [_crash,2,time,false,_fadeFire];
-			publicVariable "dayzFire";
-			nul=dayzFire spawn BIS_Effects_Burn;
-			_crash setvariable ["fadeFire",_fadeFire,true];
+				//["dayzFire",[_crash,2,time,false,_fadeFire]] call broadcastRpcCallAll;
+				dayzFire = [_crash,2,time,false,_fadeFire];
+				publicVariable "dayzFire";
+				nul=dayzFire spawn BIS_Effects_Burn;
+				_crash setvariable ["fadeFire",_fadeFire,true];
 			};
 		};
 

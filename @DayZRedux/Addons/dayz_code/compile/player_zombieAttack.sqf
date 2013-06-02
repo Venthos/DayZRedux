@@ -50,7 +50,8 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
   
   //Remove vehicles that are moving faster than 10KPH
 	_closedVehicles = ["Helicopter", "Car", "Truck"];
-  if (_vehicle isKindOf _x) then {
+	{
+	if (_vehicle isKindOf _x) then {
 	_lastpos = getPosATL (vehicle player);
 	_lasttime = time;
 	_curpos = getPosATL (vehicle player);
@@ -60,6 +61,7 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 	_speed = _distance / _difftime;
 	_threshold = 10;
       if (_speed > _threshold) exitWith {};
+	};
 	} forEach _closedVehicles;
 
 		_hitpoints = _vehicle call vehicle_getHitpoints;

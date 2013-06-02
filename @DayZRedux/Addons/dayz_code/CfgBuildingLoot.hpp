@@ -279,6 +279,7 @@ class CfgBuildingLoot {
 			{"ItemMap", "generic"},
 			{"Makarov", "weapon"},
 			{"Colt1911", "weapon"},
+			{"p220", "weapon"},
 			{"ItemKnife", "generic"},
 			{"ItemMatchbox", "generic"},
 			{"", "generic"},
@@ -300,6 +301,7 @@ class CfgBuildingLoot {
 			0.05,	//ItemMap
 			0.03,	//Makarov
 			0.03,	//Colt1911
+			0.03,	//p220
 			0.03,	//ItemKnife
 			0.05,	//ItemMatchbox
 			0.6,	//generic
@@ -331,6 +333,7 @@ class CfgBuildingLoot {
 			{M16A4_ACG, "weapon"},
 			{FN_FAL, "weapon"},
 			{"Mk_48_DZ", "weapon"},
+			{"ch_minimi", "weapon"},
 			{M249_DZ, "weapon"},
 			{M40A3, "weapon"},
 			{Sa58V_RCO_EP1, "weapon"},
@@ -355,6 +358,7 @@ class CfgBuildingLoot {
 			0.02,	//M16A4_ACG
 			0.01,	//FN_FAL
 			0.01,	//Mk_48_DZ
+			0.01,	//ch_minimi
 			0.01,	//M249_DZ
 			0.01,	//M40A3
 			0.01,	//Sa58V_RCO_EP1
@@ -365,10 +369,10 @@ class CfgBuildingLoot {
 			0.25,	//MedBawx0
 			0.01,	//NVGoggles
 			0.5,	//AmmoBawxSmall_762_556_545
-			0.01,	//MP5SD
-			0.01,	//M9SD
-			0.3,	//Skin_Camo1_DZ
-			0.3,	//Skin_Bait1_DZ
+			0.02,	//MP5SD
+			0.02,	//M9SD
+			0.1,	//Skin_Camo1_DZ
+			0.1,	//Skin_Bait1_DZ
 			0.1,	//Skin_Uniform1_DZ
 			0.1		//Skin_Sniper1_DZ
 		};
@@ -438,15 +442,17 @@ class CfgBuildingLoot {
 			{"NVGoggles", "weapon"},
 			{"", "bloodbags"},
 			{"M9", "weapon"},
+			{"sapr_aimpoint", "weapon"},
 			{"glock17_EP1", "weapon"},
 			{"Skin_Bait1_DZ", "magazine"},
 			{"Skin_Camo1_DZ", "magazine"}
 		};
 		itemChance[] = {
 			0.15,	//ItemGPS
-			0.01,	//NVGoggles
+			0.04,	//NVGoggles
 			0.5,	//bloodbags
 			0.75,	//M9
+			0.15,	//sapr_aimpoint
 			0.5,	//glock17_EP1
 			0.3,	//Skin_Bait1_DZ
 			0.25	//Skin_Camo1_DZ
@@ -485,6 +491,7 @@ class CfgBuildingLoot {
 			{G36A_camo, "weapon"},
 			{M9SD, "weapon"},
 			{FN_FAL, "weapon"},
+			{sg551_commando_lg97_aim_camo, "weapon"},
 			{"DZ_British_ACU", "object"},
 			{"M4A1_Aim", "weapon"},
 			{"Binocular", "weapon"},
@@ -496,6 +503,7 @@ class CfgBuildingLoot {
 			0.1,	//G36A_camo
 			0.1,	//M9SD
 			0.1,	//FN_FAL
+			0.1,	//sg551_commando_lg97_aim_camo
 			0.4,	//DZ_British_ACU
 			0.2,	//M4A1_Aim
 			0.7,	//Binocular
@@ -595,6 +603,7 @@ class CfgBuildingLoot {
 			{UZI_EP1, "weapon"},
 			{"Remington870_lamp", "weapon"},
 			{"glock17_EP1", "weapon"},
+			{"p226", "weapon"},
 			{MP5A5, "weapon"},
 			{Sa58P_EP1, "weapon"},
 			{"Binocular", "weapon"},
@@ -625,6 +634,7 @@ class CfgBuildingLoot {
 			0.05,	//UZI_EP1
 			0.15,	//Remington870_lamp
 			0.15,	//glock17_EP1
+			0.1,	//p226
 			0.1,	//MP5A5
 			0.08, 	//Sa58P_EP1
 			0.06,	//Binocular
@@ -673,6 +683,7 @@ class CfgBuildingLoot {
 			{bizon_silenced, "weapon"},
 			{"M4A1_HWS_GL_camo", "weapon"},
 			{M4A3_CCO_EP1, "weapon"},
+			{sg552_mp_aimpoint, "weapon"},
 			{"AmmoBawxSmall_762_556_545", "object"},
 			{"NVGoggles", "weapon"},
 			{"Binocular", "weapon"},
@@ -711,6 +722,7 @@ class CfgBuildingLoot {
 				0.05,	//bizon_silenced 
 				0.01,	//M4A1_HWS_GL_camo
 				0.01,	//M4A3_CCO_EP1
+				0.05,	//sg552_mp_aimpoint
 				0.04,	//AmmoBawxSmall_762_556_545
 				0.01,	//NVGoggles
 				0.15,	//Binocular

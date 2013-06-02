@@ -258,6 +258,7 @@ canAbortForce = false;
 s_player_lastTarget =	objNull;
 s_player_repairActions = [];
 s_player_removeactions = [];
+silver_myCursorTarget = objNull;
 
 //Initialize Medical Variables
 force_dropBody = 		false;

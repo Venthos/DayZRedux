@@ -53,7 +53,7 @@ actionMonitor = {
 	};
 };
 
-pickupInit = true;
+//pickupInit = true;
 if (_classname == "WoodenArrow") then {
 	[_holder,_type,_classname,_name] spawn actionMonitor;
 } else {

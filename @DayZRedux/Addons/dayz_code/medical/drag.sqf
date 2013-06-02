@@ -39,7 +39,10 @@ while {r_drag_sqf} do {
 if (!_addAction) then {
 _dragee setVariable ["NORRN_unit_dragged", true, true];
 
-_unit playActionNow "grabDrag";
+_unit switchMove "";
+sleep 1;
+//_unit playActionNow "grabDrag";
+_unit playMoveNow "AmovPercMstpSlowWrflDnon_AcinPknlMwlkSlowWrflDb_2";
 sleep 2;
 
 //unconscious unit assumes dragging posture

@@ -136,7 +136,13 @@ if (dayz_spawnZombies == 0) then {
 					//[_radius, _position, _inVehicle, _dateNow, _age, _locationstypes, _nearestCity, _maxZombies] call player_spawnzedCheck;
 					_zombied = (_x getVariable ["zombieSpawn",-0.1]);
 					_dateNow = (DateToNumber date);
-					if (isNil "_zombied") then {_x setVariable ["zombieSpawn",_dateNow,true];}; //Lazy fix for possible errors
+						if (isNil "_zombied") then {
+							_x setVariable ["zombieSpawn",_dateNow,true]; 
+							_zombied = (_x getVariable ["zombieSpawn",-0.1]);
+								if (isNil "_zombied") then {
+								_zombied = _dateNow;
+								};
+						}; //Lazy fix for possible errors
 					_age = (_dateNow - _zombied) * 525948;
 					if (_age > 3) then {
 						_x setVariable ["zombieSpawn",_dateNow,true];
