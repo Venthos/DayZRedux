@@ -9,7 +9,6 @@ _uniq = ["ItemWaterbottle", "ItemWaterbottleUnfilled"];
 _iPosZ = _iPos select 2;
 if ((isNil "_iPosZ") OR {( _iPosZ < 0)}) then { _iPos = [_iPos select 0,_iPos select 1,0]; };
 
-if (isNil "_iClass") exitWith { diag_log(format["%1 Skiping loot spawn of %2 due to nil variable",__FILE__, _iItem]); };
 switch (_iClass) do {
 	default {
 		//Item is food, add random quantity of cans along with an item (if exists)

@@ -247,7 +247,7 @@ class CfgBuildingLoot {
 			{"WeaponHolder_ItemHatchet", "object"},
 			{MR43, "weapon"},
 			//{"TrapBear", "magazine"},
-			{"WeaponHolder_ItemMachete"}
+			{"WeaponHolder_ItemMachete", "object"}
 		};
 		itemChance[] = {
 			0.06,	//WeaponHolder_ItemJerrycan
@@ -284,8 +284,8 @@ class CfgBuildingLoot {
 			{"ItemMatchbox", "generic"},
 			{"", "generic"},
 			{"revolver_EP1", "weapon"},
-			{"DZ_Assault_Pack_EP1","object"}, // 12
-			{"DZ_Czech_Vest_Puch","object"}, // 12-0
+			{"DZ_Assault_Pack_EP1", "object"}, // 12
+			{"DZ_Czech_Vest_Puch", "object"}, // 12-0
 			{"DZ_Patrol_Pack_EP1", "object"},
 			{"WeaponHolder_ItemTent", "object"},
 			{"", "food"},
@@ -692,7 +692,7 @@ class CfgBuildingLoot {
 			{"ItemGPS", "weapon"},
 			{"ItemMap", "military"},
 			{"Binocular_Vector", "military"},
-			{"DZ_British_ACU","object"}, // 18
+			{"DZ_British_ACU","object"},
 			{"DZ_ALICE_Pack_EP1", "object"},
 			{"DZ_Backpack_EP1", "object"},
 			{"", "medical"},
@@ -1262,7 +1262,7 @@ class CfgBuildingLoot {
 	};
 	
 	class FarmRoaming : Farm {
-		lootChance = 0.1;
+		lootChance = 0;
 		zombieChance = 0;
 		maxRoaming = 2;
 	};
