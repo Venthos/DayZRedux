@@ -108,6 +108,7 @@ if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unco
 			r_player_actions set [count r_player_actions,_action];
 		};
 		//CAN WE ISSUE ANOTHER KIND OF AMMUNITION?
+		/*
 		if (count weapons _unit > 0) then {
 			//Get mag array
 			_weapon = weapons _unit select 0;
@@ -127,6 +128,7 @@ if (_hasPatient and !r_drag_sqf and !r_action and !_inVehicle and !r_player_unco
 				};
 			} forEach _magTypes;
 		};
+		*/
 		//CAN CARRY BACKPACK
 		/*
 		if ((_type in USEC_PackableObjects) and (_classbag == "")) then {

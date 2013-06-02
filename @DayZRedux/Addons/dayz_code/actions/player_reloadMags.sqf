@@ -83,9 +83,10 @@ if ( _consume_magsize > _create_magsize) then {
     _qtynew_consume_ammo = 0;
 };
 
-if ((_qtynew_create_mags + _qtynew_consume_mags) > _avaliable_slots) exitWith {
-    cutText [localize "STR_DAYZ_CODE_2", "PLAIN DOWN"];
+if ((_qtynew_create_mags + _qtynew_consume_mags) > (_qty_create_mags + _qty_consume_mags + _qty_free_slots)) exitWith {
+    cutText [localize "str_player_24", "PLAIN DOWN"];
 };
+
 _qtynew_consume_mags_full = floor(_qtynew_consume_ammo/_consume_magsize);
 _qtynew_create_mags_full = floor(_qtynew_create_ammo/_create_magsize);
 _qtynew_consume_ammo_rest = _qtynew_consume_ammo - (_qtynew_consume_mags_full*_consume_magsize);

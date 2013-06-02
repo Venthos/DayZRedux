@@ -1,5 +1,5 @@
 private ["_obj","_unit","_ammo","_magazine","_mags","_newmags","_distance","_weapon","_projectile","_vUp","_endPos","_dir","_height","_bolt","_hitArray","_hitObject","_hitSelection","_config","_hitMemoryPt","_variation","_val","_doLoop","_countr"];
-_obj = _this select 0;
+_obj = _this;
 _unit = 		_obj select 0;
 _weapon = 		_obj select 1;
 _ammo = 		_obj select 4;

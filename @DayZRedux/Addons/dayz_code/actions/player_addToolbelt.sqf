@@ -38,7 +38,7 @@ _isOk = [player,_config2] call BIS_fnc_invAdd;
 if (_isOk) then {
 	//Remove item
 	player removeWeapon _item;
-	
+
 	//Add magazines if needed
 	if (_create in ["MeleeHatchet","MeleeCrowbar","MeleeMachete"]) then {
 		if (_create == "MeleeCrowbar") then {
@@ -50,19 +50,10 @@ if (_isOk) then {
 		if (_create == "MeleeMachete") then {
 				player addMagazine 'Machete_swing';
 		};
-		if (_type == "cfgWeapons") then {
-			_muzzles = getArray(configFile >> "cfgWeapons" >> _create >> "muzzles");
-			_wtype = ((weapons player) select 0);
-			if (count _muzzles > 1) then {
-				player selectWeapon (_muzzles select 0);
-			} else {
-				player selectWeapon _wtype;
-			};
-		};
-	};		
+	};
 } else {
 	cutText [localize "STR_DAYZ_CODE_2", "PLAIN DOWN"];
-	
+
 	//Add magazines back
 	if (_item in ["MeleeHatchet","MeleeCrowbar","MeleeMachete"]) then {
 		if (_item == "MeleeCrowbar") then {
@@ -74,5 +65,5 @@ if (_isOk) then {
 		if (_item == "MeleeMachete") then {
 				player addMagazine 'Machete_swing';
 		};
-	};	
+	};
 };

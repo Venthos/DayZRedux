@@ -35,10 +35,7 @@ if (_vehicle != player) then {
 	_wound = 	getText(configFile >> "cfgVehicles" >> (typeOf _vehicle) >> "HitPoints" >> _hp >> "name");
 	_damage = 	random 0.08;
 	_chance =	round(random 12);
-  
-if (_vehicle isKindOf "Helicopter") exitWith {};
-//Remove getting hit in helicopters since the zombies stand at the edge of the blades, not at the body
-	       
+
 	if ((_chance % 4) == 0) then {
 		_openVehicles = ["ATV_Base_EP1", "Motorcycle", "Bicycle"];
 		{
@@ -47,7 +44,7 @@ if (_vehicle isKindOf "Helicopter") exitWith {};
 			};
 		} forEach _openVehicles;
 	};
-  
+
   //Remove vehicles that are moving faster than 10KPH
 	_closedVehicles = ["Helicopter", "Car", "Truck"];
 	{
