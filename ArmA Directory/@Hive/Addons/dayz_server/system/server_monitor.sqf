@@ -2,6 +2,7 @@
 
 dayz_versionNo = 		getText(configFile >> "CfgMods" >> "DayZ" >> "version");
 dayz_hiveVersionNo = 	getNumber(configFile >> "CfgMods" >> "DayZ" >> "hiveVersion");
+private ["_random","_date","_year","_month","_day","_hour","_minute","_result","_status","_val","_pos","_wsDone","_dir","_objectPos","_block","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_position","_noTilt","_config","_locName","_buildingList","_id","_script","_key","_outcome","_myArray","_cfgLocations"];
 _script = getText(missionConfigFile >> "onPauseScript");
 
 if ((count playableUnits == 0) and !isDedicated) then {
@@ -195,7 +196,11 @@ diag_log "HIVE: Starting";
 						_selection = _x select 0;
 						if (!isNil "_selection") then {
 						_dam = _x select 1;
-						if (_selection in dayZ_explosiveParts and _dam > 0.8) then {_dam = 0.8};
+							if (_object isKindOf "Air") then {
+								//Skip these parts to make helicopers leak or unflyable on restart.
+							} else {
+								if (_selection in dayZ_explosiveParts and _dam > 0.8) then {_dam = 0.8};
+							};
 						[_object,_selection,_dam] call object_setFixServer;
 						};
 					} forEach _hitpoints;
@@ -274,7 +279,7 @@ allowConnection = true;
 
 // [_guaranteedLoot, _randomizedLoot, _frequency, _variance, _spawnChance, _spawnMarker, _spawnRadius, _spawnFire, _fadeFire]
 //Randomize spawn chance, it may be a little cruel with a randomized amount but let's try it...
-private ["_random"];
+//private ["_random"];
 _random = ceil(random 6) + 4; //Minimum of 40%
 
 nul = [3, 4, (50 * 60), (15 * 60), _random/10, 'center', 4000, true, false] spawn server_spawnCrashSite;
