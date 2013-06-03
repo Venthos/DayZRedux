@@ -1,4 +1,4 @@
-private["_type","_location","_dir","_character","_tent","_class","_id"];
+private ["_type","_location","_dir","_character","_tent","_class","_id"];
 //[dayz_characterID,_tent,[_dir,_location],"Land_Cont_RX"]
 _class = 		_this select 3;
 _location =		getPosATL player;

@@ -1,4 +1,4 @@
-private["_unit","_ammo","_audible","_distance","_listTalk","_weapon","_projectile","_vUp","_endPos","_dir","_height","_bolt","_hitArray","_hitObject","_hitSelection","_config","_hitMemoryPt","_variation","_val","_doLoop","_countr","_nearplayer","_playerName","_playerPos","_listNear"];
+private ["_unit","_ammo","_audible","_distance","_listTalk","_weapon","_projectile","_vUp","_endPos","_dir","_height","_bolt","_hitArray","_hitObject","_hitSelection","_config","_hitMemoryPt","_variation","_val","_doLoop","_countr","_nearplayer","_playerName","_playerPos","_listNear"];
 _unit = 		_this select 0;
 _weapon = 		_this select 1;
 _ammo = 		_this select 4;
@@ -10,7 +10,7 @@ _projectile = 	_this select 6;
 // being tracked for use in placing others in combat.  This should hopefully result
 // in increased performance, especially when people are firing off LMGs.
 _timeleft = dayz_combatTimer - time;
-if (_timeleft > 43) exitWith{};
+if (_timeleft > 43) exitWith {};
 
 //diag_log("COMBAT: Doing projectileNear calculations");
 

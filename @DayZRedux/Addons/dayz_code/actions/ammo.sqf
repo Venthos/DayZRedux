@@ -1,5 +1,5 @@
 // This is not called in any way, shape, or form it is simply here for future reference
-private["_ammoType","_vehicle","_ammo","_weapon","_turret","_text","_array"];
+private ["_ammoType","_vehicle","_ammo","_weapon","_turret","_text","_array"];
 _array = _this select 3;
 _vehicle = _array select 0;
 _weapon = _array select 1;

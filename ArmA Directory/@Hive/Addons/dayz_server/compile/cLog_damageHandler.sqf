@@ -111,7 +111,7 @@ if (_total > 0.4) then {	//0.25
 	};
 };
 private["_isInjured"];
-if(!_isHit) then {
+if (!_isHit) then {
 	//Create Wound
 	diag_log format["DEBUG: spawn bleed %1",_wound];
 	_unit setVariable[_wound,true,true];

@@ -1,36 +1,46 @@
-private["_itemType","_iPos","_indexLootSpawn","_iArray","_iItem","_iClass","_item","_qty","_max","_tQty","_arrayLootSpawn","_canType"];
-// [_itemType,_weights]
+private ["_iItem","_iClass","_iPos","_radius","_iPosZ","_item","_itemTypes","_qty","_max","_index","_weights","_cntWeights","_tQty","_canType","_mags","_magQty","_uniq"];
+
 _iItem = 	_this select 0;
 _iClass = 	_this select 1;
-_iPos =		_this select 2;
+_iPos =	_this select 2;
 _radius =	_this select 3;
-_type   =	_this select 4;
+_uniq = ["ItemWaterbottle", "ItemWaterbottleUnfilled"];
 
 _iPosZ = _iPos select 2;
-if( _iPosZ < 0 ) then { _iPos = [_iPos select 0,_iPos select 1,0]; };
+if ((isNil "_iPosZ") OR {( _iPosZ < 0)}) then { _iPos = [_iPos select 0,_iPos select 1,0]; };
 
 switch (_iClass) do {
 	default {
 		//Item is food, add random quantity of cans along with an item (if exists)
 		_item = createVehicle ["WeaponHolder", _iPos, [], _radius, "CAN_COLLIDE"];
+		/*
+		_itemTypes = [];
+		{
+			_itemTypes set [count _itemTypes, _x select 0]
+		} foreach getArray (configFile >> "cfgLoot" >> _iClass);
+		*/
 		_arrayLootSpawn = [] + getArray (configFile >> "cfgLoot" >> _iClass);
-		_itemType = _arrayLootSpawn select 0;
-		_weights = _arrayLootSpawn call fnc_buildWeightedArray;
+		_itemTypes = _arrayLootSpawn select 0;
 		_qty = 0;
 		_max = ceil(random 2) + 1;
-		//diag_log ("LOOTSPAWN: QTY: " + str(_max) + " ARRAY: " + str(_arrayLootSpawn));
 		while {_qty < _max} do {
-			private["_tQty","_indexLootSpawn","_canType"];
-			_tQty = floor(random 1) + 1;
-			//diag_log ("LOOTSPAWN: ITEM QTY: " + str(_tQty));
-			
-			_indexLootSpawn = _weights call BIS_fnc_selectRandom;
-			_canType = _itemType select _indexLootSpawn;
-			
-			//diag_log ("LOOTSPAWN: ITEM: " + str(_canType));
-			_item addMagazineCargoGlobal [_canType,_tQty];
-			_qty = _qty + _tQty;
-		};
+			_index = dayz_CLBase find _iClass;
+			_weights = dayz_CLChances select _index;
+			_cntWeights = count _weights;
+			_index = floor(random _cntWeights);
+			_index = _weights select _index;
+			_canType = _itemTypes select _index;
+			_tQty = round(random 1) + 1;
+			if (_canType in _uniq) then {
+				_tQty = if (({_x in _uniq} count magazines _item) == 0) then {1} else {0};
+				if (_tQty == 0) then {diag_log(format["%1 Prevent any duplicate member %2 from family %3",__FILE__, _canType, _uniq]);};
+				//diag_log(format["%1 %2 DUP? type:%3 mag:%4 _this:%5",__FILE__, __LINE__, _canType, magazines _item, _this]);
+			};
+			if (_tQty > 0) then {
+				_item addMagazineCargoGlobal [_canType,_tQty];
+				_qty = _qty + _tQty;
+			};
+		};                
 		if (_iItem != "") then {
 			_conf = configFile >> "cfgWeapons" >> _iItem;
 			if (isClass _conf) then {
@@ -64,11 +74,6 @@ switch (_iClass) do {
 		_item = createVehicle [_iItem, _iPos, [], _radius, "CAN_COLLIDE"];
 	};
 };
-
-//diag_log(format["Spawned: %1 (%2) - %3 ",_iItem,_iClass,_type]);
-_dateNow = (DateToNumber date);
-_item setVariable ["looted",_dateNow,true];
-
 if ((count _iPos) > 2) then {
-	_item setPosATL _ipos;
+	_item setPosATL _iPos;
 };

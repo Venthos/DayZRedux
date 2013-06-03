@@ -2743,4 +2743,305 @@ class CfgChernarusRedux {
                 onFire = 0;
         };
 	};
+	class zelenoBase {
+		buildings = 8;
+
+		        class Object0 {
+                type = "MASH_EP1";
+                position[] = {2476.4666, 5084.8398, -1.5258789e-005};
+                direction = 56.32555;
+                onFire = 0;
+        };
+
+        class Object1 {
+                type = "MASH_EP1";
+                position[] = {2481.5808, 5077.5659, -1.5258789e-005};
+                direction = 56.32555;
+                onFire = 0;
+        };
+
+        class Object2 {
+                type = "HeliHRescue";
+                position[] = {2494.8633, 5091.8286, -4.5776367e-005};
+                direction = -393.62851;
+                onFire = 0;
+        };
+
+        class Object3 {
+                type = "CampEast";
+                position[] = {2507.4175, 5109.4341};
+                direction = 55.140976;
+                onFire = 0;
+        };
+
+        class Object4 {
+                type = "CampEast";
+                position[] = {2515.9246, 5096.7715, -0.029805351};
+                direction = 55.140976;
+                onFire = 0;
+        };
+
+        class Object5 {
+                type = "PowGen_Big";
+                position[] = {2511.2556, 5103.1777, 1.5258789e-005};
+                direction = 53.937569;
+                onFire = 0;
+        };
+
+        class Object6 {
+                type = "Camp_EP1";
+                position[] = {2489.6343, 5107.4336, 1.5258789e-005};
+                direction = 144.43239;
+                onFire = 0;
+        };
+
+        class Object7 {
+                type = "Camp_EP1";
+                position[] = {2481.7903, 5102.1172, 1.5258789e-005};
+                direction = 144.43239;
+                onFire = 0;
+        };
+        class Object8 {
+                type = "Land_fort_rampart";
+                position[] = {2455.7881, 5106.3516, 0.41972083};
+                direction = -103.73354;
+                onFire = 0;
+        };
+        class Object9 {
+                type = "Land_HBarrier_large";
+                position[] = {2336.8105, 5261.6685, 0.11917596};
+                direction = 59.349693;
+                onFire = 0;
+        };
+        class Object10 {
+                type = "Misc_cargo_cont_net2";
+                position[] = {2494.9756, 5117.7515, -1.5258789e-005};
+                direction = 0;
+                onFire = 0;
+        };
+
+        class Object11 {
+                type = "Misc_concrete_High";
+                position[] = {2484.5544, 5072.1309, -0.26034766};
+                direction = 0;
+                onFire = 0;
+        };
+
+        class Object12 {
+                type = "Misc_concrete_High";
+                position[] = {2488.3452, 5066.2686, -0.20296618};
+                direction = -210.15285;
+                onFire = 0;
+        };
+
+        class Object13 {
+                type = "HMMWVWreck";
+                position[] = {2523.2227, 5086.8369};
+                direction = 92.158646;
+                onFire = 0;
+        };
+
+        class Object14 {
+                type = "USMC_WarfareBContructionSite";
+                position[] = {2491.5566, 5064.8784, -0.075202405};
+                direction = 55.845348;
+                onFire = 0;
+        };
+
+        class Object15 {
+                type = "USMC_WarfareBContructionSite1";
+                position[] = {2496.6924, 5060.7461, -0.073571742};
+                direction = -33.338867;
+                onFire = 0;
+        };
+
+        class Object16 {
+                type = "Base_WarfareBContructionSite";
+                position[] = {2527.6191, 5076.5869, -0.082194753};
+                direction = 60.323608;
+                onFire = 0;
+        };
+
+        class Object17 {
+                type = "Sign_Checkpoint_US_EP1";
+                position[] = {2521.8918, 5048.0811, -0.099054337};
+                direction = -65.795303;
+                onFire = 0;
+        };
+
+        class Object18 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2513.5476, 5054.2466, -0.095101967};
+                direction = 57.286171;
+                onFire = 0;
+        };
+
+        class Object19 {
+                type = "Land_GuardShed";
+                position[] = {2518.9758, 5049.7896, 0};
+                direction = -32.529079;
+                onFire = 0;
+        };
+
+        class Object20 {
+                type = "Sign_Checkpoint_US_EP1";
+                position[] = {2527.9993, 5052.4497, -1.5258789e-005};
+                direction = -7.1848273;
+                onFire = 0;
+        };
+
+        class Object21 {
+                type = "ZavoraAnim";
+                position[] = {2521.6812, 5049.0366, -1.5258789e-005};
+                direction = 145.67616;
+                onFire = 0;
+        };
+
+        class Object22 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2529.1152, 5072.9814, -0.064199612};
+                direction = -31.717268;
+                onFire = 0;
+        };
+
+        class Object23 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2502.356, 5055.9141, -0.17297229};
+                direction = -31.576075;
+                onFire = 0;
+        };
+
+        class Object24 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2532.5337, 5083.6011, -0.064459577};
+                direction = -121.97787;
+                onFire = 0;
+        };
+
+        class Object25 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2532.5337, 5083.6011, -0.064459577};
+                direction = -121.97787;
+                onFire = 0;
+        };
+
+        class Object26 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2524.1519, 5097.001, -0.23065968};
+                direction = -121.97787;
+                onFire = 0;
+        };
+
+        class Object27 {
+                type = "UralWreck";
+                position[] = {2517.6631, 5072.6655, -0.15839215};
+                direction = 18.12393;
+                onFire = 0;
+        };
+
+        class Object28 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2515.8174, 5110.2075, -0.23257388};
+                direction = -121.97787;
+                onFire = 0;
+        };
+
+        class Object29 {
+                type = "Base_WarfareBBarrier5x";
+                position[] = {2509.731, 5120.0991, -0.2319622};
+                direction = 56.750393;
+                onFire = 0;
+        };
+
+        class Object30 {
+                type = "Base_WarfareBBarrier5x";
+                position[] = {2492.4243, 5049.8501, -0.26570606};
+                direction = -29.952065;
+                onFire = 0;
+        };
+
+        class Object31 {
+                type = "Misc_cargo_cont_net2";
+                position[] = {2495.99, 5120.8418, 0.009138111};
+                direction = -26.312235;
+                onFire = 0;
+        };
+
+        class Object32 {
+                type = "Land_CamoNet_EAST";
+                position[] = {2471.0293, 5110.8057, -0.3143149};
+                direction = -19.897068;
+                onFire = 0;
+        };
+
+        class Object33 {
+                type = "Mass_grave";
+                position[] = {2470.9402, 5110.1079, -0.070633642};
+                direction = 78.451927;
+                onFire = 0;
+        };
+
+        class Object34 {
+                type = "Land_HBarrier1";
+                position[] = {2488.6096, 5047.4468, -0.22254181};
+                direction = 56.553539;
+                onFire = 0;
+        };
+
+        class Object35 {
+                type = "Land_HBarrier1";
+                position[] = {2487.2322, 5046.6226, -0.2266899};
+                direction = 56.553539;
+                onFire = 0;
+        };
+
+        class Object36 {
+                type = "Land_HBarrier1";
+                position[] = {2507.2974, 5123.8989, -0.15526646};
+                direction = 154.18748;
+                onFire = 0;
+        };
+
+        class Object37 {
+                type = "Land_HBarrier1";
+                position[] = {2506.6821, 5124.8887, -0.15071738};
+                direction = 160.70088;
+                onFire = 0;
+        };
+
+        class Object38 {
+                type = "Land_HBarrier1";
+                position[] = {2505.9773, 5125.9448, -0.15589157};
+                direction = 73.077614;
+                onFire = 0;
+        };
+
+        class Object39 {
+                type = "T72Wreck";
+                position[] = {2505.9648, 5076.8267, -0.036877852};
+                direction = -66.36837;
+                onFire = 0;
+        };
+
+        class Object40 {
+                type = "T72WreckTurret";
+                position[] = {2502.3977, 5072.1021, -0.039120257};
+                direction = 0;
+                onFire = 0;
+        };
+
+        class Object41 {
+                type = "Base_WarfareBBarrier10x";
+                position[] = {2526.1904, 5062.4111, 1.5258789e-005};
+                direction = 57.286171;
+                onFire = 0;
+        };
+
+        class Object42 {
+                type = "Land_GuardShed";
+                position[] = {2528.0037, 5055.5322, -1.5258789e-005};
+                direction = -32.529079;
+                onFire = 0;
+        };
+	};
 };

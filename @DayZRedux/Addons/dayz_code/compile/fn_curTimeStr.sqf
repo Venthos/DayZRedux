@@ -1,4 +1,4 @@
-private["_curDate","_hr","_min","_hrStr","_minStr","_strTime"];
+private ["_curDate","_hr","_min","_hrStr","_minStr","_strTime"];
 
 _curDate = date;
 _hr = _curDate select 3;

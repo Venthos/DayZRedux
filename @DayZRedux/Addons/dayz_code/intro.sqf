@@ -68,7 +68,7 @@ _id = [] spawn {
 };
 for "_i" from 1001 to 1013 do {
 	_id = [_display,_i] spawn {
-		private["_control","_display","_i","_v","_x"];
+		private ["_control","_display","_i","_v","_x"];
 		disableSerialization;
 		_display = _this select 0;
 		_i = _this select 1;
@@ -78,7 +78,7 @@ for "_i" from 1001 to 1013 do {
 		
 		//Move it
 		_id = [_control,_i] spawn {
-			private["_control","_display","_i","_v","_x","_w","_h","_y","_val","_pos"];
+			private ["_control","_display","_i","_v","_x","_w","_h","_y","_val","_pos"];
 			disableSerialization;
 			_dir = [
 				[-0.5,0],

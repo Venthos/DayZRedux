@@ -1,4 +1,4 @@
-private["_unit","_originalPos","_pos"];
+private ["_unit","_originalPos","_pos"];
 _unit = 		_this select 0;
 _originalPos = 	_this select 1;
 _pos = 			getPosATL _unit;
@@ -24,7 +24,7 @@ if (count _this > 2) then {
 	};
 };
 
-if(isNull group _unit) then {
+if (isNull group _unit) then {
 	_unit moveTo _pos;
 } else {
 	_unit domove _pos;		

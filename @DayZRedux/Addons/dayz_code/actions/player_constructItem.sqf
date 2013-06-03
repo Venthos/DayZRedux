@@ -1,4 +1,4 @@
-private["_item","_buildError","_toolName","_itemName","_requiredName","_requiredCount"];
+private ["_item","_buildError","_toolName","_itemName","_requiredName","_requiredCount"];
 disableSerialization;
 _item = 	_this;
 _config =	configFile >> "CfgMagazines" >> _item;
@@ -11,12 +11,12 @@ _create = 	getArray (_config >> "ItemActions" >> "Construct" >> "output");
 {
 	_hasTool = _x in items player;
 	_toolName = getText(configFile >> "CfgWeapons" >> _x >> "displayName");
-	if (!_hasTool) exitWith{
+	if (!_hasTool) exitWith {
 		_buildError = true;
 	};
 } forEach _tools;
 
-if (_buildError) exitWith{
+if (_buildError) exitWith {
 	cutText [format["You must have a %1 to perform this construction.", _toolName], "PLAIN DOWN"];
 };
 
@@ -28,12 +28,12 @@ if (_buildError) exitWith{
 	_playerCount = {_x == _requiredName} count magazines player;
 
 	_itemName = getText(configFile >> "CfgMagazines" >> _requiredName >> "displayName");
-	if (_playerCount < _requiredCount) exitWith{
+	if (_playerCount < _requiredCount) exitWith {
 		_buildError = true;
 	};
 } forEach _consume;
 
-if (_buildError) exitWith{
+if (_buildError) exitWith {
 	cutText [format["You do not have %1 %2, which is needed for this construction.", _requiredCount, _itemName], "PLAIN DOWN"];
 };
 

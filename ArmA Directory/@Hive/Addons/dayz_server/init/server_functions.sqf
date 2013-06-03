@@ -32,7 +32,7 @@ vehicle_handleInteract = {
 	if (_object in needUpdate_objects) then {
 		needUpdate_objects = needUpdate_objects - [_object];
 	};
-	[_object, "damage",true] call server_updateObject;
+	[_object, "all",true] call server_updateObject;
 };
 
 vehicle_handleServerKilled = {
@@ -72,7 +72,7 @@ eh_localCleanup = {
 	private ["_object"];
 	_object = _this select 0;
 	_object addEventHandler ["local", {
-		if(_this select 1) then {
+		if (_this select 1) then {
 			private["_type","_unit"];
 			_unit = _this select 0;
 			_type = typeOf _unit;

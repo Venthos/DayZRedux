@@ -5,7 +5,7 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"dayz_equip","dayz_weapons","CAMisc3","CABuildingParts","CABuildingParts_Signs","CAStructuresHouse","CAStructuresLand_Ind_Stack_Big","CAStructures_Misc_Powerlines","CAStructures","CABuildings","CABuildings2","Ind_MalyKomin","CAStructures_A_CraneCon","CAStructures_Mil","CAStructures_Nav","CAStructures_Rail","A_Crane_02","A_TVTower","CAStructures_Railway","CAStructuresHouse","CAStructuresHouse_HouseBT"};
+		requiredAddons[] = {"dayz_equip","dayz_weapons","CAMisc3","CABuildingParts","swm_misc","swm_swissarms","CABuildingParts_Signs","CAStructuresHouse","CAStructuresLand_Ind_Stack_Big","CAStructures_Misc_Powerlines","CAStructures","CABuildings","CABuildings2","Ind_MalyKomin","CAStructures_A_CraneCon","CAStructures_Mil","CAStructures_Nav","CAStructures_Rail","A_Crane_02","A_TVTower","CAStructures_Railway","CAStructuresHouse","CAStructuresHouse_HouseBT"};
 	};
 	class DZ_DebriefingRemoved
 	{
@@ -26,7 +26,7 @@ class CfgMods
 		hidePicture = 0;
 		hideName = 0;
 		action = "http://www.dayzredux.com";
-		version = "1.1.3";
+		version = "1.2.1";
 		hiveVersion = 0.96; //0.93
 	};
 	class DZ_InitWorld
@@ -89,8 +89,8 @@ class CfgInGameUI
     {
         cueColor[] = {0,0,0,0};
     };
-	
-	
+
+
 	class MPTable
 	{
 		color[] = {0,0,0,0}; //{0.7,0.7,0.7,1};
@@ -102,7 +102,7 @@ class CfgInGameUI
 		colorCiv[] = {0,0,0,0}; //{0.8,0.8,0.8,1};
 		colorRes[] = {0,0,0,0}; //{0.7,0.7,0.95,1};
 		font = "EtelkaNarrowMediumPro";
-		size = "0"; //"( 21 / 408 )";
+		size = "( 21 / 408 )"; //"( 21 / 408 )";
 		class Columns
 		{
 			class Order

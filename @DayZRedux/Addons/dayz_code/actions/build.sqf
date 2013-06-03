@@ -1,11 +1,11 @@
-private["_location","_isOk","_dir","_classname","_item"];
+private ["_location","_isOk","_dir","_classname","_item"];
 _location = player modeltoworld [0,1,0];
 _location set [2,0];
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		(surfaceIsWater _location) or dayz_isSwimming;
 
-if(_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
-if(_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
+if (_isWater) exitWith {cutText [localize "str_player_26", "PLAIN DOWN"];};
+if (_onLadder) exitWith {cutText [localize "str_player_21", "PLAIN DOWN"];};
 
 if (vehicle player != player) exitWith {cutText ["You may not build while in a vehicle", "PLAIN DOWN"]};
 
@@ -39,7 +39,7 @@ cutText [format[localize "str_build_01",_text], "PLAIN DOWN"];
 
 //["dayzPublishObj",[dayz_characterID,_object,[_dir,_location],_classname]] call callRpcProcedure;
 dayzPublishObj = [dayz_characterID,_object,[_dir,_location],_classname];
-publicVariable "dayzPublishObj";
+publicVariableServer "dayzPublishObj";
 
 sleep 2;
 player allowDamage true;

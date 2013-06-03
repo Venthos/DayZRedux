@@ -1,4 +1,4 @@
-private["_car","_hitpoints","_dam","_selection","_type","_pos","_dir"];
+private ["_car","_hitpoints","_dam","_selection","_type","_pos","_dir"];
 _type = _this select 0;
 _pos = _this select 1;
 _dir = _this select 2;

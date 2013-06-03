@@ -1,4 +1,4 @@
-private["_dog","_target","_targets","_man","_manDis"];
+private ["_dog","_target","_targets","_man","_manDis"];
 
 _dog = _this;
 _target = objNull;

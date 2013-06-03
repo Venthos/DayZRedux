@@ -1,4 +1,4 @@
-private["_flare"];
+private ["_flare"];
 _flare = _this select 3;
 deleteVehicle _flare;
 player removeAction s_player_grabflare;

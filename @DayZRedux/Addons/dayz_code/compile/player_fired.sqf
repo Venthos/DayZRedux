@@ -1,4 +1,4 @@
-private["_unit","_ammo","_audible","_distance","_listTalk","_weapon"];
+private ["_unit","_ammo","_audible","_distance","_listTalk","_weapon"];
 //[unit, weapon, muzzle, mode, ammo, magazine, projectile]
 _unit = 		_this select 0;
 _weapon = 		_this select 1;

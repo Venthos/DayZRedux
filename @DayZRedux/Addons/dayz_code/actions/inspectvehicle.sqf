@@ -1,4 +1,4 @@
-private["_vehicle","_part","_hitpoint","_type","_selection","_array"];
+private ["_vehicle","_part","_hitpoint","_type","_selection","_array"];
 disableSerialization;
 
 _array	= _this select 3;
@@ -53,15 +53,15 @@ _repairText = "";
 
 	_humanPartNameString = toString _humanPartName;
 
-	if(["HRotor",_x,false] call fnc_inString) then {
+	if (["HRotor",_x,false] call fnc_inString) then {
 		_humanPartNameString = "Main Rotor Assembly";
 	};
 
-	if(["VRotor",_x,false] call fnc_inString) then {
+	if (["VRotor",_x,false] call fnc_inString) then {
 		_humanPartNameString = "Rear Rotor Assembly";
 	};
 
-	if(["Wheel",_x,false] call fnc_inString) then {
+	if (["Wheel",_x,false] call fnc_inString) then {
 		_partNoWheel = [];
 		for "_i" from 0 to ((count _humanPartName) - 6) do {_partNoWheel set [count _partNoWheel,(_humanPartName select _i)]};
 		_partNoWheelString = toString _partNoWheel;

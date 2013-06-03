@@ -1,16 +1,16 @@
-private["_array","_source","_kills","_killsV","_humanity","_wait","_myKills"];
+private ["_array","_source","_kills","_killsV","_humanity","_wait","_myKills","_method","_body","_id","_canHitFree","_isBandit","_myGroup"];
 if (deathHandled) exitWith {};
 
 deathHandled = true;
 //Death
-
 _body =		player;
 _playerID =	getPlayerUID player;
+disableUserInput true;
 
 //Send Death Notice
 //["dayzDeath",[dayz_characterID,0,_body,_playerID,dayz_playerName]] call callRpcProcedure;
 		dayzDeath = [dayz_characterID,0,_body,_playerID,dayz_playerName];
-		publicVariable "dayzDeath";
+		publicVariableServer "dayzDeath";
     
 //Send Killer Information
 dayzKiller = dayz_myKiller;
@@ -70,6 +70,9 @@ if (count _array > 0) then {
 			};
 		};
 	};
+	if (isNil "_method") then {
+		_method = "natural causes";
+	};
 	_body setVariable ["deathType",_method,true];
 };
 
@@ -80,14 +83,13 @@ terminate dayz_animalCheck;
 terminate dayz_monitor1;
 terminate dayz_medicalH;
 terminate dayz_gui;
-terminate dayz_zedCheck;
+//terminate dayz_zedCheck;
 terminate dayz_locationCheck;
-terminate dayz_combatCheck;
+//terminate dayz_combatCheck;
 terminate dayz_spawnCheck;
 
 //Reset (just in case)
 //deleteVehicle dayz_playerTrigger;
-disableUserInput false;
 r_player_dead = true;
 
 "dynamicBlur" ppEffectEnable true;"dynamicBlur" ppEffectAdjust [4]; "dynamicBlur" ppEffectCommit 0.2;
@@ -125,7 +127,7 @@ dayz_combatTimer = 0;
 _body setVariable["combattimeout", 0, true];
 
 //["dayzFlies",player] call broadcastRpcCallAll;
-sleep 1;
+sleep 1.5;
 
 1 cutRsc ["DeathScreenBG","BLACK OUT",1];
 2 cutRsc ["DeathScreen1","BLACK OUT",1];
@@ -147,3 +149,4 @@ playMusic "dayz_track_death_1";
 
 "dynamicBlur" ppEffectAdjust [0]; "dynamicBlur" ppEffectCommit 5;
 "colorCorrections" ppEffectAdjust [1, 1, 0, [1, 1, 1, 0.0], [1, 1, 1, 1],  [1, 1, 1, 1]];"colorCorrections" ppEffectCommit 5;
+disableUserInput false;

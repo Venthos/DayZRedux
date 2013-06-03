@@ -1,14 +1,30 @@
-private["_unit","_type","_chance","_rnd","_sound","_local","_dis"];
+
+private ["_unit","_type","_chance","_dis","_local","_num","_isWoman","_rnd","_sound"];
+
 _unit = _this select 0;
 _type = _this select 1;
 _chance = _this select 2;
 
+_dis = switch true do {
+	case (count _this > 4): {_this select 4};
+	case (_type in ["shout","hit","attack","scream","breath","spotted"]): {100};
+	default {40};
+};
+
+_local = false; 
+if (count _this > 3) then { _local = _this select 3; };
+if (!_local) then { // we override _local according to number of players inside _dis radius
+	_local = { _unit distance _x < _dis; } count playableUnits <= 1;
+};
+
+//diag_log(format["%1 dis:%2 local:%3", __FILE__, _dis, _local]);
+
 _num = switch (_type) do {
-	default 			{0};
+	default {0};
 	case "cough": 		{2};
 	case "chase": 		{14};
 	case "spotted": 	{13};
-	case "hit": 		{6};
+	case "hit": 		{11}; // prev. 6
 	case "attack": 		{13};
 	case "idle": 		{35};
 	case "scream": 		{4};
@@ -21,27 +37,13 @@ _num = switch (_type) do {
 	case "dog_qq":		{2};
 };
 
-if (count _this > 4) then {
-	_dis = _this select 4;
-	_local = ({isPlayer _x} count (_unit nearEntities ["AllVehicles",_dis]) < 2);
-} else {
-	_local = _this select 3;
-	
-	if (_type in ["shout","hit","attack","scream","breath","spotted"]) then {
-		_dis = 100;
-	} else {
-		_dis = 60;
-	};
-};
-
 _isWoman = getText(configFile >> "cfgVehicles" >> (typeOf _unit) >> "TextPlural") == "Women";
 if (_isWoman and (_type in ["scream","panic"])) then {
 	_type = _type + "_w";
 };
 
-
-if ((round(random _chance) == _chance) or (_chance == 0)) then {
-	_rnd =(round(random _num));
+if (floor(random(_chance)) == 0) then {
+	_rnd = floor(random(_num+1));
 	_sound = "z_" + _type + "_" + str(_rnd);
 	if (_local) then {
 		_unit say [_sound, _dis];

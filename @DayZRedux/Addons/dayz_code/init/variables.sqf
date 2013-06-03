@@ -2,24 +2,30 @@ disableSerialization;
 
 //Model Variables
 B1_RX = 	"B1_RX";
-B2_RX =	"B2_RX";
+B2_RX =		"B2_RX";
 BW1_RX =	"BW1_RX";
 S1_RX = 	"S2_RX";
 S2_RX = 	"S2_RX";
-SW2_RX = "SW2_RX";
+SW2_RX = 	"SW2_RX";
 GS1_RX = 	"GS1_RX";
 GB1_RX = 	"GB1_RX ";
 PS1_RX = 	"PS1_RX ";
 PB1_RX = 	"PB1_RX ";
-CS1_RX = 		"CS1_RX";
-CB1_RX = 		"CB1_RX";
-BR1_RX = 		"BR1_RX";
-R_RX = 	"R_RX";
-G1_RX = "GS1_RX";
-C1_RX = "CS1_RX";
+CS1_RX = 	"CS1_RX";
+CB1_RX = 	"CB1_RX";
+BR1_RX = 	"BR1_RX";
+R_RX = 		"R_RX";
+G1_RX = 	"GS1_RX";
+C1_RX = 	"CS1_RX";
 
 AllPlayers = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX"];
 AllPlayersVehicles = ["Soldier_Crew_PMC","GS1_RX","GB1_RX","CS1_RX","CB1_RX","BR1_RX","PS1_RX","PB1_RX","R_RX","AllVehicles"];
+
+MeleeWeapons = ["MeleeHatchet","MeleeCrowbar","MeleeMachete"];
+MeleeMagazines = ["hatchet_swing","crowbar_swing","Machete_swing"];
+
+SafeObjects = ["Land_Fire_DZ", "TentStorage", "Wire_cat1", "Sandbag1_DZ", "Hedgehog_DZ", "Land_Mag_RX", "Land_Cont_RX", "Land_Cont2_RX"];
+
 
 //Cooking
 meatraw = [
@@ -212,13 +218,16 @@ dayz_resetSelfActions = {
 	s_build_Wire_cat1 =		-1;
 	s_player_deleteBuild =	-1;
 	s_player_forceSave = 	-1;
-  s_player_igniteTentSwitch = -1;
-  s_player_igniteBoxSwitch = -1;
-  s_player_igniteBoxYes = -1;
-  s_player_igniteBoxNo = -1;
-  s_player_igniteTentYes = -1;
-  s_player_igniteTentNo = -1;
+	s_player_igniteTentSwitch = -1;
+	s_player_igniteBoxSwitch = -1;
+	s_player_igniteBoxYes = -1;
+	s_player_igniteBoxNo = -1;
+	s_player_igniteTentYes = -1;
+	s_player_igniteTentNo = -1;
 	s_player_retrievebox = -1;
+	s_player_diggrave =     -1;
+	s_player_burybody =    -1;
+	s_player_dragbody = 	-1;
 	s_player_flipveh = 		-1;
 	s_player_stats =		-1;
 	s_player_sleep =		-1;
@@ -232,6 +241,8 @@ dayz_resetSelfActions = {
 	s_player_barkdog = 		-1;
 	s_player_warndog = 		-1;
 	s_player_followdog = 	-1;
+	s_player_tamedog =		-1;
+	diggingGrave = 			false;
 };
 call dayz_resetSelfActions;
 
@@ -239,14 +250,19 @@ call dayz_resetSelfActions;
 canPickup = false;
 pickupInit = false;
 
-//Allow player to leave by default
+//Allow player to leave by default -- Disallow forced leaving
 canAbort = true;
+canAbortForce = false;
 
 //Engineering variables
 s_player_lastTarget =	objNull;
 s_player_repairActions = [];
+s_player_removeactions = [];
+silver_myCursorTarget = objNull;
 
 //Initialize Medical Variables
+force_dropBody = 		false;
+forceDrag =         	false;
 r_interrupt = 			false;
 r_doLoop = 				false;
 r_self = 				false;
@@ -370,13 +386,13 @@ dayz_spawnPos = getPosATL player;
 //init global arrays for Loot Chances
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\loot_init.sqf";
 
-if(isServer) then {
+if (isServer) then {
 	dayz_players = [];
 	dead_bodyCleanup = [];
 	needUpdate_objects = [];
 };
 
-if(!isDedicated) then {
+if (!isDedicated) then {
 	//Establish Location Streaming
 	_funcGetLocation = 
 	{

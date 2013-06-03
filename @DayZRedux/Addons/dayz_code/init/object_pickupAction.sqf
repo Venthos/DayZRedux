@@ -1,14 +1,12 @@
-private["_holder","_type","_classname","_name"];
+private ["_holder","_type","_classname","_name"];
 _holder = _this select 0;
 _type = _this select 1;
 _classname = _this select 2;
 
 _name = getText (configFile >> _type >> _classname >> "displayName");
 
-pickupInit = true;
-
 actionMonitor = {
-	private["_holder","_type","_classname","_name","_action","_distance","_run","_timeout"];
+	private ["_holder","_type","_classname","_name","_action","_distance","_run","_timeout"];
 	_holder = _this select 0;
 	_type = _this select 1;
 	_classname = _this select 2;
@@ -55,21 +53,23 @@ actionMonitor = {
 	};
 };
 
+//pickupInit = true;
 if (_classname == "WoodenArrow") then {
 	[_holder,_type,_classname,_name] spawn actionMonitor;
 } else {
-  if (canPickup) then {
+  //if (canPickup) then {
 	null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
 	player reveal _holder;
 	pickupInit = true;
-  } else {
-  //sleep 2;
-	 waitUntil {!pickupInit};
-	  if (canPickup) then {
-		null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
-		player reveal _holder;
-		pickupInit = true;
-	  };
-  };
+  //};
+/*  else {
+	waitUntil {!pickupInit};
+		if (canPickup) then {
+			null = _holder addAction [format[(localize "STR_DAYZ_CODE_1"),_name], "\z\addons\dayz_code\actions\object_pickup.sqf",[_type,_classname,_holder], 20, true, true];
+			player reveal _holder;
+			pickupInit = true;
+		};
+	};
+*/
 };
   

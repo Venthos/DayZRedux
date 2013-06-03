@@ -1,4 +1,4 @@
-private["_state"];
+private ["_state"];
 disableSerialization;
 _state = uiNamespace getVariable ['DZ_displayUI', 0];
 

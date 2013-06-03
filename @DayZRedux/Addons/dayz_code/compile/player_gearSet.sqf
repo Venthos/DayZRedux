@@ -1,4 +1,4 @@
-private["_inventory","_wpns","_mags","_idc","_isOK","_val","_item","_x"];
+private ["_inventory","_wpns","_mags","_idc","_isOK","_val","_item","_x"];
 _inventory = _this;
 if (count _inventory > 0) then {
 	_wpns = _inventory select 0;
@@ -6,7 +6,7 @@ if (count _inventory > 0) then {
 
 	//Add inventory
 	{
-		private["_item","_val"];
+		private ["_item","_val"];
 		//is it an array?
 		_idc = 109;
 		if (typeName _x == "ARRAY") then {

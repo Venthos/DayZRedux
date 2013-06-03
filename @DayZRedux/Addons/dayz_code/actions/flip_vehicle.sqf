@@ -1,4 +1,4 @@
-private["_obj","_bag","_pos"];
+private ["_obj","_bag","_pos"];
 _veh = _this select 3;
 
 player playActionNow "Medic";

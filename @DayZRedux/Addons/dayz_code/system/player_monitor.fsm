@@ -129,8 +129,8 @@ link64[] = {55,56};
 link65[] = {56,57};
 link66[] = {57,58};
 link67[] = {58,59};
-globals[] = {25.000000,1,0,0,0,640,480,1,90,6316128,1,-340.044830,364.444611,393.922516,-458.455902,524,634,1};
-window[] = {0,-1,-1,-32000,-32000,1014,234,1606,234,1,542};
+globals[] = {25.000000,1,0,0,0,640,480,1,90,6316128,1,-595.022766,163.984177,536.135620,-382.204834,524,634,1};
+window[] = {0,-1,-1,-1,-1,1014,234,1606,234,1,542};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -224,8 +224,12 @@ class FSM
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
           condition=/*%FSM<CONDITION""">*/"!isnil ""bis_fnc_init"""/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/"dayz_forceSave = {" \n
+           "_gearSave = false;" \n
            "" \n
+           "if (!dialog) then {" \n
            "	createGearDialog [player, ""RscDisplayGear""];" \n
+           "	_gearSave = true;" \n
+           "};" \n
            "" \n
            "_dialog = findDisplay 106;" \n
            "_magazineArray = 	[];" \n
@@ -261,9 +265,9 @@ class FSM
            "		};" \n
            "	};" \n
            "};" \n
-           "" \n
-           "	closeDialog 0;" \n
-           "" \n
+           "	if (_gearSave) then {" \n
+           "		closeDialog 0;" \n
+           "	};" \n
            "	_medical = player call player_sumMedical;" \n
            "		" \n
            "	/*" \n
@@ -274,6 +278,7 @@ class FSM
            "	_config = 		configFile >> ""CfgMovesMaleSdr"" >> ""States"" >> _currentAnim;" \n
            "	_onLadder =		(getNumber (_config >> ""onLadder"")) == 1;" \n
            "	_isTerminal = 	(getNumber (_config >> ""terminal"")) == 1;" \n
+           "	_isInVehicle = vehicle player != player;" \n
            "	//_wpnDisabled =	(getNumber (_config >> ""disableWeapons"")) == 1;" \n
            "	_currentModel = typeOf player;" \n
            "	_charPos = getPosATL player;" \n
@@ -449,7 +454,7 @@ class FSM
        "_msg = [];" \n
        "" \n
        "dayzLogin = [_playerUID,player];" \n
-       "publicVariable ""dayzLogin"";" \n
+       "publicVariableServer ""dayzLogin"";" \n
        "" \n
        "if (isServer) then {" \n
        "	dayzLogin call server_playerLogin;" \n
@@ -684,7 +689,7 @@ class FSM
        "//[""dayzLogin2"",[_charID,player,_playerUID]] call callRpcProcedure;" \n
        "" \n
        "dayzLogin2 = [_charID,player,_playerUID];" \n
-       "publicVariable ""dayzLogin2"";" \n
+       "publicVariableServer ""dayzLogin2"";" \n
        "" \n
        "dayz_loadScreenMsg =  ""Requesting Character data from server"";" \n
        "progressLoadingScreen 0.8;" \n
@@ -1026,7 +1031,7 @@ class FSM
        "	//Establish default weapon" \n
        "	if (count weapons player > 0) then" \n
        "	{" \n
-       "		private['_type', '_muzzles'];" \n
+       "		private ['_type', '_muzzles'];" \n
        "" \n
        "		_type = ((weapons player) select 0);" \n
        "		// check for multiple muzzles (eg: GL)" \n
@@ -1101,7 +1106,7 @@ class FSM
        """colorCorrections"" ppEffectCommit 0;" \n
        "" \n
        "dayz_gui = [] spawn {" \n
-       "	private[""_distance""];" \n
+       "	private [""_distance""];" \n
        "	dayz_musicH = [] spawn player_music;" \n
        "	while {true} do {" \n
        "		_array = player call world_surfaceNoise;" \n
@@ -1137,7 +1142,7 @@ class FSM
        "dayz_animalCheck = 	[] spawn player_spawn_1;" \n
        "" \n
        "dayz_lootCheck = [_playerUID,_charID] spawn {" \n
-       "	private[""_handle"",""_humanity"",""_playerUID"",""_oldModel"",""_runOnce""];" \n
+       "	private [""_handle"",""_humanity"",""_playerUID"",""_oldModel"",""_runOnce""];" \n
        "	_playerUID = _this select 0;" \n
        "	_charID = _this select 1;" \n
        "	_runOnce = false;" \n
@@ -1182,7 +1187,9 @@ class FSM
        "//FPOnly = 1 is First Person only in vehicles" \n
        "//FPOnly = 2 is First Person only on foot" \n
        "" \n
+       "" \n
        "dayz_vehicleCamCheck = [] spawn {" \n
+       "if (!isNil ""FPOnly"") then {" \n
        "	while {FPOnly > 0} do {" \n
        "	if (FPOnly == 1) then {" \n
        "		IF (vehicle player != player) THEN {" \n
@@ -1196,12 +1203,13 @@ class FSM
        "	};" \n
        "};" \n
        "};" \n
+       "};" \n
        "" \n
        "" \n
        "// TODO: questionably" \n
        "{ _x call fnc_vehicleEventHandler; } forEach vehicles;" \n
        "" \n
-       "private[""_fadeFire""];" \n
+       "private [""_fadeFire""];" \n
        "{" \n
        "	_fadeFire = _x getVariable['fadeFire', true];" \n
        "	if (!_fadeFire) then {" \n
@@ -1235,7 +1243,7 @@ class FSM
        "//[""dayzLoginRecord"",[_playerUID,_charID,0]] call callRpcProcedure;" \n
        "" \n
        "dayzLoginRecord = [_playerUID,_charID,0];" \n
-       "publicVariable ""dayzLoginRecord"";" \n
+       "publicVariableServer ""dayzLoginRecord"";" \n
        "" \n
        "endLoadingScreen;" \n
        ""/*%FSM</STATEINIT""">*/;

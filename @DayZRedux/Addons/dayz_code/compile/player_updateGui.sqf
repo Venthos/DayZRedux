@@ -1,4 +1,4 @@
-private["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolorS","_gycolorB","_gxcolorS","_gxcolorB","_ycolorS","_ycolorB","_xcolorS","_xcolorB","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
+private ["_debug","_charPos","_nearDebug","_nearSpawnPos","_gycolorS","_gycolorB","_gxcolorS","_gxcolorB","_ycolorS","_ycolorB","_xcolorS","_xcolorB","_xCoord","_yCoord","_display","_ctrlBlood","_bloodVal","_ctrlFood","_ctrlThirst","_foodVal","_ctrlTemp","_tempVal","_combatVal","_array"];
 disableSerialization;
 
 _foodVal = 		1 - (dayz_hunger / SleepFood);
@@ -76,7 +76,7 @@ _ctrlCombat ctrlSetTextColor[(Dayz_GUI_R + (0.2 * (1-_combatVal))),(Dayz_GUI_G *
 /*
 _humanity = player getVariable["humanity",0];
 _guiHumanity = 0;
-if(_humanity != dayz_lastHumanity) then {
+if (_humanity != dayz_lastHumanity) then {
 	if (_humanity > 0) then {
 		_humanity = _humanity min 5000;
 		_guiHumanity = (round((_humanity / 5000) * 5) + 5);
@@ -167,7 +167,7 @@ if (r_player_inpain) then {
 
 };
 
-//private["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord"];
+//private ["_debug","_charPos","_nearDebug","_nearSpawnPos","_xCoord","_yCoord"];
 //Debug Warning
 
 _debug = getMarkerpos "respawn_west";

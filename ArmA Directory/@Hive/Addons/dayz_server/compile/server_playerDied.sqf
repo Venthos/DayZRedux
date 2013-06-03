@@ -6,7 +6,7 @@ _newObject = 	_this select 2;
 _playerID = 	_this select 3;
 _playerName = 	_this select 4;
 
-dayz_disco = dayz_disco - [_playerID];
+//dayz_disco = dayz_disco - [_playerID]; //no longer used
 _newObject setVariable["processedDeath",time];
 
 /*

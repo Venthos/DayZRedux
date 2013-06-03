@@ -3,9 +3,10 @@
 
 private ["_wounded","_vcl","_group"];
 
-_wounded 	= _this select 0;
+  _wounded 	= _this select 0;
+//_wounded = cursorTarget;
 
-//if (!local _wounded) exitWith {};
+if (!local _wounded) exitWith {};
 
 r_action = false;
 
@@ -17,7 +18,7 @@ _wounded assignAsCargo _vcl;
 _wounded moveInCargo _vcl;
 sleep 1;
 //["norrnRALW",_wounded] call broadcastRpcCallAll;
-	norrnRALW = [_wounded];
+	norrnRALW = _wounded;
 	publicVariable "norrnRALW";
 
 if (local _wounded) then 
@@ -50,4 +51,3 @@ if (local _wounded) then
 };
 sleep 0.01;
 if (true) exitWith {};
-

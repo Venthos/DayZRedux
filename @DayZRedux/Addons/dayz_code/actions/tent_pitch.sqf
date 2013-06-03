@@ -1,4 +1,4 @@
-private["_position","_tent","_location","_isOk","_backpack","_tentType","_trg","_key"];
+private ["_position","_tent","_location","_isOk","_backpack","_tentType","_trg","_key"];
 //check if can pitch here
 call gear_ui_init;
 _item = _this;
@@ -45,7 +45,7 @@ if (_notInBuilding) then {
 	player playActionNow "Medic";
 	sleep 1;
 
-	_dis=50;
+	_dis=15;
 	_sfx = "tentunpack";
 	[player,_sfx,0,false,_dis] call dayz_zombieSpeak;  
 	[player,_dis,true,(getPosATL player)] spawn player_alertZombies;
@@ -63,7 +63,7 @@ if (_notInBuilding) then {
 	//player setVariable ["tentUpdate",["Land_A_tent",_dir,_location,[dayz_tentWeapons,dayz_tentMagazines,dayz_tentBackpacks]],true];
 
 	dayzPublishObj = [dayz_characterID,_tent,[_dir,_location],"Land_Cont2_RX"];
-	publicVariable "dayzPublishObj";
+	publicVariableServer "dayzPublishObj";
 	
 	cutText [localize "str_success_tent_pitch", "PLAIN DOWN"];
 } else {

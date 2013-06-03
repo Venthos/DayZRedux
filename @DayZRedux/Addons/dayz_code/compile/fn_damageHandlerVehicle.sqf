@@ -4,7 +4,7 @@ scriptName "Functions\misc\fn_damageHandler.sqf";
 	- Function
 	- [unit, selectionName, damage, source, projectile] call fnc_usec_damageHandler;
 ************************************************************/
-private["_unit","_hit","_damage","_source","_ammo","_total"];
+private ["_unit","_hit","_damage","_source","_ammo","_total"];
 
 _unit = _this select 0;
 _hit = _this select 1;

@@ -1,4 +1,4 @@
-private["_dialog","_staticName","_ctrlGearOfUnit","_ctrlAvailItems","_numItems","_object"];
+private ["_dialog","_staticName","_ctrlGearOfUnit","_ctrlAvailItems","_numItems","_object"];
 
 // There doesn't seem to be a way to determine what object's gear you're
 // accessing through the Gear UI display.  This is likely something only
@@ -16,7 +16,7 @@ _ctrlAvailItems = _display displayCtrl 105;
 
 _staticName = "Gear of unit:";
 
-private["_curWep","_maxWep","_curMag","_maxMag","_curPck","_maxPck"];
+private ["_curWep","_maxWep","_curMag","_maxMag","_curPck","_maxPck"];
 
 _curWep = count (getWeaponCargo _object);
 _curMag = count (getMagazineCargo _object);
@@ -34,13 +34,13 @@ ctrlSetText _ctrlGearOfUnit format["%1 %2/%3 %4/%5 %6/%7", _staticName, _curWep,
 // we're accessing (and therefores its limits).
 _numItems = (lnbSize _ctrlAvailItems) select 0;  
 
-private["_curWep","_curMag","_curVeh"];
+private ["_curWep","_curMag","_curVeh"];
 _curWep = 0;
 _curMag = 0;
 _curVeh = 0;
 
 for "_i" from 0 to (_numItems - 1) do {
-	private["_itemType"];
+	private ["_itemType"];
 	_item = lnbData [_ctrlAvailItems,[_i,1]];
 	
 

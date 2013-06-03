@@ -1,4 +1,4 @@
-private ["_position","_doLoiter","_unitTypes","_isNoone","_loot","_array","_agent","_type","_radius","_method","_isAlive","_myDest","_newDest","_rnd","_lootType","_index","_weights","_loot_count"];
+private ["_position","_doLoiter","_distance","_unitTypes","_isNoone","_loot","_array","_agent","_type","_radius","_method","_isAlive","_myDest","_newDest","_rnd","_lootType","_index","_weights","_loot_count"];
 _position = 	_this select 0;
 _doLoiter = 	_this select 1;
 _unitTypes = 	_this select 2;
@@ -13,6 +13,9 @@ _agent = 	objNull;
 
 //Exit if no one is nearby
 if (!_isNoone) exitWith {};
+
+_distance = [_position, player] call BIS_fnc_distance2D;
+if (_distance < 10) exitWith {};
 
 if (count _unitTypes == 0) then {
 	_unitTypes = 	[]+ getArray (configFile >> "CfgBuildingLoot" >> "Default" >> "zombieClass");
@@ -81,7 +84,7 @@ if (_rnd > 0.3) then {
 		_array = []+ getArray (configFile >> "cfgLoot" >> getText(_lootType));
 		if (count _array > 0) then {
 			_loot = _array call BIS_fnc_selectRandomWeighted;
-			if(!isNil "_array") then {
+			if (!isNil "_array") then {
 				_agent addMagazine _loot;
 			};
 		};

@@ -1,4 +1,4 @@
-private["_unit","_hitPoints","_selection","_killer"];
+private ["_unit","_hitPoints","_selection","_killer"];
 
 _unit = _this select 0;
 _killer = _this select 1;

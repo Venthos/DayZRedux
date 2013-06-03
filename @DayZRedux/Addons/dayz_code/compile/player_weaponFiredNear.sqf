@@ -1,5 +1,5 @@
 //[unit, weapon, muzzle, mode, ammo, magazine, projectile]
-private["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","_result","_evType","_recordable","_inVehicle","_isPlayer","_isRocket","_dmgDistance","_isBallistic","_handled"];
+private ["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","_result","_evType","_recordable","_inVehicle","_isPlayer","_isRocket","_dmgDistance","_isBallistic","_handled"];
 //Init
 	//[unit, firer, distance, weapon, muzzle, mode, ammo]
 	_unit = 	_this select 0;
@@ -33,8 +33,8 @@ private["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","
 	};
 	
 	
-	if (_inVehicle) exitWith{};
-	if (_firer == player) exitWith{};
+	if (_inVehicle) exitWith {};
+	if (_firer == player) exitWith {};
 	
 	//Is in danger angle?
 	_turretDir = _firer weaponDirection _weapon;
@@ -62,7 +62,7 @@ private["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","
 					};
 
 					[_unit,4] call fnc_usec_damageUnconscious;
-			} else {;
+			} else {
 				//Just Knocked out
 				[_unit,0.5] call fnc_usec_damageUnconscious;
 			};
@@ -77,6 +77,7 @@ private["_unit","_magazine","_used","_quantity","_magsNet","_magsWhole","_key","
 		if (_isRocket and (_isInFront or _isInRear)) then {
 			if ((_distance < 5) and !_handled) then {
 				1 call fnc_usec_bulletHit;
+				[20,45] call fnc_usec_pitchWhine; //Visual , Sound
 				[20,45] call fnc_usec_pitchWhine; //Visual , Sound
 				// Dead
 				if (_isPlayer) then {

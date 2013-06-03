@@ -1,4 +1,4 @@
-private["_object","_updateObj"];
+private ["_object","_updateObj"];
 //check if can pitch here
 _object = _this;
 

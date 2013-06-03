@@ -28,7 +28,6 @@
 5 ="5Rnd_127x99_as50"
 5 ="5Rnd_86x70_L115A1"
 5 ="64Rnd_9x19_Bizon"
-5 ="64Rnd_9x19_SD_Bizon"
 5 ="6Rnd_HE_M203"
 5 ="75Rnd_545x39_RPK"
 5 ="8Rnd_9x18_MakarovSD"

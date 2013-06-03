@@ -1,4 +1,4 @@
-private["_vel","_speed","_scalePose","_scaleMvmt","_scaleLight","_scaleAlert","_anim","_anim4","_initial","_isDay","_nearFlare","_scaler","_pos"];
+private ["_vel","_speed","_scalePose","_scaleMvmt","_scaleLight","_scaleAlert","_anim","_anim4","_initial","_isDay","_nearFlare","_scaler","_pos"];
 _vel = velocity (vehicle player);
 _speed = (_vel distance [0,0,0]);
 _pos = getPosATL player;
@@ -16,7 +16,7 @@ _anim4 = toString _anim4;
 if (["pknl",_anim] call fnc_inString) then {
 	_scaleMvmt = 0.2;	//0.1;
 	_scalePose = 0.6;	//0.4
-} else {;
+} else {
 	if (["ppne",_anim] call fnc_inString) then {
 		_scaleMvmt = 0.3;
 		_scalePose = 0.14;

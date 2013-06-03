@@ -1,6 +1,6 @@
 // Remove Parts from Vehicles - By SilverShot.
 
-private["_vehicle","_part","_hitpoint","_type","_selection","_array"];
+private ["_vehicle","_otherPlayerNear","_part","_hitpoint","_type","_selection","_array"];
 _id = _this select 2;
 _array = 	_this select 3;
 _vehicle = 	_array select 0;
@@ -9,6 +9,8 @@ _hitpoint = _array select 2;
 _type = typeOf _vehicle;
 
 _hasToolbox = 	"ItemToolbox" in items player;
+_otherPlayerNear =	{isPlayer _x} count (_vehicle nearEntities ["CAManBase", 10]) > 1;
+if (_otherPlayerNear) exitWith {cutText [format["[Anti-Dupe] You must be the only player within 10 meters of the vehicle to remove parts."] , "PLAIN DOWN"]};
 
 _nameType = 		getText(configFile >> "cfgVehicles" >> _type >> "displayName");
 _namePart = 		getText(configFile >> "cfgMagazines" >> _part >> "displayName");
@@ -18,7 +20,7 @@ if (_hasToolbox) then {
 
         _damage = [_vehicle,_hitpoint] call object_getHit;
 
-        if( _damage < 0.20 ) then {
+        if ( _damage < 0.20 ) then {
             _result = [player,_part] call BIS_fnc_invAdd;
             if (_result) then {
 
@@ -27,15 +29,19 @@ if (_hasToolbox) then {
                 silver_myCursorTarget = objNull;
 
                 _selection = getText(configFile >> "cfgVehicles" >> _type >> "HitPoints" >> _hitpoint >> "name");
-                if( _hitpoint == "HitEngine" or _hitpoint == "HitFuel" ) then {
-                    dayzSetFix = [_vehicle,_selection,0.89];
+                if ( _hitpoint == "HitEngine" or _hitpoint == "HitFuel" ) then {
+					if (_type isKindOf "Helicopter") then {
+						dayzSetFix = [_vehicle,_selection,0.94];
+					} else {
+						dayzSetFix = [_vehicle,_selection,0.89];
+					};
                 } else {
                     dayzSetFix = [_vehicle,_selection,1];
                 };
 				
                 if (local _vehicle) then {
                     dayzSetFix call object_setFixServer;
-                }else{
+                } else {
                     publicVariable "dayzSetFix";
                 };
 
@@ -61,7 +67,7 @@ if (_hasToolbox) then {
     };
 };
 
-if( silver_myCursorTarget != objNull ) then {
+if ( silver_myCursorTarget != objNull ) then {
     {silver_myCursorTarget removeAction _x} forEach s_player_removeActions;
     s_player_removeActions = [];
     silver_myCursorTarget = objNull;

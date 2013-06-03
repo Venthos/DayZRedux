@@ -1,4 +1,4 @@
-private["_position","_box","_location","_isOk","_backpack","_tentType","_trg","_key"];
+private ["_position","_box","_location","_isOk","_backpack","_tentType","_trg","_key"];
 
 if (vehicle player != player) exitWith {cutText ["You may not place a box while in a vehicle", "PLAIN DOWN"]};//check if player can build
 
@@ -58,7 +58,7 @@ if (_notInBuilding) then {
 	_box setVariable ["characterID",dayz_characterID,true];
 
 	dayzPublishObj = [dayz_characterID,_box,[_dir,_location],"Land_Mag_RX"];
-	publicVariable "dayzPublishObj";
+	publicVariableServer "dayzPublishObj";
 /*	if (isServer) then {
 		dayzPublishObj call server_publishObj;
 	};

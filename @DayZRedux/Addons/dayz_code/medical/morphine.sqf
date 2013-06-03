@@ -41,7 +41,7 @@ if (_finished) then {
 		_id = [player,player] execVM "\z\addons\dayz_code\medical\publicEH\medMorphine.sqf";
 	} else {
 		//dayzHumanity = [player,50];
-		[player,50] call player_humanityChange;
+		[player,20] call player_humanityChange;
 	};
 
 	//["usecMorphine",[_unit,player]] call broadcastRpcCallAll;

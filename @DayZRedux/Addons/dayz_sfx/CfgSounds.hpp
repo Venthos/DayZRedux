@@ -514,21 +514,20 @@ class CfgSounds {
 		sound[] = {"\dayz_sfx\action\z_hit_6.ogg",0.1,1,30};
 	};
 	class z_hit_7 : z_hit_0 {
-		sound[] = {"\dayz_sfx\action\z_hit_7.ogg",0.1,1,30};
+		sound[] = {"\dayz_sfx\action\z_hit_1.ogg",0.1,1,30};
 	};
 	class z_hit_8 : z_hit_0 {
-		sound[] = {"\dayz_sfx\action\z_hit_8.ogg",0.1,1,30};
+		sound[] = {"\dayz_sfx\action\z_hit_2.ogg",0.1,1,30};
 	};
 	class z_hit_9 : z_hit_0 {
-		sound[] = {"\dayz_sfx\action\z_hit_9.ogg",0.1,1,30};
+		sound[] = {"\dayz_sfx\action\z_hit_4.ogg",0.1,1,30};
 	};
 	class z_hit_10 : z_hit_0 {
-		sound[] = {"\dayz_sfx\action\z_hit_10.ogg",0.1,1,30};
+		sound[] = {"\dayz_sfx\action\z_hit_5.ogg",0.1,1,30};
 	};
 	class z_hit_11 : z_hit_0 {
-		sound[] = {"\dayz_sfx\action\z_hit_11.ogg",0.1,1,30};
+		sound[] = {"\dayz_sfx\action\z_hit_3.ogg",0.1,1,30};
 	};
-
 	class z_fracture_0 : gore_1 {
 		sound[] = {"\dayz_sfx\gore\fracture_0",1,1,80};
 	};

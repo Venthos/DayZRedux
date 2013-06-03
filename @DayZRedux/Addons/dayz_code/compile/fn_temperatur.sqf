@@ -19,7 +19,7 @@ Missing:
 */
 
 
-private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","_rain_factor","_night_factor","_wind_factor","_building_factor","_sun_factor","_water_factor","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_vel","_speed","_fireplaces","_building","_daytime","_height_mod","_temp"];
+private ["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","_rain_factor","_night_factor","_wind_factor","_building_factor","_sun_factor","_water_factor","_difference","_hasfireffect","_isinbuilding","_isinvehicle","_raining","_sunrise","_vel","_speed","_fireplaces","_building","_daytime","_height_mod","_temp"];
 
 	_looptime 			= _this;
 	_model = typeOf player;
@@ -38,70 +38,69 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 		_building_factor 	=  	2;
 	};
 
-	_water_factor		= 	-8;
-	_rain_factor		=	-6; // -3
-	_night_factor		= 	-4; // -1.5
-	_wind_factor		=	-2; // -1
-
-//custom values for skins
-	 if (_model == "S2_RX" or _model == "S3_RX" or _model == "SW2_RX" or _model == "B1_RX" or _model == "BW1_RX" or _model == "BR1_RX" or _model == "B2_RX" or _model == "S1_RX" or _model == "R_RX") then {	
- //defaults
-	_water_factor		= 	-8;
-	_rain_factor		=	-6;
-	_night_factor		= 	-4;
-	_wind_factor		=	-2;
-  } else { 
-    if (_model == "CB1_RX") then {
-	_water_factor		= 	-7.5;
-	_rain_factor		=	-6;
-	_night_factor		= 	-4;
-	_wind_factor		=	-1.7;
- };
-    if (_model == "CS1_RX") then {
-  _water_factor		= 	-7;
-	_rain_factor		=	-5.5;
-	_night_factor		= 	-4;
-	_wind_factor		=	-2;
-  //For debug
-	//hintSilent format["TEMP CS1: %1",_water_factor];
-  };
-    if (_model == "GS1_RX" OR _model == "GB1_RX") then {
-  _water_factor		= 	-6;
-	_rain_factor		=	-4.5;
-	_night_factor		= 	-3;
-	_wind_factor		=	-1.5;
-  };
-    if (_model == "PS1_RX") then {
-	_water_factor		= 	-7;
-	_rain_factor		=	-4.5;
-	_night_factor		= 	-2;
-	_wind_factor		=	-1.5;
-  };
-    if (_model == "PB1_RX") then {
-	_water_factor		= 	-8;
-	_rain_factor		=	-6;
-	_night_factor		= 	-4;
-	_wind_factor		=	-1;  //windbreaker lol.
-  };
-};
+//Skin perks
+	switch (_model) do {
+		case "CB1_RX" : {
+			_water_factor		= 	-7.5;
+			_rain_factor		=	-4.5;
+			_night_factor		= 	-3.5;
+			_wind_factor		=	-1.7;
+		};
+		case "CS1_RX" : {
+			_water_factor		= 	-7;
+			_rain_factor		=	-4;
+			_night_factor		= 	-3;
+			_wind_factor		=	-1.8;
+		};
+		case "GS1_RX" : {
+			_water_factor		= 	-6;
+			_rain_factor		=	-4;
+			_night_factor		= 	-3;
+			_wind_factor		=	-1.5;
+		};
+		case "GB1_RX" : {
+			_water_factor		= 	-6;
+			_rain_factor		=	-4;
+			_night_factor		= 	-3;
+			_wind_factor		=	-1.5;
+		};
+		case "PS1_RX" : {
+			_water_factor		= 	-6;
+			_rain_factor		=	-4.5;
+			_night_factor		= 	-2;
+			_wind_factor		=	-1.5;
+		};
+		case "PB1_RX" : {
+			_water_factor		= 	-7.4;
+			_rain_factor		=	-4.5;
+			_night_factor		= 	-3.5;
+			_wind_factor		=	-1;
+		};
+		default {
+			_water_factor		= 	-8;
+			_rain_factor		=	-5;
+			_night_factor		= 	-3.5;
+			_wind_factor		=	-2;
+		};
+	};
 	
 	_difference 	= 0;
 	_hasfireffect	= false;
 	_isinbuilding	= false;
 	_isinvehicle	= false;
 	
-	_raining 		= if(rain > 0) then {true} else {false};
+	_raining 		= if (rain > 0) then {true} else {false};
 	_sunrise		= call world_sunRise;
 	
-	//POSITIV EFFECTS
+	//POSITIVE EFFECTS
 	
 	//vehicle
-	if((vehicle player) != player) then {
+	if ((vehicle player) != player) then {
 		_difference 	= _difference + _vehicle_factor;
 		_isinvehicle 	= true;
 	} else {
 		//speed factor
-		private["_vel","_speed"];
+		private ["_vel","_speed"];
 		_vel = 		velocity player;
 		_speed = 	round((_vel distance [0,0,0]) * 3.5);
 		_difference = (_moving_factor * (_speed / 20)) min 1;
@@ -109,7 +108,7 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 	
 	//fire
 	_fireplaces = nearestObjects [player, ["Land_Fire","Land_Campfire"], 8];
-	if(({inflamed _x} count _fireplaces) > 0 && !_isinvehicle ) then {
+	if (({inflamed _x} count _fireplaces) > 0 && !_isinvehicle ) then {
 		//Math: factor * 1 / (0.5*(distance max 1)^2) 		0.5 = 12.5% of the factor effect in a distance o 4 meters
 		_difference 	= _difference + (_fire_factor /(0.5*((player distance (_fireplaces select 0)) max 1)^2));
 		_hasfireffect 	= true;
@@ -117,10 +116,10 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 	
 	//building
 	_building = nearestObject [player, "HouseBase"];
-	if(!isNull _building) then {
-		if([player,_building] call fnc_isInsideBuilding) then {
+	if (!isNull _building) then {
+		if ([player,_building] call fnc_isInsideBuilding) then {
 			//Make sure thate Fire and Building Effect can only appear single		Not used at the moment
-			//if(!_hasfireffect && _fire_factor > _building_factor) then {
+			//if (!_hasfireffect && _fire_factor > _building_factor) then {
 				_difference = _difference + _building_factor;
 			//};
 			_isinbuilding	= true;
@@ -134,7 +133,7 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 	
 	
 	//sun
-	if(daytime > _sunrise && daytime < (24 - _sunrise) && !_raining && overcast <= 0.6 && !_isinbuilding) then {
+	if (daytime > _sunrise && daytime < (24 - _sunrise) && !_raining && overcast <= 0.6 && !_isinbuilding) then {
 		
 		/*Mathematic Basic
 		
@@ -165,19 +164,19 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 	//NEGATIVE  EFFECTS
 	
 	//water
-	if(surfaceIsWater getPosATL player || dayz_isSwimming) then {
+	if (surfaceIsWater getPosATL player || dayz_isSwimming) then {
 		_difference = _difference + _water_factor;
 	};
 	
 	//rain
-	if(_raining && !_isinvehicle && !_isinbuilding) then {
+	if (_raining && !_isinvehicle && !_isinbuilding) then {
 		_difference = _difference + (rain * _rain_factor);
 	};
 	
 	//night
-	if((daytime < _sunrise || daytime > (24 - _sunrise)) && !_isinvehicle) then {
-		_daytime 	= if(daytime < 12) then {daytime + 24} else {daytime};
-		if(_isinbuilding) then {
+	if ((daytime < _sunrise || daytime > (24 - _sunrise)) && !_isinvehicle) then {
+		_daytime 	= if (daytime < 12) then {daytime + 24} else {daytime};
+		if (_isinbuilding) then {
 			_difference = _difference + ((((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor)) / 2;
 		} else {
 			_difference = _difference + (((_night_factor * -1) / (_sunrise^2)) * ((_daytime - 24)^2) + _night_factor);
@@ -185,7 +184,7 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 	};
 	
 	//wind
-	if(((wind select 0) > 4 || (wind select 1) > 4) && !_isinvehicle && !_isinbuilding ) then {
+	if (((wind select 0) > 4 || (wind select 1) > 4) && !_isinvehicle && !_isinbuilding ) then {
 		_difference = _difference + _wind_factor;
 	};
 	
@@ -203,7 +202,7 @@ private["_looptime","_model","_vehicle_factor","_moving_factor","_fire_factor","
 	
 	//Add Shivering
 	//						Percent when the Shivering will start 
-	if(dayz_temperatur <= (0.125 * (dayz_temperaturmax - dayz_temperaturmin) + dayz_temperaturmin)) then {
+	if (dayz_temperatur <= (0.125 * (dayz_temperaturmax - dayz_temperaturmin) + dayz_temperaturmin)) then {
 		//CamShake as linear Function Maximum reached when Temp is at temp minimum. First Entry = Max Value
 		_temp = 0.6 * (dayz_temperaturmin / dayz_temperatur );
 		addCamShake [_temp,(_looptime + 1),30];	//[0.5,looptime,6] -> Maximum is 25% of the Pain Effect	

@@ -1,4 +1,4 @@
-private["_agent","_id","_list","_isSomeone","_isAlive","_target","_targetPos","_myDest"];
+private ["_agent","_id","_list","_isSomeone","_isAlive","_target","_targetPos","_myDest"];
 //Definitions
 _agent = _this select 0;
 

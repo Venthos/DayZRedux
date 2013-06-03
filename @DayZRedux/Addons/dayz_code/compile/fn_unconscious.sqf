@@ -1,9 +1,11 @@
-private["_totalTimeout","_display","_ctrl1","_ctrl1Pos","_timeout","_isOnDeck","_isInLocation","_inVehicle","_bloodLow","_animType","_anim","_isHospital"];
+private ["_totalTimeout","_display","_ctrl1","_ctrl1Pos","_timeout","_isOnDeck","_isInLocation","_inVehicle","_bloodLow","_animType","_anim","_isHospital"];
 
 disableSerialization;
 if ((!r_player_handler1) and (r_handlerCount == 0)) then {
+	player switchMove ""; //reset anim state
 	//Unconscious Meter
 	_totalTimeout = r_player_timeout;
+	if (_totalTimeout == 0) then { _totalTimeout = r_player_timeout +1; }; //Fix for zero divisor
 	4 cutRsc ["playerStatusWaiting", "PLAIN",0];
 	_display = uiNamespace getVariable 'DAYZ_GUI_waiting';
 	_ctrl1 = 	_display displayCtrl 1400;
@@ -33,7 +35,7 @@ if ((!r_player_handler1) and (r_handlerCount == 0)) then {
 			player setpos [(getPosASL player select 0),(getPosASL player select 1),0.3];
 		};
 		
-		if(_timeout == 0) then {
+		if (_timeout == 0) then {
 			if (!r_player_dead and !_bloodLow and r_player_injured) then {
 				_timeout = 10;
 				//_animType = (USEC_WoundAnim select (floor(random (count USEC_WoundAnim))));
@@ -84,7 +86,7 @@ if ((!r_player_handler1) and (r_handlerCount == 0)) then {
 		if (r_player_timeout > 0 && !(player getVariable ["NORRN_unconscious", true])) then {
 			nul = [] spawn fnc_usec_recoverUncons;
 		};
-		if(r_player_timeout > 0 && (animationState player == "AmovPpneMstpSnonWnonDnon_healed")) then {
+		if (r_player_timeout > 0 && (animationState player == "AmovPpneMstpSnonWnonDnon_healed")) then {
 			nul = [] spawn fnc_usec_recoverUncons;
 		};
 	};

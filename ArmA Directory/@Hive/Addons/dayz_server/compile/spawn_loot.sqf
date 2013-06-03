@@ -51,7 +51,7 @@ switch (_iClass) do {
 	case "object": {
 		// Do not spawn another "object" type if there's already an "object" type there.
 		//_nearObjects = nearestObjects [_iPos, ["Bag_Base_EP1","CardboardBox","AmmoBoxSmall"],1];
-		//if (count _nearobjects > 0) exitWith{};
+		//if (count _nearobjects > 0) exitWith {};
 
 		//Item is one magazine
 		_item = createVehicle [_iItem, _iPos, [], _radius, "CAN_COLLIDE"];

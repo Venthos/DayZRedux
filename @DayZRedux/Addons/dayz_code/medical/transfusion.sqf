@@ -46,7 +46,7 @@ if (_finished) then {
 	publicVariable "usecTransfuse";
 
 	//dayzHumanity = [player,250];
-	[player,250] call player_humanityChange;
+	[player,75] call player_humanityChange;
 } else {
 	r_interrupt = false;
 	player switchMove "";

@@ -1,4 +1,4 @@
-private["_position","_doLoiter","_unitTypes","_isNoone","_loot","_array","_agent","_type","_radius","_method","_nearByPlayer","_attempt","_myDest","_newDest","_lootType"];
+private ["_position","_doLoiter","_unitTypes","_isNoone","_loot","_array","_agent","_type","_radius","_method","_nearByPlayer","_attempt","_myDest","_newDest","_lootType"];
 _player = _this select 0;
 _unitTypes = 	[]+ getArray (configFile >> "CfgBuildingLoot" >> "Default" >> "zombieClass");
 _doLoiter = 	true;
@@ -45,12 +45,12 @@ _agent setVariable ["newDest",_newDest];
 //Add some loot
 _rnd = random 1;
 if (_rnd > 0.3) then {
-	_lootType = 		configFile >> "CfgVehicles" >> _type >> "zombieLoot";
+	_lootType = 		configFile >> "CfgVehicles" >> _type >> "zombieLoot"; 
 	if (isText _lootType) then {
 		_array = []+ getArray (configFile >> "cfgLoot" >> getText(_lootType));
 		if (count _array > 0) then {
 			_loot = _array call BIS_fnc_selectRandomWeighted;
-			if(!isNil "_array") then {
+			if (!isNil "_array") then {
 				_agent addMagazine _loot;
 			};
 		};

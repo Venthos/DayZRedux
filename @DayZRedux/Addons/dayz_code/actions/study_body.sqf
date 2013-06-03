@@ -1,4 +1,4 @@
-private["_body","_name","_method","_methodStr"];
+private ["_body","_name","_method","_methodStr"];
 _body = 	_this select 3;
 _name = 	_body getVariable["bodyName","unknown"];
 _method = 	_body getVariable["deathType","unknown"];
