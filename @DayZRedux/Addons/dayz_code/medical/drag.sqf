@@ -18,7 +18,9 @@ _isDoing = ["medic",_animState] call fnc_inString;
 _addAction = false;
 
 	if (isNull _dragee) exitWith {};
-
+	if (currentWeapon player == "") exitWith { cutText ["Equip a weapon before dragging!","PLAIN DOWN"]; };
+	if ((currentWeapon player == "Binocular") or (currentWeapon player == "Binocular_Vector")) exitWith { cutText ["Select a primary or secondary weapon before dragging!","PLAIN DOWN"]; };
+	
 	if (!forceDrag) then {
 		if (!_unconscious) exitWith {};
 	};
@@ -31,8 +33,9 @@ _bodyATL = _bodyHeight >= -0.2;
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 
-if (!_canDo) exitWith { if (r_drag_sqf) then { [cursorTarget, _unit, _unconscious, _dragee] execVM "\z\addons\dayz_code\medical\drop_body.sqf"; }; }; //prevent duplicate drags
-if (!_bodyATL) exitWith { cutText ["You cannot drag a body that has been burried!","PLAIN DOWN"]; };
+	if (!_canDo) exitWith { if (r_drag_sqf) then { [cursorTarget, _unit, _unconscious, _dragee] execVM "\z\addons\dayz_code\medical\drop_body.sqf"; }; }; //prevent duplicate drags
+	if (!_bodyATL) exitWith { cutText ["You cannot drag a body that has been burried!","PLAIN DOWN"]; };
+
 //player assumes dragging posture
 r_drag_sqf 	= true;
 while {r_drag_sqf} do {
